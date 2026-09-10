@@ -16,5 +16,3 @@ TODO before going live:
 - [ ] legal form + location (Contact)
 - [ ] price ladder decision (owner rethinking per-LoC math; omitted)
 - [ ] favicon set (square logo.png is the natural source)
-- [ ] naming decision: "Agent-Augmented" vs "AI-Augmented" in the
-      positioning line (owner open question 2026-09-10)
