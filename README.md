@@ -8,11 +8,13 @@ Content source of truth: archiku/hq/offering/ (core message v3.3,
 website copy v1 + feedback rounds).
 
 TODO before going live:
-- [ ] replace hero background placeholder (static/img/bg-hero.jpg)
+- [ ] replace hero background placeholder (img/bg-hero.jpg)
 - [ ] portrait photo + confirm public name form (About)
 - [ ] LinkedIn profile URL (About)
 - [ ] agentic workflow series URL (About)
 - [ ] confirm contact address (Contact)
 - [ ] legal form + location (Contact)
 - [ ] price ladder decision (owner rethinking per-LoC math; omitted)
-- [ ] favicon set
+- [ ] favicon set (square logo.png is the natural source)
+- [ ] naming decision: "Agent-Augmented" vs "AI-Augmented" in the
+      positioning line (owner open question 2026-09-10)
