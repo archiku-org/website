@@ -1,0 +1,213 @@
+/*
+ * Archiku stylesheet. Design system reused from the architectaday site
+ * (Bootstrap 5.2 + Lato + orange #f4623a + pill buttons + dividers).
+ * Static single page for GitHub Pages.
+ */
+
+html {
+  height: 100%;
+  scroll-padding-top: calc(4.5rem - 1px);
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+.page-section {
+  padding: 4rem 0;
+}
+
+.text-white-75 {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Buttons: pill shaped (architectaday design layer) */
+.btn-xl {
+  padding: 1.25rem 2.25rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10rem;
+}
+
+.btn-lg {
+  border-radius: 10rem;
+}
+
+/* Brand accent */
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #f4623a;
+  --bs-btn-border-color: #f4623a;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #d9502e;
+  --bs-btn-hover-border-color: #d9502e;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #c34e2e;
+  --bs-btn-active-border-color: #c34e2e;
+  --bs-btn-focus-shadow-rgb: 244, 98, 58;
+}
+
+.text-primary {
+  color: #f4623a !important;
+}
+
+hr.divider {
+  height: 0.2rem;
+  max-width: 3.25rem;
+  margin: 1.5rem auto;
+  background-color: #f4623a;
+  opacity: 1;
+}
+
+/* Navigation: transparent over the hero, white after scrolling */
+#mainNav {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  transition: background-color 0.2s ease;
+}
+#mainNav .navbar-brand {
+  font-weight: 700;
+  color: #212529;
+}
+#mainNav .navbar-nav .nav-item .nav-link {
+  color: #6c757d;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.75rem 0;
+}
+#mainNav .navbar-nav .nav-item .nav-link:hover,
+#mainNav .navbar-nav .nav-item .nav-link:active {
+  color: #f4623a;
+}
+@media (min-width: 992px) {
+  #mainNav {
+    box-shadow: none;
+    background-color: transparent;
+  }
+  #mainNav .navbar-brand {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  #mainNav .navbar-brand:hover {
+    color: #fff;
+  }
+  #mainNav .navbar-nav .nav-item .nav-link {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0 1rem;
+  }
+  #mainNav .navbar-nav .nav-item .nav-link:hover {
+    color: #fff;
+  }
+  #mainNav .nav-item:last-child .nav-link {
+    padding-right: 0;
+  }
+  #mainNav.navbar-shrink {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+  }
+  #mainNav.navbar-shrink .navbar-brand {
+    color: #212529;
+  }
+  #mainNav.navbar-shrink .navbar-brand:hover {
+    color: #f4623a;
+  }
+  #mainNav.navbar-shrink .navbar-nav .nav-item .nav-link {
+    color: #212529;
+  }
+  #mainNav.navbar-shrink .navbar-nav .nav-item .nav-link:hover {
+    color: #f4623a;
+  }
+}
+
+/* Hero */
+header.masthead {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 4.5rem);
+  background: linear-gradient(to bottom, rgba(27, 31, 44, 0.92) 0%, rgba(27, 31, 44, 0.92) 100%),
+    url("../img/bg-hero.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+header.masthead h1 {
+  font-size: 3rem;
+  letter-spacing: 0.05em;
+}
+header.masthead .tagline {
+  font-size: 1.15rem;
+}
+header.masthead .hero-copy {
+  max-width: 46rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.05rem;
+}
+@media (min-width: 992px) {
+  header.masthead {
+    height: 100vh;
+    min-height: 40rem;
+    padding-top: 4.5rem;
+    padding-bottom: 0;
+  }
+  header.masthead h1 {
+    font-size: 3.5rem;
+  }
+  header.masthead .hero-copy {
+    font-size: 1.1rem;
+  }
+}
+
+/* Benefits section */
+.deliverable-card {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  border-radius: 0.5rem;
+}
+
+/* Process steps */
+.step-number {
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  margin: 0 auto 0.75rem auto;
+  border-radius: 50%;
+  background-color: #f4623a;
+  color: #fff;
+  font-weight: 700;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.phase0-details {
+  margin-top: 1rem;
+}
+.phase0-details summary {
+  cursor: pointer;
+  color: #f4623a;
+  font-weight: 700;
+}
+
+/* About portrait placeholder */
+.portrait-placeholder {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  color: #adb5bd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.075);
+}
