@@ -189,6 +189,21 @@ header.masthead .tagline {
   display: block;
 }
 
+/* Use case cards: numbered recognition scenarios */
+.usecase-card {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  border-radius: 0.5rem;
+}
+.usecase-number {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f4623a;
+}
+.usecase-link {
+  padding-left: 1.25rem;
+}
+
 /* Team: persona cards (casting per hq §10a, layout per personas-preview) */
 .persona-card {
   background-color: #fff;
