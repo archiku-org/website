@@ -71,7 +71,7 @@ hr.divider {
   opacity: 1;
 }
 
-/* Navigation: transparent over the hero, white after scrolling */
+/* Navigation: always light */
 #mainNav {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   background-color: #fff;
@@ -80,9 +80,6 @@ hr.divider {
 #mainNav .navbar-brand img {
   height: 2.5rem;
   width: auto;
-}
-#mainNav .navbar-brand .brand-dark {
-  display: none;
 }
 #mainNav .navbar-nav .nav-item .nav-link {
   color: #6c757d;
@@ -95,41 +92,11 @@ hr.divider {
   color: #f4623a;
 }
 @media (min-width: 992px) {
-  #mainNav {
-    box-shadow: none;
-    background-color: transparent;
-  }
-  #mainNav .navbar-brand .brand-light {
-    display: inline;
-  }
-  #mainNav .navbar-brand .brand-dark {
-    display: none;
-  }
   #mainNav .navbar-nav .nav-item .nav-link {
-    color: rgba(255, 255, 255, 0.7);
     padding: 0 1rem;
-  }
-  #mainNav .navbar-nav .nav-item .nav-link:hover {
-    color: #fff;
   }
   #mainNav .nav-item:last-child .nav-link {
     padding-right: 0;
-  }
-  #mainNav.navbar-shrink {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    background-color: #fff;
-  }
-  #mainNav.navbar-shrink .navbar-brand .brand-light {
-    display: none;
-  }
-  #mainNav.navbar-shrink .navbar-brand .brand-dark {
-    display: inline;
-  }
-  #mainNav.navbar-shrink .navbar-nav .nav-item .nav-link {
-    color: #212529;
-  }
-  #mainNav.navbar-shrink .navbar-nav .nav-item .nav-link:hover {
-    color: #f4623a;
   }
 }
 
@@ -220,8 +187,4 @@ header.masthead .tagline {
 /* Footer */
 footer {
   border-top: 1px solid rgba(0, 0, 0, 0.075);
-}
-.footer-logo {
-  height: 3.5rem;
-  width: auto;
 }
