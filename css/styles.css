@@ -214,6 +214,15 @@ header.masthead .tagline {
   font-size: 0.95rem;
   text-align: left;
 }
+/* Vault: title+icon left of the bio on wide screens, stacked on narrow */
+@media (min-width: 992px) {
+  .vault-head {
+    flex: 0 0 12rem;
+  }
+  .vault-hub .persona-bio {
+    flex: 1;
+  }
+}
 /* Footer */
 footer {
   border-top: 1px solid rgba(0, 0, 0, 0.075);
