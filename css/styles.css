@@ -189,6 +189,14 @@ header.masthead .tagline {
   display: block;
 }
 
+/* Qualities: tier headings between the value rows */
+.values-tier {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f4623a;
+  margin: 2rem 0 1rem;
+}
+
 /* Use case cards: numbered recognition scenarios */
 .usecase-card {
   background-color: #fff;
