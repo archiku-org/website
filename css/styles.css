@@ -184,6 +184,36 @@ header.masthead .tagline {
   display: block;
 }
 
+/* Team: persona cards (casting per hq §10a, layout per personas-preview) */
+.persona-card {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  border-radius: 0.5rem;
+}
+.persona-icon {
+  font-size: 2.75rem;
+  color: #f4623a;
+  line-height: 1;
+}
+.vault-hub {
+  background-color: #212529;
+  color: #fff;
+  border-radius: 0.5rem;
+  border: none;
+}
+.vault-hub .persona-icon {
+  font-size: 3rem;
+}
+.vault-hub .persona-role {
+  color: rgba(255, 255, 255, 0.75);
+}
+.persona-role {
+  font-size: 0.9rem;
+}
+.persona-bio {
+  font-size: 0.95rem;
+  text-align: left;
+}
 /* Footer */
 footer {
   border-top: 1px solid rgba(0, 0, 0, 0.075);
