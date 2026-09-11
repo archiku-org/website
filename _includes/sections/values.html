@@ -9,16 +9,13 @@
         </p>
       </div>
     </div>
-    {% for group in include.section.groups %}
-    <h3 class="values-tier">{{ group.title }}</h3>
     <div class="row gx-4 gx-lg-5 justify-content-center">
-      {% for item in group.items %}
+      {% for item in include.section.items %}
       <div class="col-lg-5 mb-4 benefit">
         <h3 class="mb-2"><i class="{{ item.icon }} text-primary me-2"></i>{{ item.title }}</h3>
         <p class="text-muted mb-0">{{ item.text }}</p>
       </div>
       {% endfor %}
     </div>
-    {% endfor %}
   </div>
 </section>

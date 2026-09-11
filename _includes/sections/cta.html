@@ -5,7 +5,7 @@
         <h2 class="mt-0">{{ include.section.title }}</h2>
         <hr class="divider" />
         <p class="lead">
-          {{ include.section.subtitle }}
+          {{ include.section.subtitle | markdownify }}
         </p>
         <p>
           <a class="btn btn-primary btn-xl" href="{{ include.section.button_url }}">{{ include.section.button_label }}</a>

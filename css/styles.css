@@ -113,7 +113,8 @@ header.masthead {
 }
 header.masthead .hero-logo {
   height: 6rem;
-  width: auto;
+  max-width: 100%;
+  object-fit: contain;
   margin-bottom: 1.5rem;
 }
 header.masthead .hero-intro {
@@ -263,4 +264,20 @@ header.masthead .tagline {
 /* Footer */
 footer {
   border-top: 1px solid rgba(0, 0, 0, 0.075);
+}
+
+
+/* Fluid type: desktop values unchanged, gracefully smaller on phones.
+   clamp(min, preferred, max) — the max values are the sizes of the
+   deliberate type scale above, so nothing grows on large screens. */
+h2 {
+  font-size: clamp(1.6rem, 1.2rem + 1.7vw, 2rem);
+}
+.hero-opener {
+  font-size: clamp(1.4rem, 0.9rem + 2.2vw, 1.9rem);
+}
+.hero-card-title,
+.benefit h3,
+.step h3 {
+  font-size: clamp(1.1rem, 1rem + 0.6vw, 1.25rem);
 }
