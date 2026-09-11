@@ -119,6 +119,11 @@ header.masthead .hero-logo {
 header.masthead .hero-intro {
   margin-top: 125px;
 }
+.hero-opener {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #fff;
+}
 header.masthead .tagline {
   font-size: 1.15rem;
 }
@@ -139,7 +144,7 @@ header.masthead .tagline {
 }
 @media (min-width: 992px) {
   header.masthead {
-    height: 100vh;
+    min-height: 100vh;
     min-height: 40rem;
     padding-top: 4.5rem;
     padding-bottom: 0;
