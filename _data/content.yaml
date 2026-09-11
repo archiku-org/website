@@ -1,0 +1,481 @@
+# =====================================================================
+# Archiku website content — single source of truth.
+#
+# Rendered by Jekyll into the homepage (index.html is the template):
+#   make serve / make build (see Makefile, _config.yml, Gemfile)
+# Each entry in `sections` is a content block with:
+#   id     — anchor used by the nav and internal links
+#   type   — the representation; maps to _includes/sections/<type>.html
+#   nav_label — optional; when present the section appears in the nav,
+#               in the order the sections appear here
+#   ...    — content fields (title, subtitle, items, ...)
+#
+# Layout lives in index.html / _includes — edit only content here.
+# Reorder sections by moving blocks; the nav order follows automatically.
+# Delete or add whole sections freely.
+# =====================================================================
+
+meta:
+  title: Archiku. Agent-Augmented Software Archaeology.
+  description: |
+    Do you really know your software? Archiku delivers independent insight into
+    what your software really is: a validated baseline analysis in days, and the
+    Vault to keep that insight alive.
+
+footer:
+  copyright: |
+    Copyright © 2026, Archiku, Agent-Augmented Software Archaeology,
+    is a product of <a href="https://2know.be">2Know BV</a>
+
+sections:
+
+  # ------------------------------------------------ hero
+  - id: top
+    type: hero
+    logo_img: img/archiku-white-transp-bg.png
+    tagline: |
+      Agent-Augmented Software Archaeology<br />Uncovering the essence. Keeping it alive.
+    opener: Do you really know your software?
+    opener_sub: |
+      Not what it was designed to do. Not what the documentation says it does.
+      What it does. Today.
+    cards:
+      - title: The system you inherited
+        text: |
+          Has outlived everyone who understood it. The knowledge left with its
+          makers, and often nobody can even say whether modernizing it is
+          possible at all.
+      - title: The system your vendor delivered
+        text: |
+          Comes with promises, not proof. Did you get what you paid for? Every
+          finding is traceable to the exact line of code, so you can verify any
+          claim in seconds.
+      - title: The codebase your team ships
+        text: |
+          Drifts a little further from the plan with every release. Every change
+          is independently reviewed, with your experts in the loop as the final
+          authority.
+    closing:
+      - |
+        Different systems, same question. And every one of them was active code
+        once, before the changes nobody recorded turned it into a black box.
+      -
+        When you know what your software really does, you can decide, budget,
+        verify and comply. When you do not, every choice is a bet.
+    pitch: |
+      Archiku delivers independent insight into what your software really is.
+      A seasoned architect and analyst, backed by an agentic workflow, digs
+      through your codebase and produces a validated baseline analysis in
+      days. Every finding is traceable to the exact line of code,
+      independently reviewed by multiple agents, with your experts as the
+      final authority. And the Vault keeps that insight alive, so your
+      software never quietly becomes a black box again.
+    cta_label: Discover the Phase 0 intake
+    cta_anchor: process
+
+  # ------------------------------------------------ use cases
+  - id: usecases
+    nav_label: Use cases
+    type: numbered-cards
+    title: Recognize your software?
+    subtitle: |
+      Eight situations we hear about every week. If one of them is yours, the
+      question underneath it is the same: do you really know what your
+      software does?
+    items:
+      - title: The system nobody dares to touch
+        text: |
+          Somewhere in your organisation runs software that everything depends on
+          and nobody understands anymore. Its makers are gone, its documentation
+          is dead, and every change risks the unknown. What your team needs is an
+          independent map of what the system really does: the system's functional
+          essence, traceable to the exact line of code, delivered in days instead
+          of months of code reading. Too critical to touch becomes understood,
+          and ready to decide about.
+      - title: The delivery you need to verify
+        text: |
+          A third party built or rebuilt software for you. The contract ended,
+          the warranty is running out, or the acquisition is approaching. Did you
+          get what you paid for? What you need is an independent as-built
+          analysis: what was actually built, how it works, where it deviates from
+          the plan. No stake in the answer, every finding traceable to the code.
+          And afterwards, someone who keeps watching what changes in the repo and
+          reports it to you, not to the builder.
+      - title: The requirements nobody checked the code against
+        text: |
+          You have a functional analysis. You have requirements. But the code has
+          been changing since the day they were written, and nobody can say they
+          still agree. What you need is an independent comparison of the system
+          as it is actually built against your functional analysis and
+          requirements, every deviation reported and traceable to the code. And
+          then every future change checked against the same bar. Conformance
+          stops being an assumption.
+      - title: The codebase your team ships every week
+        text: |
+          Development is alive. Releases go out every week. But nobody outside
+          the team, and honestly not even inside it, can say what the system has
+          become. What you need is a baseline of what the system is today, and an
+          independent watcher that analyzes every push against that baseline, so
+          drift is captured while it happens. Progress, quality and conformance,
+          reported to you, not just to the team.
+      - title: The estate you just inherited
+        text: |
+          You have just taken over the IT estate, as CIO, CTO or new owner. Nobody
+          can hand you the overview: what systems exist, what they actually do,
+          which ones carry the risk. What you need is that overview, built system
+          by system and kept in one place, up to date: a living picture of what
+          your organisation really runs. Your first hundred days, grounded in
+          facts instead of war stories.
+      - title: The team that starts from nothing
+        text: |
+          A new team is taking over. Insourcing after the vendor left, key people
+          gone, or an acquisition folded in. They inherit the code, the deadlines
+          and zero context. What they need is a validated baseline analysis to
+          start from, instead of months of code reading, and a place where they
+          can ask their questions from day one. Your team is productive in weeks,
+          not quarters.
+      - title: The decision you cannot make yet
+        text: |
+          Modernize, migrate, wrap or leave it. Every option paper assumes
+          somebody knows what the system does. What you need is the insight the
+          decision needs, in days at a fixed fee, before you commit a budget.
+          Decide on facts, not on folklore.
+      - title: The regulator who asks what your systems do
+        text: |
+          Under DORA, financial entities must assess their legacy ICT systems
+          every year. Under NIS2, management is personally liable for security
+          and can only evidence what is documented. An undocumented estate is a
+          governance liability. What you need is the documented, traceable
+          baseline these obligations ask for, and for it to stay current, so next
+          year's assessment starts from knowledge, not from panic.
+
+  # ------------------------------------------------ team
+  - id: team
+    nav_label: Team
+    type: profiles
+    title: Meet the team
+    subtitle: |
+      Archiku is not a toolkit. It is a team: four agents and one vault, each
+      with its own craft, all in service of one thing. The truth about your
+      software. Carter reads the code, Harper reads the people, Argus watches
+      it all, Oracle speaks from the Vault. And the Vault remembers.
+    items:
+      - title: Carter
+        icon: bi-map
+        bio1: |
+          Carter is a true excavator. He digs through your code and any existing
+          documentation, layer by layer, oldest evidence first, until the original
+          intent surfaces again.
+        bio2: |
+          Hand Carter a system, a delivery or an entire estate and the result is
+          the same: a map of what it really does, traceable to the exact line of
+          code. Methodical, thorough and never in a hurry to judge.
+      - title: Harper
+        icon: bi-mic
+        bio1: |
+          Harper loves to listen to people. Code does not remember everything,
+          people do. Harper sits down with your people, in their language, and
+          gathers the testimony the code cannot give: decisions taken, reasons
+          forgotten, knowledge that only lives in heads.
+        bio2: |
+          What Harper hears is checked against what Carter finds, and the gaps in
+          the analysis close. The listener of the team.
+      - title: Argus
+        icon: bi-eye
+        bio1: |
+          Argus is our watchman. A hundred eyes, never all closed at once. He
+          watches the codebase as it lives: every push, every change, every drift
+          away from the baseline.
+        bio2: |
+          What Argus sees is reported in language a board can act on. And it is
+          Argus who keeps the Vault's knowledge up to date, so the issues it
+          surfaces reach you before they become surprises.
+      - title: Oracle
+        icon: bi-compass
+        bio1: |
+          Oracle is your trustworthy counsel. An analysis you cannot question is
+          just a document. Oracle answers, straight from the Vault, in the
+          language of the asker: technical for developers, business language for
+          the board, regulatory language for compliance.
+        bio2: |
+          Every answer carries the same traceability as the analysis it comes
+          from. Consult the Oracle whenever reading code is not the job at hand.
+    vault:
+      title: The Vault
+      icon: bi-safe
+      text: |
+        The Vault is a true memory. It is the steady state at the centre of the
+        team. It holds the universal truth of what your software really is:
+        every finding, every citation, every validated insight, in one place.
+        It does not dig and it does not watch. It holds, it remembers, and
+        because Argus never stops watching, it never goes stale. Code enters
+        the perimeter, knowledge is all that comes out, and what the Vault
+        holds outlives every engagement, every vendor and every reorganisation.
+
+  # ------------------------------------------------ why
+  - id: why
+    type: prose
+    title: Why Archiku
+    paragraphs:
+      - |
+        Agents excel at unstructured work: reading, researching, connecting the
+        dots. The industry points them at generating output. Archiku points them
+        the other way.
+      - |
+        Archiku lets agents do what they do best. They read your entire codebase,
+        trace behaviour to the source, map the business essence, and generate the
+        input your people work from.
+      - |
+        We call this <strong>software archaeology</strong>: digging through the
+        layers of a system until the original intent surfaces again.
+
+  # ------------------------------------------------ benefits
+  - id: benefits
+    nav_label: Benefits
+    type: values
+    title: What's in it for you
+    subtitle: |
+      Archiku sells insight. These are the values we sell, and the values
+      that prove them.
+    groups:
+      - title: The values we sell
+        items:
+          - title: Independent insight
+            icon: bi-fingerprint
+            text: |
+              Archiku has no stake in your build decisions. We do not write your
+              software, we do not sell its implementation, we answer to nobody but
+              the facts in your code. Whether the question is an inherited system,
+              a vendor's delivery or your own team's work, the insight is
+              independent and yours alone.
+          - title: Timely
+            icon: bi-stopwatch
+            text: |
+              The Phase 0 intake is analyzed within 48 hours. A full validated
+              baseline analysis is delivered in days, at a fixed fee and a fixed
+              scope agreed up front. No open-ended engagements.
+          - title: Cost-effective
+            icon: bi-cash-coin
+            text: |
+              A fixed fee instead of months of billable archaeology by a team. The
+              Phase 0 intake costs €1,500 and is fully credited toward the full
+              analysis when we proceed. If it shows no value, you pay nothing.
+      - title: What proves them
+        items:
+          - title: Privacy-first
+            icon: bi-shield-lock
+            text: |
+              Your code is analyzed on hardware we control, with locally hosted
+              models in an isolated per-client environment. Your code is never sent
+              to public AI services and no model is ever trained on it. Ever.
+          - title: Full traceability
+            icon: bi-crosshair
+            text: |
+              Every finding cites the exact file and line it came from. Nothing is
+              claimed that cannot be pointed at.
+          - title: Full auditability
+            icon: bi-patch-check
+            text: |
+              The analysis passes independent multi-agent, multi-pass review before
+              anything reaches you, and sampled findings are re-verified with the
+              pass rate published. The process itself is the proof, and it is open
+              to your inspection.
+          - title: 25 years of experience
+            icon: bi-award
+            text: |
+              The agents are fast, but the method is the product: a quarter century
+              of software and functional analysis, from analysis craft to BPMN and
+              UML modelling, drives what Carter looks for and how findings are
+              judged.
+
+  # ------------------------------------------------ deliverables
+  - id: deliverables
+    nav_label: Deliverables
+    type: badge-cards
+    title: What you get
+    subtitle: |
+      The concrete deliverables behind the promise. Starting with a standard
+      analysis, extended where you need it.
+    items:
+      - title: Functional analysis
+        icon: bi-file-earmark-ruled
+        badge: Standard
+        badge_style: primary
+        text: |
+          The business essence of your system, told technology-free: the actors,
+          the processes, the core concepts. The document your team can finally
+          read, so you regain control over the system.
+      - title: Modernization analysis
+        icon: bi-signpost-split
+        badge: Architecture Extension
+        badge_style: secondary
+        text: |
+          What would moving this system forward actually require? Based on your
+          preferences, a transformation plan and roadmap can be added to the
+          analysis.
+      - title: Issue and bug detection
+        icon: bi-bug
+        badge: Code Level Extension
+        badge_style: secondary
+        text: |
+          Know where the code is fragile, before your change uncovers it the hard
+          way. This complements the functional analysis on a technical level,
+          allowing deeper insights into the road ahead, or even the current blast
+          radius.
+
+  # ------------------------------------------------ process
+  - id: process
+    nav_label: Process
+    type: steps
+    title: How it works
+    items:
+      - title: Explore
+        icon: bi-compass
+        text: |
+          A short joint exploration of your project, free of charge. If Archiku is
+          not the right help, we say so and stop there.
+      - title: Intake
+        icon: bi-lightning-charge
+        text: |
+          Together we select a module for a risk-free initial analysis, analyzed
+          within 48 hours and presented to you by the analyst who stands behind it.
+      - title: Decide
+        icon: bi-cash-coin
+        text: |
+          No value shown, you pay nothing. Value shown, a flat fee €1,500 for the
+          initial deliverable. Move forward with a full scope analysis? We credit
+          the €1,500.
+      - title: Analyze
+        icon: bi-diagram-3
+        text: |
+          Full validated baseline analysis, fixed fee, in days. Multi-pass agentic
+          review before anything reaches you.
+      - title: Own
+        icon: bi-people
+        text: |
+          Your experts can validate, extend and own the resulting analysis. We can
+          still support you with any targeted follow-up analysis.
+    callout:
+      title: Your risk-free decision
+      text: |
+        No value shown? You pay nothing and the code is purged. Value shown?
+        You pay a flat fee of €1,500 and own the initial deliverable, and the fee
+        is fully credited toward a full analysis when you continue within 60 days.
+
+  # ------------------------------------------------ about
+  - id: about
+    nav_label: About
+    type: split
+    title: The human in the loop
+    image: img/avatar.png
+    image_alt: Christophe Van Ginneken
+    paragraphs:
+      - |
+        Agents read code fast. People decide what it means. Archiku pairs an
+        agentic workflow with one seasoned analyst who structurally validates
+        the analysis the agents produce and personally presents their work to you.
+      - |
+        Christophe Van Ginneken has analyzed, modeled and architected
+        business-critical software for over 25 years, as analyst, analyst coach
+        and architect, for financial services, logistics and transport, public
+        sector, technology and manufacturing. Connect with him on
+        <a href="https://www.linkedin.com/in/christophevg/">LinkedIn</a>.
+      - |
+        His research on Agentic Workflows is published as a series of articles
+        on <a href="https://christophe.vg/about/Hello-Agents">his personal
+        website</a> and documents the principles behind the Archiku approach.
+
+  # ------------------------------------------------ faq
+  - id: faq
+    nav_label: FAQ
+    type: faq
+    title: Questions you may have
+    subtitle: |
+      The questions C-level asks before trusting an outside party with their
+      software. Answered up front.
+    items:
+      - q: Are you a competitor to our consultancy or EA tooling provider?
+        a: |
+          No. Archiku provides the information layer, not the services or the
+          tools built on top of it. Consultancies and EA providers can build on
+          our insights and add their own personal layers on top. We help
+          everybody in the software market, at any level, without interfering
+          with any other level.
+      - q: Is my code used to train AI models?
+        a: |
+          No. Your code is analyzed on our own hardware with locally hosted
+          models, in an isolated environment for each client. Nothing is sent to
+          public AI services and no model is trained on your code. Ever.
+      - q: Do you replace my team?
+        a: |
+          No. We give your team the starting point it deserves. Every finding is
+          delivered for your experts to validate, extend and own. Archiku's
+          mandate ends where your team's authority begins, and that is written
+          into the engagement.
+      - q: Do you replace my software delivery vendor?
+        a: |
+          No. We do not build software and we do not sell implementation, so we
+          have no stake in their work. That is the point: an independent analysis
+          of what was actually delivered. If your vendor is doing well, the
+          analysis shows it, and you finally have the evidence. If it is not, you
+          see that early, in traceable findings, and Argus can keep watching on
+          your behalf.
+      - q: What if the analysis is wrong?
+        a: |
+          Every finding cites its exact place in the code, so you can verify any
+          claim in seconds. Before delivery, the analysis passes independent
+          review by multiple agents in multiple passes, and sampled findings are
+          re-verified with the pass rate published. Your experts remain the final
+          authority, by design.
+      - q: Which languages and technologies do you support?
+        a: |
+          The standard pipeline covers mainstream backend languages such as Java,
+          C#, Python and PHP. Other stacks are possible after a short
+          exploration. The Phase 0 intake is where we confirm fit before any
+          commitment.
+      - q: How is this different from AI coding assistants like Copilot or Cursor?
+        a: |
+          Those tools help developers write code. Archiku produces independent
+          insight about code: what a system does, how it has drifted and whether
+          delivered work conforms. Different question, different product, and no
+          human analyst validation in those tools.
+      - q: How is this different from a consultancy audit?
+        a: |
+          A classic audit bills a team by the day and hands you a report. Archiku
+          delivers a validated baseline analysis in days at a fixed fee,
+          traceable to the exact line of code and independently reviewed. And it
+          does not end at delivery: the Vault keeps the knowledge alive.
+      - q: What does it cost?
+        a: |
+          The Phase 0 intake is €1,500 for one module of up to 2,500 lines of
+          code, analyzed within 48 hours. It is fully credited toward the full
+          analysis if we proceed. Full analyses run at fixed fees from €3,900 by
+          scope. No value shown in Phase 0 means you pay nothing.
+      - q: What happens to my code after the engagement?
+        a: |
+          It stays yours and it stays yours alone. It lives in the isolated
+          environment only for the duration of the analysis. When the engagement
+          ends, the working copies are purged. The deliverable, the knowledge, is
+          yours to keep.
+      - q: Who owns the deliverable?
+        a: |
+          You do. The validated baseline analysis is yours: your experts validate
+          it, extend it and own it. It is built to outlive the engagement.
+      - q: How do the agents get access to our code?
+        a: |
+          On our hardware, in an isolated per-client environment, under NDA, with
+          the access you choose to grant: a copy of one module for Phase 0, or a
+          read-only view of your repository for monitoring. You see exactly what
+          is accessed and nothing leaves that perimeter.
+
+  # ------------------------------------------------ contact
+  - id: contact
+    nav_label: Contact
+    type: cta
+    title: Get in touch!
+    subtitle: |
+      Send us a message and we'll schedule an introductory meeting to talk about
+      your project and see how we can provide you with a validated baseline
+      analysis to accelerate your decisions.
+    button_label: contact @ archiku . com
+    button_url: "mailto:contact@archiku.com"

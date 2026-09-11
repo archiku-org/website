@@ -1,0 +1,33 @@
+<section class="page-section" id="{{ include.section.id }}">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h2 class="mt-0">{{ include.section.title }}</h2>
+        <hr class="divider" />
+        <p class="lead text-muted mb-5">
+          {{ include.section.subtitle }}
+        </p>
+      </div>
+    </div>
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-lg-8">
+        <div class="accordion" id="accordion-{{ include.section.id }}">
+          {% for item in include.section.items %}
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ include.section.id }}{{ forloop.index }}">
+                {{ item.q }}
+              </button>
+            </h3>
+            <div id="{{ include.section.id }}{{ forloop.index }}" class="accordion-collapse collapse" data-bs-parent="#accordion-{{ include.section.id }}">
+              <div class="accordion-body">
+                {{ item.a }}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

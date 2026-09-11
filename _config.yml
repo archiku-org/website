@@ -1,0 +1,21 @@
+# Jekyll configuration for the Archiku website.
+# Runs on the GitHub Pages stack (github-pages gem pins Jekyll 3.9).
+#
+# Content lives in _data/content.yaml (the source of truth for text,
+# ordering and section composition). This file only configures the build.
+
+title: Archiku
+description: >-
+  Do you really know your software? Archiku delivers independent insight into
+  what your software really is: a validated baseline analysis in days, and the
+  Vault to keep that insight alive.
+
+# Keep working files and docs out of the built site
+exclude:
+  - README.md
+  - input.md
+  - local
+  - personas-preview.html
+  - Gemfile
+  - Gemfile.lock
+  - vendor
