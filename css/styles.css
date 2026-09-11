@@ -149,6 +149,9 @@ header.masthead .hero-logo {
   width: auto;
   margin-bottom: 1.5rem;
 }
+header.masthead .hero-intro {
+  margin-top: 125px;
+}
 header.masthead .tagline {
   font-size: 1.15rem;
 }
@@ -205,17 +208,13 @@ header.masthead .tagline {
   border-radius: 0.5rem;
 }
 
-/* About portrait placeholder */
-.portrait-placeholder {
+/* About portrait */
+.portrait {
   width: 12rem;
   height: 12rem;
   border-radius: 50%;
-  background-color: #e9ecef;
-  color: #adb5bd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
+  object-fit: cover;
+  display: block;
 }
 
 /* Footer */
