@@ -39,24 +39,39 @@
         <a class="navbar-brand" href="#page-top">
           <img src="img/logo.png" alt="Archiku" />
         </a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ms-auto my-2 my-lg-0">
-            {% for section in site.data.content.sections %}
-            {% if section.nav_label %}
-            <li class="nav-item"><a class="nav-link" href="#{{ section.id }}">{{ section.nav_label }}</a></li>
-            {% endif %}
-            {% endfor %}
-          </ul>
-        </div>
       </div>
     </nav>
 
-    {% for section in site.data.content.sections %}
-    {% include sections/{{ section.type }}.html section=section %}
-    {% endfor %}
+    <header class="masthead">
+      <div class="container px-4 px-lg-5 h-100">
+
+        <div class="row gx-4 gx-lg-5 justify-content-center text-center hero-intro">
+          <div class="col-lg-8 align-self-end">
+            <img src="img/archiku-white-transp-bg.png" class="hero-logo" alt="Archiku" />
+            <p class="tagline text-white-75">
+              Agent-Augmented Software Archaeology<br/>
+              Uncovering the essence. Keeping it alive.
+            </p>
+            <hr class="divider" />
+            <p class="hero-opener">
+              Do you really know your software?
+            </p>
+            <p class="text-white-75 mb-0">
+              Not what it was designed to do. Not what the documentation says it does. What it does. Today.
+            </p>
+          </div>
+        </div>
+
+        <div class="row gx-4 gx-lg-5 justify-content-center mt-4 mb-4">
+          <div class="col-lg-8 text-center">
+            <p class="mb-0 lead text-white-75">
+              <br><br><i>Archiku is coming soon!</i><br><br>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </header>
 
     <footer class="bg-light py-5">
       <div class="container px-4 px-lg-5 text-center">
