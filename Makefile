@@ -1,3 +1,6 @@
+YOKER_FROM=../yoker
+-include ~/.yoker/Makefile
+
 install:
 	bundle install
 
