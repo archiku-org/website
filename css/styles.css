@@ -63,6 +63,10 @@ body {
   color: #f4623a !important;
 }
 
+footer a, .lead a {
+  color: #f4623a !important;
+}
+
 hr.divider {
   height: 0.2rem;
   max-width: 3.25rem;
@@ -117,9 +121,17 @@ header.masthead .hero-logo {
   object-fit: contain;
   margin-bottom: 1.5rem;
 }
+
 header.masthead .hero-intro {
-  margin-top: 125px;
+  margin-top: 0px;
 }
+
+@media (min-width: 992px) {
+  header.masthead .hero-intro {
+    margin-top: 125px;
+  }
+}
+
 .hero-opener {
   font-size: 1.9rem;
   font-weight: 700;
@@ -145,8 +157,7 @@ header.masthead .tagline {
 }
 @media (min-width: 992px) {
   header.masthead {
-    min-height: 100vh;
-    min-height: 40rem;
+    min-height: 20rem;
     padding-top: 4.5rem;
     padding-bottom: 0;
   }
