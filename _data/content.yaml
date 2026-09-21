@@ -26,7 +26,6 @@ footer:
     is a product of <a href="https://2know.be">2Know BV</a>
 
 sections:
-
   # ------------------------------------------------ hero
   - id: top
     type: hero
@@ -38,32 +37,28 @@ sections:
       Not what it was designed to do. Not what the documentation says it does.
       What it does. Today.
     cards:
-      - title: The system you inherited
+      - title: The system you inherited...
         text: |
-          Has outlived everyone who understood it. The knowledge left with its
-          makers, and often nobody can even say whether modernizing it is
+          ...has outlived everyone who understood it. The knowledge left with its
+          makers and often nobody can even say whether modernizing it is
           possible at all.
-      - title: The system your vendor delivered
+      - title: The system your vendor delivered...
         text: |
-          Comes with promises, not proof. Did you get what you paid for? Every
-          finding is traceable to the exact line of code, so you can verify any
-          claim in seconds.
-      - title: The codebase your team ships
+          ...comes with promises, not proof. Did you get what you paid for? How can you evaluate the deliverable without reiterating the entire work line for line?
+      - title: The codebase your team ships...
         text: |
-          Drifts a little further from the plan with every release. Every change
-          is independently reviewed, with your experts in the loop as the final
-          authority.
+          ...drifts a little further from the plan with every release. Can you track that drift and use that knowledge to steer, without introducing a parallel review team that inherently lags behind?
     closing:
       - |
-        Different systems, same question. And every one of them was active code
-        once, before the changes nobody recorded turned it into a black box.
-      -
-        When you know what your software really does, you can decide, budget,
+        Different systems, context and goals, yet always the same bottom-line question.
+        Every one of them was active code once, before the changes nobody recorded
+        turned it into a black box.
+      - When you know what your software really does, you can decide, budget,
         verify and comply. When you do not, every choice is a bet.
     pitch: |
       Archiku delivers independent insight into what your software really is.
       A team of agents digs through your codebase and produces a validated baseline analysis in days. Every finding is traceable to the exact line of code,
-      independently reviewed by multiple agents, with your experts as the
+      independently reviewed by multiple agents, reinforcing your experts again as the
       final authority.
     cta_label: Get a Risk-Free Preview Analysis
     cta_anchor: deliverables
@@ -74,8 +69,8 @@ sections:
     type: badge-cards
     title: What you get
     subtitle: |
-      The concrete deliverables behind the promise. Starting with a standard
-      analysis, extended where you need it.
+      Archiku supports your situation in several ways, starting with a standard
+      analysis, extending it where you need it.
     items:
       - title: Functional analysis
         icon: bi-file-earmark-ruled
@@ -113,13 +108,15 @@ sections:
         badge: Coming Soon
         badge_style: warning
         text: |
-          Reporting and charts tell you a lot about your codebase, until you have a single specific question. On top of the living repository, we will soon offer the opportunity to literally have a chat about your codebase.
+          Reporting and charts tell you a lot about your codebase, until you have a single specific question. On top of the living repository, we will soon offer the opportunity to literally have a chat about the analysis reality that hides in your codebase.
       - title: Continuous Monitoring
         icon: bi-eye
         badge: Coming Soon
         badge_style: warning
         text: |
-          Future-proof your codebase. Transition your one-time validated analysis into a living, automated dashboard. Our upcoming monitoring module, Archiku Argus, is designed to track repository drift against your validated baseline as active projects.
+          Future-proof your active codebases. Transition your one-time validated
+          analysis into a living, automated dashboard. Our upcoming monitoring module
+          is designed to track repository drift against your validated functional baseline.
 
   # ------------------------------------------------ use cases
   - id: usecases
@@ -134,46 +131,70 @@ sections:
       - title: The system nobody dares to touch
         text: |
           An undocumented legacy system runs your business, but its makers are long
-          gone. Archiku delivers an independent functional map of the codebase in days,
-          turning an operational black box into a clear roadmap for decisions.
+          gone.
+          <br><br>
+          Archiku delivers an independent functional map of the codebase, turning
+          an operational black box into a clear roadmap for decisions.
       - title: The delivery you need to verify
         text: |
-          A third party built your software, but the warranty or acquisition date is closing in.
-          Archiku delivers an independent as-built analysis to prove exactly what was delivered,
-          letting you verify vendor promises directly against the code.
+          A third party built your software, but the warranty or acquisition date is
+          closing in.
+          <br><br>
+          Archiku delivers an independent as-built analysis to prove exactly what was
+          delivered, letting you verify vendor promises directly against the code.
       - title: The requirements nobody checked the code against
         text: |
-          Your business requirements and functional documentation haven't kept pace with active development.
-          We run an independent comparison of your actual codebase against your functional baseline,
-          turning assumptions about system conformance into verifiable facts.
+          Your business requirements and functional documentation haven't kept pace
+          with active development.
+          <br><br>
+          Archiku runs an independent comparison of your actual codebase against your
+          functional baseline, turning assumptions about system conformance into
+          verifiable facts.
       - title: The codebase your team ships every week
         text: |
-          Rapid releases mean nobody truly knows how the overall system architecture is evolving.
-          Archiku establishes a clear baseline of your current state, mapping the functional essence
-          so code drift is captured before it compromises your system quality.
+          Rapid releases mean nobody truly knows how the overall system is evolving.
+          <br><br>
+          Archiku establishes a clear baseline of your current state, mapping the
+          functional essence so code drift is captured before it compromises your
+          system quality.
       - title: The estate you just inherited
         text: |
-          As a incoming CIO or CTO, you need to map out a complex IT estate built on organizational folklore.
-          We replace subjective war stories with a living, system-by-system architectural overview,
-          grounding your first hundred days in hard technical data.
+          As a incoming CIO or CTO, you need to map out a complex IT estate built on
+          organizational folklore.
+          <br><br>
+          Archiku replaces subjective war stories with a living, system-by-system
+          architectural overview, grounding your first hundred days in hard technical
+          data.
       - title: The team that starts from nothing
         text: |
-          A new development team is taking over a complex codebase with zero context or documentation.
-          We deliver a validated baseline analysis that acts as an architectural map from day one,
-          making your team productive in weeks rather than quarters of blind code reading.
+          A new development team is taking over a complex codebase with zero context or
+          documentation.
+          <br><br>
+          Archiku delivers a validated baseline analysis that acts as an architectural
+          map from day one, making your team productive in weeks rather than quarters
+          of blind code reading.
       - title: The decision you cannot make yet
         text: |
-          You are weighing whether to modernize, migrate, or wrap an expensive legacy system.
-          Archiku provides the objective insight your business case needs in days, at a fixed fee,
-          allowing you to budget and decide based on facts instead of guesswork.
+          You are weighing whether to modernize, migrate or wrap an expensive legacy
+          system.
+          <br><br>
+          Archiku provides the objective insight your business case needs in days, at a
+          fixed fee, allowing you to budget and decide based on facts instead of
+          guesswork.
       - title: The regulator who asks what your systems do
         text: |
           Compliance frameworks like DORA and NIS2 demand strict, documented proof of system governance.
-          We construct the fully traceable, auditable baseline that regulators ask for,
-          transforming annual compliance assessments from a panic into a routine.
+          <br><br>
+          Archiku constructs a fully traceable, auditable baseline that regulators ask
+          for, transforming annual compliance assessments from a panic into a routine.
       - title: The tidal wave of AI-generated code
         text: |
-          Your employees love the swift and endless code generation capabilities of the readily available code harnesses, co-pilots and chat bots. But who can review all that code? In stead of denying this opportunity, with Archiku you have at least an equally capable reviewer by your side.
+          Your employees love the swift and endless code generation capabilities of the
+          readily available code harnesses, co-pilots and chat bots. But who can review
+          all that code?
+          <br><br>
+          In stead of denying this opportunity, with Archiku you have at least an
+          equally capable reviewer by your side.
 
   # ------------------------------------------------ benefits
   - id: benefits
@@ -207,9 +228,9 @@ sections:
       - title: Privacy-first
         icon: bi-shield-lock
         text: |
-          Your code is analyzed on hardware we control, with locally hosted
-          models in an isolated per-client environment. Your code is never sent
-          to public AI services and no model is ever trained on it. Ever.
+          Your code is analyzed on hardware we control, in an isolated per-client
+          environment. Your code is never sent to public AI services and no model is
+          ever trained on it. Ever.
       - title: Full traceability
         icon: bi-crosshair
         text: |
@@ -222,10 +243,9 @@ sections:
       - title: 25 years of experience
         icon: bi-award
         text: |
-          The agents are fast, but the method is the product: a quarter century
+          Agents are fast, but the method is the product: a quarter century
           of software and functional analysis, from analysis craft to BPMN and
-          UML modelling, drives what Carter looks for and how findings are
-          judged.
+          UML modelling, drives what Archiku looks for and how findings are judged.
 
   # ------------------------------------------------ process
   - id: process
@@ -296,8 +316,10 @@ sections:
       While the industry points AI at generating more code output, Archiku points it
       the other way. Our agents excel at unstructured research, tracing behavior
       back to the source to uncover truth. Archiku is an integrated team of four
-      specialized agents and a unified knowledge engine working alongside a master
-      analyst. Carter maps the code, Harper digests team context, our upcoming Argus module is designed to watch for drift and Oracle will explain findings directly from the Vault.
+      specialized agents and a unified knowledge engine working alongside a human
+      analyst: Carter fully analyzes the code, Harper interacts with your team, our
+      upcoming Argus module is designed to watch for drift and Oracle will explain
+      findings directly from the Vault.
     items:
       - title: Carter
         icon: bi-map
@@ -313,11 +335,11 @@ sections:
         icon: bi-mic
         bio1: |
           Harper loves to listen to people. Code does not remember everything,
-          people do. Harper sits down with your people, in their language, and
+          people do. Harper connects down with your people, in their language, and
           gathers the testimony the code cannot give: decisions taken, reasons
           forgotten, knowledge that only lives in heads.
         bio2: |
-          What Harper hears is checked against what Carter finds, and the gaps in
+          What Harper hears is checked against what Carter finds and the gaps in
           the analysis close. The listener of the team.
       - title: Argus
         icon: bi-eye
@@ -327,15 +349,15 @@ sections:
           away from the baseline.
         bio2: |
           What Argus sees is reported in language a board can act on. And it is
-          Argus who keeps the Vault's knowledge up to date, so the issues it
-          surfaces reach you before they become surprises.
+          Argus who keeps the knowledge up to date, so the issues it surfaces reach you
+          before they become surprises.
       - title: Oracle
         icon: bi-compass
         bio1: |
           Oracle is your trustworthy counsel. An analysis you cannot question is
-          just a document. Oracle answers, straight from the Vault, in the
-          language of the asker: technical for developers, business language for
-          the board, regulatory language for compliance.
+          just a document. Oracle answers in the language of the asker: technical for
+          developers, business language for the board, regulatory language for
+          compliance.
         bio2: |
           Every answer carries the same traceability as the analysis it comes
           from. Consult the Oracle whenever reading code is not the job at hand.
@@ -343,7 +365,9 @@ sections:
       title: The Vault
       icon: bi-safe
       text: |
-        The Vault holds the universal truth of your software. Delivered today as a comprehensive baseline knowledge engine, it forms the exact foundation for our automated tracking dashboard launching later this year.
+        The Vault holds the universal truth of your software. Delivered today as a
+        comprehensive baseline knowledge engine, it forms the exact foundation for our
+        automated tracking dashboard launching later this year.
 
   # ------------------------------------------------ pricing
   - id: pricing
@@ -352,7 +376,7 @@ sections:
     title: Transparent, fixed-fee pricing
     subtitle: |
       No open-ended consulting hours. We price by the size of the codebase,
-      with your initial Phase 0 fee 100% credited toward the full scope.
+      with your initial Phase 0 intake fee 100% credited toward the full scope.
     items:
       - tier: Phase 0 Intake
         price: "€1,500"
@@ -368,7 +392,7 @@ sections:
         scope: "Up to 50K SLOC"
         focus: "Standalone Application"
         features:
-          - "Full functional architecture Vault asset"
+          - "Full functional analysis"
           - "Traceable process & actor mapping"
           - "Delivered within 7-10 business days"
           - "Includes €1,500 Phase 0 discount"
@@ -378,7 +402,7 @@ sections:
         focus: "Distributed System"
         features:
           - "End-to-end multi-service analysis"
-          - "Deep code-drift & quality insights"
+          - "Deep code & quality insights"
           - "Delivered within 2-3 weeks"
           - "Includes €1,500 Phase 0 discount"
       - tier: Enterprise Estate
@@ -389,7 +413,6 @@ sections:
           - "Tailored architecture transformation roadmap"
           - "DORA / NIS2 compliance mapping"
           - "Dedicated priority analyst validation"
-          - "Includes €1,500 Phase 0 discount"
 
   # ------------------------------------------------ faq
   - id: faq
@@ -397,14 +420,13 @@ sections:
     type: faq
     title: Questions you may have
     subtitle: |
-      The questions C-level asks before trusting an outside party with their
-      software. Answered up front.
+      The questions you ask before trusting an outside party with your software, answered up front.
     items:
       - q: Are you a competitor to our consultancy or EA tooling provider?
         a: |
           No. Archiku provides the information layer, not the services or the
           tools built on top of it. Consultancies and EA providers can build on
-          our insights and add their own personal layers on top. We help
+          our insights and add their own personal layers on top. We want to help
           everybody in the software market, at any level, without interfering
           with any other level.
       - q: Is my code used to train AI models?
@@ -426,17 +448,16 @@ sections:
           of what was actually delivered. If your vendor is doing well, the
           analysis shows it, and you finally have the evidence. If it is not, you
           see that early, in traceable findings, and our upcoming Argus module is
-          designed to monitor those changes on your behalf later this year.
+          designed to monitor those changes, ongoing, on your behalf later this year.
       - q: What if the analysis is wrong?
         a: |
           This can happen. To deliver your analysis in a timely fashion, we rely on
-          multi-pass agentic workflows combined with rigorous expert structural
+          multi-pass agentic workflows combined with rigorous structural expert
           validation to catch and eliminate typical mistakes.
           Even then, our agents can miss a subtlety.<br>
           Every finding cites its exact place in the code, so you can verify any
           claim in seconds. Before delivery, the analysis passes independent
-          review by multiple agents in multiple passes, and sampled findings are
-          re-verified with the pass rate published. Your experts remain the final
+          review by multiple agents in multiple passes. Your experts remain the final
           authority, by design.
       - q: Which languages and technologies do you support?
         a: |
@@ -460,9 +481,10 @@ sections:
           evolution of your codebases.
       - q: What does it cost?
         a: |
-          • <strong>Phase 0 Intake:</strong> €1,500 flat fee for a core module or micro-service (up to 10K SLOC). 100% risk-free: if the live presentation shows no value, you pay €0.<br />
-          • <strong>Core Systems & Platforms:</strong> Fixed tiers at €4,900 (up to 50K SLOC) and €9,900 (up to 150K SLOC). Larger multi-repo estates receive custom pricing.<br />
-          • <strong>The Credit:</strong> When you proceed to a full system tier, your €1,500 intake fee is 100% credited back and deducted straight from your invoice.
+          - **Phase 0 Intake:** €1,500 flat fee for a core module or micro-service (up to 10K SLOC). 100% risk-free: if the live presentation shows no value, you pay €0.
+          - **Core Systems & Platforms:** Fixed tiers at €4,900 (up to 50K SLOC) and €9,900 (up to 150K SLOC). Larger multi-repo estates receive custom pricing.
+          - **The Credit:** When you proceed to a full system tier, your €1,500 intake fee is 100% credited back and deducted straight from your invoice.
+          - **Supporting Services** like Vault, Argus and Oracle are customized to meet your requirements and are accessible through a monthly subscription fee.
       - q: What happens to my code after the engagement?
         a: |
           It stays yours and it stays yours alone. It lives in the isolated
@@ -477,11 +499,11 @@ sections:
         a: |
           On our hardware, in an isolated per-client environment, under NDA, with
           the access you choose to grant: a copy of one module for Phase 0, or a
-          read-only view of your repository for monitoring. You see exactly what
-          is accessed and nothing leaves that perimeter.
+          read-only view of your repository for ongoing monitoring. You define exactly
+          what is accessed and nothing leaves that perimeter.
       - q: Is Archiku fully automated?
         a: |
-          No, and deliberately so. Archiku leverages a specialized, multi-pass automated pipeline to do the heavy lifting—extracting, mapping and cross-referencing your codebase. However, a veteran master analyst personally validates, interprets and curates findings structurally before they reach your desk.
+          No, and deliberately so. Archiku leverages a specialized, multi-pass automated pipeline to handle the complex tasks of extracting, mapping, and cross-referencing your codebase. However, a veteran master analyst personally validates, interprets and curates findings structurally before they reach your desk.
 
   # ------------------------------------------------ contact
   - id: contact
