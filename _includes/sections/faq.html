@@ -21,7 +21,7 @@
             </h3>
             <div id="{{ include.section.id }}{{ forloop.index }}" class="accordion-collapse collapse" data-bs-parent="#accordion-{{ include.section.id }}">
               <div class="accordion-body">
-                {{ item.a }}
+                {{ item.a | markdownify }}
               </div>
             </div>
           </div>
