@@ -16,6 +16,7 @@ exclude:
   - input.md
   - local
   - personas-preview.html
+  - AGENTS.md
   - Gemfile
   - Gemfile.lock
   - vendor
