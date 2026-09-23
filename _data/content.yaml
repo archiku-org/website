@@ -80,23 +80,24 @@ sections:
           The business essence of your system, told technology-free: the actors,
           the processes, the core concepts. The document your team can finally
           read, so you regain control over the system.
-      - title: Modernization analysis
+      - title: Targeted extensions
         icon: bi-signpost-split
-        badge: Architecture Extension
-        badge_style: secondary
+        badge: Extension
+        badge_style: primary
         text: |
-          What would moving this system forward actually require? Based on your
-          preferences, a transformation plan and roadmap can be added to the
-          analysis.
-      - title: Issue and bug detection
-        icon: bi-bug
-        badge: Code Level Extension
-        badge_style: secondary
+          Extend the functional analysis where you need it: a modernization
+          analysis with a transformation plan and roadmap, or technical issue
+          and bug detection that shows where the code is fragile, the road
+          ahead and even the current blast radius.
+      - title: Enterprise Integration
+        icon: bi-puzzle
+        badge: Enterprise
+        badge_style: primary
         text: |
-          Know where the code is fragile, before your change uncovers it the hard
-          way. This complements the functional analysis on a technical level,
-          allowing deeper insights into the road ahead, or even the current blast
-          radius.
+          Your methodology, our platform. We tailor the Archiku Analysis
+          Metamodel to your own analysis artefacts and match custom agents to
+          them, delivering exactly the facts your organisation needs, down to
+          enterprise-level analysis such as DORA and NIS2 compliance.
       - title: Living Repository
         icon: bi-safe
         badge: Coming Soon
@@ -247,6 +248,45 @@ sections:
           of software and functional analysis, from analysis craft to BPMN and
           UML modelling, drives what Archiku looks for and how findings are judged.
 
+  # ------------------------------------------------ method
+  - id: method
+    nav_label: Method
+    type: values
+    title: The Archiku Analysis Metamodel
+    subtitle: |
+      The grounded method behind every analysis. One declarative model defines
+      what a finding may be, the platform enforces it and every finding stays
+      structured, versioned and traceable.
+    items:
+      - title: Structured, not scraped
+        icon: bi-bricks
+        text: |
+          Every finding is captured as a structured fact in the Archiku
+          Analysis Metamodel: entities, relations and taxonomies the whole
+          platform understands. Not prose scraped from code, but knowledge
+          with a schema.
+      - title: Enforced by the platform
+        icon: bi-check2-square
+        text: |
+          The Vault enforces the metamodel on every write. A fact that does not
+          conform does not enter. Structure is not promised, it is guaranteed.
+      - title: Versioned and append-only
+        icon: bi-clock-history
+        text: |
+          Facts are write-once and every analysis is versioned. Enrichment is
+          always a new linked fact, so the history of the knowledge is
+          preserved and auditable.
+      - title: Derived with lineage
+        icon: bi-diagram-2
+        text: |
+          Every deliverable is derived from the fact base, with lineage back to the
+          source facts. Nothing is rendered that cannot be traced.
+      - title: Tailored to your methodology
+        icon: bi-sliders
+        text: |
+          The metamodel is configuration, not code. In our enterprise offering it can
+          be tailored to your own analysis methodology, with custom agents matched
+          to produce and consume exactly the facts you need.
   # ------------------------------------------------ process
   - id: process
     nav_label: Process
@@ -365,15 +405,17 @@ sections:
       title: The Vault
       icon: bi-safe
       text: |
-        The Vault holds the universal truth of your software. Delivered today as a
-        comprehensive baseline knowledge engine, it forms the exact foundation for our
+        The Vault holds the universal truth of your software. Every fact it
+        holds conforms to the Archiku Analysis Metamodel: structured,
+        citation-anchored and versioned. Delivered today as a comprehensive
+        baseline knowledge engine, it forms the exact foundation for our
         automated tracking dashboard launching later this year.
 
   # ------------------------------------------------ pricing
   - id: pricing
     nav_label: Pricing
     type: pricing-table
-    title: Transparent, fixed-fee pricing
+    title: Transparent pricing
     subtitle: |
       No open-ended consulting hours. We price by the size of the codebase,
       with your initial Phase 0 intake fee 100% credited toward the full scope.
@@ -396,7 +438,7 @@ sections:
           - "Traceable process & actor mapping"
           - "Delivered within 7-10 business days"
           - "Includes €1,500 Phase 0 discount"
-      - tier: Mid-Size Platform
+      - tier: Platform
         price: "€9,900"
         scope: "Up to 150K SLOC"
         focus: "Distributed System"
@@ -408,10 +450,10 @@ sections:
       - tier: Enterprise Estate
         price: "Custom"
         scope: "150K+ SLOC"
-        focus: "Monoliths & Multi-repo Estates"
+        focus: "Monoliths & Multi-repo"
         features:
-          - "Tailored architecture transformation roadmap"
-          - "DORA / NIS2 compliance mapping"
+          - "Custom metamodel and custom agents matched to your methodology"
+          - "Compliance mapping"
           - "Dedicated priority analyst validation"
 
   # ------------------------------------------------ faq
@@ -504,6 +546,21 @@ sections:
       - q: Is Archiku fully automated?
         a: |
           No, and deliberately so. Archiku leverages a specialized, multi-pass automated pipeline to handle the complex tasks of extracting, mapping, and cross-referencing your codebase. However, a veteran master analyst personally validates, interprets and curates findings structurally before they reach your desk.
+
+      - q: What is the Archiku Analysis Metamodel?
+        a: |
+          It is the declarative model that defines what a finding may be: the fact
+          types, relations and taxonomies the platform understands. The Vault loads it
+          and enforces it, so every finding is structured, citation-anchored and
+          versioned by construction. It is how Archiku guarantees that the analysis is
+          grounded, not generated.
+      - q: Can Archiku support our internal analysis methodology?
+        a: |
+          Yes. That is our enterprise offering. The Archiku Metamodel is configuration,
+          not code, so we can tailor it to your own analysis artefacts: your fact
+          types, relations and taxonomies. Custom agents are then matched to
+          those artefacts, producing and consuming exactly the facts your
+          methodology needs, on the same grounded, traceable platform.
 
   # ------------------------------------------------ contact
   - id: contact

@@ -11,6 +11,33 @@
  *   card/step body      -> 0.95rem
  */
 
+/* ------------------------------------------------------------------ */
+/* Method section: the metamodel diagram as a translucent watermark    */
+/* (multiply blend: the PNG's white background vanishes against the    */
+/*  section's bg-light, only the graph shows through)                  */
+#method {
+  position: relative;
+  overflow: hidden;
+}
+#method::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../img/metamodel.png") no-repeat center;
+  background-size: cover;
+  opacity: 0.10;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  /* dissolve the edges: fades out at the top and bottom of the section
+     so the image has no hard boundary there; sides stay fully visible */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+}
+#method > .container {
+  position: relative;
+  z-index: 1;
+}
+
 html {
   height: 100%;
   scroll-padding-top: calc(4.5rem - 1px);
