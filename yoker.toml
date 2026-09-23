@@ -1,0 +1,14 @@
+[permissions]
+filesystem_paths = [ ".", "/tmp", "~/Workspace/agentic" ]
+
+[agents.directories]
+c3 = "../../c3/agents"
+
+[skills.directories]
+c3 = "../../c3/skills"
+
+[tools.write]
+allow_overwrite = true
+
+[context]
+files = ["~/.yoker/AGENTS.md", "../AGENTS.md", "./AGENTS.md", "./SESSION.md"]

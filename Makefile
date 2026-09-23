@@ -1,5 +1,7 @@
-YOKER_FROM=../yoker
+YOKER_FROM=../../yoker
 -include ~/.yoker/Makefile
+
+# website targets
 
 install:
 	bundle install

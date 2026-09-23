@@ -19,3 +19,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - Makefile
+  - yoker.toml
+  - SESSION.md
