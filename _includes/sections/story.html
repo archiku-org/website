@@ -1,0 +1,31 @@
+{% if include.section.intro %}
+<div class="row gx-4 gx-lg-5 justify-content-center">
+  <div class="col-lg-10 mb-4">
+  {% for para in include.section.intro %}
+  <p class="lead text-muted">{{ para | markdownify | remove: '<p>' | remove: '</p>'}}</p>
+  {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<div class="row gx-4 gx-lg-5 justify-content-center">
+  {% for beat in include.section.beats %}
+  {% assign remainder = forloop.index | modulo: 2 %}
+  <div class="col-lg-10 mb-4">
+    <div class="beat-card h-100 p-4">
+      <div class="row gx-4 gx-lg-5 align-items-center {% if remainder != 0 %}flex-md-row-reverse{% endif %}">
+        {% if beat.image %}
+        <div class="col-md-5 mb-3 mb-md-0">
+          <img src="{{ beat.image }}" class="img-fluid rounded" alt="{{ beat.alt }}" />
+        </div>
+        {% endif %}
+        <div class="{% if beat.image %}col-md-7{% else %}col-12{% endif %}">
+          <p class="usecase-number mb-1">Step {{ forloop.index }}</p>
+          <h3 class="mb-2">{{ beat.title }}</h3>
+          <p class="text-muted mb-0">{{ beat.text }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

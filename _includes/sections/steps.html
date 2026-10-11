@@ -1,31 +1,28 @@
-<section class="page-section bg-light" id="{{ include.section.id }}">
-  <div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-lg-8 text-center">
-        <h2 class="mt-0">{{ include.section.title }}</h2>
-        <hr class="divider" />
-      </div>
-    </div>
-    <div class="row gx-4 gx-lg-5 justify-content-center text-center">
-      {% for item in include.section.items %}
-      <div class="col-lg col-md-4 col-12 mb-4 step">
-        <div class="mb-2"><i class="{{ item.icon }} fs-1 text-primary"></i></div>
-        <h3 class="mb-2">{{ item.title }}</h3>
-        <p class="text-muted mb-0">{{ item.text }}</p>
-      </div>
-      {% endfor %}
-    </div>
-    {% if include.section.callout %}
-    <div class="row gx-4 gx-lg-5 justify-content-center mt-4">
-      <div class="col-lg-8">
-        <div class="p-4 text-center">
-          <h3 class="mb-2">{{ include.section.callout.title }}</h3>
-          <p class="mb-0 lead">
-            {{ include.section.callout.text }}
-          </p>
-        </div>
-      </div>
-    </div>
-    {% endif %}
+<div class="row gx-4 gx-lg-5 justify-content-center">
+  <div class="col-lg-8 text-center">
+    <h2 class="mt-0">{{ include.section.title }}</h2>
+    <hr class="divider" />
   </div>
-</section>
+</div>
+<div class="row gx-4 gx-lg-5 justify-content-center text-center">
+  {% for item in include.section.items %}
+  <div class="col-lg col-md-4 col-12 mb-4 step">
+    <div class="mb-2"><i class="{{ item.icon }} fs-1 text-primary"></i></div>
+    <h3 class="mb-2">{{ item.title }}</h3>
+    <p class="text-muted mb-0">{{ item.text }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% if include.section.callout %}
+<div class="row gx-4 gx-lg-5 justify-content-center mt-4">
+  <div class="col-lg-8">
+    <div class="p-4 text-center">
+      <h3 class="mb-2">{{ include.section.callout.title }}</h3>
+      <p class="mb-0 lead">
+        {{ include.section.callout.text }}
+      </p>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% include button.html button=include.section.button %}

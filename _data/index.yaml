@@ -1,0 +1,24 @@
+meta:
+  title: Archiku | Agent-Augmented Software Archaeology
+  description: |
+    Gain independent, line-level architectural insight into your codebase. Archiku combines multi-agent workflows with expert analysis to map your system in days.
+
+footer:
+  copyright: |
+    Copyright © 2026, Archiku, Agent-Augmented Software Archaeology,
+    is a product of <a href="https://2know.be">2Know BV</a>
+
+sections:
+  # ------------------------------------------------ hero
+  - id: top
+    type: hero
+    logo_img: /assets/img/archiku-white-transp-bg.png
+    tagline: |
+      Agent-Augmented Software Archaeology<br />Uncovering the essence. Keeping it alive.
+    opener: Do you really know your software?
+    opener_sub: |
+      Not what it was designed to do. Not what the documentation says it does.
+      What it does. Today.
+    closing:
+      - |
+        Archiku is coming soon...

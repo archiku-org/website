@@ -1,0 +1,58 @@
+sections:
+- id: intro
+  type: intro
+  kicker: "Use case family: Modernize"
+  title: Modernize, migrate, wrap or retire. Decide on facts, not folklore.
+  headline: Deciding what becomes of legacy.
+  intro:
+    - |
+      Any consideration about a legacy system assumes somebody knows what
+      it actually does. Too often that knowledge has left the building,
+      and the decision is deferred year after year, or taken on instinct.
+    - |
+      Archiku delivers the objective insight the decision needs, in days
+      at a fixed fee, before you commit capital or developer hours. The facts
+      of what the system does today, weighed against your constraints and your
+      preferences, so the choice is yours and it is grounded.
+- id: cases
+  type: numbered-cards
+  title: The classic stories
+  items:
+    - title: The system nobody dares to touch
+      pretext: |
+        Somewhere in your organisation runs software that everything
+        depends on and nobody understands anymore. Its makers are gone,
+        its documentation is dead, and every change risks the unknown.
+      text: |
+        Archiku delivers an independent map of what the system really does:
+        the functional essence, traceable to the exact line of code. Too
+        critical to touch becomes understood, and ready to decide about.
+    - title: The decision you cannot make yet
+      pretext: |
+        Modernize, migrate, wrap or leave it. Every option assumes somebody
+        knows what the system does. You need the business case grounded in
+        facts first.
+      text: |
+        Archiku provides that insight in days at a fixed fee, so you can
+        budget and decide based on facts instead of guesswork. And whatever
+        you decide, the analysis documents what you started from.
+    - title: The in-house tool everybody loves
+      pretext: |
+        One of your employees really lives for his job and builds critical homegrown
+        tools to fill real gaps. These tools are not documented, don't follow any of
+        the house rules, yet they hold value.
+      text: |
+        An analysis performed by Archiku gives you the missing pieces to decide
+        what to do with these tools. When it's time to capture that value and
+        plan a clean rewrite, the analysis provides the ideal architectural foundation.
+- id: case-study
+  type: cta
+  title: How Archiku Supports the Modernize Use Case
+  text: |
+    The same analysis that grounds the decision also feeds what comes
+    after it: a modernization analysis with a transformation plan and
+    roadmap, extended where you need it. And once the decision is made,
+    the follow up keeps the knowledge alive.
+    Hit the button below and explore a complete case study, based on an actual piece of software, in a realistic context. Simple enough for everyone to understand every detail of it, complete enough to show you what Archiku can deliver.
+  label: Read The Financials App Case Study
+  link: /case-study

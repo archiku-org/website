@@ -1,0 +1,344 @@
+/*
+ * Archiku stylesheet. Design system reused from the architectaday site
+ * (Bootstrap 5.2 + Lato + orange #f4623a + pill buttons + dividers).
+ * Static single page for GitHub Pages.
+ *
+ * Type scale (kept deliberately small, owner feedback: too many sizes):
+ *   h2 section titles   -> 2rem
+ *   h3 card/step titles -> 1.25rem
+ *   lead                -> 1.15rem
+ *   body                -> 1rem
+ *   card/step body      -> 0.95rem
+ */
+
+/* ------------------------------------------------------------------ */
+/* Method section: the metamodel diagram as a translucent watermark    */
+/* (multiply blend: the PNG's white background vanishes against the    */
+/*  section's bg-light, only the graph shows through)                  */
+#method {
+  position: relative;
+  overflow: hidden;
+}
+#method::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../img/metamodel.png") no-repeat center;
+  background-size: cover;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  /* dissolve the edges: fades out at the top and bottom of the section
+     so the image has no hard boundary there; sides stay fully visible */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+}
+#method > .container {
+  position: relative;
+  z-index: 1;
+}
+
+html {
+  height: 100%;
+  scroll-padding-top: calc(4.5rem - 1px);
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+.page-section {
+  padding: 4rem 0;
+}
+
+.text-white-75 {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Buttons: pill shaped (architectaday design layer) */
+.btn-xl {
+  padding: 1.25rem 2.25rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10rem;
+}
+
+.btn-lg {
+  border-radius: 10rem;
+}
+
+/* Brand accent */
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #f4623a;
+  --bs-btn-border-color: #f4623a;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #d9502e;
+  --bs-btn-hover-border-color: #d9502e;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #c34e2e;
+  --bs-btn-active-border-color: #c34e2e;
+  --bs-btn-focus-shadow-rgb: 244, 98, 58;
+}
+
+.text-primary {
+  color: #f4623a !important;
+}
+
+footer a, .lead a, .text-muted a {
+  color: #f4623a !important;
+}
+
+hr.divider {
+  height: 0.2rem;
+  max-width: 3.25rem;
+  margin: 1.5rem auto;
+  background-color: #f4623a;
+  opacity: 1;
+}
+
+/* Navigation: always light */
+#mainNav {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  transition: background-color 0.2s ease;
+}
+#mainNav .navbar-brand img {
+  height: 2.5rem;
+  width: auto;
+}
+#mainNav .navbar-nav .nav-item .nav-link {
+  color: #6c757d;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.75rem 0;
+}
+#mainNav .navbar-nav .nav-item .nav-link:hover,
+#mainNav .navbar-nav .nav-item .nav-link:active {
+  color: #f4623a;
+}
+@media (min-width: 992px) {
+  #mainNav .navbar-nav .nav-item .nav-link {
+    padding: 0 1rem;
+  }
+  #mainNav .nav-item:last-child .nav-link {
+    padding-right: 0;
+  }
+}
+
+/* Hero */
+header.masthead {
+  padding-top: 9rem;
+  padding-bottom: calc(9rem - 4.5rem);
+  background: linear-gradient(to bottom, rgba(27, 31, 44, 0.92) 0%, rgba(27, 31, 44, 0.92) 100%),
+    url("../img/bg-hero.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+header.masthead .hero-logo {
+  height: 6rem;
+  max-width: 100%;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+}
+
+.hero-opener {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #fff;
+}
+header.masthead .tagline {
+  font-size: 1.15rem;
+}
+.hero-card {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.5rem;
+  padding: 1.5rem 1.25rem;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+  font-size: 0.95rem;
+}
+.hero-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+@media (min-width: 992px) {
+  header.masthead {
+    min-height: 20rem;
+    padding-top: 4.5rem;
+    padding-bottom: 0;
+  }
+  header.masthead .tagline {
+    font-size: 1.15rem;
+  }
+}
+
+/* Benefits: open layout, icon + title + one line */
+.benefit h3 {
+  font-size: 1.25rem;
+}
+
+/* Deliverables cards */
+.deliverable-card {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  border-radius: 0.5rem;
+}
+
+/* Process steps (icons only, no numbers) */
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Commitment panel */
+.commitment {
+  background-color: #fff;
+  border: 1px solid #f4623a;
+  border-radius: 0.5rem;
+}
+
+/* About portrait */
+.portrait {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Qualities: tier headings between the value rows */
+.values-tier {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f4623a;
+  margin: 2rem 0 1rem;
+}
+
+/* FAQ accordion: brand overrides (Bootstrap ships blue) */
+.accordion {
+  --bs-accordion-active-color: #d9502e;
+  --bs-accordion-active-bg: #fff;
+  --bs-accordion-btn-focus-border-color: #f4623a;
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(244, 98, 58, 0.25);
+  --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f4623a'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23d9502e'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+/* Use case cards: numbered recognition scenarios */
+.usecase-card {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  border-radius: 0.5rem;
+}
+.usecase-number {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f4623a;
+}
+.usecase-link {
+  padding-left: 1.25rem;
+}
+
+/* Team: persona cards (casting per hq §10a, layout per personas-preview) */
+.persona-card {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  border-radius: 0.5rem;
+}
+.persona-icon {
+  font-size: 2.75rem;
+  color: #f4623a;
+  line-height: 1;
+}
+.vault-hub {
+  background-color: #343a40;
+  color: #fff;
+  border-radius: 0.5rem;
+  border: none;
+}
+.vault-hub .persona-icon {
+  font-size: 3rem;
+}
+.vault-hub .persona-role {
+  color: rgba(255, 255, 255, 0.75);
+}
+.persona-role {
+  font-size: 0.9rem;
+}
+.persona-bio {
+  font-size: 0.95rem;
+  text-align: left;
+}
+/* Vault: title+icon left of the bio on wide screens, stacked on narrow */
+@media (min-width: 992px) {
+  .vault-head {
+    flex: 0 0 12rem;
+  }
+  .vault-hub .persona-bio {
+    flex: 1;
+  }
+}
+/* Footer */
+footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.075);
+}
+
+/* Subpage banner: same brand backdrop as the hero, shorter */
+.masthead-sub {
+  padding-top: 7rem;
+  padding-bottom: 4rem;
+  background: linear-gradient(to bottom, rgba(27, 31, 44, 0.92) 0%, rgba(27, 31, 44, 0.92) 100%),
+    url("../img/bg-hero.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+hr.divider.light {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Case study: story beats (image + text cards) */
+.beat-card {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  border-radius: 0.5rem;
+}
+
+/* Inline arrow links (deliverable cards, use case groups) */
+.usecase-link-link {
+  color: #f4623a;
+  font-weight: 700;
+  text-decoration: none;
+}
+.usecase-link-link:hover {
+  color: #d9502e;
+  text-decoration: underline;
+}
+
+
+/* Fluid type: desktop values unchanged, gracefully smaller on phones.
+   clamp(min, preferred, max) — the max values are the sizes of the
+   deliberate type scale above, so nothing grows on large screens. */
+h2 {
+  font-size: clamp(1.6rem, 1.2rem + 1.7vw, 2rem);
+}
+.hero-opener {
+  font-size: clamp(1.4rem, 0.9rem + 2.2vw, 1.9rem);
+}
+.hero-card-title,
+.benefit h3,
+.step h3 {
+  font-size: clamp(1.1rem, 1rem + 0.6vw, 1.25rem);
+}

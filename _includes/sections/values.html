@@ -1,21 +1,25 @@
-<section class="page-section bg-light" id="{{ include.section.id }}">
-  <div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-lg-8 text-center">
-        <h2 class="mt-0">{{ include.section.title }}</h2>
-        <hr class="divider" />
-        <p class="lead text-muted mb-5">
-          {{ include.section.subtitle }}
-        </p>
-      </div>
-    </div>
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      {% for item in include.section.items %}
-      <div class="col-lg-5 mb-4 benefit">
-        <h3 class="mb-2"><i class="{{ item.icon }} text-primary me-2"></i>{{ item.title }}</h3>
-        <p class="text-muted mb-0">{{ item.text }}</p>
-      </div>
-      {% endfor %}
-    </div>
+<div class="row gx-4 gx-lg-5 justify-content-center">
+  <div class="col-lg-8 text-center">
+    <h2 class="mt-0">{{ include.section.title }}</h2>
+    <hr class="divider" />
+    <p class="lead text-muted mb-5">
+      {{ include.section.subtitle }}
+    </p>
   </div>
-</section>
+</div>
+<div class="row gx-4 gx-lg-5 justify-content-center">
+  {% for item in include.section.items %}
+  <div class="col-lg-5 mb-4 benefit">
+    <h3 class="mb-2"><i class="{{ item.icon }} text-primary me-2"></i>{{ item.title }}</h3>
+    <p class="text-muted mb-0">{{ item.text }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% if include.section.closing %}
+<div class="row gx-4 gx-lg-5 justify-content-center mt-5">
+  <div class="col-lg-8 text-center">
+    <p class="lead mb-4">{{ include.section.closing | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+  </div>
+</div>
+{% endif %}
+{% include button.html button=include.section.button %}

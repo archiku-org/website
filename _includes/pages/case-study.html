@@ -1,0 +1,78 @@
+<section class="masthead-sub page-section">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center text-center mb-5">
+      <div class="col-lg-8 align-self-end">
+        <p class="text-white-75 small text-uppercase fw-bold mb-2">{{ include.cs.story.kicker }}</p>
+        <h1 class="text-white mb-3">{{ include.cs.story.title }}</h1>
+        <hr class="divider light" />
+        <p class="lead text-white-75 mb-0">{{ include.cs.story.tagline }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section bg-light">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      {% for beat in include.cs.story.beats %}
+      <div class="col-lg-10 mb-4">
+        <div class="beat-card h-100 p-4">
+          <div class="row gx-4 gx-lg-5 align-items-center {% if beat.number == '3' %}flex-md-row-reverse{% endif %}">
+            {% if beat.image %}
+            <div class="col-md-7 mb-3 mb-md-0">
+              <img src="{{ beat.image }}" class="img-fluid rounded" alt="{{ beat.alt }}" />
+            </div>
+            {% endif %}
+            <div class="{% if beat.image %}col-md-5{% else %}col-12{% endif %}">
+              <p class="usecase-number mb-1">Step {{ beat.number }}</p>
+              <h3 class="mb-2">{{ beat.title }}</h3>
+              <p class="text-muted mb-0">{{ beat.text }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-lg-8 text-center mb-4">
+        <p class="text-primary fw-bold small text-uppercase mb-2">{{ include.cs.deliverable.kicker }}</p>
+        <h2 class="mt-0">{{ include.cs.deliverable.title }}</h2>
+        <hr class="divider" />
+        <p class="lead text-muted mb-5">{{ include.cs.deliverable.subtitle }}</p>
+      </div>
+    </div>
+
+    <div class="row gx-4 gx-lg-5 justify-content-center mb-4">
+      {% for h in include.cs.deliverable.highlights %}
+      <div class="col-lg-4 mb-2">
+        <div class="deliverable-card h-100 p-4 text-center">
+          <div class="mb-2"><i class="{{ h.icon }} fs-1 text-primary"></i></div>
+          <h3 class="mb-2">{{ h.title }}</h3>
+          <p class="text-muted mb-0">{{ h.text }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <a class="btn btn-primary btn-xl mb-2" href="{{ include.cs.deliverable.button_url }}">{{ include.cs.deliverable.button_label }}</a>
+        <p class="small text-muted mb-0">{{ include.cs.deliverable.button_note }}</p>
+      </div>
+    </div>
+
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h2 class="mt-0">{{ include.cs.closing.title }}</h2>
+        <hr class="divider" />
+        <p class="lead text-muted">{{ include.cs.closing.text }}</p>
+        <a class="btn btn-primary btn-xl" href="{{ include.cs.closing.button_url }}">{{ include.cs.closing.button_label }}</a>
+      </div>
+    </div>
+  </div>
+</section>

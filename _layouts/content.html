@@ -1,0 +1,16 @@
+---
+layout: page
+---
+
+<div style="padding-top: 4rem;">
+  {% for section in site.data[page.sections].sections %}
+    {% capture body %}
+      {% include sections/{{ section.type }}.html section=section %}
+    {% endcapture %}
+    {% if section.type == "hero" %}
+    {{ body }}
+    {% else %}
+    {% include section.html section=section body=body index=forloop.index %}
+    {% endif %}
+  {% endfor %}
+</div>

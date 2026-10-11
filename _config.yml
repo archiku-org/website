@@ -16,6 +16,8 @@ exclude:
   - input.md
   - local
   - personas-preview.html
+  - TODO.md
+  - TODO.html
   - AGENTS.md
   - Gemfile
   - Gemfile.lock
@@ -23,3 +25,4 @@ exclude:
   - Makefile
   - yoker.toml
   - SESSION.md
+  - CNAME

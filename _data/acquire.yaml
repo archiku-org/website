@@ -1,0 +1,71 @@
+  sections:
+    - id: intro
+      type: intro
+      kicker: "Use case family: Acquire"
+      title: Software lands on your desk. Know exactly what landed.
+      headline: Taking a codebase in, on your terms.
+      intro:
+        - |
+          Code moves into your organisation in many ways: a vendor hands over a
+          finished delivery, a takeover puts an entire estate under your
+          management, or a team inherits a system nobody prepared them for.
+          Whatever the route, the moment it becomes yours you are expected to
+          run it, judge it and answer for it.
+        - |
+          Archiku gives you the independent map to do exactly that. A validated
+          baseline analysis of what the codebase really implements, traceable to the
+          exact line of code and delivered in days instead of months of code
+          reading.
+    - id: cases
+      type: numbered-cards
+      title: The classic stories
+      items:
+        - title: The delivery you need to verify
+          pretext: |
+            A third party built or rebuilt software for you. The contract ended,
+            the warranty is running out, or the acquisition is approaching. Did
+            you get what you paid for?
+          text: |
+            Archiku's deliverables can function as an independent as-built analysis:
+            what was actually built, how it works, where it deviates from the plan.
+            No stake in the answer, every finding traceable to the code.
+        - title: The estate you just inherited
+          pretext: |
+            You have just taken over the IT estate, as CIO, CTO or new owner.
+            Nobody can hand you the overview: what the system does.
+          text: |
+            Archiku builds that overview system by system and keeps it in one
+            place, up to date: a living picture of what your organisation really
+            runs. Your first hundred days, grounded in facts instead of war
+            stories.
+        - title: The team that starts from nothing
+          pretext: |
+            A new team is taking over. Insourcing after the vendor left, key
+            people gone, or an acquisition folded in. They inherit the code, the
+            deadlines and zero context.
+          text: |
+            Archiku hands them a validated baseline analysis to start from,
+            instead of months of blind code reading, and a place where they can
+            ask their questions from day one. Your team is productive in weeks,
+            not quarters.
+        - title: The tidal wave of AI-generated code
+          pretext: |
+            Your employees love the swift and endless code generation of the
+            readily available assistants and chat bots. But who reviews all
+            that code?
+          text: |
+            Instead of denying this opportunity, with Archiku you have at
+            least an equally capable reviewer by your side: every generated
+            change analyzed against the baseline, with the issues it
+            introduces surfaced before they surprise you.
+    - id: case-study
+      type: cta
+      title: How Archiku Supports the Acquire Use Case
+      text: |
+        From a single delivery to an entire estate, the pattern is the same:
+        first the independent map, then the decisions. If your situation goes
+        one step further, the same analysis is the base for deciding what
+        becomes of legacy code.
+        Hit the button below and explore a complete case study, based on an actual piece of software, in a realistic context. Simple enough for everyone to understand every detail of it, complete enough to show you what Archiku can deliver.
+      label: Read The Financials App Case Study
+      link: /case-study

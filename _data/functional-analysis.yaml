@@ -1,0 +1,125 @@
+sections:
+  - id: intro
+    type: intro
+    title: What is a functional analysis?
+    headline: The business essence of a system, told technology-free.
+    intro:
+      - |
+        A functional analysis describes what a software system does for the
+        business: the actors, the processes, the concepts and the rules, in
+        plain language a non-developer can read and a developer can verify.
+        It describes the need, not the solution. It is written technology-free
+        on purpose, so it stays true no matter which framework or language
+        implements it.
+      - |
+        That is what "functional" means here: function, not implementation.
+        Not how the code is structured, which libraries it uses or how it is
+        deployed, but what the system really does, traceable to the exact
+        line of code that does it.
+
+  - id: what
+    type: badge-cards
+    title: The information that matters
+    subtitle: |
+      A functional analysis is only as good as the facts it captures. These
+      are the pieces of information a reader needs, and that every Archiku
+      analysis provides.
+    items:
+      - title: Executive summary and scope
+        icon: bi-file-earmark-ruled
+        text: |
+          What the system is, in one read, and exactly what was analyzed:
+          the scope, the coverage and the confidence. No surprises about
+          what is and is not part of the picture.
+      - title: Core concepts
+        icon: bi-bricks
+        text: |
+          The vocabulary of the business the system serves: its entities,
+          their meaning and how they relate. When the code says "journal",
+          "store" or "ledger", you know precisely what it means.
+      - title: Business rules
+        icon: bi-check2-square
+        text: |
+          The rules the system enforces, each one stated, explained and
+          traceable to the code that implements it. The guarantees of the
+          system, written down at last.
+      - title: Conventions
+        icon: bi-journal-check
+        text: |
+          Conventions are not hard business rules. They typically emerge during software development. However, living just under the surface, these patterns
+          fundamentally impact how your software actually works.
+      - title: Process flows
+        icon: bi-diagram-3
+        text: |
+          How work moves through the system: the steps, the actors and the
+          decisions, mapped as flows a business reader can follow from
+          start to finish.
+      - title: Data entities
+        icon: bi-database
+        text: |
+          What the system records, keeps and calculates on. The facts of
+          your business that live in the system, and who may change them.
+      - title: Non-goals
+        icon: bi-x-circle
+        text: |
+          What the system deliberately does not do. As revealing as the
+          features themselves, and tthe fastest way to prevent teams from
+          hunting for non-existent behavior.
+      - title: Quirks and sensitivities
+        icon: bi-exclamation-diamond
+        text: |
+          Where the code will surprise you: undocumented behaviour, fragile
+          spots and the places where a small change can have a large
+          effect. The knowledge that prevents incidents.
+
+  - id: what-not
+    type: values
+    title: What a functional analysis is NOT
+    subtitle: |
+      Just as important: what you should not expect from it.
+    items:
+      - title: Not a technical audit
+        icon: bi-x-circle
+        text: |
+          Code quality, issue and bug detection is a separate, targeted
+          extension. The functional analysis itself stays technology-free:
+          it describes what the system does, not how well it is built.
+      - title: Not simply scraped
+        icon: bi-x-circle
+        text: |
+          Nothing in it is "AI-written documentation" harvested from the
+          code. Every finding is first a well structured fact, anchored in the
+          Archiku Analysis Metamodel, engineered through a multi-pass agentic
+          review and structurally validated by a seasoned analyst.
+      - title: Not a replacement for your team
+        icon: bi-x-circle
+        text: |
+          Your experts validate, extend and own the analysis. Archiku's
+          mandate ends where your team's authority begins. The analysis
+          gives your team its starting point, it does not take the
+          responsibility away.
+      - title: Not a static, dead document
+        icon: bi-x-circle
+        text: |
+          It is delivered as structured, versioned knowledge, built to be
+          questioned, extended and kept current. Not a PDF that starts
+          aging the day it is delivered.
+      - title: Not a requirements specification
+        icon: bi-x-circle
+        text: |
+          It describes what the system does, not what a new system should
+          do. But it holds everything such a specification is made of, the
+          actors, the processes, the rules and the boundaries, stated as
+          facts. It is the perfect baseline to understand, build and improve
+          a requirements specification.
+    closing: |
+      In one sentence: _a functional analysis is the map that lets everyone,
+      technical or not, know what their software really does today, with
+      every claim traceable to the code that proves it._
+  - id: case-study
+    type: cta
+    title: Seeing is believing
+    text: |
+      Instead of only telling you what a functional analysis should be, we can also show you. Hit the button below and explore a complete case study, based on an actual piece of software, in a realistic context. Simple enough for everyone to understand, complete enough to show you what Archiku can deliver.
+    label: Read The Financials App Case Study
+    link: /case-study

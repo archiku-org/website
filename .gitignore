@@ -6,3 +6,4 @@ vendor/
 Gemfile.lock
 local/
 SESSION.md
+.DS_Store

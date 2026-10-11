@@ -1,0 +1,34 @@
+<div class="row gx-4 gx-lg-5 justify-content-center">
+  <div class="col-lg-8 text-center">
+    <h2 class="mt-0">{{ include.section.title }}</h2>
+    <hr class="divider" />
+    <p class="lead text-muted mb-5">
+      {{ include.section.subtitle }}
+    </p>
+  </div>
+</div>
+
+<div class="row gx-4 gx-lg-5 justify-content-center">
+  {% for item in include.section.items %}
+  <div class="col-lg-4 mb-2">
+    <div class="usecase-card h-100 p-4 d-flex flex-column">
+      <div class="mb-2"><i class="{{ item.icon }} fs-1 text-primary"></i></div>
+      <h3 class="mb-1">{{ item.title }}</h3>
+      <p class="text-primary fw-bold mb-3 small">{{ item.pitch }}</p>
+      <p class="text-muted">
+        {{ item.text }}
+      </p>
+      <div class="mb-0 mt-auto">
+        <ul class="small text-muted ps-3 mb-3">
+          {% for case in item.cases %}
+          <li>{{ case }}</li>
+          {% endfor %}
+        </ul>
+        <p >
+          <a class="usecase-link-link" href="{{ item.link }}">{{ item.link_label }} →</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

@@ -1,28 +1,26 @@
-<section class="page-section bg-light" id="{{ include.section.id }}">
-  <div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-lg-8 text-center">
-        <h2 class="mt-0">{{ include.section.title }}</h2>
-        <hr class="divider" />
-        <p class="lead text-muted mb-5">
-          {{ include.section.subtitle }}
-        </p>
-      </div>
-    </div>
-
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      {% for item in include.section.items %}
-      <div class="col-lg-4 col-md-6 mb-2">
-        <div class="usecase-card h-100 p-4">
-          <p class="usecase-number mb-2">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</p>
-          <h3 class="mb-2">{{ item.title }}</h3>
-          <p class="text-muted mb-0">
-            {{ item.text }}
-          </p>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-
+<div class="row gx-4 gx-lg-5 justify-content-center">
+  <div class="col-lg-8 text-center">
+    <h2 class="mt-0">{{ include.section.title }}</h2>
+    <hr class="divider" />
+    <p class="lead text-muted mb-5">
+      {{ include.section.subtitle }}
+    </p>
   </div>
-</section>
+</div>
+
+<div class="row gx-4 gx-lg-5 justify-content-center">
+  {% for item in include.section.items %}
+  <div class="col-lg-4 col-md-6 mb-2">
+    <div class="usecase-card h-100 p-4">
+      <p class="usecase-number mb-2">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</p>
+      <h3 class="mb-2">{{ item.title }}</h3>
+      {% if item.pretext %}
+      <p class="text-muted mb-2"><em>{{ item.pretext }}</em></p>
+      {% endif %}
+      <p class="text-muted mb-0">
+        {{ item.text }}
+      </p>
+    </div>
+  </div>
+  {% endfor %}
+</div>

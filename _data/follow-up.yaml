@@ -1,0 +1,62 @@
+sections:
+- id: intro
+  type: intro
+  kicker: "Use case family: Follow up"
+  title: Code changes every day. Your knowledge of it should not age.
+  headline: Keeping knowledge alive while code changes.
+  intro:
+    - |
+      A baseline analysis is only the beginning. Active codebases change
+      with every release, and every change that is not captured is a
+      small step back into the dark. Understanding the changes as they
+      are applied, and validating them, internally or externally, is
+      what keeps the initial insight valuable.
+    - |
+      Archiku puts an independent watcher beside your codebase. Every
+      change is analyzed against the validated baseline, so you always
+      have up-to-date information to report on and an independent
+      overview of open issues, both functional and about the code itself.
+- id: cases
+  type: numbered-cards
+  title: The classic stories
+  items:
+    - title: The requirements nobody checked the code against
+      pretext: |
+        You have a functional analysis. You have requirements. But the
+        code has been changing since the day they were written, and nobody
+        can say they still agree.
+      text: |
+        Archiku runs an independent comparison of the system as it is
+        actually built against your functional analysis and requirements,
+        every deviation reported and traceable to the code. And then every
+        future change is checked against the same bar. Conformance stops
+        being an assumption.
+    - title: The codebase your team ships every week
+      pretext: |
+        Development is alive. Releases go out every week. But nobody
+        outside the team, and honestly not even inside it, can say what
+        the system has become.
+      text: |
+        Archiku establishes a baseline of what the system is today and
+        watches every push against it, so functional drift is captured the
+        moment it happens. Progress, quality and conformance, reported to you, not
+        just to the team.
+    - title: The regulator who asks what your systems do
+      pretext: |
+        Under DORA, financial entities must assess their legacy ICT
+        systems every year. Under NIS2, management is personally liable
+        for security and can only evidence what is documented.
+      text: |
+        Archiku delivers the documented, traceable baseline these
+        obligations ask for, and keeps it current, so next year's
+        assessment starts from knowledge, not from panic.
+- id: case-study
+  type: cta
+  title: How Archiku Supports the Follow Up Use Case
+  text: |
+    This is where Archiku is heading: continuous monitoring of your
+    active codebases, keeping the validated baseline alive automatically.
+    The baseline analysis you own today is the foundation it needs.
+    Hit the button below and explore a complete case study, based on an actual piece of software, in a realistic context. Simple enough for everyone to understand every detail of it, complete enough to show you what Archiku can deliver.
+  label: Read The Financials App Case Study
+  link: /case-study

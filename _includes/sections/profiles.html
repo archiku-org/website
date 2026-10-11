@@ -1,46 +1,42 @@
-<section class="page-section" id="{{ include.section.id }}">
-  <div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-lg-8 text-center">
-        <h2 class="mt-0">{{ include.section.title }}</h2>
-        <hr class="divider" />
-        <p class="lead text-muted mb-5">
-          {{ include.section.subtitle }}
+<div class="row gx-4 gx-lg-5 justify-content-center">
+  <div class="col-lg-8 text-center">
+    <h2 class="mt-0">{{ include.section.title }}</h2>
+    <hr class="divider" />
+    <p class="lead text-muted mb-5">
+      {{ include.section.subtitle }}
+    </p>
+  </div>
+</div>
+
+<div class="row g-4 justify-content-center mb-4">
+  {% for item in include.section.items %}
+  <div class="col-lg-3 col-md-6">
+    <div class="persona-card h-100 p-4 text-center">
+      <div class="persona-icon mb-2"><i class="{{ item.icon }}"></i></div>
+      <h3 class="mb-1">{{ item.title }}</h3>
+      <p class="persona-bio text-muted mb-2">
+        {{ item.bio1 }}
+      </p>
+      <p class="persona-bio text-muted mb-0">
+        {{ item.bio2 }}
+      </p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="row g-4 justify-content-center">
+  <div class="col-12">
+    <div class="persona-card vault-hub p-4 text-center">
+      <div class="d-flex flex-column flex-lg-row align-items-center gap-4">
+        <div class="vault-head">
+          <div class="persona-icon mb-2"><i class="{{ include.section.vault.icon }}"></i></div>
+          <h3 class="mb-1">{{ include.section.vault.title }}</h3>
+        </div>
+        <p class="persona-bio mb-0">
+          {{ include.section.vault.text }}
         </p>
       </div>
     </div>
-
-    <div class="row g-4 justify-content-center mb-4">
-      {% for item in include.section.items %}
-      <div class="col-lg-3 col-md-6">
-        <div class="persona-card h-100 p-4 text-center">
-          <div class="persona-icon mb-2"><i class="{{ item.icon }}"></i></div>
-          <h3 class="mb-1">{{ item.title }}</h3>
-          <p class="persona-bio text-muted mb-2">
-            {{ item.bio1 }}
-          </p>
-          <p class="persona-bio text-muted mb-0">
-            {{ item.bio2 }}
-          </p>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-
-    <div class="row g-4 justify-content-center">
-      <div class="col-12">
-        <div class="persona-card vault-hub p-4 text-center">
-          <div class="d-flex flex-column flex-lg-row align-items-center gap-4">
-            <div class="vault-head">
-              <div class="persona-icon mb-2"><i class="{{ include.section.vault.icon }}"></i></div>
-              <h3 class="mb-1">{{ include.section.vault.title }}</h3>
-            </div>
-            <p class="persona-bio mb-0">
-              {{ include.section.vault.text }}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
-</section>
+</div>

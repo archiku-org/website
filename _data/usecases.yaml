@@ -1,0 +1,63 @@
+sections:
+  - id: usecases
+    nav_label: Use cases
+    type: usecase-groups
+    title: Archiku supports several use case families...
+    subtitle: |
+      Situations we hear about every week, in three families. If one of them
+      is yours, the bottom-line question is always the same: do you really
+      know what your software does?
+    items:
+      - title: Acquire
+        icon: bi-box-arrow-in-down
+        pitch: |
+          Taking a codebase in, on your terms.
+        text: |
+          From simply adopting codebases that already live inside your
+          organisation to a full analysis before an acquisition closes.
+          What did you actually take in, what does it really do and can
+          your people take it from here?
+        link: /usecases/acquire
+        link_label: Explore Acquire
+        cases:
+          - The delivery you need to verify
+          - The estate you just inherited
+          - The team that starts from nothing
+          - The tidal wave of AI-generated code
+      - title: Modernize
+        icon: bi-signpost
+        pitch: |
+          Deciding what becomes of legacy.
+        text: |
+          Modernize, migrate, wrap or retire. Decide what to do with aging
+          codebases based on facts, weighed against your constraints and
+          preferences, not on folklore.
+        link: /usecases/modernize
+        link_label: Explore Modernize
+        cases:
+          - The system nobody dares to touch
+          - The decision you cannot make yet
+          - The information your development partner needs
+          - The in-house tool everybody loves
+      - title: Follow up
+        icon: bi-activity
+        pitch: |
+          Keeping knowledge alive while code changes.
+        text: |
+          Understand the changes applied to active codebases as they are
+          applied. Validate them internally or externally, keep your
+          reporting up to date and hold independent overviews
+          of open functional issues.
+        link: /usecases/follow-up
+        link_label: Explore Follow up
+        cases:
+          - The requirements nobody checked the code against
+          - The codebase your team ships every week
+          - The regulator who asks what your systems do
+  - id: case-study
+    type: cta
+    title: Making it concrete
+    text: |
+      Hit the button below and explore a complete case study, based on an actual piece of software, in a realistic context. Simple enough for everyone to understand every detail of it, complete enough to show you what Archiku can deliver.
+    label: Read The Financials App Case Study
+    link: /case-study

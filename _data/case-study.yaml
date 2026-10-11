@@ -1,0 +1,166 @@
+meta:
+  title: "Archiku | Case Study: The Vibe-Coded Financials App"
+  description: |
+    The Financials App was vibe-coded in one night and adopted by five departments. When the CIO had to decide its fate, Archiku turned it into the validated functional analysis that made every decision a fact-based one.
+
+sections:
+  - id: hero
+    type: hero
+    kicker: Case study
+    title: The vibe-coded Financials App
+    tagline: |
+      One night of Claude Code. Five departments of value. One question no documentation could answer.
+    closing: |
+      The Financials App case study introduces you to an actual Archiku functional analysis and illustrates the Archiku way of working. It is based on an actual codebase, actually vibe coded, yet conceptually simple enough to fit the frame of the case study.
+  - id: story
+    type: story
+    intro:
+     - |
+      The _Financials App_ is a real app. If you like, you can consult it on GitHub. It is a small app that grew from an actual need to manage my personal finances, yet, weighing in at roughly 13K SLoC, it also proved to be the perfect example to use in this case study.
+     - |
+      For that purpose, I've actually implemented it in more of a vibe-coded way and actually haven't looked at the code myself at any point in time. This codebase is really a blackbox to me and its development has been performed purely from the outside, one high level prompt at a time.
+     - |
+      Follow its story below, as I project it on a typical flow of events, with of course Archiku as the superhero, saving the day.
+    beats:
+      - title: One night, real value
+        image: /assets/img/case-study/step1.png
+        alt: John, working in the marketing department, builds his own Financials App in one night with Claude Code
+        text: |
+          Meet John. John works in the marketing department and was fed up
+          with the finance department. For months he had been asking for an
+          overview of his budget and a way to keep track of future expenses
+          and incomes to be able to project his cash flow throughout the
+          year. The answer was always: "Our 'Big & Wonderful' accounting
+          platform currently doesn't enable us to give you that specific
+          tool. When we have dinner with the sales rep of B&W, we'll propose
+          the feature request."
+          <br><br>
+          So one night, John downloaded Claude Code and started prompting it
+          until he had an app that enabled him to keep track of his expenses
+          and incomes, enter future expected transactions and even schedule
+          recurring transactions. Combining all that information, John could
+          now see his budget balance throughout the year and could optimize
+          his costs. The finance department never heard John complain about
+          data access again.
+      - title: Word spreads
+        image: /assets/img/case-study/step2.png
+        alt: Alice works in the manufacturing department and adopts the app after hearing John's stories over lunch
+        text: |
+          Meet Alice. Alice works in the manufacturing department. Over
+          lunch she heard John's stories about how he was able to really
+          manage his expenditure using this great "Financials App" he had
+          vibe coded. Alice started talking to John and not much later also enjoyed
+          the benefits of a clear view on her budget. John's "Financials
+          App"'s user base had doubled. Not much later two other departments
+          also adopted the app.
+      - title: The new CIO
+        image: /assets/img/case-study/step3.png
+        alt: Peter, the newly appointed CIO, investigates the software landscape and discovers the Financials App
+        text: |
+          Meet Peter. Peter was recently appointed CIO and like many of his
+          peers, his assignment also included to get the software landscape
+          in the organization under control. During his investigation Peter
+          discovered... John's "Financials App".
+      - title: The dilemma
+        image: /assets/img/case-study/step4.png
+        alt: Peter faces the decision on what to do with the shadow-IT Financials App
+        text: |
+          Peter doesn't simply want to throw out this rogue, shadow IT
+          solution. He recognizes that it simply was established due to a
+          real need and gap in their current landscape. But since they
+          aren't a software company and have a policy to choose buy over
+          build, he was now faced with a problem: what to do with this
+          "Financials App"?
+      - title: The disappointing ERP answer
+        image: /assets/img/case-study/step5.png
+        text: |
+          Peter begins his quest at the finance department. Sadly he has to confirm
+          it: their ERP solution doesn't offer the simple but powerful app John has
+          vibe coded. Buy cannot replace build here, and build was a one-man,
+          one-night effort nobody in the company owns or understands.
+      - title: The CTO's connection
+        image: /assets/img/case-study/step6.png
+        text: |
+          At the end of the weekly meeting, Peter consults Marc, the CTO. He confirms
+          that in house built software is a clear no go, but also provides Peter with
+          an alternative. He recently spoke with a new development agency. It might be
+          an option to ask them to rebuild the app professionally so it could scale
+          securely, integrate with corporate authentication and be formally supported
+          by IT.
+      - title: The developer needs specs
+        image: /assets/img/case-study/step7.png
+        text: |
+          So Peter contacts the software development agency to rebuild the
+          app professionally. They ask him for the functional requirements
+          and specifications. Peter, nor John, have these. Writing them
+          from scratch will take a lot of time and they might miss exactly
+          the important aspects that the vibe coded software has
+          implemented.
+      - title: Archiku to the rescue
+        image: /assets/img/case-study/step8.png
+        text: |
+          Archiku analyzed the codebase of the Financials App and delivered a
+          structurally validated functional analysis in days: the actors, the
+          processes, the core concepts, the business rules and the
+          boundaries of the system, every finding traceable to the exact
+          line of code. The independent map nobody inside the company
+          could have written, delivered before the development company
+          finished its first week.
+      - title: Rebuilt, verified, kept alive
+        image: /assets/img/case-study/step9.png
+        text: |
+          The development agency rebuilt the app from the analysis. Thanks to
+          not only business rules, but also conventions and quirks, they were
+          able to implement the actual intent John had indirectly implemented.
+          <br><br>
+          Later, the analysis served as the acceptance baseline of the new
+          delivery and a new Archiku run on the rebuilt app confirmed the
+          reimplementation covers the functional essence of the original.
+          The comparison of the two analyses gave Peter the proof he
+          needed. The app now lives on as supported, owned software and its
+          knowledge is kept up to date with every change.
+  - id: what
+    type: badge-cards
+    kicker: The deliverable
+    title: The analysis that became the spec
+    subtitle: |
+      No functional requirements existed. The validated analysis became
+      them: every rule, process and concept the development company
+      needed, traceable to the code that proved it.
+    items:
+      - title: 15 chapters of insight
+        icon: bi-file-earmark-ruled
+        text: |
+          Executive summary, scope and coverage, concepts, business
+          rules, process flows, feature specifications, data entities,
+          non-goals, quirks and sensitivities.
+      - title: Every claim traceable
+        icon: bi-crosshair
+        text: |
+          Each finding cites the exact file and line it came from. What
+          you read can be verified in the code in seconds.
+      - title: Ready for a rebuild
+        icon: bi-rocket-takeoff
+        text: |
+          The actors, processes, rules and boundaries, stated as facts.
+          Hand it to an implementation team and they know exactly what
+          they are rebuilding.
+    cta:
+      label: Read the Case Study Functional Analysis
+      link: /case-study/financials/reports/functional-analysis/
+      note: |
+        This links to the actual deliverable, exactly as it was delivered:
+        fifteen chapters of traceable insight, from executive summary to
+        quirks and sensitivities.<br>
+        All fully excavated from the [actual GitHub codebase](https://github.com/christophevg/financials).
+  - id: request
+    type: cta
+    title: Your codebase has a story like this
+    text: |
+      An AI-built tool that outgrew its prompt engineer. A delivery you need
+      to verify. A system nobody dares to touch. Whatever shape your
+      version of the Financials App takes, the path is the same: an
+      independent, validated map of what it really does, delivered in
+      days.
+    label: Request a Risk-Free Preview Analysis
+    link: "mailto:contact@archiku.com"

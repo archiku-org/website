@@ -1,0 +1,68 @@
+<section class="page-section">
+  <div class="container px-4 px-lg-5">
+
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-lg-8 text-center mb-4">
+        <h1 class="mb-3">{{ include.fa.title }}</h1>
+        <p class="lead text-muted mb-0">{{ include.fa.headline }}</p>
+      </div>
+    </div>
+
+    <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+      {% for para in include.fa.intro %}
+      <div class="col-lg-8">
+        <p class="lead text-muted">{{ para }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="row gx-4 gx-lg-5 justify-content-center mb-4">
+      <div class="col-lg-8 text-center">
+        <h2 class="mt-0">{{ include.fa.pieces_title }}</h2>
+        <hr class="divider" />
+        <p class="lead text-muted mb-5">{{ include.fa.pieces_subtitle }}</p>
+      </div>
+    </div>
+
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      {% for piece in include.fa.pieces %}
+      <div class="col-lg-4 col-md-6 mb-2">
+        <div class="deliverable-card h-100 p-4 text-center">
+          <div class="mb-2"><i class="{{ piece.icon }} fs-1 text-primary"></i></div>
+          <h3 class="mb-2">{{ piece.title }}</h3>
+          <p class="text-muted mb-0">{{ piece.text }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="row gx-4 gx-lg-5 justify-content-center mt-5">
+      <div class="col-lg-8 text-center">
+        <h2 class="mt-0">{{ include.fa.not_title }}</h2>
+        <hr class="divider" />
+        <p class="lead text-muted mb-5">{{ include.fa.not_subtitle }}</p>
+      </div>
+    </div>
+
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      {% for item in include.fa.not_list %}
+      <div class="col-lg-8 mb-2">
+        <div class="usecase-card p-4">
+          <h4 class="mb-2"><i class="bi-x-circle text-primary me-2"></i>{{ item.title }}</h4>
+          <p class="text-muted mb-0">{{ item.text }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="row gx-4 gx-lg-5 justify-content-center mt-5">
+      <div class="col-lg-8 text-center">
+        <p class="lead mb-4">{{ include.fa.closing }}</p>
+        {% if include.fa.cta %}
+        <a class="btn btn-primary btn-xl" href="{{ include.fa.cta.url }}">{{ include.fa.cta.label }}</a>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</section>

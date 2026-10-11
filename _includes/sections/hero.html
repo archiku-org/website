@@ -3,14 +3,32 @@
 
     <div class="row gx-4 gx-lg-5 justify-content-center text-center hero-intro">
       <div class="col-lg-8 align-self-end">
+        {% if include.section.kicker %}
+        <p class="text-primary fw-bold small text-uppercase mb-2">{{ include.section.kicker }}</p>
+        {% endif %}
+
+        {% if include.section.logo_img %}
         <img src="{{ include.section.logo_img }}" class="hero-logo" alt="Archiku" />
+        {% endif %}
+
+        {% if include.section.title %}
+        <h2 class="text-white mb-3">{{ include.section.title }}</h2>
+        {% endif %}
+
+        {% if include.section.tagline %}
         <p class="tagline text-white-75">{{ include.section.tagline }}</p>
+        {% endif %}
+        {% if include.section.opener %}
         <hr class="divider" />
         <p class="hero-opener">{{ include.section.opener }}</p>
+        {% if include.section.opener_sub %}
         <p class="text-white-75 mb-0">{{ include.section.opener_sub }}</p>
+        {% endif %}
+        {% endif %}
       </div>
     </div>
 
+    {% if include.section.cards %}
     <div class="row gx-4 gx-lg-5 justify-content-center align-items-stretch mt-4">
       {% for card in include.section.cards %}
       <div class="col-lg-4 col-md-6 mb-2">
@@ -23,6 +41,10 @@
       </div>
       {% endfor %}
     </div>
+    {% endif %}
+
+    {% if include.section.closing %}
+    <hr class="divider" />
 
     <div class="row gx-4 gx-lg-5 justify-content-center mt-4">
       <div class="col-lg-8 text-center">
@@ -33,18 +55,13 @@
         {% endfor %}
       </div>
     </div>
+    {% endif %}
 
     <div class="row gx-4 gx-lg-5 justify-content-center mt-4 mb-4">
       <div class="col-lg-8 text-center">
         <p class="mb-0 lead text-white-75">
           <i>{{ include.section.pitch }}</i>
         </p>
-      </div>
-    </div>
-
-    <div class="row gx-4 gx-lg-5 justify-content-center mt-2 mb-4">
-      <div class="col-lg-8 text-center">
-        <a class="btn btn-primary btn-xl" href="#{{ include.section.cta_anchor }}">{{ include.section.cta_label }}</a>
       </div>
     </div>
 

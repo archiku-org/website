@@ -1,0 +1,23 @@
+{% assign remainder = include.index | modulo: 2 %}
+<section class="page-section {% if remainder == 0 %}bg-light{% endif %}"
+         id="{{ include.section.id }}">
+  <div class="container px-4 px-lg-5">
+{{ include.body }}
+
+    {% if include.section.cta %}
+    <div class="row gx-4 gx-lg-5 justify-content-center mt-3 mb-4">
+      <div class="col-lg-8 text-center">
+        <a class="btn btn-primary btn-xl" href="{{ include.section.cta.link }}">{{ include.section.cta.label }}</a>
+      </div>
+      {% if include.section.cta.note %}
+      <div class="col-lg-6 text-center mt-4">
+        <p class="small text-muted mb-0">
+          {{ include.section.cta.note | markdownify | remove: '<p>' | remove: '</p>' }}
+        </p>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+
+  </div>
+</section>
