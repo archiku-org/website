@@ -34,7 +34,10 @@ sections:
           platform currently doesn't enable us to give you that specific
           tool. When we have dinner with the sales rep of B&W, we'll propose
           the feature request."
-          <br><br>
+      - title: Dedication to the Job
+        image: /assets/img/case-study/step2.png
+        alt: One night, John decides to vibe code a solution himself.
+        text: |
           So one night, John downloaded Claude Code and started prompting it
           until he had an app that enabled him to keep track of his expenses
           and incomes, enter future expected transactions and even schedule
@@ -43,7 +46,7 @@ sections:
           his costs. The finance department never heard John complain about
           data access again.
       - title: Word spreads
-        image: /assets/img/case-study/step2.png
+        image: /assets/img/case-study/step3.png
         alt: Alice works in the manufacturing department and adopts the app after hearing John's stories over lunch
         text: |
           Meet Alice. Alice works in the manufacturing department. Over
@@ -54,17 +57,14 @@ sections:
           App"'s user base had doubled. Not much later two other departments
           also adopted the app.
       - title: The new CIO
-        image: /assets/img/case-study/step3.png
+        image: /assets/img/case-study/step4.png
         alt: Peter, the newly appointed CIO, investigates the software landscape and discovers the Financials App
         text: |
           Meet Peter. Peter was recently appointed CIO and like many of his
           peers, his assignment also included to get the software landscape
           in the organization under control. During his investigation Peter
           discovered... John's "Financials App".
-      - title: The dilemma
-        image: /assets/img/case-study/step4.png
-        alt: Peter faces the decision on what to do with the shadow-IT Financials App
-        text: |
+          <br><br>
           Peter doesn't simply want to throw out this rogue, shadow IT
           solution. He recognizes that it simply was established due to a
           real need and gap in their current landscape. But since they
