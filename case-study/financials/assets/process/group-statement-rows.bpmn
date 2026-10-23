@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions id="definitions" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <bpmn:process id="process_owner">
+    <bpmn:task id="name_the_statement_s_charges_and_set_their_rollup_date" name="Name the statement's charges and set their rollup date" />
+    <bpmn:startEvent id="a_card_statement_has_arrived_and_its_charges_need_one_combined_view" name="A card statement has arrived and its charges need one combined view" />
+    <bpmn:task id="add_the_charge_ids_to_the_bundling_all_or_nothing" name="Add the charge ids to the bundling, all-or-nothing" />
+    <bpmn:task id="see_the_statement_as_one_rollup_line_whose_total_lands_on_the_payment_day" name="See the statement as one rollup line whose total lands on the payment day" />
+    <bpmn:exclusiveGateway id="have_the_charges_landed_on_the_account_yet" name="Have the charges landed on the account yet?" />
+    <bpmn:task id="confirm_the_landed_charges_into_the_ledger_in_date_order" name="Confirm the landed charges into the ledger in date order" />
+    <bpmn:task id="wait_for_the_payment_day_to_arrive" name="Wait for the payment day to arrive" />
+    <bpmn:task id="note_which_charges_a_hand_booking_already_covers" name="Note which charges a hand-booking already covers" />
+    <bpmn:task id="see_the_statement_as_one_settled_line_in_the_history_view" name="See the statement as one settled line in the history view" />
+    <bpmn:exclusiveGateway id="is_the_statement_bundling_still_worth_keeping" name="Is the statement bundling still worth keeping?" />
+    <bpmn:endEvent id="the_statement_is_bundled_exactly_as_it_should_be" name="The statement is bundled exactly as it should be" />
+    <bpmn:task id="un_group_the_bundling_leaving_every_charge_as_its_own_row" name="Un-group the bundling, leaving every charge as its own row" />
+    <bpmn:task id="keep_editing_the_bundling_s_label_rollup_date_or_note" name="Keep editing the bundling's label, rollup date or note" />
+    <bpmn:sequenceFlow id="flow_1" sourceRef="a_card_statement_has_arrived_and_its_charges_need_one_combined_view" targetRef="name_the_statement_s_charges_and_set_their_rollup_date" />
+    <bpmn:sequenceFlow id="flow_2" sourceRef="name_the_statement_s_charges_and_set_their_rollup_date" targetRef="add_the_charge_ids_to_the_bundling_all_or_nothing" />
+    <bpmn:sequenceFlow id="flow_3" sourceRef="add_the_charge_ids_to_the_bundling_all_or_nothing" targetRef="see_the_statement_as_one_rollup_line_whose_total_lands_on_the_payment_day" />
+    <bpmn:sequenceFlow id="flow_4" sourceRef="see_the_statement_as_one_rollup_line_whose_total_lands_on_the_payment_day" targetRef="have_the_charges_landed_on_the_account_yet" />
+    <bpmn:sequenceFlow id="flow_5" sourceRef="wait_for_the_payment_day_to_arrive" targetRef="confirm_the_landed_charges_into_the_ledger_in_date_order" />
+    <bpmn:sequenceFlow id="flow_6" name="Not yet" sourceRef="have_the_charges_landed_on_the_account_yet" targetRef="wait_for_the_payment_day_to_arrive" />
+    <bpmn:sequenceFlow id="flow_7" sourceRef="note_which_charges_a_hand_booking_already_covers" targetRef="confirm_the_landed_charges_into_the_ledger_in_date_order" />
+    <bpmn:sequenceFlow id="flow_8" name="Yes, some already booked by hand" sourceRef="have_the_charges_landed_on_the_account_yet" targetRef="note_which_charges_a_hand_booking_already_covers" />
+    <bpmn:sequenceFlow id="flow_9" sourceRef="have_the_charges_landed_on_the_account_yet" targetRef="confirm_the_landed_charges_into_the_ledger_in_date_order" />
+    <bpmn:sequenceFlow id="flow_10" sourceRef="confirm_the_landed_charges_into_the_ledger_in_date_order" targetRef="see_the_statement_as_one_settled_line_in_the_history_view" />
+    <bpmn:sequenceFlow id="flow_11" sourceRef="see_the_statement_as_one_settled_line_in_the_history_view" targetRef="is_the_statement_bundling_still_worth_keeping" />
+    <bpmn:sequenceFlow id="flow_12" sourceRef="un_group_the_bundling_leaving_every_charge_as_its_own_row" targetRef="the_statement_is_bundled_exactly_as_it_should_be" />
+    <bpmn:sequenceFlow id="flow_13" name="No" sourceRef="is_the_statement_bundling_still_worth_keeping" targetRef="un_group_the_bundling_leaving_every_charge_as_its_own_row" />
+    <bpmn:sequenceFlow id="flow_14" sourceRef="keep_editing_the_bundling_s_label_rollup_date_or_note" targetRef="the_statement_is_bundled_exactly_as_it_should_be" />
+    <bpmn:sequenceFlow id="flow_15" name="Yes" sourceRef="is_the_statement_bundling_still_worth_keeping" targetRef="keep_editing_the_bundling_s_label_rollup_date_or_note" />
+    <bpmn:sequenceFlow id="flow_16" sourceRef="is_the_statement_bundling_still_worth_keeping" targetRef="the_statement_is_bundled_exactly_as_it_should_be" />
+  </bpmn:process>
+  <bpmn:collaboration id="collaboration">
+    <bpmn:participant id="participant_owner" name="Owner" processRef="process_owner" />
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="diagram">
+    <bpmndi:BPMNPlane id="plane" bpmnElement="collaboration">
+      <bpmndi:BPMNShape id="shape_participant_owner" bpmnElement="participant_owner" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1790" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_name_the_statement_s_charges_and_set_their_rollup_date" bpmnElement="name_the_statement_s_charges_and_set_their_rollup_date">
+        <dc:Bounds x="380" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_a_card_statement_has_arrived_and_its_charges_need_one_combined_view" bpmnElement="a_card_statement_has_arrived_and_its_charges_need_one_combined_view">
+        <dc:Bounds x="252" y="272" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_add_the_charge_ids_to_the_bundling_all_or_nothing" bpmnElement="add_the_charge_ids_to_the_bundling_all_or_nothing">
+        <dc:Bounds x="540" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_see_the_statement_as_one_rollup_line_whose_total_lands_on_the_payment_day" bpmnElement="see_the_statement_as_one_rollup_line_whose_total_lands_on_the_payment_day">
+        <dc:Bounds x="700" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_have_the_charges_landed_on_the_account_yet" bpmnElement="have_the_charges_landed_on_the_account_yet" isMarkerVisible="true">
+        <dc:Bounds x="885" y="265" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_confirm_the_landed_charges_into_the_ledger_in_date_order" bpmnElement="confirm_the_landed_charges_into_the_ledger_in_date_order">
+        <dc:Bounds x="1180" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_wait_for_the_payment_day_to_arrive" bpmnElement="wait_for_the_payment_day_to_arrive">
+        <dc:Bounds x="1020" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_note_which_charges_a_hand_booking_already_covers" bpmnElement="note_which_charges_a_hand_booking_already_covers">
+        <dc:Bounds x="1020" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_see_the_statement_as_one_settled_line_in_the_history_view" bpmnElement="see_the_statement_as_one_settled_line_in_the_history_view">
+        <dc:Bounds x="1340" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_is_the_statement_bundling_still_worth_keeping" bpmnElement="is_the_statement_bundling_still_worth_keeping" isMarkerVisible="true">
+        <dc:Bounds x="1525" y="265" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_the_statement_is_bundled_exactly_as_it_should_be" bpmnElement="the_statement_is_bundled_exactly_as_it_should_be">
+        <dc:Bounds x="1852" y="272" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_un_group_the_bundling_leaving_every_charge_as_its_own_row" bpmnElement="un_group_the_bundling_leaving_every_charge_as_its_own_row">
+        <dc:Bounds x="1660" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_keep_editing_the_bundling_s_label_rollup_date_or_note" bpmnElement="keep_editing_the_bundling_s_label_rollup_date_or_note">
+        <dc:Bounds x="1660" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow_1" bpmnElement="flow_1">
+        <di:waypoint x="288" y="290" />
+        <di:waypoint x="380" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_2" bpmnElement="flow_2">
+        <di:waypoint x="480" y="290" />
+        <di:waypoint x="540" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_3" bpmnElement="flow_3">
+        <di:waypoint x="640" y="290" />
+        <di:waypoint x="700" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_4" bpmnElement="flow_4">
+        <di:waypoint x="800" y="290" />
+        <di:waypoint x="885" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_5" bpmnElement="flow_5">
+        <di:waypoint x="1120" y="290" />
+        <di:waypoint x="1180" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_6" bpmnElement="flow_6">
+        <di:waypoint x="935" y="290" />
+        <di:waypoint x="1020" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_7" bpmnElement="flow_7">
+        <di:waypoint x="1120" y="150" />
+        <di:waypoint x="1150" y="150" />
+        <di:waypoint x="1150" y="290" />
+        <di:waypoint x="1180" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_8" bpmnElement="flow_8">
+        <di:waypoint x="910" y="265" />
+        <di:waypoint x="910" y="150" />
+        <di:waypoint x="1020" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_9" bpmnElement="flow_9">
+        <di:waypoint x="910" y="315" />
+        <di:waypoint x="910" y="350" />
+        <di:waypoint x="1230" y="350" />
+        <di:waypoint x="1230" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_10" bpmnElement="flow_10">
+        <di:waypoint x="1280" y="290" />
+        <di:waypoint x="1340" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_11" bpmnElement="flow_11">
+        <di:waypoint x="1440" y="290" />
+        <di:waypoint x="1525" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_12" bpmnElement="flow_12">
+        <di:waypoint x="1760" y="290" />
+        <di:waypoint x="1852" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_13" bpmnElement="flow_13">
+        <di:waypoint x="1575" y="290" />
+        <di:waypoint x="1660" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_14" bpmnElement="flow_14">
+        <di:waypoint x="1760" y="150" />
+        <di:waypoint x="1806" y="150" />
+        <di:waypoint x="1806" y="290" />
+        <di:waypoint x="1852" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_15" bpmnElement="flow_15">
+        <di:waypoint x="1550" y="265" />
+        <di:waypoint x="1550" y="150" />
+        <di:waypoint x="1660" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_16" bpmnElement="flow_16">
+        <di:waypoint x="1550" y="315" />
+        <di:waypoint x="1550" y="345" />
+        <di:waypoint x="1870" y="345" />
+        <di:waypoint x="1870" y="308" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions id="definitions" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <bpmn:process id="process_diagram_unavailable">
+    <bpmn:endEvent id="fix_and_re_emit_the_fact" name="Fix and re-emit the fact" />
+    <bpmn:startEvent id="source_script_could_not_be_rendered" name="Source script could not be rendered" />
+    <bpmn:sequenceFlow id="flow_1" sourceRef="source_script_could_not_be_rendered" targetRef="fix_and_re_emit_the_fact" />
+  </bpmn:process>
+  <bpmn:collaboration id="collaboration">
+    <bpmn:participant id="participant_diagram_unavailable" name="Diagram unavailable" processRef="process_diagram_unavailable" />
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="diagram">
+    <bpmndi:BPMNPlane id="plane" bpmnElement="collaboration">
+      <bpmndi:BPMNShape id="shape_participant_diagram_unavailable" bpmnElement="participant_diagram_unavailable" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="350" height="140" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_fix_and_re_emit_the_fact" bpmnElement="fix_and_re_emit_the_fact">
+        <dc:Bounds x="412" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_source_script_could_not_be_rendered" bpmnElement="source_script_could_not_be_rendered" isHorizontal="true">
+        <dc:Bounds x="252" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow_1" bpmnElement="flow_1">
+        <di:waypoint x="288" y="150" />
+        <di:waypoint x="412" y="150" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

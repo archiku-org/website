@@ -1,0 +1,18 @@
+process "Owner"
+  start "A card statement has arrived and its charges need one combined view"
+  task "Name the statement's charges and set their rollup date"
+  task "Add the charge ids to the bundling, all-or-nothing"
+  task "See the statement as one rollup line whose total lands on the payment day"
+  exclusive "Have the charges landed on the account yet?"
+    if "Not yet" then
+      task "Wait for the payment day to arrive"
+    else "Yes, some already booked by hand"
+      task "Note which charges a hand-booking already covers"
+  task "Confirm the landed charges into the ledger in date order"
+  task "See the statement as one settled line in the history view"
+  exclusive "Is the statement bundling still worth keeping?"
+    if "No" then
+      task "Un-group the bundling, leaving every charge as its own row"
+    else "Yes" then
+      task "Keep editing the bundling's label, rollup date or note"
+  end "The statement is bundled exactly as it should be"

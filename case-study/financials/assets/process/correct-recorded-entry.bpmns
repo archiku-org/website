@@ -1,0 +1,56 @@
+process "Owner"
+  start "A recorded entry turns out wrong"
+  user "Name the entry to correct or pick it from the ten most recent rows"
+  receive "See the outcome and the updated balances"
+  end "Entry corrected"
+
+process "Financials program"
+  start "Edit request arrives"
+  task "Resolve the named id against the ledger, expectations, groups and rule occurrences"
+  exclusive "What kind of entry was named?"
+    if "Committed row" then
+      user "Walk the committed row's pre-filled prompts with the owner"
+      exclusive "Does the corrected date move the row ahead of today?"
+        if "Ahead of today" then
+          task "Remove the committed row from the ledger, journaled"
+          task "Recreate the entry as an expectation at the new date"
+          goto "Report the outcome and the updated balances"
+        else "Today or earlier"
+          task "Record the correction as a journaled update, replay-checked"
+          goto "Report the outcome and the updated balances"
+    if "Expectation" then
+      user "Walk the expectation's pre-filled prompts with the owner"
+      exclusive "Has the expectation landed on or before today?"
+        if "Landed today or earlier" then
+          task "Confirm the entry as a real transaction, retiring the expectation, replay-checked"
+          goto "Report the outcome and the updated balances"
+        else "Still open"
+          task "Update the expectation in the register"
+          goto "Report the outcome and the updated balances"
+    if "Statement group" then
+      user "Walk the group's pre-filled relabel prompts with the owner"
+      task "Update the group's name, rollup date, category and note"
+      goto "Report the outcome and the updated balances"
+    if "Projected occurrence" then
+      user "Ask the owner: adjust the whole rule or handle only this occurrence"
+      exclusive "What did the owner choose?"
+        if "Adjust the rule" then
+          task "Open the recurring rule's editor"
+          goto "Report the outcome and the updated balances"
+        else "This occurrence only"
+          exclusive "Has the occurrence landed?"
+            if "Landed" then
+              task "Confirm the occurrence as a real transaction, replay-checked"
+              goto "Report the outcome and the updated balances"
+            else "Still ahead"
+              task "Record the deviation as an expectation and exempt this occurrence"
+              goto "Report the outcome and the updated balances"
+    else "Unknown id"
+      task "Tell the owner the id was not recognised"
+      goto "Report the outcome and the updated balances"
+  user "Report the outcome and the updated balances"
+  end "Correction handled"
+
+message flows
+  from "Owner"."Name the entry to correct or pick it from the ten most recent rows" to "Financials program"."Edit request arrives" label "Edit request"
+  from "Financials program"."Report the outcome and the updated balances" to "Owner"."See the outcome and the updated balances" label "Correction result"

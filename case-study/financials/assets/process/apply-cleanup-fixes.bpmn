@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions id="definitions" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <bpmn:process id="process_bookkeeper">
+    <bpmn:userTask id="choose_the_batch_to_apply" name="Choose the batch to apply" />
+    <bpmn:startEvent id="a_reviewed_batch_of_corrections_is_ready" name="A reviewed batch of corrections is ready" />
+    <bpmn:sendTask id="hand_the_batch_to_the_program" name="Hand the batch to the program" />
+    <bpmn:receiveTask id="hear_the_application_outcome" name="Hear the application outcome" />
+    <bpmn:exclusiveGateway id="did_every_entry_land" name="Did every entry land?" />
+    <bpmn:endEvent id="the_books_carry_the_reviewed_corrections" name="The books carry the reviewed corrections" />
+    <bpmn:userTask id="correct_the_batch_file_by_hand" name="Correct the batch file by hand" />
+    <bpmn:sequenceFlow id="flow_1" sourceRef="a_reviewed_batch_of_corrections_is_ready" targetRef="choose_the_batch_to_apply" />
+    <bpmn:sequenceFlow id="flow_2" sourceRef="choose_the_batch_to_apply" targetRef="hand_the_batch_to_the_program" />
+    <bpmn:sequenceFlow id="flow_3" sourceRef="hand_the_batch_to_the_program" targetRef="hear_the_application_outcome" />
+    <bpmn:sequenceFlow id="flow_4" sourceRef="hear_the_application_outcome" targetRef="did_every_entry_land" />
+    <bpmn:sequenceFlow id="flow_5" sourceRef="correct_the_batch_file_by_hand" targetRef="choose_the_batch_to_apply" />
+    <bpmn:sequenceFlow id="flow_6" name="An entry was refused" sourceRef="did_every_entry_land" targetRef="correct_the_batch_file_by_hand" />
+    <bpmn:sequenceFlow id="flow_7" name="Applied" sourceRef="did_every_entry_land" targetRef="the_books_carry_the_reviewed_corrections" />
+    <bpmn:sequenceFlow id="flow_8" sourceRef="did_every_entry_land" targetRef="the_books_carry_the_reviewed_corrections" />
+  </bpmn:process>
+  <bpmn:process id="process_financials_program">
+    <bpmn:exclusiveGateway id="one_named_file_or_all_pending" name="One named file or all pending?" />
+    <bpmn:startEvent id="batch_application_requested" name="Batch application requested" />
+    <bpmn:serviceTask id="split_field_corrections_from_row_operations" name="Split field corrections from row operations" />
+    <bpmn:serviceTask id="gather_the_pending_fix_files_oldest_first" name="Gather the pending fix files oldest first" />
+    <bpmn:serviceTask id="load_the_named_batch_file" name="Load the named batch file" />
+    <bpmn:exclusiveGateway id="what_does_the_entry_act_on" name="What does the entry act on?" />
+    <bpmn:exclusiveGateway id="more_entries_in_the_batch" name="More entries in the batch?" />
+    <bpmn:exclusiveGateway id="the_correction_is_safe_to_receive" name="The correction is safe to receive?" />
+    <bpmn:serviceTask id="check_the_row_and_its_stated_old_value" name="Check the row and its stated old value" />
+    <bpmn:serviceTask id="journal_one_update_event_with_the_row_s_final_state" name="Journal one update event with the row's final state" />
+    <bpmn:endEvent id="the_batch_stops_at_the_refused_entry" name="The batch stops at the refused entry" />
+    <bpmn:exclusiveGateway id="which_row_act" name="Which row act?" />
+    <bpmn:serviceTask id="journal_a_removal_event_with_the_row_s_full_picture" name="Journal a removal event with the row's full picture" />
+    <bpmn:serviceTask id="drop_the_plan_from_the_register" name="Drop the plan from the register" />
+    <bpmn:serviceTask id="write_the_new_plan_into_the_register" name="Write the new plan into the register" />
+    <bpmn:serviceTask id="report_the_applied_count" name="Report the applied count" />
+    <bpmn:exclusiveGateway id="was_this_an_all_pending_run" name="Was this an all-pending run?" />
+    <bpmn:endEvent id="batch_application_complete" name="Batch application complete" />
+    <bpmn:serviceTask id="mark_the_consumed_file_applied" name="Mark the consumed file applied" />
+    <bpmn:serviceTask id="leave_the_file_as_is" name="Leave the file as is" />
+    <bpmn:sequenceFlow id="flow_9" sourceRef="batch_application_requested" targetRef="one_named_file_or_all_pending" />
+    <bpmn:sequenceFlow id="flow_10" sourceRef="gather_the_pending_fix_files_oldest_first" targetRef="split_field_corrections_from_row_operations" />
+    <bpmn:sequenceFlow id="flow_11" name="All pending" sourceRef="one_named_file_or_all_pending" targetRef="gather_the_pending_fix_files_oldest_first" />
+    <bpmn:sequenceFlow id="flow_12" sourceRef="load_the_named_batch_file" targetRef="split_field_corrections_from_row_operations" />
+    <bpmn:sequenceFlow id="flow_13" name="One named file" sourceRef="one_named_file_or_all_pending" targetRef="load_the_named_batch_file" />
+    <bpmn:sequenceFlow id="flow_14" sourceRef="one_named_file_or_all_pending" targetRef="split_field_corrections_from_row_operations" />
+    <bpmn:sequenceFlow id="flow_15" sourceRef="split_field_corrections_from_row_operations" targetRef="what_does_the_entry_act_on" />
+    <bpmn:sequenceFlow id="flow_16" sourceRef="check_the_row_and_its_stated_old_value" targetRef="the_correction_is_safe_to_receive" />
+    <bpmn:sequenceFlow id="flow_17" sourceRef="journal_one_update_event_with_the_row_s_final_state" targetRef="more_entries_in_the_batch" />
+    <bpmn:sequenceFlow id="flow_18" name="Yes" sourceRef="the_correction_is_safe_to_receive" targetRef="journal_one_update_event_with_the_row_s_final_state" />
+    <bpmn:sequenceFlow id="flow_19" name="No - refuse loudly" sourceRef="the_correction_is_safe_to_receive" targetRef="the_batch_stops_at_the_refused_entry" />
+    <bpmn:sequenceFlow id="flow_20" sourceRef="the_correction_is_safe_to_receive" targetRef="more_entries_in_the_batch" />
+    <bpmn:sequenceFlow id="flow_21" name="A field of a recorded row" sourceRef="what_does_the_entry_act_on" targetRef="check_the_row_and_its_stated_old_value" />
+    <bpmn:sequenceFlow id="flow_22" sourceRef="journal_a_removal_event_with_the_row_s_full_picture" targetRef="more_entries_in_the_batch" />
+    <bpmn:sequenceFlow id="flow_23" name="Remove a recorded row" sourceRef="which_row_act" targetRef="journal_a_removal_event_with_the_row_s_full_picture" />
+    <bpmn:sequenceFlow id="flow_24" sourceRef="drop_the_plan_from_the_register" targetRef="more_entries_in_the_batch" />
+    <bpmn:sequenceFlow id="flow_25" name="Withdraw a planned entry" sourceRef="which_row_act" targetRef="drop_the_plan_from_the_register" />
+    <bpmn:sequenceFlow id="flow_26" sourceRef="write_the_new_plan_into_the_register" targetRef="more_entries_in_the_batch" />
+    <bpmn:sequenceFlow id="flow_27" name="Add a planned entry" sourceRef="which_row_act" targetRef="write_the_new_plan_into_the_register" />
+    <bpmn:sequenceFlow id="flow_28" sourceRef="which_row_act" targetRef="more_entries_in_the_batch" />
+    <bpmn:sequenceFlow id="flow_29" name="A whole row" sourceRef="what_does_the_entry_act_on" targetRef="which_row_act" />
+    <bpmn:sequenceFlow id="flow_30" sourceRef="what_does_the_entry_act_on" targetRef="more_entries_in_the_batch" />
+    <bpmn:sequenceFlow id="flow_31" name="Yes" sourceRef="more_entries_in_the_batch" targetRef="what_does_the_entry_act_on" />
+    <bpmn:sequenceFlow id="flow_32" name="No" sourceRef="more_entries_in_the_batch" targetRef="report_the_applied_count" />
+    <bpmn:sequenceFlow id="flow_33" sourceRef="more_entries_in_the_batch" targetRef="report_the_applied_count" />
+    <bpmn:sequenceFlow id="flow_34" sourceRef="report_the_applied_count" targetRef="was_this_an_all_pending_run" />
+    <bpmn:sequenceFlow id="flow_35" sourceRef="mark_the_consumed_file_applied" targetRef="batch_application_complete" />
+    <bpmn:sequenceFlow id="flow_36" name="Yes and every entry landed" sourceRef="was_this_an_all_pending_run" targetRef="mark_the_consumed_file_applied" />
+    <bpmn:sequenceFlow id="flow_37" sourceRef="leave_the_file_as_is" targetRef="batch_application_complete" />
+    <bpmn:sequenceFlow id="flow_38" name="No" sourceRef="was_this_an_all_pending_run" targetRef="leave_the_file_as_is" />
+    <bpmn:sequenceFlow id="flow_39" sourceRef="was_this_an_all_pending_run" targetRef="batch_application_complete" />
+  </bpmn:process>
+  <bpmn:collaboration id="collaboration">
+    <bpmn:participant id="participant_bookkeeper" name="Bookkeeper" processRef="process_bookkeeper" />
+    <bpmn:participant id="participant_financials_program" name="financials program" processRef="process_financials_program" />
+    <bpmn:messageFlow id="messageflow_40" name="Apply request" sourceRef="hand_the_batch_to_the_program" targetRef="batch_application_requested" />
+    <bpmn:messageFlow id="messageflow_41" name="Loud refusal" sourceRef="the_batch_stops_at_the_refused_entry" targetRef="hear_the_application_outcome" />
+    <bpmn:messageFlow id="messageflow_42" name="Application outcome" sourceRef="batch_application_complete" targetRef="hear_the_application_outcome" />
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="diagram">
+    <bpmndi:BPMNPlane id="plane" bpmnElement="collaboration">
+      <bpmndi:BPMNShape id="shape_participant_bookkeeper" bpmnElement="participant_bookkeeper" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="2110" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_participant_financials_program" bpmnElement="participant_financials_program" isHorizontal="true">
+        <dc:Bounds x="160" y="390" width="2110" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_choose_the_batch_to_apply" bpmnElement="choose_the_batch_to_apply">
+        <dc:Bounds x="380" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_a_reviewed_batch_of_corrections_is_ready" bpmnElement="a_reviewed_batch_of_corrections_is_ready">
+        <dc:Bounds x="252" y="272" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_hand_the_batch_to_the_program" bpmnElement="hand_the_batch_to_the_program">
+        <dc:Bounds x="540" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_hear_the_application_outcome" bpmnElement="hear_the_application_outcome">
+        <dc:Bounds x="700" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_did_every_entry_land" bpmnElement="did_every_entry_land" isMarkerVisible="true">
+        <dc:Bounds x="885" y="265" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_the_books_carry_the_reviewed_corrections" bpmnElement="the_books_carry_the_reviewed_corrections">
+        <dc:Bounds x="1052" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_correct_the_batch_file_by_hand" bpmnElement="correct_the_batch_file_by_hand">
+        <dc:Bounds x="1020" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_one_named_file_or_all_pending" bpmnElement="one_named_file_or_all_pending" isMarkerVisible="true">
+        <dc:Bounds x="405" y="575" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_batch_application_requested" bpmnElement="batch_application_requested">
+        <dc:Bounds x="252" y="582" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_split_field_corrections_from_row_operations" bpmnElement="split_field_corrections_from_row_operations">
+        <dc:Bounds x="700" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_gather_the_pending_fix_files_oldest_first" bpmnElement="gather_the_pending_fix_files_oldest_first">
+        <dc:Bounds x="540" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_load_the_named_batch_file" bpmnElement="load_the_named_batch_file">
+        <dc:Bounds x="540" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_what_does_the_entry_act_on" bpmnElement="what_does_the_entry_act_on" isMarkerVisible="true">
+        <dc:Bounds x="885" y="575" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_more_entries_in_the_batch" bpmnElement="more_entries_in_the_batch" isMarkerVisible="true">
+        <dc:Bounds x="1525" y="575" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_the_correction_is_safe_to_receive" bpmnElement="the_correction_is_safe_to_receive" isMarkerVisible="true">
+        <dc:Bounds x="1205" y="575" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_check_the_row_and_its_stated_old_value" bpmnElement="check_the_row_and_its_stated_old_value">
+        <dc:Bounds x="1020" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_journal_one_update_event_with_the_row_s_final_state" bpmnElement="journal_one_update_event_with_the_row_s_final_state">
+        <dc:Bounds x="1340" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_the_batch_stops_at_the_refused_entry" bpmnElement="the_batch_stops_at_the_refused_entry">
+        <dc:Bounds x="1372" y="442" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_which_row_act" bpmnElement="which_row_act" isMarkerVisible="true">
+        <dc:Bounds x="1045" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_journal_a_removal_event_with_the_row_s_full_picture" bpmnElement="journal_a_removal_event_with_the_row_s_full_picture">
+        <dc:Bounds x="1180" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_drop_the_plan_from_the_register" bpmnElement="drop_the_plan_from_the_register">
+        <dc:Bounds x="1500" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_write_the_new_plan_into_the_register" bpmnElement="write_the_new_plan_into_the_register">
+        <dc:Bounds x="1660" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_report_the_applied_count" bpmnElement="report_the_applied_count">
+        <dc:Bounds x="1660" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_was_this_an_all_pending_run" bpmnElement="was_this_an_all_pending_run" isMarkerVisible="true">
+        <dc:Bounds x="1845" y="575" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_batch_application_complete" bpmnElement="batch_application_complete">
+        <dc:Bounds x="2172" y="582" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_mark_the_consumed_file_applied" bpmnElement="mark_the_consumed_file_applied">
+        <dc:Bounds x="1980" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_leave_the_file_as_is" bpmnElement="leave_the_file_as_is">
+        <dc:Bounds x="1980" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow_1" bpmnElement="flow_1">
+        <di:waypoint x="288" y="290" />
+        <di:waypoint x="380" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_2" bpmnElement="flow_2">
+        <di:waypoint x="480" y="290" />
+        <di:waypoint x="540" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_3" bpmnElement="flow_3">
+        <di:waypoint x="640" y="290" />
+        <di:waypoint x="700" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_4" bpmnElement="flow_4">
+        <di:waypoint x="800" y="290" />
+        <di:waypoint x="885" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_5" bpmnElement="flow_5">
+        <di:waypoint x="1070" y="330" />
+        <di:waypoint x="1070" y="350" />
+        <di:waypoint x="430" y="350" />
+        <di:waypoint x="430" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_6" bpmnElement="flow_6">
+        <di:waypoint x="935" y="290" />
+        <di:waypoint x="1020" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_7" bpmnElement="flow_7">
+        <di:waypoint x="910" y="265" />
+        <di:waypoint x="910" y="150" />
+        <di:waypoint x="1052" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_8" bpmnElement="flow_8">
+        <di:waypoint x="910" y="265" />
+        <di:waypoint x="910" y="150" />
+        <di:waypoint x="1052" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_9" bpmnElement="flow_9">
+        <di:waypoint x="288" y="600" />
+        <di:waypoint x="405" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_10" bpmnElement="flow_10">
+        <di:waypoint x="640" y="460" />
+        <di:waypoint x="670" y="460" />
+        <di:waypoint x="670" y="600" />
+        <di:waypoint x="700" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_11" bpmnElement="flow_11">
+        <di:waypoint x="430" y="575" />
+        <di:waypoint x="430" y="460" />
+        <di:waypoint x="540" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_12" bpmnElement="flow_12">
+        <di:waypoint x="640" y="600" />
+        <di:waypoint x="700" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_13" bpmnElement="flow_13">
+        <di:waypoint x="455" y="600" />
+        <di:waypoint x="540" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_14" bpmnElement="flow_14">
+        <di:waypoint x="430" y="625" />
+        <di:waypoint x="430" y="660" />
+        <di:waypoint x="750" y="660" />
+        <di:waypoint x="750" y="640" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_15" bpmnElement="flow_15">
+        <di:waypoint x="800" y="600" />
+        <di:waypoint x="885" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_16" bpmnElement="flow_16">
+        <di:waypoint x="1120" y="600" />
+        <di:waypoint x="1205" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_17" bpmnElement="flow_17">
+        <di:waypoint x="1440" y="600" />
+        <di:waypoint x="1525" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_18" bpmnElement="flow_18">
+        <di:waypoint x="1255" y="600" />
+        <di:waypoint x="1340" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_19" bpmnElement="flow_19">
+        <di:waypoint x="1230" y="575" />
+        <di:waypoint x="1230" y="460" />
+        <di:waypoint x="1372" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_20" bpmnElement="flow_20">
+        <di:waypoint x="1230" y="625" />
+        <di:waypoint x="1230" y="655" />
+        <di:waypoint x="1550" y="655" />
+        <di:waypoint x="1550" y="625" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_21" bpmnElement="flow_21">
+        <di:waypoint x="935" y="600" />
+        <di:waypoint x="1020" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_22" bpmnElement="flow_22">
+        <di:waypoint x="1280" y="460" />
+        <di:waypoint x="1550" y="460" />
+        <di:waypoint x="1550" y="575" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_23" bpmnElement="flow_23">
+        <di:waypoint x="1095" y="460" />
+        <di:waypoint x="1180" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_24" bpmnElement="flow_24">
+        <di:waypoint x="1600" y="460" />
+        <di:waypoint x="1550" y="460" />
+        <di:waypoint x="1550" y="575" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_25" bpmnElement="flow_25">
+        <di:waypoint x="1070" y="485" />
+        <di:waypoint x="1070" y="530" />
+        <di:waypoint x="1550" y="530" />
+        <di:waypoint x="1550" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_26" bpmnElement="flow_26">
+        <di:waypoint x="1760" y="460" />
+        <di:waypoint x="1550" y="460" />
+        <di:waypoint x="1550" y="575" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_27" bpmnElement="flow_27">
+        <di:waypoint x="1070" y="435" />
+        <di:waypoint x="1070" y="400" />
+        <di:waypoint x="1710" y="400" />
+        <di:waypoint x="1710" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_28" bpmnElement="flow_28">
+        <di:waypoint x="1070" y="485" />
+        <di:waypoint x="1070" y="600" />
+        <di:waypoint x="1525" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_29" bpmnElement="flow_29">
+        <di:waypoint x="910" y="575" />
+        <di:waypoint x="910" y="460" />
+        <di:waypoint x="1045" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_30" bpmnElement="flow_30">
+        <di:waypoint x="910" y="625" />
+        <di:waypoint x="910" y="660" />
+        <di:waypoint x="1550" y="660" />
+        <di:waypoint x="1550" y="625" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_31" bpmnElement="flow_31">
+        <di:waypoint x="1550" y="575" />
+        <di:waypoint x="1550" y="545" />
+        <di:waypoint x="910" y="545" />
+        <di:waypoint x="910" y="575" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_32" bpmnElement="flow_32">
+        <di:waypoint x="1575" y="600" />
+        <di:waypoint x="1660" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_33" bpmnElement="flow_33">
+        <di:waypoint x="1575" y="600" />
+        <di:waypoint x="1660" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_34" bpmnElement="flow_34">
+        <di:waypoint x="1760" y="600" />
+        <di:waypoint x="1845" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_35" bpmnElement="flow_35">
+        <di:waypoint x="2080" y="600" />
+        <di:waypoint x="2172" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_36" bpmnElement="flow_36">
+        <di:waypoint x="1895" y="600" />
+        <di:waypoint x="1980" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_37" bpmnElement="flow_37">
+        <di:waypoint x="2080" y="460" />
+        <di:waypoint x="2126" y="460" />
+        <di:waypoint x="2126" y="600" />
+        <di:waypoint x="2172" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_38" bpmnElement="flow_38">
+        <di:waypoint x="1870" y="575" />
+        <di:waypoint x="1870" y="460" />
+        <di:waypoint x="1980" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_39" bpmnElement="flow_39">
+        <di:waypoint x="1870" y="625" />
+        <di:waypoint x="1870" y="655" />
+        <di:waypoint x="2190" y="655" />
+        <di:waypoint x="2190" y="618" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_40" bpmnElement="messageflow_40">
+        <di:waypoint x="590" y="330" />
+        <di:waypoint x="590" y="375" />
+        <di:waypoint x="270" y="375" />
+        <di:waypoint x="270" y="582" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_41" bpmnElement="messageflow_41">
+        <di:waypoint x="1390" y="442" />
+        <di:waypoint x="1390" y="375" />
+        <di:waypoint x="750" y="375" />
+        <di:waypoint x="750" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_42" bpmnElement="messageflow_42">
+        <di:waypoint x="2190" y="582" />
+        <di:waypoint x="2190" y="375" />
+        <di:waypoint x="750" y="375" />
+        <di:waypoint x="750" y="330" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
+

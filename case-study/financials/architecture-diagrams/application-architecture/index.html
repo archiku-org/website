@@ -1,0 +1,1713 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../actors/">
+      
+      
+        <link rel="next" href="../../business-rules/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon-96x96.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Architecture diagrams - Financials</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/brand.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#application-architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Financials" class="md-header__button md-logo" aria-label="Financials" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Financials
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture diagrams
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Financials
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../actors/" class="md-tabs__link">
+          
+  
+  
+  Facts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reports/" class="md-tabs__link">
+          
+  
+  
+  Reports
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Financials" class="md-nav__button md-logo" aria-label="Financials" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Financials
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Financials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Facts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../actors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture diagrams
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture diagrams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Name
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#title" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Title
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Note
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagram-of" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram of
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../business-rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clusters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clusters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conventions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hotspots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hotspots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mechanisms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../non-goals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non goals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/financials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quirks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quirks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rosettas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rosettas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rule-interferences/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rule interferences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sensitivities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensitivities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subsystems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../surface-commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Surface commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../symbols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Symbols
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reports
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/coverage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coverage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/functional-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="application-architecture">Application architecture</h1>
+<h2 id="name">Name</h2>
+<p>Application architecture</p>
+<h2 id="title">Title</h2>
+<div class="highlight"><pre><span></span><code>Application architecture
+</code></pre></div>
+<h2 id="summary">Summary</h2>
+<blockquote>
+<p>Whole-project architecture of the financials CLI: 25 components composed from the vault's component facts, grouped into 7 subsystem regions, with 47 connections traced to basset's internal import graph.</p>
+</blockquote>
+<h2 id="description">Description</h2>
+<blockquote>
+<p>This view composes the whole financials program: every node IS a vault component fact (25 of 25, none dropped, none invented), every region is a subsystem fact wrapping the components whose member-of links name it, and every connection is an internal import edge between the components' grounded-in file sets, taken verbatim from basset's dependency graph. The intake subsystem dominates the top of the board: the command-line door and interactive capture flow feed a single journaled write core; confirm, removal and correction all funnel into that same write machinery, the read side composes the ledger picture from history plus rule projections, statement grouping rides the group registry, and the recurring-commitments engine sits beneath, projecting occurrences into the view. Reading changes nothing and writes have exactly one door - that shape of the vault's own stories, which the edges restate.</p>
+<p>What the view does NOT claim: connections are import dependencies, not runtime dataflow guarantees; the per-file edge resolution where one file grounds several components was composed by flow (see note); components whose imports ride a shared module (occurrence detection, statement rollup builder, edit-command fallback) show no connection even though they actively share territory; and the ungrouded support files (model, config, config_loader, parsing, tui/add) are not nodes because no component fact covers them - their absence is recorded, not filled.</p>
+</blockquote>
+<h2 id="format">Format</h2>
+<p>archify/architecture-yaml</p>
+<h2 id="source">Source</h2>
+<blockquote>
+<p>schema_version: 1
+diagram_type: architecture
+meta:
+  title: "Application architecture"
+  output: "financials-architecture.svg"
+  quality_profile: showcase
+layout: {mode: grid, cols: 8}
+components:
+  - id: command-line-entrypoints
+    type: backend
+    label: "Command-line entrypoints"
+    sublabel: "cli door"
+    sources: ["src/financials/cli.py", "<a href="../../components/command-line-entrypoints-financials-add-and-expect/">Command-line entrypoints (financials add and expect)</a>"]
+    row: 0
+    col: 0
+  - id: intake-flow
+    type: backend
+    label: "Interactive intake flow"
+    sublabel: "capture"
+    sources: ["src/financials/entry.py", "<a href="../../components/interactive-intake-flow/">Interactive intake flow</a>"]
+    row: 0
+    col: 1
+  - id: shorthand-parser
+    type: backend
+    label: "Shorthand parser"
+    sublabel: "grammar"
+    sources: ["src/financials/shorthand.py", "<a href="../../components/shorthand-parser-quick-add-one-liner/">Shorthand parser (quick-add one-liner)</a>"]
+    row: 0
+    col: 2
+  - id: category-prompt
+    type: backend
+    label: "Category prompt"
+    sublabel: "approved picker"
+    sources: ["src/financials/ask.py", "<a href="../../components/category-prompt-approved-list-picker/">Category prompt (approved-list picker)</a>"]
+    row: 0
+    col: 3
+  - id: expected-register
+    type: backend
+    label: "Expected register"
+    sublabel: "future store"
+    sources: ["src/financials/expected.py", "<a href="../../components/expected-register-expected-store-and-rows/">Expected register (expected store and rows)</a>"]
+    row: 0
+    col: 4
+  - id: journaled-write-core
+    type: backend
+    label: "Journaled write core"
+    sublabel: "single write door"
+    sources: ["src/financials/commands.py", "src/financials/journal.py", "<a href="../../components/journaled-write-core/">Journaled write core</a>"]
+    row: 1
+    col: 2
+  - id: landed-entry-confirm-flow
+    type: backend
+    label: "Landed-entry confirm flow"
+    sublabel: "confirm dispatcher"
+    sources: ["src/financials/confirm.py", "<a href="../../components/landed-entry-confirm-flow/">Landed-entry confirm flow</a>"]
+    row: 2
+    col: 1
+  - id: confirm-commit-core
+    type: backend
+    label: "Confirm commit core"
+    sublabel: "confirm write"
+    sources: ["src/financials/commands.py", "<a href="../../components/confirm-commit-core/">Confirm commit core</a>"]
+    row: 2
+    col: 2
+  - id: interactive-entry-edit-resolver
+    type: backend
+    label: "Entry-edit resolver"
+    sublabel: "correction resolver"
+    sources: ["src/financials/edit.py", "src/financials/cli.py", "src/financials/groups.py", "<a href="../../components/interactive-entry-edit-resolver/">Interactive entry-edit resolver</a>"]
+    row: 3
+    col: 0
+  - id: fixes-engine
+    type: backend
+    label: "Fixes engine"
+    sublabel: "batch corrections"
+    sources: ["src/financials/fixes.py", "src/financials/commands.py", "<a href="../../components/the-fixes-engine-applying-reviewed-correction-batches/">The fixes engine applying reviewed correction batches</a>"]
+    row: 3
+    col: 1
+  - id: entry-removal-resolver
+    type: backend
+    label: "Entry removal resolver"
+    sublabel: "removal front desk"
+    sources: ["src/financials/delete.py", "<a href="../../components/entry-removal-resolver-and-confirmation-facade/">Entry removal resolver and confirmation facade</a>"]
+    row: 3
+    col: 3
+  - id: journaled-delete-mutation
+    type: backend
+    label: "Journaled delete mutation"
+    sublabel: "removal mutation"
+    sources: ["src/financials/commands.py", "src/financials/journal.py", "<a href="../../components/journaled-delete-mutation-and-ledger-removal/">Journaled delete mutation and ledger removal</a>"]
+    row: 3
+    col: 4
+  - id: interactive-ledger-tui
+    type: frontend
+    label: "Interactive ledger TUI"
+    sublabel: "scrollable view"
+    sources: ["src/financials/tui/<strong>init</strong>.py", "<a href="../../components/interactive-ledger-tui/">Interactive ledger TUI</a>"]
+    row: 4
+    col: 0
+  - id: ledger-view-composition
+    type: backend
+    label: "Ledger view composition"
+    sublabel: "view composition"
+    sources: ["src/financials/ledger_view.py", "src/financials/recurrences.py", "src/financials/model.py", "src/financials/groups.py", "<a href="../../components/ledger-view-composition/">Ledger view composition</a>"]
+    row: 4
+    col: 1
+  - id: group-collapse
+    type: backend
+    label: "Group view collapse"
+    sublabel: "rollup rendering"
+    sources: ["src/financials/ledger_view.py", "<a href="../../components/ledger-view-group-collapse-into-rollup-rows/">Ledger view group collapse into rollup rows</a>"]
+    row: 4
+    col: 3
+  - id: group-registry
+    type: backend
+    label: "Group registry"
+    sublabel: "group register"
+    sources: ["src/financials/groups.py", "<a href="../../components/group-registry-for-statement-rollups/">Group registry for statement rollups</a>"]
+    row: 4
+    col: 4
+  - id: group-member-resolver
+    type: backend
+    label: "Group member resolver"
+    sublabel: "id resolution"
+    sources: ["src/financials/groups.py", "<a href="../../components/group-member-resolver-across-id-families/">Group member resolver across id families</a>"]
+    row: 4
+    col: 5
+  - id: rollup-builder
+    type: backend
+    label: "Statement rollup builder"
+    sublabel: "rollup row"
+    sources: ["src/financials/groups.py", "<a href="../../components/statement-rollup-row-builder/">Statement rollup row builder</a>"]
+    row: 4
+    col: 6
+  - id: edit-command-fallback
+    type: backend
+    label: "Edit-command fallback"
+    sublabel: "group-editor fallback"
+    sources: ["src/financials/edit.py", "<a href="../../components/edit-command-fallback-into-the-group-editor/">Edit-command fallback into the group editor</a>"]
+    row: 4
+    col: 7
+  - id: visual-report
+    type: backend
+    label: "Visual report"
+    sublabel: "monthly report"
+    sources: ["src/financials/reporting.py", "<a href="../../components/visual-report/">Visual report</a>"]
+    row: 5
+    col: 0
+  - id: rule-projection-in-view
+    type: backend
+    label: "Rule projection in view"
+    sublabel: "instances in view"
+    sources: ["src/financials/recurrence_cli.py", "<a href="../../components/rule-projection-inside-the-view-instances-in-the-open-backlog/">Rule projection inside the view — instances in the open backlog</a>"]
+    row: 5
+    col: 1
+  - id: rule-engine
+    type: backend
+    label: "Recurring rule engine"
+    sublabel: "storage + expansion"
+    sources: ["src/financials/recurrences.py", "<a href="../../components/recurring-rule-engine-storage-expansion-and-cover-matching/">Recurring rule engine — storage, expansion and cover matching</a>"]
+    row: 5
+    col: 2
+  - id: commitment-maintenance-surface
+    type: backend
+    label: "Commitment maintenance surface"
+    sublabel: "recurring door"
+    sources: ["src/financials/recurrence_cli.py", "<a href="../../components/commitment-maintenance-surface-list-pause-resume-remove-edit/">Commitment maintenance surface — list, pause, resume, remove, edit</a>"]
+    row: 5
+    col: 3
+  - id: occurrence-detection
+    type: backend
+    label: "Occurrence detection"
+    sublabel: "rule proposals"
+    sources: ["src/financials/recurrence_cli.py", "<a href="../../components/occurrence-detection-and-adoption-flow-propose-rules-from-committed-history/">Occurrence detection and adoption flow — propose rules from committed history</a>"]
+    row: 5
+    col: 4
+  - id: rule-definition-flow
+    type: backend
+    label: "Rule definition flow"
+    sublabel: "rule questions"
+    sources: ["src/financials/recurrence_cli.py", "<a href="../../components/interactive-rule-definition-flow-prompting-with-gap-fixes/">Interactive rule definition flow — prompting with gap fixes</a>"]
+    row: 5
+    col: 5
+boundaries:
+  - kind: region
+    label: "Transaction intake"
+    wraps: [command-line-entrypoints, intake-flow, shorthand-parser, category-prompt, expected-register, journaled-write-core]
+  - kind: region
+    label: "Landed-entry commit pipeline"
+    wraps: [landed-entry-confirm-flow, confirm-commit-core]
+  - kind: region
+    label: "Entry correction"
+    wraps: [interactive-entry-edit-resolver, fixes-engine]
+  - kind: region
+    label: "Removal surface"
+    wraps: [entry-removal-resolver, journaled-delete-mutation]
+  - kind: region
+    label: "Read-side view"
+    wraps: [interactive-ledger-tui, ledger-view-composition, visual-report]
+  - kind: region
+    label: "Statement grouping"
+    wraps: [group-registry, group-member-resolver, rollup-builder, group-collapse, edit-command-fallback]
+  - kind: region
+    label: "Recurring commitments"
+    wraps: [commitment-maintenance-surface, rule-projection-in-view, rule-engine, occurrence-detection, rule-definition-flow]
+connections:
+  - from: command-line-entrypoints
+    to: intake-flow
+    label: "routes the add command"
+    variant: emphasis
+  - from: command-line-entrypoints
+    to: expected-register
+    label: "routes the expect command"
+  - from: command-line-entrypoints
+    to: entry-removal-resolver
+    label: "routes the delete command"
+  - from: command-line-entrypoints
+    to: interactive-entry-edit-resolver
+    label: "routes the edit command"
+  - from: command-line-entrypoints
+    to: fixes-engine
+    label: "routes the fixes command"
+  - from: command-line-entrypoints
+    to: visual-report
+    label: "routes the report command"
+  - from: command-line-entrypoints
+    to: ledger-view-composition
+    label: "routes the list command"
+  - from: command-line-entrypoints
+    to: landed-entry-confirm-flow
+    label: "routes the confirm command"
+  - from: command-line-entrypoints
+    to: group-registry
+    label: "routes the group commands"
+  - from: command-line-entrypoints
+    to: interactive-ledger-tui
+    label: "launches the interactive view"
+  - from: command-line-entrypoints
+    to: commitment-maintenance-surface
+    label: "routes the recurring commands"
+  - from: intake-flow
+    to: category-prompt
+    label: "prompts the approved-list category"
+    variant: dashed
+  - from: intake-flow
+    to: shorthand-parser
+    label: "parses quick-add phrases"
+    variant: dashed
+  - from: intake-flow
+    to: journaled-write-core
+    label: "hands validated entries to the write core"
+    variant: emphasis
+  - from: intake-flow
+    to: expected-register
+    label: "routes future-dated entries"
+    variant: dashed
+  - from: landed-entry-confirm-flow
+    to: confirm-commit-core
+    label: "funnels every confirm to the commit core"
+    variant: emphasis
+  - from: landed-entry-confirm-flow
+    to: journaled-write-core
+    label: "builds the confirm mutation"
+    variant: dashed
+  - from: landed-entry-confirm-flow
+    to: group-registry
+    label: "commits group members"
+    variant: dashed
+  - from: landed-entry-confirm-flow
+    to: rule-projection-in-view
+    label: "resolves rule-instance ids"
+    variant: dashed
+  - from: landed-entry-confirm-flow
+    to: rule-engine
+    label: "reads covered occurrences"
+    variant: dashed
+  - from: landed-entry-confirm-flow
+    to: ledger-view-composition
+    label: "reads the open backlog"
+    variant: dashed
+  - from: entry-removal-resolver
+    to: journaled-delete-mutation
+    label: "routes removal into the journaled delete mutation"
+    variant: emphasis
+  - from: entry-removal-resolver
+    to: ledger-view-composition
+    label: "reads rows for the picker"
+    variant: dashed
+  - from: entry-removal-resolver
+    to: group-registry
+    label: "dissolves groups"
+    variant: dashed
+  - from: entry-removal-resolver
+    to: rule-projection-in-view
+    label: "suppresses projected dates"
+    variant: dashed
+  - from: interactive-entry-edit-resolver
+    to: category-prompt
+    label: "prompts corrected fields"
+    variant: dashed
+  - from: interactive-entry-edit-resolver
+    to: journaled-write-core
+    label: "applies updates via the write core"
+    variant: dashed
+  - from: interactive-entry-edit-resolver
+    to: expected-register
+    label: "moves future-dated edits to the register"
+    variant: dashed
+  - from: interactive-entry-edit-resolver
+    to: ledger-view-composition
+    label: "shows rows to pick"
+    variant: dashed
+  - from: interactive-entry-edit-resolver
+    to: group-registry
+    label: "opens the group editor"
+    variant: dashed
+  - from: interactive-entry-edit-resolver
+    to: rule-projection-in-view
+    label: "opens the occurrence editor"
+    variant: dashed
+  - from: fixes-engine
+    to: journaled-write-core
+    label: "rides the single write step"
+    variant: emphasis
+  - from: fixes-engine
+    to: expected-register
+    label: "withdraws and adds expectations"
+    variant: dashed
+  - from: confirm-commit-core
+    to: journaled-write-core
+    label: "appends the confirmed mutation"
+    variant: dashed
+  - from: group-registry
+    to: journaled-write-core
+    label: "journalizes registry changes"
+    variant: dashed
+  - from: group-member-resolver
+    to: rule-projection-in-view
+    label: "resolves member instance ids"
+    variant: dashed
+  - from: group-member-resolver
+    to: rule-engine
+    label: "re-expands edited rules' instances"
+    variant: dashed
+  - from: ledger-view-composition
+    to: journaled-write-core
+    label: "replays committed history"
+    variant: dashed
+  - from: ledger-view-composition
+    to: rule-engine
+    label: "expands rule occurrences"
+    variant: dashed
+  - from: ledger-view-composition
+    to: fixes-engine
+    label: "reads applied-correction state"
+    variant: dashed
+  - from: group-collapse
+    to: group-registry
+    label: "reads groups to collapse members"
+    variant: dashed
+  - from: interactive-ledger-tui
+    to: ledger-view-composition
+    label: "consumes composed view data"
+    variant: emphasis
+  - from: commitment-maintenance-surface
+    to: rule-engine
+    label: "reads projections and next occurrences"
+    variant: dashed
+  - from: rule-definition-flow
+    to: category-prompt
+    label: "asks the approved-list category"
+    variant: dashed
+  - from: rule-definition-flow
+    to: journaled-write-core
+    label: "stores the defined rule"
+    variant: dashed
+  - from: rule-projection-in-view
+    to: ledger-view-composition
+    label: "resolves instances in the view"
+    variant: dashed
+  - from: rule-projection-in-view
+    to: expected-register
+    label: "records occurrence exceptions"
+    variant: dashed</p>
+</blockquote>
+<h2 id="note">Note</h2>
+<blockquote>
+<p>Shared-file resolution (file-level import edges where one file grounds several components, composed by flow, all line refs from basset's spine): commands.py grounds journaled-write-core, confirm-commit-core, journaled-delete-mutation and fixes-engine - confirm.py-&gt;commands.py resolves to confirm-commit-core (confirm.py:44,172,252); entry.py/edit.py-&gt;commands.py to the write core; delete.py-&gt;commands.py (delete.py:20,102) to the delete mutation (its prose quotes cmd_delete); the commands.py-&gt;journal.py edge (commands.py:19,186) is attributed to confirm-commit-core-&gt;journaled-write-core. journal.py grounds write-core and delete-mutation: imports resolve to write-core (mutation building) except delete.py-&gt;journal.py (delete.py:103), merged into the delete-mutation connection. edit.py grounds the edit resolver and its group-editor fallback: edit.py imports resolve to the resolver; the fallback carries no separate edges. groups.py grounds registry, member resolver, rollup builder (ledger-view-composition and the edit resolver also ground it): inbound imports resolve to group-registry, except ledger_view.py's (attributed to group-collapse, its membership reading) and edit.py's (group-editor handoff); groups.py's own imports of recurrence_cli/recurrences resolve from the member resolver (its re-expansion story) to rule-projection/rule-engine. ledger_view.py grounds composition and collapse: imports resolve to composition except ledger_view-&gt;groups. recurrence_cli.py grounds maintenance surface, definition flow, projection and detection: module imports attributed to definition flow (recurrence_cli.py:27 ask, 28+612 commands), maintenance (29+578 recurrences), projection (577,858,919 ledger_view; 788 expected); inbound cli.py-&gt;recurrence_cli.py (cli.py:372) resolves to the maintenance surface, while confirm/delete/edit/groups resolve to the projection (instance-id resolution per its prose). Deduplication: 5 component pairs received two file edges each (intake and edit and fixes and registry into the write core, delete into the delete mutation) and carry ONE connection each. Sources are bare repo paths: file facts carry loc but no spine line ranges, so none are guessed; each node also names its component fact id. Node types are backend except interactive-ledger-tui (frontend - its files import the textual/rich UI framework). Module-spine files grounding no component fact and therefore absent from the board: financials/<strong>init</strong>.py, config.py, config_loader.py, parsing.py, model.py, tui/add.py; scripts/ and tests/ are context spine branches outside the component census. Components with no connection despite being diagrammed: occurrence-detection, rollup-builder, edit-command-fallback (their shared module's import edges were attributed to siblings) - and visual-report draws only its cli routing edge, since its data path runs through model.py.</p>
+</blockquote>
+<h2 id="diagram-of">Diagram of</h2>
+<ul>
+<li><a href="../../projects/financials/">financials</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/tablesort.min.js"></script>
+      
+        <script src="../../assets/tablesort.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

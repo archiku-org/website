@@ -1,0 +1,50 @@
+process "Owner"
+  start "A payment or receipt needs recording"
+  user "State the movement"
+  receive "Hear the outcome"
+  end "The movement is in the books"
+
+process "Financials"
+  start "Capture request arrives"
+  service "Understand the stated entry"
+  exclusive "Dated after today and fully stated?"
+    if "Yes" then
+      goto "Keep the entry as an expectation in the expected register"
+    else "No"
+  exclusive "Anything still missing?"
+    if "Yes" then
+      user "Ask for the missing pieces and confirm the projected saldo"
+      exclusive "Owner confirmed the saldo inside three tries?"
+        if "No" then
+          task "Store nothing and tell the owner why"
+          end "Capture abandoned"
+        else "Yes"
+      exclusive "The completed date is after today?"
+        if "Yes" then
+          goto "Keep the entry as an expectation in the expected register"
+        else "No"
+    else "No"
+  service "Check the entry against the house rules"
+  exclusive "Does the entry pass?"
+    if "No" then
+      task "Refuse the entry with the stated reason"
+      end "Entry refused"
+    else "Yes"
+  exclusive "Preview only?"
+    if "Yes" then
+      task "Show what would be stored and store nothing"
+      end "Preview shown"
+    else "No"
+  service "Record the movement as a stored event"
+  service "Bring the books up to date with the new movement"
+  task "Report the saved row and its new saldos"
+  end "Movement stored"
+  task "Keep the entry as an expectation in the expected register"
+  task "Report the entry kept for the future"
+  end "Future recorded"
+
+message flows
+  from "Owner"."State the movement" to "Financials"."Capture request arrives" label "Capture request"
+  from "Financials"."Report the saved row and its new saldos" to "Owner"."Hear the outcome" label "Saved actual entry"
+  from "Financials"."Report the entry kept for the future" to "Owner"."Hear the outcome" label "Kept as expectation"
+  from "Financials"."Refuse the entry with the stated reason" to "Owner"."Hear the outcome" label "Refusal"

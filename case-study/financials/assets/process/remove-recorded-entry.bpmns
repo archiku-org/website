@@ -1,0 +1,43 @@
+process "Owner"
+  start "A recorded entry must not be in the books"
+  user "Invoke the delete command by id or pick from the recent rows"
+  receive "Consider the shown entry and the confirmation request"
+  user "Type the confirmation"
+  receive "See the removal outcome"
+  end "The books reflect the removal or the cancellation"
+
+process "financials delete command"
+  start "Delete request arrives"
+  task "Resolve the entry's kind across the registers"
+  exclusive "Entry found?"
+    if "No" then
+      task "Refuse the unknown id and change nothing"
+      end "Unknown id refused" message
+    else "Yes"
+  task "Show the entry and ask for the typed yes"
+  receive "Receive the typed answer"
+  exclusive "Typed yes?"
+    if "No" then
+      task "Leave the books untouched"
+      end "Removal cancelled" message
+    else "Yes"
+  exclusive "Which kind of entry?"
+    if "Committed ledger row" then
+      task "Append the delete event carrying the row's full picture"
+      task "Re-earn the later rows' saldos"
+      task "Warn about the touched savings chain when a transfer was removed"
+    if "Future expectation" then
+      task "Withdraw the row from the register of expectations"
+    if "Statement group" then
+      task "Dissolve the group and leave the members untouched"
+    else "Projected rule date"
+      task "Add the date to the rule's exceptions"
+  end "Removal handled" message
+
+message flows
+  from "Owner"."Invoke the delete command by id or pick from the recent rows" to "financials delete command"."Delete request arrives" label "Removal request"
+  from "financials delete command"."Show the entry and ask for the typed yes" to "Owner"."Consider the shown entry and the confirmation request" label "Confirmation request"
+  from "Owner"."Type the confirmation" to "financials delete command"."Receive the typed answer" label "Owner's answer"
+  from "financials delete command"."Unknown id refused" to "Owner"."See the removal outcome" label "Refusal"
+  from "financials delete command"."Removal cancelled" to "Owner"."See the removal outcome" label "Cancellation"
+  from "financials delete command"."Removal handled" to "Owner"."See the removal outcome" label "Outcome"
