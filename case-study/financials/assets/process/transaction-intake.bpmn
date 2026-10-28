@@ -1,163 +1,185 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions id="definitions" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <bpmn:process id="process_owner">
-    <bpmn:userTask id="state_the_movement" name="State the movement" />
-    <bpmn:startEvent id="a_payment_or_receipt_needs_recording" name="A payment or receipt needs recording" />
-    <bpmn:receiveTask id="hear_the_outcome" name="Hear the outcome" />
-    <bpmn:endEvent id="the_movement_is_in_the_books" name="The movement is in the books" />
-    <bpmn:sequenceFlow id="flow_1" sourceRef="a_payment_or_receipt_needs_recording" targetRef="state_the_movement" />
-    <bpmn:sequenceFlow id="flow_2" sourceRef="state_the_movement" targetRef="hear_the_outcome" />
-    <bpmn:sequenceFlow id="flow_3" sourceRef="hear_the_outcome" targetRef="the_movement_is_in_the_books" />
+  <bpmn:process id="process_household_bookkeeper">
+    <bpmn:sendTask id="record_the_movement_financials_add" name="Record the movement (financials add)" />
+    <bpmn:startEvent id="a_spend_or_income_happens_or_is_remembered" name="A spend or income happens or is remembered" />
+    <bpmn:receiveTask id="take_in_the_saved_confirmation" name="Take in the saved confirmation" />
+    <bpmn:endEvent id="the_recording_is_accounted_for" name="The recording is accounted for" />
+    <bpmn:sequenceFlow id="flow_1" sourceRef="a_spend_or_income_happens_or_is_remembered" targetRef="record_the_movement_financials_add" />
+    <bpmn:sequenceFlow id="flow_2" sourceRef="record_the_movement_financials_add" targetRef="take_in_the_saved_confirmation" />
+    <bpmn:sequenceFlow id="flow_3" sourceRef="take_in_the_saved_confirmation" targetRef="the_recording_is_accounted_for" />
   </bpmn:process>
-  <bpmn:process id="process_financials">
-    <bpmn:serviceTask id="understand_the_stated_entry" name="Understand the stated entry" />
-    <bpmn:startEvent id="capture_request_arrives" name="Capture request arrives" />
-    <bpmn:exclusiveGateway id="dated_after_today_and_fully_stated" name="Dated after today and fully stated?" />
-    <bpmn:exclusiveGateway id="anything_still_missing" name="Anything still missing?" />
-    <bpmn:serviceTask id="check_the_entry_against_the_house_rules" name="Check the entry against the house rules" />
-    <bpmn:exclusiveGateway id="owner_confirmed_the_saldo_inside_three_tries" name="Owner confirmed the saldo inside three tries?" />
-    <bpmn:userTask id="ask_for_the_missing_pieces_and_confirm_the_projected_saldo" name="Ask for the missing pieces and confirm the projected saldo" />
-    <bpmn:exclusiveGateway id="the_completed_date_is_after_today" name="The completed date is after today?" />
-    <bpmn:endEvent id="capture_abandoned" name="Capture abandoned" />
-    <bpmn:task id="store_nothing_and_tell_the_owner_why" name="Store nothing and tell the owner why" />
-    <bpmn:exclusiveGateway id="does_the_entry_pass" name="Does the entry pass?" />
-    <bpmn:exclusiveGateway id="preview_only" name="Preview only?" />
-    <bpmn:endEvent id="entry_refused" name="Entry refused" />
-    <bpmn:task id="refuse_the_entry_with_the_stated_reason" name="Refuse the entry with the stated reason" />
-    <bpmn:serviceTask id="record_the_movement_as_a_stored_event" name="Record the movement as a stored event" />
-    <bpmn:endEvent id="preview_shown" name="Preview shown" />
-    <bpmn:task id="show_what_would_be_stored_and_store_nothing" name="Show what would be stored and store nothing" />
-    <bpmn:serviceTask id="bring_the_books_up_to_date_with_the_new_movement" name="Bring the books up to date with the new movement" />
-    <bpmn:task id="report_the_saved_row_and_its_new_saldos" name="Report the saved row and its new saldos" />
-    <bpmn:endEvent id="movement_stored" name="Movement stored" />
-    <bpmn:task id="keep_the_entry_as_an_expectation_in_the_expected_register" name="Keep the entry as an expectation in the expected register" />
-    <bpmn:task id="report_the_entry_kept_for_the_future" name="Report the entry kept for the future" />
-    <bpmn:endEvent id="future_recorded" name="Future recorded" />
-    <bpmn:sequenceFlow id="flow_4" sourceRef="capture_request_arrives" targetRef="understand_the_stated_entry" />
-    <bpmn:sequenceFlow id="flow_5" sourceRef="understand_the_stated_entry" targetRef="dated_after_today_and_fully_stated" />
-    <bpmn:sequenceFlow id="flow_6" name="No" sourceRef="dated_after_today_and_fully_stated" targetRef="anything_still_missing" />
-    <bpmn:sequenceFlow id="flow_7" sourceRef="dated_after_today_and_fully_stated" targetRef="anything_still_missing" />
-    <bpmn:sequenceFlow id="flow_8" sourceRef="ask_for_the_missing_pieces_and_confirm_the_projected_saldo" targetRef="owner_confirmed_the_saldo_inside_three_tries" />
-    <bpmn:sequenceFlow id="flow_9" sourceRef="store_nothing_and_tell_the_owner_why" targetRef="capture_abandoned" />
-    <bpmn:sequenceFlow id="flow_10" name="No" sourceRef="owner_confirmed_the_saldo_inside_three_tries" targetRef="store_nothing_and_tell_the_owner_why" />
-    <bpmn:sequenceFlow id="flow_11" name="Yes" sourceRef="owner_confirmed_the_saldo_inside_three_tries" targetRef="the_completed_date_is_after_today" />
-    <bpmn:sequenceFlow id="flow_12" sourceRef="owner_confirmed_the_saldo_inside_three_tries" targetRef="the_completed_date_is_after_today" />
-    <bpmn:sequenceFlow id="flow_13" name="No" sourceRef="the_completed_date_is_after_today" targetRef="check_the_entry_against_the_house_rules" />
-    <bpmn:sequenceFlow id="flow_14" sourceRef="the_completed_date_is_after_today" targetRef="check_the_entry_against_the_house_rules" />
-    <bpmn:sequenceFlow id="flow_15" name="Yes" sourceRef="anything_still_missing" targetRef="ask_for_the_missing_pieces_and_confirm_the_projected_saldo" />
-    <bpmn:sequenceFlow id="flow_16" name="No" sourceRef="anything_still_missing" targetRef="check_the_entry_against_the_house_rules" />
-    <bpmn:sequenceFlow id="flow_17" sourceRef="anything_still_missing" targetRef="check_the_entry_against_the_house_rules" />
-    <bpmn:sequenceFlow id="flow_18" sourceRef="check_the_entry_against_the_house_rules" targetRef="does_the_entry_pass" />
-    <bpmn:sequenceFlow id="flow_19" sourceRef="refuse_the_entry_with_the_stated_reason" targetRef="entry_refused" />
-    <bpmn:sequenceFlow id="flow_20" name="No" sourceRef="does_the_entry_pass" targetRef="refuse_the_entry_with_the_stated_reason" />
-    <bpmn:sequenceFlow id="flow_21" name="Yes" sourceRef="does_the_entry_pass" targetRef="preview_only" />
-    <bpmn:sequenceFlow id="flow_22" sourceRef="does_the_entry_pass" targetRef="preview_only" />
-    <bpmn:sequenceFlow id="flow_23" sourceRef="show_what_would_be_stored_and_store_nothing" targetRef="preview_shown" />
-    <bpmn:sequenceFlow id="flow_24" name="Yes" sourceRef="preview_only" targetRef="show_what_would_be_stored_and_store_nothing" />
-    <bpmn:sequenceFlow id="flow_25" name="No" sourceRef="preview_only" targetRef="record_the_movement_as_a_stored_event" />
-    <bpmn:sequenceFlow id="flow_26" sourceRef="preview_only" targetRef="record_the_movement_as_a_stored_event" />
-    <bpmn:sequenceFlow id="flow_27" sourceRef="record_the_movement_as_a_stored_event" targetRef="bring_the_books_up_to_date_with_the_new_movement" />
-    <bpmn:sequenceFlow id="flow_28" sourceRef="bring_the_books_up_to_date_with_the_new_movement" targetRef="report_the_saved_row_and_its_new_saldos" />
-    <bpmn:sequenceFlow id="flow_29" sourceRef="report_the_saved_row_and_its_new_saldos" targetRef="movement_stored" />
-    <bpmn:sequenceFlow id="flow_30" sourceRef="keep_the_entry_as_an_expectation_in_the_expected_register" targetRef="report_the_entry_kept_for_the_future" />
-    <bpmn:sequenceFlow id="flow_31" sourceRef="report_the_entry_kept_for_the_future" targetRef="future_recorded" />
+  <bpmn:process id="process_transaction_entry_interface">
+    <bpmn:task id="take_in_the_entry_s_details_asking_for_anything_missing" name="Take in the entry's details, asking for anything missing" />
+    <bpmn:startEvent id="start_the_intake" name="Start the intake" />
+    <bpmn:exclusiveGateway id="did_the_quick_add_line_fail_or_the_bookkeeper_abandon" name="Did the quick-add line fail or the bookkeeper abandon?" />
+    <bpmn:exclusiveGateway id="entered_through_the_prompts" name="Entered through the prompts?" />
+    <bpmn:endEvent id="nothing_stored_the_stop_is_shown" name="Nothing stored — the stop is shown" />
+    <bpmn:task id="check_the_details_date_description_approved_category_and_non_zero_amount" name="Check the details date, description, approved category and non-zero amount" />
+    <bpmn:task id="confirm_the_projected_checking_balance" name="Confirm the projected checking balance" />
+    <bpmn:exclusiveGateway id="are_all_details_accepted" name="Are all details accepted?" />
+    <bpmn:exclusiveGateway id="is_the_entry_dated_after_today" name="Is the entry dated after today?" />
+    <bpmn:endEvent id="nothing_stored_the_refusal_is_shown" name="Nothing stored — the refusal is shown" />
+    <bpmn:task id="echo_the_saved_entry_and_its_resulting_balances" name="Echo the saved entry and its resulting balances" />
+    <bpmn:sendTask id="hand_the_entry_to_the_expected_register" name="Hand the entry to the expected register" />
+    <bpmn:sendTask id="post_the_movement_to_the_journaled_ledger" name="Post the movement to the journaled ledger" />
+    <bpmn:endEvent id="the_recording_is_saved" name="The recording is saved" />
+    <bpmn:sequenceFlow id="flow_4" sourceRef="start_the_intake" targetRef="take_in_the_entry_s_details_asking_for_anything_missing" />
+    <bpmn:sequenceFlow id="flow_5" sourceRef="take_in_the_entry_s_details_asking_for_anything_missing" targetRef="did_the_quick_add_line_fail_or_the_bookkeeper_abandon" />
+    <bpmn:sequenceFlow id="flow_6" name="Stopped" sourceRef="did_the_quick_add_line_fail_or_the_bookkeeper_abandon" targetRef="nothing_stored_the_stop_is_shown" />
+    <bpmn:sequenceFlow id="flow_7" name="Proceed" sourceRef="did_the_quick_add_line_fail_or_the_bookkeeper_abandon" targetRef="entered_through_the_prompts" />
+    <bpmn:sequenceFlow id="flow_8" sourceRef="did_the_quick_add_line_fail_or_the_bookkeeper_abandon" targetRef="entered_through_the_prompts" />
+    <bpmn:sequenceFlow id="flow_9" sourceRef="confirm_the_projected_checking_balance" targetRef="check_the_details_date_description_approved_category_and_non_zero_amount" />
+    <bpmn:sequenceFlow id="flow_10" name="Yes" sourceRef="entered_through_the_prompts" targetRef="confirm_the_projected_checking_balance" />
+    <bpmn:sequenceFlow id="flow_11" name="No" sourceRef="entered_through_the_prompts" targetRef="check_the_details_date_description_approved_category_and_non_zero_amount" />
+    <bpmn:sequenceFlow id="flow_12" sourceRef="entered_through_the_prompts" targetRef="check_the_details_date_description_approved_category_and_non_zero_amount" />
+    <bpmn:sequenceFlow id="flow_13" sourceRef="check_the_details_date_description_approved_category_and_non_zero_amount" targetRef="are_all_details_accepted" />
+    <bpmn:sequenceFlow id="flow_14" name="No" sourceRef="are_all_details_accepted" targetRef="nothing_stored_the_refusal_is_shown" />
+    <bpmn:sequenceFlow id="flow_15" name="Accepted" sourceRef="are_all_details_accepted" targetRef="is_the_entry_dated_after_today" />
+    <bpmn:sequenceFlow id="flow_16" sourceRef="are_all_details_accepted" targetRef="is_the_entry_dated_after_today" />
+    <bpmn:sequenceFlow id="flow_17" sourceRef="hand_the_entry_to_the_expected_register" targetRef="echo_the_saved_entry_and_its_resulting_balances" />
+    <bpmn:sequenceFlow id="flow_18" name="Future entry" sourceRef="is_the_entry_dated_after_today" targetRef="hand_the_entry_to_the_expected_register" />
+    <bpmn:sequenceFlow id="flow_19" sourceRef="post_the_movement_to_the_journaled_ledger" targetRef="echo_the_saved_entry_and_its_resulting_balances" />
+    <bpmn:sequenceFlow id="flow_20" name="Actual entry" sourceRef="is_the_entry_dated_after_today" targetRef="post_the_movement_to_the_journaled_ledger" />
+    <bpmn:sequenceFlow id="flow_21" sourceRef="is_the_entry_dated_after_today" targetRef="echo_the_saved_entry_and_its_resulting_balances" />
+    <bpmn:sequenceFlow id="flow_22" sourceRef="echo_the_saved_entry_and_its_resulting_balances" targetRef="the_recording_is_saved" />
+  </bpmn:process>
+  <bpmn:process id="process_expected_register_store">
+    <bpmn:task id="check_the_plan_is_strictly_future_dated_in_an_approved_category" name="Check the plan is strictly future-dated in an approved category" />
+    <bpmn:startEvent id="park_the_plan" name="Park the plan" />
+    <bpmn:task id="save_the_parked_plan_as_given_amount_0_parks_a_placeholder" name="Save the parked plan as given — amount 0 parks a placeholder" />
+    <bpmn:endEvent id="the_plan_is_parked" name="The plan is parked" />
+    <bpmn:sequenceFlow id="flow_23" sourceRef="park_the_plan" targetRef="check_the_plan_is_strictly_future_dated_in_an_approved_category" />
+    <bpmn:sequenceFlow id="flow_24" sourceRef="check_the_plan_is_strictly_future_dated_in_an_approved_category" targetRef="save_the_parked_plan_as_given_amount_0_parks_a_placeholder" />
+    <bpmn:sequenceFlow id="flow_25" sourceRef="save_the_parked_plan_as_given_amount_0_parks_a_placeholder" targetRef="the_plan_is_parked" />
+  </bpmn:process>
+  <bpmn:process id="process_journaled_ledger_engine">
+    <bpmn:task id="give_the_recording_its_identity_creation_time_and_content_hash" name="Give the recording its identity — creation time and content hash" />
+    <bpmn:startEvent id="apply_the_movement" name="Apply the movement" />
+    <bpmn:task id="append_the_recording_to_the_journal" name="Append the recording to the journal" />
+    <bpmn:task id="rebuild_the_books_and_place_the_entry_at_its_date" name="Rebuild the books and place the entry at its date" />
+    <bpmn:task id="carry_the_running_balances_forward_through_every_later_row" name="Carry the running balances forward through every later row" />
+    <bpmn:task id="persist_the_settled_checkpoint" name="Persist the settled checkpoint" />
+    <bpmn:endEvent id="the_movement_is_posted" name="The movement is posted" />
+    <bpmn:sequenceFlow id="flow_26" sourceRef="apply_the_movement" targetRef="give_the_recording_its_identity_creation_time_and_content_hash" />
+    <bpmn:sequenceFlow id="flow_27" sourceRef="give_the_recording_its_identity_creation_time_and_content_hash" targetRef="append_the_recording_to_the_journal" />
+    <bpmn:sequenceFlow id="flow_28" sourceRef="append_the_recording_to_the_journal" targetRef="rebuild_the_books_and_place_the_entry_at_its_date" />
+    <bpmn:sequenceFlow id="flow_29" sourceRef="rebuild_the_books_and_place_the_entry_at_its_date" targetRef="carry_the_running_balances_forward_through_every_later_row" />
+    <bpmn:sequenceFlow id="flow_30" sourceRef="carry_the_running_balances_forward_through_every_later_row" targetRef="persist_the_settled_checkpoint" />
+    <bpmn:sequenceFlow id="flow_31" sourceRef="persist_the_settled_checkpoint" targetRef="the_movement_is_posted" />
   </bpmn:process>
   <bpmn:collaboration id="collaboration">
-    <bpmn:participant id="participant_owner" name="Owner" processRef="process_owner" />
-    <bpmn:participant id="participant_financials" name="Financials" processRef="process_financials" />
-    <bpmn:messageFlow id="messageflow_32" name="Capture request" sourceRef="state_the_movement" targetRef="capture_request_arrives" />
-    <bpmn:messageFlow id="messageflow_33" name="Saved actual entry" sourceRef="report_the_saved_row_and_its_new_saldos" targetRef="hear_the_outcome" />
-    <bpmn:messageFlow id="messageflow_34" name="Kept as expectation" sourceRef="report_the_entry_kept_for_the_future" targetRef="hear_the_outcome" />
-    <bpmn:messageFlow id="messageflow_35" name="Refusal" sourceRef="refuse_the_entry_with_the_stated_reason" targetRef="hear_the_outcome" />
+    <bpmn:participant id="participant_household_bookkeeper" name="household bookkeeper" processRef="process_household_bookkeeper" />
+    <bpmn:participant id="participant_transaction_entry_interface" name="transaction entry interface" processRef="process_transaction_entry_interface" />
+    <bpmn:participant id="participant_expected_register_store" name="expected register store" processRef="process_expected_register_store" />
+    <bpmn:participant id="participant_journaled_ledger_engine" name="journaled ledger engine" processRef="process_journaled_ledger_engine" />
+    <bpmn:messageFlow id="messageflow_32" name="Recording request" sourceRef="record_the_movement_financials_add" targetRef="start_the_intake" />
+    <bpmn:messageFlow id="messageflow_33" name="Future entry" sourceRef="hand_the_entry_to_the_expected_register" targetRef="park_the_plan" />
+    <bpmn:messageFlow id="messageflow_34" name="Actual entry" sourceRef="post_the_movement_to_the_journaled_ledger" targetRef="apply_the_movement" />
+    <bpmn:messageFlow id="messageflow_35" name="Parked confirmation" sourceRef="the_plan_is_parked" targetRef="echo_the_saved_entry_and_its_resulting_balances" />
+    <bpmn:messageFlow id="messageflow_36" name="Applied confirmation" sourceRef="the_movement_is_posted" targetRef="echo_the_saved_entry_and_its_resulting_balances" />
+    <bpmn:messageFlow id="messageflow_37" name="Saved confirmation" sourceRef="echo_the_saved_entry_and_its_resulting_balances" targetRef="take_in_the_saved_confirmation" />
   </bpmn:collaboration>
   <bpmndi:BPMNDiagram id="diagram">
     <bpmndi:BPMNPlane id="plane" bpmnElement="collaboration">
-      <bpmndi:BPMNShape id="shape_participant_owner" bpmnElement="participant_owner" isHorizontal="true">
-        <dc:Bounds x="160" y="80" width="2270" height="140" />
+      <bpmndi:BPMNShape id="shape_participant_household_bookkeeper" bpmnElement="participant_household_bookkeeper" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1790" height="140" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_participant_financials" bpmnElement="participant_financials" isHorizontal="true">
-        <dc:Bounds x="160" y="250" width="2270" height="700" />
+      <bpmndi:BPMNShape id="shape_participant_transaction_entry_interface" bpmnElement="participant_transaction_entry_interface" isHorizontal="true">
+        <dc:Bounds x="160" y="250" width="1790" height="280" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_state_the_movement" bpmnElement="state_the_movement">
+      <bpmndi:BPMNShape id="shape_participant_expected_register_store" bpmnElement="participant_expected_register_store" isHorizontal="true">
+        <dc:Bounds x="160" y="560" width="1790" height="140" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_participant_journaled_ledger_engine" bpmnElement="participant_journaled_ledger_engine" isHorizontal="true">
+        <dc:Bounds x="160" y="730" width="1790" height="140" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_record_the_movement_financials_add" bpmnElement="record_the_movement_financials_add">
         <dc:Bounds x="380" y="110" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_a_payment_or_receipt_needs_recording" bpmnElement="a_payment_or_receipt_needs_recording">
+      <bpmndi:BPMNShape id="shape_a_spend_or_income_happens_or_is_remembered" bpmnElement="a_spend_or_income_happens_or_is_remembered">
         <dc:Bounds x="252" y="132" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_hear_the_outcome" bpmnElement="hear_the_outcome">
+      <bpmndi:BPMNShape id="shape_take_in_the_saved_confirmation" bpmnElement="take_in_the_saved_confirmation">
         <dc:Bounds x="540" y="110" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_the_movement_is_in_the_books" bpmnElement="the_movement_is_in_the_books">
+      <bpmndi:BPMNShape id="shape_the_recording_is_accounted_for" bpmnElement="the_recording_is_accounted_for">
         <dc:Bounds x="732" y="132" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_understand_the_stated_entry" bpmnElement="understand_the_stated_entry">
-        <dc:Bounds x="380" y="840" width="100" height="80" />
+      <bpmndi:BPMNShape id="shape_take_in_the_entry_s_details_asking_for_anything_missing" bpmnElement="take_in_the_entry_s_details_asking_for_anything_missing">
+        <dc:Bounds x="380" y="420" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_capture_request_arrives" bpmnElement="capture_request_arrives">
-        <dc:Bounds x="252" y="862" width="36" height="36" />
+      <bpmndi:BPMNShape id="shape_start_the_intake" bpmnElement="start_the_intake">
+        <dc:Bounds x="252" y="442" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_dated_after_today_and_fully_stated" bpmnElement="dated_after_today_and_fully_stated" isMarkerVisible="true">
-        <dc:Bounds x="565" y="855" width="50" height="50" />
+      <bpmndi:BPMNShape id="shape_did_the_quick_add_line_fail_or_the_bookkeeper_abandon" bpmnElement="did_the_quick_add_line_fail_or_the_bookkeeper_abandon" isMarkerVisible="true">
+        <dc:Bounds x="565" y="435" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_anything_still_missing" bpmnElement="anything_still_missing" isMarkerVisible="true">
-        <dc:Bounds x="725" y="855" width="50" height="50" />
+      <bpmndi:BPMNShape id="shape_entered_through_the_prompts" bpmnElement="entered_through_the_prompts" isMarkerVisible="true">
+        <dc:Bounds x="725" y="435" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_check_the_entry_against_the_house_rules" bpmnElement="check_the_entry_against_the_house_rules">
-        <dc:Bounds x="1340" y="840" width="100" height="80" />
+      <bpmndi:BPMNShape id="shape_nothing_stored_the_stop_is_shown" bpmnElement="nothing_stored_the_stop_is_shown">
+        <dc:Bounds x="732" y="302" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_owner_confirmed_the_saldo_inside_three_tries" bpmnElement="owner_confirmed_the_saldo_inside_three_tries" isMarkerVisible="true">
-        <dc:Bounds x="1045" y="855" width="50" height="50" />
+      <bpmndi:BPMNShape id="shape_check_the_details_date_description_approved_category_and_non_zero_amount" bpmnElement="check_the_details_date_description_approved_category_and_non_zero_amount">
+        <dc:Bounds x="1020" y="420" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_ask_for_the_missing_pieces_and_confirm_the_projected_saldo" bpmnElement="ask_for_the_missing_pieces_and_confirm_the_projected_saldo">
-        <dc:Bounds x="860" y="840" width="100" height="80" />
+      <bpmndi:BPMNShape id="shape_confirm_the_projected_checking_balance" bpmnElement="confirm_the_projected_checking_balance">
+        <dc:Bounds x="860" y="420" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_the_completed_date_is_after_today" bpmnElement="the_completed_date_is_after_today" isMarkerVisible="true">
-        <dc:Bounds x="1205" y="855" width="50" height="50" />
+      <bpmndi:BPMNShape id="shape_are_all_details_accepted" bpmnElement="are_all_details_accepted" isMarkerVisible="true">
+        <dc:Bounds x="1205" y="435" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_capture_abandoned" bpmnElement="capture_abandoned">
-        <dc:Bounds x="1372" y="722" width="36" height="36" />
+      <bpmndi:BPMNShape id="shape_is_the_entry_dated_after_today" bpmnElement="is_the_entry_dated_after_today" isMarkerVisible="true">
+        <dc:Bounds x="1365" y="435" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_store_nothing_and_tell_the_owner_why" bpmnElement="store_nothing_and_tell_the_owner_why">
-        <dc:Bounds x="1180" y="700" width="100" height="80" />
+      <bpmndi:BPMNShape id="shape_nothing_stored_the_refusal_is_shown" bpmnElement="nothing_stored_the_refusal_is_shown">
+        <dc:Bounds x="1372" y="302" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_does_the_entry_pass" bpmnElement="does_the_entry_pass" isMarkerVisible="true">
-        <dc:Bounds x="1525" y="855" width="50" height="50" />
+      <bpmndi:BPMNShape id="shape_echo_the_saved_entry_and_its_resulting_balances" bpmnElement="echo_the_saved_entry_and_its_resulting_balances">
+        <dc:Bounds x="1660" y="420" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_preview_only" bpmnElement="preview_only" isMarkerVisible="true">
-        <dc:Bounds x="1685" y="855" width="50" height="50" />
+      <bpmndi:BPMNShape id="shape_hand_the_entry_to_the_expected_register" bpmnElement="hand_the_entry_to_the_expected_register">
+        <dc:Bounds x="1500" y="280" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_entry_refused" bpmnElement="entry_refused">
-        <dc:Bounds x="2012" y="722" width="36" height="36" />
+      <bpmndi:BPMNShape id="shape_post_the_movement_to_the_journaled_ledger" bpmnElement="post_the_movement_to_the_journaled_ledger">
+        <dc:Bounds x="1500" y="420" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_refuse_the_entry_with_the_stated_reason" bpmnElement="refuse_the_entry_with_the_stated_reason">
-        <dc:Bounds x="1660" y="700" width="100" height="80" />
+      <bpmndi:BPMNShape id="shape_the_recording_is_saved" bpmnElement="the_recording_is_saved">
+        <dc:Bounds x="1852" y="442" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_record_the_movement_as_a_stored_event" bpmnElement="record_the_movement_as_a_stored_event">
-        <dc:Bounds x="1820" y="840" width="100" height="80" />
+      <bpmndi:BPMNShape id="shape_check_the_plan_is_strictly_future_dated_in_an_approved_category" bpmnElement="check_the_plan_is_strictly_future_dated_in_an_approved_category">
+        <dc:Bounds x="1340" y="590" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_preview_shown" bpmnElement="preview_shown">
-        <dc:Bounds x="2172" y="722" width="36" height="36" />
+      <bpmndi:BPMNShape id="shape_park_the_plan" bpmnElement="park_the_plan">
+        <dc:Bounds x="1212" y="612" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_show_what_would_be_stored_and_store_nothing" bpmnElement="show_what_would_be_stored_and_store_nothing">
-        <dc:Bounds x="1820" y="700" width="100" height="80" />
+      <bpmndi:BPMNShape id="shape_save_the_parked_plan_as_given_amount_0_parks_a_placeholder" bpmnElement="save_the_parked_plan_as_given_amount_0_parks_a_placeholder">
+        <dc:Bounds x="1500" y="590" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_bring_the_books_up_to_date_with_the_new_movement" bpmnElement="bring_the_books_up_to_date_with_the_new_movement">
-        <dc:Bounds x="1980" y="840" width="100" height="80" />
+      <bpmndi:BPMNShape id="shape_the_plan_is_parked" bpmnElement="the_plan_is_parked">
+        <dc:Bounds x="1692" y="612" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_report_the_saved_row_and_its_new_saldos" bpmnElement="report_the_saved_row_and_its_new_saldos">
-        <dc:Bounds x="2140" y="840" width="100" height="80" />
+      <bpmndi:BPMNShape id="shape_give_the_recording_its_identity_creation_time_and_content_hash" bpmnElement="give_the_recording_its_identity_creation_time_and_content_hash">
+        <dc:Bounds x="860" y="760" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_movement_stored" bpmnElement="movement_stored">
-        <dc:Bounds x="2332" y="862" width="36" height="36" />
+      <bpmndi:BPMNShape id="shape_apply_the_movement" bpmnElement="apply_the_movement">
+        <dc:Bounds x="732" y="782" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_keep_the_entry_as_an_expectation_in_the_expected_register" bpmnElement="keep_the_entry_as_an_expectation_in_the_expected_register">
-        <dc:Bounds x="220" y="560" width="100" height="80" />
+      <bpmndi:BPMNShape id="shape_append_the_recording_to_the_journal" bpmnElement="append_the_recording_to_the_journal">
+        <dc:Bounds x="1020" y="760" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_report_the_entry_kept_for_the_future" bpmnElement="report_the_entry_kept_for_the_future">
-        <dc:Bounds x="220" y="420" width="100" height="80" />
+      <bpmndi:BPMNShape id="shape_rebuild_the_books_and_place_the_entry_at_its_date" bpmnElement="rebuild_the_books_and_place_the_entry_at_its_date">
+        <dc:Bounds x="1180" y="760" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_future_recorded" bpmnElement="future_recorded">
-        <dc:Bounds x="252" y="302" width="36" height="36" />
+      <bpmndi:BPMNShape id="shape_carry_the_running_balances_forward_through_every_later_row" bpmnElement="carry_the_running_balances_forward_through_every_later_row">
+        <dc:Bounds x="1340" y="760" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_persist_the_settled_checkpoint" bpmnElement="persist_the_settled_checkpoint">
+        <dc:Bounds x="1500" y="760" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_the_movement_is_posted" bpmnElement="the_movement_is_posted">
+        <dc:Bounds x="1692" y="782" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge_flow_1" bpmnElement="flow_1">
         <di:waypoint x="288" y="150" />
@@ -172,152 +194,156 @@
         <di:waypoint x="732" y="150" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_4" bpmnElement="flow_4">
-        <di:waypoint x="288" y="880" />
-        <di:waypoint x="380" y="880" />
+        <di:waypoint x="288" y="460" />
+        <di:waypoint x="380" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_5" bpmnElement="flow_5">
-        <di:waypoint x="480" y="880" />
-        <di:waypoint x="565" y="880" />
+        <di:waypoint x="480" y="460" />
+        <di:waypoint x="565" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_6" bpmnElement="flow_6">
-        <di:waypoint x="615" y="880" />
-        <di:waypoint x="725" y="880" />
+        <di:waypoint x="590" y="435" />
+        <di:waypoint x="590" y="320" />
+        <di:waypoint x="732" y="320" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_7" bpmnElement="flow_7">
-        <di:waypoint x="615" y="880" />
-        <di:waypoint x="725" y="880" />
+        <di:waypoint x="615" y="460" />
+        <di:waypoint x="725" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_8" bpmnElement="flow_8">
-        <di:waypoint x="960" y="880" />
-        <di:waypoint x="1045" y="880" />
+        <di:waypoint x="615" y="460" />
+        <di:waypoint x="725" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_9" bpmnElement="flow_9">
-        <di:waypoint x="1280" y="740" />
-        <di:waypoint x="1372" y="740" />
+        <di:waypoint x="960" y="460" />
+        <di:waypoint x="1020" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_10" bpmnElement="flow_10">
-        <di:waypoint x="1070" y="855" />
-        <di:waypoint x="1070" y="740" />
-        <di:waypoint x="1180" y="740" />
+        <di:waypoint x="775" y="460" />
+        <di:waypoint x="860" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_11" bpmnElement="flow_11">
-        <di:waypoint x="1095" y="880" />
-        <di:waypoint x="1205" y="880" />
+        <di:waypoint x="750" y="485" />
+        <di:waypoint x="750" y="520" />
+        <di:waypoint x="1070" y="520" />
+        <di:waypoint x="1070" y="500" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_12" bpmnElement="flow_12">
-        <di:waypoint x="1095" y="880" />
-        <di:waypoint x="1205" y="880" />
+        <di:waypoint x="750" y="435" />
+        <di:waypoint x="750" y="390" />
+        <di:waypoint x="1070" y="390" />
+        <di:waypoint x="1070" y="420" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_13" bpmnElement="flow_13">
-        <di:waypoint x="1255" y="880" />
-        <di:waypoint x="1340" y="880" />
+        <di:waypoint x="1120" y="460" />
+        <di:waypoint x="1205" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_14" bpmnElement="flow_14">
-        <di:waypoint x="1255" y="880" />
-        <di:waypoint x="1340" y="880" />
+        <di:waypoint x="1230" y="435" />
+        <di:waypoint x="1230" y="320" />
+        <di:waypoint x="1372" y="320" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_15" bpmnElement="flow_15">
-        <di:waypoint x="775" y="880" />
-        <di:waypoint x="860" y="880" />
+        <di:waypoint x="1255" y="460" />
+        <di:waypoint x="1365" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_16" bpmnElement="flow_16">
-        <di:waypoint x="750" y="905" />
-        <di:waypoint x="750" y="940" />
-        <di:waypoint x="1390" y="940" />
-        <di:waypoint x="1390" y="920" />
+        <di:waypoint x="1255" y="460" />
+        <di:waypoint x="1365" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_17" bpmnElement="flow_17">
-        <di:waypoint x="750" y="855" />
-        <di:waypoint x="750" y="810" />
-        <di:waypoint x="1390" y="810" />
-        <di:waypoint x="1390" y="840" />
+        <di:waypoint x="1600" y="320" />
+        <di:waypoint x="1630" y="320" />
+        <di:waypoint x="1630" y="460" />
+        <di:waypoint x="1660" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_18" bpmnElement="flow_18">
-        <di:waypoint x="1440" y="880" />
-        <di:waypoint x="1525" y="880" />
+        <di:waypoint x="1390" y="435" />
+        <di:waypoint x="1390" y="320" />
+        <di:waypoint x="1500" y="320" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_19" bpmnElement="flow_19">
-        <di:waypoint x="1710" y="780" />
-        <di:waypoint x="1710" y="810" />
-        <di:waypoint x="2030" y="810" />
-        <di:waypoint x="2030" y="758" />
+        <di:waypoint x="1600" y="460" />
+        <di:waypoint x="1660" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_20" bpmnElement="flow_20">
-        <di:waypoint x="1550" y="855" />
-        <di:waypoint x="1550" y="740" />
-        <di:waypoint x="1660" y="740" />
+        <di:waypoint x="1415" y="460" />
+        <di:waypoint x="1500" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_21" bpmnElement="flow_21">
-        <di:waypoint x="1575" y="880" />
-        <di:waypoint x="1685" y="880" />
+        <di:waypoint x="1390" y="485" />
+        <di:waypoint x="1390" y="520" />
+        <di:waypoint x="1710" y="520" />
+        <di:waypoint x="1710" y="500" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_22" bpmnElement="flow_22">
-        <di:waypoint x="1575" y="880" />
-        <di:waypoint x="1685" y="880" />
+        <di:waypoint x="1760" y="460" />
+        <di:waypoint x="1852" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_23" bpmnElement="flow_23">
-        <di:waypoint x="1870" y="700" />
-        <di:waypoint x="1870" y="670" />
-        <di:waypoint x="2190" y="670" />
-        <di:waypoint x="2190" y="722" />
+        <di:waypoint x="1248" y="630" />
+        <di:waypoint x="1340" y="630" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_24" bpmnElement="flow_24">
-        <di:waypoint x="1710" y="855" />
-        <di:waypoint x="1710" y="740" />
-        <di:waypoint x="1820" y="740" />
+        <di:waypoint x="1440" y="630" />
+        <di:waypoint x="1500" y="630" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_25" bpmnElement="flow_25">
-        <di:waypoint x="1735" y="880" />
-        <di:waypoint x="1820" y="880" />
+        <di:waypoint x="1600" y="630" />
+        <di:waypoint x="1692" y="630" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_26" bpmnElement="flow_26">
-        <di:waypoint x="1735" y="880" />
-        <di:waypoint x="1820" y="880" />
+        <di:waypoint x="768" y="800" />
+        <di:waypoint x="860" y="800" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_27" bpmnElement="flow_27">
-        <di:waypoint x="1920" y="880" />
-        <di:waypoint x="1980" y="880" />
+        <di:waypoint x="960" y="800" />
+        <di:waypoint x="1020" y="800" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_28" bpmnElement="flow_28">
-        <di:waypoint x="2080" y="880" />
-        <di:waypoint x="2140" y="880" />
+        <di:waypoint x="1120" y="800" />
+        <di:waypoint x="1180" y="800" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_29" bpmnElement="flow_29">
-        <di:waypoint x="2240" y="880" />
-        <di:waypoint x="2332" y="880" />
+        <di:waypoint x="1280" y="800" />
+        <di:waypoint x="1340" y="800" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_30" bpmnElement="flow_30">
-        <di:waypoint x="320" y="600" />
-        <di:waypoint x="270" y="600" />
-        <di:waypoint x="270" y="460" />
-        <di:waypoint x="220" y="460" />
+        <di:waypoint x="1440" y="800" />
+        <di:waypoint x="1500" y="800" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_31" bpmnElement="flow_31">
-        <di:waypoint x="320" y="460" />
-        <di:waypoint x="286" y="460" />
-        <di:waypoint x="286" y="320" />
-        <di:waypoint x="252" y="320" />
+        <di:waypoint x="1600" y="800" />
+        <di:waypoint x="1692" y="800" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_messageflow_32" bpmnElement="messageflow_32">
         <di:waypoint x="430" y="190" />
         <di:waypoint x="430" y="235" />
         <di:waypoint x="270" y="235" />
-        <di:waypoint x="270" y="862" />
+        <di:waypoint x="270" y="442" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_messageflow_33" bpmnElement="messageflow_33">
-        <di:waypoint x="2190" y="840" />
-        <di:waypoint x="2190" y="235" />
-        <di:waypoint x="590" y="235" />
-        <di:waypoint x="590" y="190" />
+        <di:waypoint x="1550" y="360" />
+        <di:waypoint x="1550" y="545" />
+        <di:waypoint x="1230" y="545" />
+        <di:waypoint x="1230" y="612" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_messageflow_34" bpmnElement="messageflow_34">
-        <di:waypoint x="270" y="420" />
-        <di:waypoint x="270" y="235" />
-        <di:waypoint x="590" y="235" />
-        <di:waypoint x="590" y="190" />
+        <di:waypoint x="1550" y="500" />
+        <di:waypoint x="1550" y="715" />
+        <di:waypoint x="750" y="715" />
+        <di:waypoint x="750" y="782" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_messageflow_35" bpmnElement="messageflow_35">
-        <di:waypoint x="1710" y="700" />
+        <di:waypoint x="1710" y="612" />
+        <di:waypoint x="1710" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_36" bpmnElement="messageflow_36">
+        <di:waypoint x="1710" y="782" />
+        <di:waypoint x="1710" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_37" bpmnElement="messageflow_37">
+        <di:waypoint x="1710" y="420" />
         <di:waypoint x="1710" y="235" />
         <di:waypoint x="590" y="235" />
         <di:waypoint x="590" y="190" />

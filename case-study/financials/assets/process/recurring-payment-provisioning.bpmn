@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions id="definitions" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <bpmn:process id="process_household_bookkeeper">
+    <bpmn:userTask id="run_the_detection_review" name="Run the detection review" />
+    <bpmn:startEvent id="a_repeating_pattern_is_worth_a_standing_rule" name="A repeating pattern is worth a standing rule" />
+    <bpmn:exclusiveGateway id="does_the_table_hold_a_proposal" name="Does the table hold a proposal?" />
+    <bpmn:userTask id="review_the_proposals_row_by_row" name="Review the proposals row by row" />
+    <bpmn:userTask id="take_a_proposal_into_the_seeded_editor" name="Take a proposal into the seeded editor" />
+    <bpmn:exclusiveGateway id="does_the_rule_clear_validation" name="Does the rule clear validation?" />
+    <bpmn:sendTask id="approve_the_rule_into_the_store" name="Approve the rule into the store" />
+    <bpmn:receiveTask id="read_the_confirmation_and_upcoming_dates" name="Read the confirmation and upcoming dates" />
+    <bpmn:exclusiveGateway id="does_the_bill_later_stop_or_change" name="Does the bill later stop or change?" />
+    <bpmn:endEvent id="the_provisioning_cycle_closes" name="The provisioning cycle closes" />
+    <bpmn:userTask id="pause_resume_remove_or_re_edit_the_rule" name="Pause, resume, remove or re-edit the rule" />
+    <bpmn:sequenceFlow id="flow_1" sourceRef="a_repeating_pattern_is_worth_a_standing_rule" targetRef="run_the_detection_review" />
+    <bpmn:sequenceFlow id="flow_2" sourceRef="run_the_detection_review" targetRef="does_the_table_hold_a_proposal" />
+    <bpmn:sequenceFlow id="flow_3" name="Yes" sourceRef="does_the_table_hold_a_proposal" targetRef="review_the_proposals_row_by_row" />
+    <bpmn:sequenceFlow id="flow_4" sourceRef="does_the_table_hold_a_proposal" targetRef="review_the_proposals_row_by_row" />
+    <bpmn:sequenceFlow id="flow_5" sourceRef="review_the_proposals_row_by_row" targetRef="take_a_proposal_into_the_seeded_editor" />
+    <bpmn:sequenceFlow id="flow_6" sourceRef="take_a_proposal_into_the_seeded_editor" targetRef="does_the_rule_clear_validation" />
+    <bpmn:sequenceFlow id="flow_7" name="Yes" sourceRef="does_the_rule_clear_validation" targetRef="approve_the_rule_into_the_store" />
+    <bpmn:sequenceFlow id="flow_8" sourceRef="does_the_rule_clear_validation" targetRef="approve_the_rule_into_the_store" />
+    <bpmn:sequenceFlow id="flow_9" sourceRef="approve_the_rule_into_the_store" targetRef="read_the_confirmation_and_upcoming_dates" />
+    <bpmn:sequenceFlow id="flow_10" sourceRef="read_the_confirmation_and_upcoming_dates" targetRef="does_the_bill_later_stop_or_change" />
+    <bpmn:sequenceFlow id="flow_11" sourceRef="does_the_bill_later_stop_or_change" targetRef="the_provisioning_cycle_closes" />
+    <bpmn:sequenceFlow id="flow_12" name="Yes" sourceRef="does_the_bill_later_stop_or_change" targetRef="pause_resume_remove_or_re_edit_the_rule" />
+  </bpmn:process>
+  <bpmn:process id="process_recurrence_engine">
+    <bpmn:serviceTask id="scan_the_committed_history_for_candidate_rules" name="Scan the committed history for candidate rules" />
+    <bpmn:startEvent id="detection_requested" name="Detection requested" />
+    <bpmn:businessRuleTask id="hold_the_spacing_and_occurrence_bar" name="Hold the spacing and occurrence bar" />
+    <bpmn:serviceTask id="compose_the_proposal_rows" name="Compose the proposal rows" />
+    <bpmn:endEvent id="proposal_table_ready" name="Proposal table ready" />
+    <bpmn:receiveTask id="approved_rule_received" name="Approved rule received" />
+    <bpmn:serviceTask id="record_the_approved_rule_in_the_recurrences_store" name="Record the approved rule in the recurrences store" />
+    <bpmn:serviceTask id="report_the_rule_and_its_next_due_dates" name="Report the rule and its next due dates" />
+    <bpmn:endEvent id="rule_provisioning_complete" name="Rule provisioning complete" />
+    <bpmn:sequenceFlow id="flow_13" sourceRef="detection_requested" targetRef="scan_the_committed_history_for_candidate_rules" />
+    <bpmn:sequenceFlow id="flow_14" sourceRef="scan_the_committed_history_for_candidate_rules" targetRef="hold_the_spacing_and_occurrence_bar" />
+    <bpmn:sequenceFlow id="flow_15" sourceRef="hold_the_spacing_and_occurrence_bar" targetRef="compose_the_proposal_rows" />
+    <bpmn:sequenceFlow id="flow_16" sourceRef="compose_the_proposal_rows" targetRef="proposal_table_ready" />
+    <bpmn:sequenceFlow id="flow_17" sourceRef="approved_rule_received" targetRef="record_the_approved_rule_in_the_recurrences_store" />
+    <bpmn:sequenceFlow id="flow_18" sourceRef="record_the_approved_rule_in_the_recurrences_store" targetRef="report_the_rule_and_its_next_due_dates" />
+    <bpmn:sequenceFlow id="flow_19" sourceRef="report_the_rule_and_its_next_due_dates" targetRef="rule_provisioning_complete" />
+  </bpmn:process>
+  <bpmn:collaboration id="collaboration">
+    <bpmn:participant id="participant_household_bookkeeper" name="Household bookkeeper" processRef="process_household_bookkeeper" />
+    <bpmn:participant id="participant_recurrence_engine" name="recurrence engine" processRef="process_recurrence_engine" />
+    <bpmn:messageFlow id="messageflow_20" name="Detection request" sourceRef="run_the_detection_review" targetRef="detection_requested" />
+    <bpmn:messageFlow id="messageflow_21" name="Proposal table" sourceRef="proposal_table_ready" targetRef="review_the_proposals_row_by_row" />
+    <bpmn:messageFlow id="messageflow_22" name="Approved rule" sourceRef="approve_the_rule_into_the_store" targetRef="approved_rule_received" />
+    <bpmn:messageFlow id="messageflow_23" name="Store confirmation and next due dates" sourceRef="rule_provisioning_complete" targetRef="read_the_confirmation_and_upcoming_dates" />
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="diagram">
+    <bpmndi:BPMNPlane id="plane" bpmnElement="collaboration">
+      <bpmndi:BPMNShape id="shape_participant_household_bookkeeper" bpmnElement="participant_household_bookkeeper" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1630" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_participant_recurrence_engine" bpmnElement="participant_recurrence_engine" isHorizontal="true">
+        <dc:Bounds x="160" y="390" width="1630" height="700" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_run_the_detection_review" bpmnElement="run_the_detection_review">
+        <dc:Bounds x="380" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_a_repeating_pattern_is_worth_a_standing_rule" bpmnElement="a_repeating_pattern_is_worth_a_standing_rule">
+        <dc:Bounds x="252" y="272" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_does_the_table_hold_a_proposal" bpmnElement="does_the_table_hold_a_proposal" isMarkerVisible="true">
+        <dc:Bounds x="565" y="265" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_review_the_proposals_row_by_row" bpmnElement="review_the_proposals_row_by_row">
+        <dc:Bounds x="700" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_take_a_proposal_into_the_seeded_editor" bpmnElement="take_a_proposal_into_the_seeded_editor">
+        <dc:Bounds x="860" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_does_the_rule_clear_validation" bpmnElement="does_the_rule_clear_validation" isMarkerVisible="true">
+        <dc:Bounds x="1045" y="265" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_approve_the_rule_into_the_store" bpmnElement="approve_the_rule_into_the_store">
+        <dc:Bounds x="1180" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_read_the_confirmation_and_upcoming_dates" bpmnElement="read_the_confirmation_and_upcoming_dates">
+        <dc:Bounds x="1340" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_does_the_bill_later_stop_or_change" bpmnElement="does_the_bill_later_stop_or_change" isMarkerVisible="true">
+        <dc:Bounds x="1525" y="265" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_the_provisioning_cycle_closes" bpmnElement="the_provisioning_cycle_closes">
+        <dc:Bounds x="1692" y="272" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_pause_resume_remove_or_re_edit_the_rule" bpmnElement="pause_resume_remove_or_re_edit_the_rule">
+        <dc:Bounds x="1660" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_scan_the_committed_history_for_candidate_rules" bpmnElement="scan_the_committed_history_for_candidate_rules">
+        <dc:Bounds x="380" y="980" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_detection_requested" bpmnElement="detection_requested">
+        <dc:Bounds x="252" y="1002" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_hold_the_spacing_and_occurrence_bar" bpmnElement="hold_the_spacing_and_occurrence_bar">
+        <dc:Bounds x="540" y="980" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_compose_the_proposal_rows" bpmnElement="compose_the_proposal_rows">
+        <dc:Bounds x="700" y="980" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_proposal_table_ready" bpmnElement="proposal_table_ready">
+        <dc:Bounds x="892" y="1002" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_approved_rule_received" bpmnElement="approved_rule_received">
+        <dc:Bounds x="220" y="840" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_record_the_approved_rule_in_the_recurrences_store" bpmnElement="record_the_approved_rule_in_the_recurrences_store">
+        <dc:Bounds x="220" y="700" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_report_the_rule_and_its_next_due_dates" bpmnElement="report_the_rule_and_its_next_due_dates">
+        <dc:Bounds x="220" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_rule_provisioning_complete" bpmnElement="rule_provisioning_complete">
+        <dc:Bounds x="252" y="442" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow_1" bpmnElement="flow_1">
+        <di:waypoint x="288" y="290" />
+        <di:waypoint x="380" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_2" bpmnElement="flow_2">
+        <di:waypoint x="480" y="290" />
+        <di:waypoint x="565" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_3" bpmnElement="flow_3">
+        <di:waypoint x="615" y="290" />
+        <di:waypoint x="700" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_4" bpmnElement="flow_4">
+        <di:waypoint x="615" y="290" />
+        <di:waypoint x="700" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_5" bpmnElement="flow_5">
+        <di:waypoint x="800" y="290" />
+        <di:waypoint x="860" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_6" bpmnElement="flow_6">
+        <di:waypoint x="960" y="290" />
+        <di:waypoint x="1045" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_7" bpmnElement="flow_7">
+        <di:waypoint x="1095" y="290" />
+        <di:waypoint x="1180" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_8" bpmnElement="flow_8">
+        <di:waypoint x="1095" y="290" />
+        <di:waypoint x="1180" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_9" bpmnElement="flow_9">
+        <di:waypoint x="1280" y="290" />
+        <di:waypoint x="1340" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_10" bpmnElement="flow_10">
+        <di:waypoint x="1440" y="290" />
+        <di:waypoint x="1525" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_11" bpmnElement="flow_11">
+        <di:waypoint x="1575" y="290" />
+        <di:waypoint x="1692" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_12" bpmnElement="flow_12">
+        <di:waypoint x="1550" y="265" />
+        <di:waypoint x="1550" y="150" />
+        <di:waypoint x="1660" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_13" bpmnElement="flow_13">
+        <di:waypoint x="288" y="1020" />
+        <di:waypoint x="380" y="1020" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_14" bpmnElement="flow_14">
+        <di:waypoint x="480" y="1020" />
+        <di:waypoint x="540" y="1020" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_15" bpmnElement="flow_15">
+        <di:waypoint x="640" y="1020" />
+        <di:waypoint x="700" y="1020" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_16" bpmnElement="flow_16">
+        <di:waypoint x="800" y="1020" />
+        <di:waypoint x="892" y="1020" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_17" bpmnElement="flow_17">
+        <di:waypoint x="320" y="880" />
+        <di:waypoint x="270" y="880" />
+        <di:waypoint x="270" y="740" />
+        <di:waypoint x="220" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_18" bpmnElement="flow_18">
+        <di:waypoint x="320" y="740" />
+        <di:waypoint x="270" y="740" />
+        <di:waypoint x="270" y="600" />
+        <di:waypoint x="220" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_19" bpmnElement="flow_19">
+        <di:waypoint x="320" y="600" />
+        <di:waypoint x="286" y="600" />
+        <di:waypoint x="286" y="460" />
+        <di:waypoint x="252" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_20" bpmnElement="messageflow_20">
+        <di:waypoint x="430" y="330" />
+        <di:waypoint x="430" y="375" />
+        <di:waypoint x="270" y="375" />
+        <di:waypoint x="270" y="1002" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_21" bpmnElement="messageflow_21">
+        <di:waypoint x="910" y="1002" />
+        <di:waypoint x="910" y="375" />
+        <di:waypoint x="750" y="375" />
+        <di:waypoint x="750" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_22" bpmnElement="messageflow_22">
+        <di:waypoint x="1230" y="330" />
+        <di:waypoint x="1230" y="375" />
+        <di:waypoint x="270" y="375" />
+        <di:waypoint x="270" y="840" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_23" bpmnElement="messageflow_23">
+        <di:waypoint x="270" y="442" />
+        <di:waypoint x="270" y="375" />
+        <di:waypoint x="1390" y="375" />
+        <di:waypoint x="1390" y="330" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
+

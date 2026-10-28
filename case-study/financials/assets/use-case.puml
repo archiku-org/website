@@ -1,0 +1,33 @@
+@startuml
+left to right direction
+' Use-case map of vault project 'financials' — PlantUML source.
+' Actors: 4 · Processes: 6 · Associations: 9
+
+' Actors
+:Category alias:
+:Recurrence engine:
+:Cleanup fix reviewer:
+:Household bookkeeper:
+
+' Processes
+rectangle "financials" {
+  (Transaction intake)
+  (Open-entry confirmation)
+  (Entry revision)
+  (Entry removal)
+  (Recurring payment provisioning)
+  (Ledger cleanup-fx application)
+}
+
+' Actor associations (actor --> process it acts-in)
+:Recurrence engine: --> (Entry removal)
+:Recurrence engine: --> (Recurring payment provisioning)
+:Cleanup fix reviewer: --> (Ledger cleanup-fx application)
+:Household bookkeeper: --> (Transaction intake)
+:Household bookkeeper: --> (Open-entry confirmation)
+:Household bookkeeper: --> (Entry revision)
+:Household bookkeeper: --> (Entry removal)
+:Household bookkeeper: --> (Recurring payment provisioning)
+:Household bookkeeper: --> (Ledger cleanup-fx application)
+
+@enduml

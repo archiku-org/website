@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions id="definitions" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <bpmn:process id="process_household_bookkeeper">
+    <bpmn:userTask id="open_the_delete_command_with_the_row_s_id_or_bare_to_pick_from_the_last_ten_past_rows" name="Open the delete command with the row's id, or bare to pick from the last ten past rows" />
+    <bpmn:startEvent id="an_entry_turns_out_not_to_belong_in_the_books" name="An entry turns out not to belong in the books" />
+    <bpmn:exclusiveGateway id="which_store_owns_the_id" name="Which store owns the id?" />
+    <bpmn:endEvent id="the_books_no_longer_carry_the_entry_the_journal_proves_what_was_removed" name="The books no longer carry the entry; the journal proves what was removed" />
+    <bpmn:sendTask id="removal_request_with_the_row_s_id" name="Removal request with the row's id" />
+    <bpmn:userTask id="show_the_row_and_type_an_affirmative_to_confirm_the_removal" name="Show the row and type an affirmative to confirm the removal" />
+    <bpmn:receiveTask id="removal_receipt_the_transaction_is_gone_the_journal_holds_its_full_pre_image" name="Removal receipt — the transaction is gone, the journal holds its full pre-image" />
+    <bpmn:userTask id="check_the_ledger_listing_when_the_removed_row_was_a_transfer" name="Check the ledger listing when the removed row was a transfer" />
+    <bpmn:sendTask id="striking_request_with_the_plan_s_id" name="Striking request with the plan's id" />
+    <bpmn:userTask id="show_the_planned_entry_and_type_an_affirmative_to_confirm_the_striking" name="Show the planned entry and type an affirmative to confirm the striking" />
+    <bpmn:receiveTask id="striking_receipt_the_plan_leaves_the_register_no_history_written" name="Striking receipt — the plan leaves the register, no history written" />
+    <bpmn:sendTask id="dissolve_request_with_the_group_s_id" name="Dissolve request with the group's id" />
+    <bpmn:userTask id="show_the_group_and_confirm_the_dissolve" name="Show the group and confirm the dissolve" />
+    <bpmn:receiveTask id="dissolve_receipt_the_bundle_is_gone_the_member_rows_keep_existing" name="Dissolve receipt — the bundle is gone, the member rows keep existing" />
+    <bpmn:sendTask id="suppression_request_with_the_occurrence_s_id" name="Suppression request with the occurrence's id" />
+    <bpmn:userTask id="show_the_projected_occurrence_and_confirm_the_suppression" name="Show the projected occurrence and confirm the suppression" />
+    <bpmn:receiveTask id="suppression_receipt_the_occurrence_leaves_the_forecast_the_rule_keeps_running" name="Suppression receipt — the occurrence leaves the forecast, the rule keeps running" />
+    <bpmn:userTask id="hear_that_the_id_matches_nothing_and_leave_the_books_untouched" name="Hear that the id matches nothing and leave the books untouched" />
+    <bpmn:sequenceFlow id="flow_1" sourceRef="an_entry_turns_out_not_to_belong_in_the_books" targetRef="open_the_delete_command_with_the_row_s_id_or_bare_to_pick_from_the_last_ten_past_rows" />
+    <bpmn:sequenceFlow id="flow_2" sourceRef="open_the_delete_command_with_the_row_s_id_or_bare_to_pick_from_the_last_ten_past_rows" targetRef="which_store_owns_the_id" />
+    <bpmn:sequenceFlow id="flow_3" sourceRef="show_the_row_and_type_an_affirmative_to_confirm_the_removal" targetRef="removal_request_with_the_row_s_id" />
+    <bpmn:sequenceFlow id="flow_4" sourceRef="removal_request_with_the_row_s_id" targetRef="removal_receipt_the_transaction_is_gone_the_journal_holds_its_full_pre_image" />
+    <bpmn:sequenceFlow id="flow_5" sourceRef="removal_receipt_the_transaction_is_gone_the_journal_holds_its_full_pre_image" targetRef="check_the_ledger_listing_when_the_removed_row_was_a_transfer" />
+    <bpmn:sequenceFlow id="flow_6" sourceRef="check_the_ledger_listing_when_the_removed_row_was_a_transfer" targetRef="the_books_no_longer_carry_the_entry_the_journal_proves_what_was_removed" />
+    <bpmn:sequenceFlow id="flow_7" name="A committed transaction" sourceRef="which_store_owns_the_id" targetRef="show_the_row_and_type_an_affirmative_to_confirm_the_removal" />
+    <bpmn:sequenceFlow id="flow_8" sourceRef="show_the_planned_entry_and_type_an_affirmative_to_confirm_the_striking" targetRef="striking_request_with_the_plan_s_id" />
+    <bpmn:sequenceFlow id="flow_9" sourceRef="striking_request_with_the_plan_s_id" targetRef="striking_receipt_the_plan_leaves_the_register_no_history_written" />
+    <bpmn:sequenceFlow id="flow_10" sourceRef="striking_receipt_the_plan_leaves_the_register_no_history_written" targetRef="the_books_no_longer_carry_the_entry_the_journal_proves_what_was_removed" />
+    <bpmn:sequenceFlow id="flow_11" name="A planned entry" sourceRef="which_store_owns_the_id" targetRef="show_the_planned_entry_and_type_an_affirmative_to_confirm_the_striking" />
+    <bpmn:sequenceFlow id="flow_12" sourceRef="show_the_group_and_confirm_the_dissolve" targetRef="dissolve_request_with_the_group_s_id" />
+    <bpmn:sequenceFlow id="flow_13" sourceRef="dissolve_request_with_the_group_s_id" targetRef="dissolve_receipt_the_bundle_is_gone_the_member_rows_keep_existing" />
+    <bpmn:sequenceFlow id="flow_14" sourceRef="dissolve_receipt_the_bundle_is_gone_the_member_rows_keep_existing" targetRef="the_books_no_longer_carry_the_entry_the_journal_proves_what_was_removed" />
+    <bpmn:sequenceFlow id="flow_15" name="A group id" sourceRef="which_store_owns_the_id" targetRef="show_the_group_and_confirm_the_dissolve" />
+    <bpmn:sequenceFlow id="flow_16" sourceRef="show_the_projected_occurrence_and_confirm_the_suppression" targetRef="suppression_request_with_the_occurrence_s_id" />
+    <bpmn:sequenceFlow id="flow_17" sourceRef="suppression_request_with_the_occurrence_s_id" targetRef="suppression_receipt_the_occurrence_leaves_the_forecast_the_rule_keeps_running" />
+    <bpmn:sequenceFlow id="flow_18" sourceRef="suppression_receipt_the_occurrence_leaves_the_forecast_the_rule_keeps_running" targetRef="the_books_no_longer_carry_the_entry_the_journal_proves_what_was_removed" />
+    <bpmn:sequenceFlow id="flow_19" name="A rule-instance id" sourceRef="which_store_owns_the_id" targetRef="show_the_projected_occurrence_and_confirm_the_suppression" />
+    <bpmn:sequenceFlow id="flow_20" sourceRef="hear_that_the_id_matches_nothing_and_leave_the_books_untouched" targetRef="the_books_no_longer_carry_the_entry_the_journal_proves_what_was_removed" />
+    <bpmn:sequenceFlow id="flow_21" name="Unknown id" sourceRef="which_store_owns_the_id" targetRef="hear_that_the_id_matches_nothing_and_leave_the_books_untouched" />
+    <bpmn:sequenceFlow id="flow_22" sourceRef="which_store_owns_the_id" targetRef="the_books_no_longer_carry_the_entry_the_journal_proves_what_was_removed" />
+  </bpmn:process>
+  <bpmn:process id="process_interactive_deletion_dispatcher">
+    <bpmn:task id="resolve_the_typed_id_against_the_committed_books" name="Resolve the typed id against the committed books" />
+    <bpmn:startEvent id="a_removal_request_arrives" name="A removal request arrives" />
+    <bpmn:exclusiveGateway id="which_store_owns_the_id_2" name="Which store owns the id?" />
+    <bpmn:serviceTask id="snapshot_the_entry_s_full_content_from_the_live_books" name="Snapshot the entry's full content from the live books" />
+    <bpmn:task id="show_the_row_and_require_the_typed_affirmative" name="Show the row and require the typed affirmative" />
+    <bpmn:serviceTask id="journal_the_removal_with_the_pre_image_snapshot_and_re_propagate_the_balances" name="Journal the removal with the pre-image snapshot and re-propagate the balances" />
+    <bpmn:sendTask id="removal_receipt_with_the_transfer_warning_when_the_category_was_a_transfer" name="Removal receipt — with the transfer warning when the category was a transfer" />
+    <bpmn:endEvent id="transaction_removed_the_journal_proves_the_removal" name="Transaction removed — the journal proves the removal" />
+    <bpmn:task id="strike_the_planned_entry_from_its_register" name="Strike the planned entry from its register" />
+    <bpmn:task id="show_the_planned_entry_and_require_the_typed_affirmative" name="Show the planned entry and require the typed affirmative" />
+    <bpmn:sendTask id="striking_receipt" name="Striking receipt" />
+    <bpmn:endEvent id="planned_entry_struck_nothing_journaled" name="Planned entry struck — nothing journaled" />
+    <bpmn:sendTask id="dissolve_receipt" name="Dissolve receipt" />
+    <bpmn:task id="dissolve_only_the_grouping_member_rows_untouched" name="Dissolve only the grouping, member rows untouched" />
+    <bpmn:endEvent id="group_dissolved_member_rows_keep_existing" name="Group dissolved — member rows keep existing" />
+    <bpmn:endEvent id="occurrence_handed_to_the_rule_s_engine" name="Occurrence handed to the rule's engine" />
+    <bpmn:sendTask id="suppression_request_with_the_occurrence_s_id_2" name="Suppression request with the occurrence's id" />
+    <bpmn:endEvent id="nothing_removed" name="Nothing removed" />
+    <bpmn:task id="report_that_the_id_matches_nothing" name="Report that the id matches nothing" />
+    <bpmn:sequenceFlow id="flow_23" sourceRef="a_removal_request_arrives" targetRef="resolve_the_typed_id_against_the_committed_books" />
+    <bpmn:sequenceFlow id="flow_24" sourceRef="resolve_the_typed_id_against_the_committed_books" targetRef="which_store_owns_the_id_2" />
+    <bpmn:sequenceFlow id="flow_25" sourceRef="show_the_row_and_require_the_typed_affirmative" targetRef="snapshot_the_entry_s_full_content_from_the_live_books" />
+    <bpmn:sequenceFlow id="flow_26" sourceRef="snapshot_the_entry_s_full_content_from_the_live_books" targetRef="journal_the_removal_with_the_pre_image_snapshot_and_re_propagate_the_balances" />
+    <bpmn:sequenceFlow id="flow_27" sourceRef="journal_the_removal_with_the_pre_image_snapshot_and_re_propagate_the_balances" targetRef="removal_receipt_with_the_transfer_warning_when_the_category_was_a_transfer" />
+    <bpmn:sequenceFlow id="flow_28" sourceRef="removal_receipt_with_the_transfer_warning_when_the_category_was_a_transfer" targetRef="transaction_removed_the_journal_proves_the_removal" />
+    <bpmn:sequenceFlow id="flow_29" name="A committed transaction" sourceRef="which_store_owns_the_id_2" targetRef="show_the_row_and_require_the_typed_affirmative" />
+    <bpmn:sequenceFlow id="flow_30" sourceRef="show_the_planned_entry_and_require_the_typed_affirmative" targetRef="strike_the_planned_entry_from_its_register" />
+    <bpmn:sequenceFlow id="flow_31" sourceRef="strike_the_planned_entry_from_its_register" targetRef="striking_receipt" />
+    <bpmn:sequenceFlow id="flow_32" sourceRef="striking_receipt" targetRef="planned_entry_struck_nothing_journaled" />
+    <bpmn:sequenceFlow id="flow_33" name="A planned entry" sourceRef="which_store_owns_the_id_2" targetRef="show_the_planned_entry_and_require_the_typed_affirmative" />
+    <bpmn:sequenceFlow id="flow_34" sourceRef="dissolve_only_the_grouping_member_rows_untouched" targetRef="dissolve_receipt" />
+    <bpmn:sequenceFlow id="flow_35" sourceRef="dissolve_receipt" targetRef="group_dissolved_member_rows_keep_existing" />
+    <bpmn:sequenceFlow id="flow_36" name="A group id" sourceRef="which_store_owns_the_id_2" targetRef="dissolve_only_the_grouping_member_rows_untouched" />
+    <bpmn:sequenceFlow id="flow_37" sourceRef="suppression_request_with_the_occurrence_s_id_2" targetRef="occurrence_handed_to_the_rule_s_engine" />
+    <bpmn:sequenceFlow id="flow_38" name="A rule-instance id" sourceRef="which_store_owns_the_id_2" targetRef="suppression_request_with_the_occurrence_s_id_2" />
+    <bpmn:sequenceFlow id="flow_39" sourceRef="report_that_the_id_matches_nothing" targetRef="nothing_removed" />
+    <bpmn:sequenceFlow id="flow_40" name="Unknown id" sourceRef="which_store_owns_the_id_2" targetRef="report_that_the_id_matches_nothing" />
+  </bpmn:process>
+  <bpmn:process id="process_recurrence_engine">
+    <bpmn:task id="match_the_occurrence_to_its_rule_and_check_the_rule_s_exceptions" name="Match the occurrence to its rule and check the rule's exceptions" />
+    <bpmn:startEvent id="a_suppression_request_arrives_for_a_projected_occurrence" name="A suppression request arrives for a projected occurrence" />
+    <bpmn:exclusiveGateway id="already_suppressed" name="Already suppressed?" />
+    <bpmn:endEvent id="nothing_more_changes" name="Nothing more changes" />
+    <bpmn:userTask id="report_that_nothing_more_will_change" name="Report that nothing more will change" />
+    <bpmn:sendTask id="suppression_receipt" name="Suppression receipt" />
+    <bpmn:task id="require_the_typed_affirmative_and_add_the_occurrence_date_to_the_rule_s_exceptions" name="Require the typed affirmative and add the occurrence date to the rule's exceptions" />
+    <bpmn:endEvent id="occurrence_suppressed_the_rule_keeps_running_for_the_other_periods" name="Occurrence suppressed — the rule keeps running for the other periods" />
+    <bpmn:sequenceFlow id="flow_41" sourceRef="a_suppression_request_arrives_for_a_projected_occurrence" targetRef="match_the_occurrence_to_its_rule_and_check_the_rule_s_exceptions" />
+    <bpmn:sequenceFlow id="flow_42" sourceRef="match_the_occurrence_to_its_rule_and_check_the_rule_s_exceptions" targetRef="already_suppressed" />
+    <bpmn:sequenceFlow id="flow_43" sourceRef="report_that_nothing_more_will_change" targetRef="nothing_more_changes" />
+    <bpmn:sequenceFlow id="flow_44" name="Yes" sourceRef="already_suppressed" targetRef="report_that_nothing_more_will_change" />
+    <bpmn:sequenceFlow id="flow_45" sourceRef="require_the_typed_affirmative_and_add_the_occurrence_date_to_the_rule_s_exceptions" targetRef="suppression_receipt" />
+    <bpmn:sequenceFlow id="flow_46" sourceRef="suppression_receipt" targetRef="occurrence_suppressed_the_rule_keeps_running_for_the_other_periods" />
+    <bpmn:sequenceFlow id="flow_47" name="No" sourceRef="already_suppressed" targetRef="require_the_typed_affirmative_and_add_the_occurrence_date_to_the_rule_s_exceptions" />
+  </bpmn:process>
+  <bpmn:process id="process_journaled_ledger_engine">
+    <bpmn:task id="read_the_live_entry_for_the_target_id_and_refuse_when_it_is_not_there" name="Read the live entry for the target id and refuse when it is not there" />
+    <bpmn:startEvent id="a_removal_carrying_the_victim_s_pre_image_arrives" name="A removal carrying the victim's pre-image arrives" />
+    <bpmn:task id="append_the_content_hashed_removal_record_and_fold_it_onto_the_books" name="Append the content-hashed removal record and fold it onto the books" />
+    <bpmn:exclusiveGateway id="does_the_stored_pre_image_match_the_live_entry_at_replay" name="Does the stored pre-image match the live entry at replay?" />
+    <bpmn:endEvent id="the_removal_is_refused_the_journal_waits_for_repair" name="The removal is refused — the journal waits for repair" />
+    <bpmn:task id="refuse_loudly_the_books_will_not_open_until_the_journal_is_repaired" name="Refuse loudly — the books will not open until the journal is repaired" />
+    <bpmn:sendTask id="removal_applied_receipt_back_to_the_dispatcher" name="Removal applied — receipt back to the dispatcher" />
+    <bpmn:task id="splice_the_entry_out_and_re_propagate_the_running_balances_into_every_later_row" name="Splice the entry out and re-propagate the running balances into every later row" />
+    <bpmn:endEvent id="the_removal_is_durable_replayable_and_balance_correct" name="The removal is durable, replayable and balance-correct" />
+    <bpmn:sequenceFlow id="flow_48" sourceRef="a_removal_carrying_the_victim_s_pre_image_arrives" targetRef="read_the_live_entry_for_the_target_id_and_refuse_when_it_is_not_there" />
+    <bpmn:sequenceFlow id="flow_49" sourceRef="read_the_live_entry_for_the_target_id_and_refuse_when_it_is_not_there" targetRef="append_the_content_hashed_removal_record_and_fold_it_onto_the_books" />
+    <bpmn:sequenceFlow id="flow_50" sourceRef="append_the_content_hashed_removal_record_and_fold_it_onto_the_books" targetRef="does_the_stored_pre_image_match_the_live_entry_at_replay" />
+    <bpmn:sequenceFlow id="flow_51" sourceRef="refuse_loudly_the_books_will_not_open_until_the_journal_is_repaired" targetRef="the_removal_is_refused_the_journal_waits_for_repair" />
+    <bpmn:sequenceFlow id="flow_52" name="No" sourceRef="does_the_stored_pre_image_match_the_live_entry_at_replay" targetRef="refuse_loudly_the_books_will_not_open_until_the_journal_is_repaired" />
+    <bpmn:sequenceFlow id="flow_53" sourceRef="splice_the_entry_out_and_re_propagate_the_running_balances_into_every_later_row" targetRef="removal_applied_receipt_back_to_the_dispatcher" />
+    <bpmn:sequenceFlow id="flow_54" sourceRef="removal_applied_receipt_back_to_the_dispatcher" targetRef="the_removal_is_durable_replayable_and_balance_correct" />
+    <bpmn:sequenceFlow id="flow_55" name="Yes" sourceRef="does_the_stored_pre_image_match_the_live_entry_at_replay" targetRef="splice_the_entry_out_and_re_propagate_the_running_balances_into_every_later_row" />
+  </bpmn:process>
+  <bpmn:collaboration id="collaboration">
+    <bpmn:participant id="participant_household_bookkeeper" name="household bookkeeper" processRef="process_household_bookkeeper" />
+    <bpmn:participant id="participant_interactive_deletion_dispatcher" name="interactive deletion dispatcher" processRef="process_interactive_deletion_dispatcher" />
+    <bpmn:participant id="participant_recurrence_engine" name="recurrence engine" processRef="process_recurrence_engine" />
+    <bpmn:participant id="participant_journaled_ledger_engine" name="journaled ledger engine" processRef="process_journaled_ledger_engine" />
+    <bpmn:messageFlow id="messageflow_56" name="Removal Request" sourceRef="removal_request_with_the_row_s_id" targetRef="a_removal_request_arrives" />
+    <bpmn:messageFlow id="messageflow_57" name="Removal Result" sourceRef="removal_receipt_with_the_transfer_warning_when_the_category_was_a_transfer" targetRef="check_the_ledger_listing_when_the_removed_row_was_a_transfer" />
+    <bpmn:messageFlow id="messageflow_58" name="Striking Request" sourceRef="striking_request_with_the_plan_s_id" targetRef="a_removal_request_arrives" />
+    <bpmn:messageFlow id="messageflow_59" name="Striking Result" sourceRef="striking_receipt" targetRef="striking_receipt_the_plan_leaves_the_register_no_history_written" />
+    <bpmn:messageFlow id="messageflow_60" name="Dissolve Request" sourceRef="dissolve_request_with_the_group_s_id" targetRef="a_removal_request_arrives" />
+    <bpmn:messageFlow id="messageflow_61" name="Dissolve Result" sourceRef="dissolve_receipt" targetRef="dissolve_receipt_the_bundle_is_gone_the_member_rows_keep_existing" />
+    <bpmn:messageFlow id="messageflow_62" name="Suppression Request" sourceRef="suppression_request_with_the_occurrence_s_id_2" targetRef="a_suppression_request_arrives_for_a_projected_occurrence" />
+    <bpmn:messageFlow id="messageflow_63" name="Suppression Result" sourceRef="occurrence_suppressed_the_rule_keeps_running_for_the_other_periods" targetRef="suppression_receipt_the_occurrence_leaves_the_forecast_the_rule_keeps_running" />
+    <bpmn:messageFlow id="messageflow_64" name="Delete Request" sourceRef="journal_the_removal_with_the_pre_image_snapshot_and_re_propagate_the_balances" targetRef="a_removal_carrying_the_victim_s_pre_image_arrives" />
+    <bpmn:messageFlow id="messageflow_65" name="Delete Result" sourceRef="removal_applied_receipt_back_to_the_dispatcher" targetRef="journal_the_removal_with_the_pre_image_snapshot_and_re_propagate_the_balances" />
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="diagram">
+    <bpmndi:BPMNPlane id="plane" bpmnElement="collaboration">
+      <bpmndi:BPMNShape id="shape_participant_household_bookkeeper" bpmnElement="participant_household_bookkeeper" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1310" height="700" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_participant_interactive_deletion_dispatcher" bpmnElement="participant_interactive_deletion_dispatcher" isHorizontal="true">
+        <dc:Bounds x="160" y="810" width="1310" height="700" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_participant_recurrence_engine" bpmnElement="participant_recurrence_engine" isHorizontal="true">
+        <dc:Bounds x="160" y="1540" width="1310" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_participant_journaled_ledger_engine" bpmnElement="participant_journaled_ledger_engine" isHorizontal="true">
+        <dc:Bounds x="160" y="1850" width="1310" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_open_the_delete_command_with_the_row_s_id_or_bare_to_pick_from_the_last_ten_past_rows" bpmnElement="open_the_delete_command_with_the_row_s_id_or_bare_to_pick_from_the_last_ten_past_rows">
+        <dc:Bounds x="380" y="390" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_an_entry_turns_out_not_to_belong_in_the_books" bpmnElement="an_entry_turns_out_not_to_belong_in_the_books">
+        <dc:Bounds x="252" y="412" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_which_store_owns_the_id" bpmnElement="which_store_owns_the_id" isMarkerVisible="true">
+        <dc:Bounds x="565" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_the_books_no_longer_carry_the_entry_the_journal_proves_what_was_removed" bpmnElement="the_books_no_longer_carry_the_entry_the_journal_proves_what_was_removed">
+        <dc:Bounds x="1372" y="412" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_removal_request_with_the_row_s_id" bpmnElement="removal_request_with_the_row_s_id">
+        <dc:Bounds x="860" y="390" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_show_the_row_and_type_an_affirmative_to_confirm_the_removal" bpmnElement="show_the_row_and_type_an_affirmative_to_confirm_the_removal">
+        <dc:Bounds x="700" y="390" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_removal_receipt_the_transaction_is_gone_the_journal_holds_its_full_pre_image" bpmnElement="removal_receipt_the_transaction_is_gone_the_journal_holds_its_full_pre_image">
+        <dc:Bounds x="1020" y="390" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_check_the_ledger_listing_when_the_removed_row_was_a_transfer" bpmnElement="check_the_ledger_listing_when_the_removed_row_was_a_transfer">
+        <dc:Bounds x="1180" y="390" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_striking_request_with_the_plan_s_id" bpmnElement="striking_request_with_the_plan_s_id">
+        <dc:Bounds x="860" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_show_the_planned_entry_and_type_an_affirmative_to_confirm_the_striking" bpmnElement="show_the_planned_entry_and_type_an_affirmative_to_confirm_the_striking">
+        <dc:Bounds x="700" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_striking_receipt_the_plan_leaves_the_register_no_history_written" bpmnElement="striking_receipt_the_plan_leaves_the_register_no_history_written">
+        <dc:Bounds x="1020" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_dissolve_request_with_the_group_s_id" bpmnElement="dissolve_request_with_the_group_s_id">
+        <dc:Bounds x="860" y="530" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_show_the_group_and_confirm_the_dissolve" bpmnElement="show_the_group_and_confirm_the_dissolve">
+        <dc:Bounds x="700" y="530" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_dissolve_receipt_the_bundle_is_gone_the_member_rows_keep_existing" bpmnElement="dissolve_receipt_the_bundle_is_gone_the_member_rows_keep_existing">
+        <dc:Bounds x="1020" y="530" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_suppression_request_with_the_occurrence_s_id" bpmnElement="suppression_request_with_the_occurrence_s_id">
+        <dc:Bounds x="860" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_show_the_projected_occurrence_and_confirm_the_suppression" bpmnElement="show_the_projected_occurrence_and_confirm_the_suppression">
+        <dc:Bounds x="700" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_suppression_receipt_the_occurrence_leaves_the_forecast_the_rule_keeps_running" bpmnElement="suppression_receipt_the_occurrence_leaves_the_forecast_the_rule_keeps_running">
+        <dc:Bounds x="1020" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_hear_that_the_id_matches_nothing_and_leave_the_books_untouched" bpmnElement="hear_that_the_id_matches_nothing_and_leave_the_books_untouched">
+        <dc:Bounds x="700" y="670" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_resolve_the_typed_id_against_the_committed_books" bpmnElement="resolve_the_typed_id_against_the_committed_books">
+        <dc:Bounds x="380" y="1120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_a_removal_request_arrives" bpmnElement="a_removal_request_arrives">
+        <dc:Bounds x="252" y="1142" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_which_store_owns_the_id_2" bpmnElement="which_store_owns_the_id_2" isMarkerVisible="true">
+        <dc:Bounds x="565" y="1135" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_snapshot_the_entry_s_full_content_from_the_live_books" bpmnElement="snapshot_the_entry_s_full_content_from_the_live_books">
+        <dc:Bounds x="860" y="1120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_show_the_row_and_require_the_typed_affirmative" bpmnElement="show_the_row_and_require_the_typed_affirmative">
+        <dc:Bounds x="700" y="1120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_journal_the_removal_with_the_pre_image_snapshot_and_re_propagate_the_balances" bpmnElement="journal_the_removal_with_the_pre_image_snapshot_and_re_propagate_the_balances">
+        <dc:Bounds x="1020" y="1120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_removal_receipt_with_the_transfer_warning_when_the_category_was_a_transfer" bpmnElement="removal_receipt_with_the_transfer_warning_when_the_category_was_a_transfer">
+        <dc:Bounds x="1180" y="1120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_transaction_removed_the_journal_proves_the_removal" bpmnElement="transaction_removed_the_journal_proves_the_removal">
+        <dc:Bounds x="1372" y="1142" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_strike_the_planned_entry_from_its_register" bpmnElement="strike_the_planned_entry_from_its_register">
+        <dc:Bounds x="860" y="980" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_show_the_planned_entry_and_require_the_typed_affirmative" bpmnElement="show_the_planned_entry_and_require_the_typed_affirmative">
+        <dc:Bounds x="700" y="980" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_striking_receipt" bpmnElement="striking_receipt">
+        <dc:Bounds x="1020" y="980" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_planned_entry_struck_nothing_journaled" bpmnElement="planned_entry_struck_nothing_journaled">
+        <dc:Bounds x="1212" y="1002" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_dissolve_receipt" bpmnElement="dissolve_receipt">
+        <dc:Bounds x="860" y="1260" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_dissolve_only_the_grouping_member_rows_untouched" bpmnElement="dissolve_only_the_grouping_member_rows_untouched">
+        <dc:Bounds x="700" y="1260" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_group_dissolved_member_rows_keep_existing" bpmnElement="group_dissolved_member_rows_keep_existing">
+        <dc:Bounds x="1052" y="1282" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_occurrence_handed_to_the_rule_s_engine" bpmnElement="occurrence_handed_to_the_rule_s_engine">
+        <dc:Bounds x="892" y="862" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_suppression_request_with_the_occurrence_s_id_2" bpmnElement="suppression_request_with_the_occurrence_s_id_2">
+        <dc:Bounds x="700" y="840" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_nothing_removed" bpmnElement="nothing_removed">
+        <dc:Bounds x="892" y="1422" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_report_that_the_id_matches_nothing" bpmnElement="report_that_the_id_matches_nothing">
+        <dc:Bounds x="700" y="1400" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_match_the_occurrence_to_its_rule_and_check_the_rule_s_exceptions" bpmnElement="match_the_occurrence_to_its_rule_and_check_the_rule_s_exceptions">
+        <dc:Bounds x="380" y="1710" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_a_suppression_request_arrives_for_a_projected_occurrence" bpmnElement="a_suppression_request_arrives_for_a_projected_occurrence">
+        <dc:Bounds x="252" y="1732" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_already_suppressed" bpmnElement="already_suppressed" isMarkerVisible="true">
+        <dc:Bounds x="565" y="1725" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_nothing_more_changes" bpmnElement="nothing_more_changes">
+        <dc:Bounds x="892" y="1592" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_report_that_nothing_more_will_change" bpmnElement="report_that_nothing_more_will_change">
+        <dc:Bounds x="700" y="1570" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_suppression_receipt" bpmnElement="suppression_receipt">
+        <dc:Bounds x="860" y="1710" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_require_the_typed_affirmative_and_add_the_occurrence_date_to_the_rule_s_exceptions" bpmnElement="require_the_typed_affirmative_and_add_the_occurrence_date_to_the_rule_s_exceptions">
+        <dc:Bounds x="700" y="1710" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_occurrence_suppressed_the_rule_keeps_running_for_the_other_periods" bpmnElement="occurrence_suppressed_the_rule_keeps_running_for_the_other_periods">
+        <dc:Bounds x="1052" y="1732" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_read_the_live_entry_for_the_target_id_and_refuse_when_it_is_not_there" bpmnElement="read_the_live_entry_for_the_target_id_and_refuse_when_it_is_not_there">
+        <dc:Bounds x="380" y="2020" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_a_removal_carrying_the_victim_s_pre_image_arrives" bpmnElement="a_removal_carrying_the_victim_s_pre_image_arrives">
+        <dc:Bounds x="252" y="2042" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_append_the_content_hashed_removal_record_and_fold_it_onto_the_books" bpmnElement="append_the_content_hashed_removal_record_and_fold_it_onto_the_books">
+        <dc:Bounds x="540" y="2020" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_does_the_stored_pre_image_match_the_live_entry_at_replay" bpmnElement="does_the_stored_pre_image_match_the_live_entry_at_replay" isMarkerVisible="true">
+        <dc:Bounds x="725" y="2035" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_the_removal_is_refused_the_journal_waits_for_repair" bpmnElement="the_removal_is_refused_the_journal_waits_for_repair">
+        <dc:Bounds x="1052" y="1902" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_refuse_loudly_the_books_will_not_open_until_the_journal_is_repaired" bpmnElement="refuse_loudly_the_books_will_not_open_until_the_journal_is_repaired">
+        <dc:Bounds x="860" y="1880" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_removal_applied_receipt_back_to_the_dispatcher" bpmnElement="removal_applied_receipt_back_to_the_dispatcher">
+        <dc:Bounds x="1020" y="2020" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_splice_the_entry_out_and_re_propagate_the_running_balances_into_every_later_row" bpmnElement="splice_the_entry_out_and_re_propagate_the_running_balances_into_every_later_row">
+        <dc:Bounds x="860" y="2020" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_the_removal_is_durable_replayable_and_balance_correct" bpmnElement="the_removal_is_durable_replayable_and_balance_correct">
+        <dc:Bounds x="1212" y="2042" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow_1" bpmnElement="flow_1">
+        <di:waypoint x="288" y="430" />
+        <di:waypoint x="380" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_2" bpmnElement="flow_2">
+        <di:waypoint x="480" y="430" />
+        <di:waypoint x="565" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_3" bpmnElement="flow_3">
+        <di:waypoint x="800" y="430" />
+        <di:waypoint x="860" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_4" bpmnElement="flow_4">
+        <di:waypoint x="960" y="430" />
+        <di:waypoint x="1020" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_5" bpmnElement="flow_5">
+        <di:waypoint x="1120" y="430" />
+        <di:waypoint x="1180" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_6" bpmnElement="flow_6">
+        <di:waypoint x="1280" y="430" />
+        <di:waypoint x="1372" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_7" bpmnElement="flow_7">
+        <di:waypoint x="615" y="430" />
+        <di:waypoint x="700" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_8" bpmnElement="flow_8">
+        <di:waypoint x="800" y="290" />
+        <di:waypoint x="860" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_9" bpmnElement="flow_9">
+        <di:waypoint x="960" y="290" />
+        <di:waypoint x="1020" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_10" bpmnElement="flow_10">
+        <di:waypoint x="1120" y="290" />
+        <di:waypoint x="1246" y="290" />
+        <di:waypoint x="1246" y="430" />
+        <di:waypoint x="1372" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_11" bpmnElement="flow_11">
+        <di:waypoint x="590" y="405" />
+        <di:waypoint x="590" y="290" />
+        <di:waypoint x="700" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_12" bpmnElement="flow_12">
+        <di:waypoint x="800" y="570" />
+        <di:waypoint x="860" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_13" bpmnElement="flow_13">
+        <di:waypoint x="960" y="570" />
+        <di:waypoint x="1020" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_14" bpmnElement="flow_14">
+        <di:waypoint x="1120" y="570" />
+        <di:waypoint x="1246" y="570" />
+        <di:waypoint x="1246" y="430" />
+        <di:waypoint x="1372" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_15" bpmnElement="flow_15">
+        <di:waypoint x="590" y="455" />
+        <di:waypoint x="590" y="570" />
+        <di:waypoint x="700" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_16" bpmnElement="flow_16">
+        <di:waypoint x="800" y="150" />
+        <di:waypoint x="860" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_17" bpmnElement="flow_17">
+        <di:waypoint x="960" y="150" />
+        <di:waypoint x="1020" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_18" bpmnElement="flow_18">
+        <di:waypoint x="1120" y="150" />
+        <di:waypoint x="1246" y="150" />
+        <di:waypoint x="1246" y="430" />
+        <di:waypoint x="1372" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_19" bpmnElement="flow_19">
+        <di:waypoint x="590" y="405" />
+        <di:waypoint x="590" y="150" />
+        <di:waypoint x="700" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_20" bpmnElement="flow_20">
+        <di:waypoint x="800" y="710" />
+        <di:waypoint x="1086" y="710" />
+        <di:waypoint x="1086" y="430" />
+        <di:waypoint x="1372" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_21" bpmnElement="flow_21">
+        <di:waypoint x="590" y="455" />
+        <di:waypoint x="590" y="710" />
+        <di:waypoint x="700" y="710" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_22" bpmnElement="flow_22">
+        <di:waypoint x="590" y="455" />
+        <di:waypoint x="590" y="485" />
+        <di:waypoint x="1390" y="485" />
+        <di:waypoint x="1390" y="448" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_23" bpmnElement="flow_23">
+        <di:waypoint x="288" y="1160" />
+        <di:waypoint x="380" y="1160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_24" bpmnElement="flow_24">
+        <di:waypoint x="480" y="1160" />
+        <di:waypoint x="565" y="1160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_25" bpmnElement="flow_25">
+        <di:waypoint x="800" y="1160" />
+        <di:waypoint x="860" y="1160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_26" bpmnElement="flow_26">
+        <di:waypoint x="960" y="1160" />
+        <di:waypoint x="1020" y="1160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_27" bpmnElement="flow_27">
+        <di:waypoint x="1120" y="1160" />
+        <di:waypoint x="1180" y="1160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_28" bpmnElement="flow_28">
+        <di:waypoint x="1280" y="1160" />
+        <di:waypoint x="1372" y="1160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_29" bpmnElement="flow_29">
+        <di:waypoint x="615" y="1160" />
+        <di:waypoint x="700" y="1160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_30" bpmnElement="flow_30">
+        <di:waypoint x="800" y="1020" />
+        <di:waypoint x="860" y="1020" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_31" bpmnElement="flow_31">
+        <di:waypoint x="960" y="1020" />
+        <di:waypoint x="1020" y="1020" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_32" bpmnElement="flow_32">
+        <di:waypoint x="1120" y="1020" />
+        <di:waypoint x="1212" y="1020" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_33" bpmnElement="flow_33">
+        <di:waypoint x="590" y="1135" />
+        <di:waypoint x="590" y="1020" />
+        <di:waypoint x="700" y="1020" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_34" bpmnElement="flow_34">
+        <di:waypoint x="800" y="1300" />
+        <di:waypoint x="860" y="1300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_35" bpmnElement="flow_35">
+        <di:waypoint x="960" y="1300" />
+        <di:waypoint x="1052" y="1300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_36" bpmnElement="flow_36">
+        <di:waypoint x="590" y="1185" />
+        <di:waypoint x="590" y="1300" />
+        <di:waypoint x="700" y="1300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_37" bpmnElement="flow_37">
+        <di:waypoint x="800" y="880" />
+        <di:waypoint x="892" y="880" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_38" bpmnElement="flow_38">
+        <di:waypoint x="590" y="1135" />
+        <di:waypoint x="590" y="880" />
+        <di:waypoint x="700" y="880" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_39" bpmnElement="flow_39">
+        <di:waypoint x="800" y="1440" />
+        <di:waypoint x="892" y="1440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_40" bpmnElement="flow_40">
+        <di:waypoint x="590" y="1185" />
+        <di:waypoint x="590" y="1440" />
+        <di:waypoint x="700" y="1440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_41" bpmnElement="flow_41">
+        <di:waypoint x="288" y="1750" />
+        <di:waypoint x="380" y="1750" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_42" bpmnElement="flow_42">
+        <di:waypoint x="480" y="1750" />
+        <di:waypoint x="565" y="1750" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_43" bpmnElement="flow_43">
+        <di:waypoint x="800" y="1610" />
+        <di:waypoint x="892" y="1610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_44" bpmnElement="flow_44">
+        <di:waypoint x="590" y="1725" />
+        <di:waypoint x="590" y="1610" />
+        <di:waypoint x="700" y="1610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_45" bpmnElement="flow_45">
+        <di:waypoint x="800" y="1750" />
+        <di:waypoint x="860" y="1750" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_46" bpmnElement="flow_46">
+        <di:waypoint x="960" y="1750" />
+        <di:waypoint x="1052" y="1750" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_47" bpmnElement="flow_47">
+        <di:waypoint x="615" y="1750" />
+        <di:waypoint x="700" y="1750" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_48" bpmnElement="flow_48">
+        <di:waypoint x="288" y="2060" />
+        <di:waypoint x="380" y="2060" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_49" bpmnElement="flow_49">
+        <di:waypoint x="480" y="2060" />
+        <di:waypoint x="540" y="2060" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_50" bpmnElement="flow_50">
+        <di:waypoint x="640" y="2060" />
+        <di:waypoint x="725" y="2060" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_51" bpmnElement="flow_51">
+        <di:waypoint x="960" y="1920" />
+        <di:waypoint x="1052" y="1920" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_52" bpmnElement="flow_52">
+        <di:waypoint x="750" y="2035" />
+        <di:waypoint x="750" y="1920" />
+        <di:waypoint x="860" y="1920" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_53" bpmnElement="flow_53">
+        <di:waypoint x="960" y="2060" />
+        <di:waypoint x="1020" y="2060" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_54" bpmnElement="flow_54">
+        <di:waypoint x="1120" y="2060" />
+        <di:waypoint x="1212" y="2060" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_55" bpmnElement="flow_55">
+        <di:waypoint x="775" y="2060" />
+        <di:waypoint x="860" y="2060" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_56" bpmnElement="messageflow_56">
+        <di:waypoint x="910" y="470" />
+        <di:waypoint x="910" y="795" />
+        <di:waypoint x="270" y="795" />
+        <di:waypoint x="270" y="1142" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_57" bpmnElement="messageflow_57">
+        <di:waypoint x="1230" y="1120" />
+        <di:waypoint x="1230" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_58" bpmnElement="messageflow_58">
+        <di:waypoint x="910" y="330" />
+        <di:waypoint x="910" y="795" />
+        <di:waypoint x="270" y="795" />
+        <di:waypoint x="270" y="1142" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_59" bpmnElement="messageflow_59">
+        <di:waypoint x="1070" y="980" />
+        <di:waypoint x="1070" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_60" bpmnElement="messageflow_60">
+        <di:waypoint x="910" y="610" />
+        <di:waypoint x="910" y="795" />
+        <di:waypoint x="270" y="795" />
+        <di:waypoint x="270" y="1142" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_61" bpmnElement="messageflow_61">
+        <di:waypoint x="910" y="1260" />
+        <di:waypoint x="910" y="795" />
+        <di:waypoint x="1070" y="795" />
+        <di:waypoint x="1070" y="610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_62" bpmnElement="messageflow_62">
+        <di:waypoint x="750" y="920" />
+        <di:waypoint x="750" y="1525" />
+        <di:waypoint x="270" y="1525" />
+        <di:waypoint x="270" y="1732" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_63" bpmnElement="messageflow_63">
+        <di:waypoint x="1070" y="1732" />
+        <di:waypoint x="1070" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_64" bpmnElement="messageflow_64">
+        <di:waypoint x="1070" y="1200" />
+        <di:waypoint x="1070" y="1835" />
+        <di:waypoint x="270" y="1835" />
+        <di:waypoint x="270" y="2042" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_65" bpmnElement="messageflow_65">
+        <di:waypoint x="1070" y="2020" />
+        <di:waypoint x="1070" y="1200" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
+

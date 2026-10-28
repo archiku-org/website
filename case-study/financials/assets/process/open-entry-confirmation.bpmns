@@ -1,0 +1,39 @@
+process "Household bookkeeper"
+  start "A planned payment has landed at the bank"
+  user "Decide to confirm the landed entry"
+  exclusive "Is the confirmation an id, a bare confirm or a group?"
+    if "An id of a landed plan" then
+      service "Book the planned values as a confirming payment"
+      exclusive "Is the plan dated after today or missing its amount?"
+        if "Yes" then
+          task "Refuse with a note that nothing was confirmed"
+          end "Plan untouched"
+        else "No then book and strike the plan"
+      task "Strike the plan from the expected register"
+      task "Confirm the new balance on the receipt"
+      end "Plan confirmed as booked money"
+    if "An id of a due rule instance" then
+      exclusive "Is the instance dated in the future?"
+        if "Yes" then
+          user "Adjust the pre-filled date and amount for the early-landed instance"
+          exclusive "Is the confirmed date still ahead of today?"
+            if "Yes" then
+              task "Refuse — a real payment never lies in the future"
+              end "Instance untouched"
+            else "No then commit"
+          service "Book the adjusted values and record an exception if the values drifted"
+          end "Instance confirmed as booked money"
+        else "No land today then commit as-is"
+      service "Book the rule's own values with no questions"
+      end "Instance committed with the rule's values"
+    if "A group id" then
+      parallel
+        do service "Book each landed member plan with its own confirming payment"
+        do service "Book each landed rule-instance member from its rule"
+      task "Re-point each confirmed member to its booking in the group"
+      task "Report the skipped members"
+      end "Group confirmed as far as it landed"
+    else "Bare confirm with no id"
+  user "Read the open backlog table and pick an entry"
+  goto "Decide to confirm the landed entry"
+

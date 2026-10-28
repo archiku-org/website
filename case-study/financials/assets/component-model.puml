@@ -1,0 +1,41 @@
+@startuml
+' Component model of vault project 'financials' — PlantUML source.
+' Components: 8 · Screens: 1 · Relations drawn: 16 of 16
+
+package "Household transaction intake" {
+  [Transaction entry interface (entry.py)]
+  [Confirmation dispatcher (confirm.py)]
+  [Interactive entry editor]
+  [Recurrence engine (recurrences.py + recurrence_cli.py)]
+  [Interactive deletion dispatcher (delete.py)]
+  [Journaled ledger engine (journal.py + commands.py)]
+  [Expected register store (expected.py)]
+  [Cleanup fix engine (fixes.py)]
+  [Confirm picker] <<surface-screen>>
+}
+package "Household bookkeeping stores and corrections" {
+  ' no components
+}
+
+' Actors served by the component/screen world
+:Household bookkeeper:
+
+' Component relations (from --> to : edge_type)
+[Transaction entry interface (entry.py)] --> [Expected register store (expected.py)] : writes-to
+[Transaction entry interface (entry.py)] --> [Journaled ledger engine (journal.py + commands.py)] : writes-to
+[Transaction entry interface (entry.py)] --> [Journaled ledger engine (journal.py + commands.py)] : reads-from
+[Confirmation dispatcher (confirm.py)] --> [Journaled ledger engine (journal.py + commands.py)] : writes-to
+[Interactive entry editor] --> [Journaled ledger engine (journal.py + commands.py)] : writes-to
+[Interactive entry editor] --> [Journaled ledger engine (journal.py + commands.py)] : reads-from
+[Interactive entry editor] --> [Expected register store (expected.py)] : writes-to
+[Interactive entry editor] --> [Expected register store (expected.py)] : reads-from
+[Interactive entry editor] --> [Recurrence engine (recurrences.py + recurrence_cli.py)] : reads-from
+[Confirmation dispatcher (confirm.py)] --> [Recurrence engine (recurrences.py + recurrence_cli.py)] : reads-from
+[Journaled ledger engine (journal.py + commands.py)] --> [Cleanup fix engine (fixes.py)] : reads-from
+[Journaled ledger engine (journal.py + commands.py)] --> [Expected register store (expected.py)] : reads-from
+[Cleanup fix engine (fixes.py)] --> [Journaled ledger engine (journal.py + commands.py)] : writes-to
+[Cleanup fix engine (fixes.py)] --> [Expected register store (expected.py)] : writes-to
+[Interactive deletion dispatcher (delete.py)] --> [Journaled ledger engine (journal.py + commands.py)] : writes-to
+[Confirm picker] --> :Household bookkeeper: : serves
+
+@enduml

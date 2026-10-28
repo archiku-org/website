@@ -1,0 +1,36 @@
+process "Household bookkeeper"
+  start "A repeating pattern is worth a standing rule"
+  user "Run the detection review"
+  exclusive "Does the table hold a proposal?"
+    if "No" then goto "The provisioning cycle closes"
+    else "Yes"
+  user "Review the proposals row by row"
+  user "Take a proposal into the seeded editor"
+  exclusive "Does the rule clear validation?"
+    if "No or quit" then goto "The provisioning cycle closes"
+    else "Yes"
+  send "Approve the rule into the store"
+  receive "Read the confirmation and upcoming dates"
+  exclusive "Does the bill later stop or change?"
+    if "Yes" then user "Pause, resume, remove or re-edit the rule"
+    else "No"
+    end "The provisioning cycle closes"
+
+process "recurrence engine"
+  start "Detection requested"
+  service "Scan the committed history for candidate rules"
+  rule "Hold the spacing and occurrence bar"
+  service "Compose the proposal rows"
+  end "Proposal table ready" message
+  receive "Approved rule received"
+  service "Record the approved rule in the recurrences store"
+  service "Report the rule and its next due dates"
+  end "Rule provisioning complete" message
+  goto "Approved rule received"
+
+message flows
+  from "Household bookkeeper"."Run the detection review" to "recurrence engine"."Detection requested" label "Detection request"
+  from "recurrence engine"."Proposal table ready" to "Household bookkeeper"."Review the proposals row by row" label "Proposal table"
+  from "Household bookkeeper"."Approve the rule into the store" to "recurrence engine"."Approved rule received" label "Approved rule"
+  from "recurrence engine"."Rule provisioning complete" to "Household bookkeeper"."Read the confirmation and upcoming dates" label "Store confirmation and next due dates"
+

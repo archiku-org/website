@@ -1,0 +1,88 @@
+process "household bookkeeper"
+  start "An entry turns out not to belong in the books"
+  user "Open the delete command with the row's id, or bare to pick from the last ten past rows"
+  exclusive "Which store owns the id?"
+    if "A committed transaction" then
+      user "Show the row and type an affirmative to confirm the removal"
+      send "Removal request with the row's id"
+      receive "Removal receipt — the transaction is gone, the journal holds its full pre-image"
+      user "Check the ledger listing when the removed row was a transfer"
+    if "A planned entry" then
+      user "Show the planned entry and type an affirmative to confirm the striking"
+      send "Striking request with the plan's id"
+      receive "Striking receipt — the plan leaves the register, no history written"
+    if "A group id" then
+      user "Show the group and confirm the dissolve"
+      send "Dissolve request with the group's id"
+      receive "Dissolve receipt — the bundle is gone, the member rows keep existing"
+    if "A rule-instance id" then
+      user "Show the projected occurrence and confirm the suppression"
+      send "Suppression request with the occurrence's id"
+      receive "Suppression receipt — the occurrence leaves the forecast, the rule keeps running"
+    else "Unknown id" then
+      user "Hear that the id matches nothing and leave the books untouched"
+  end "The books no longer carry the entry; the journal proves what was removed"
+
+process "interactive deletion dispatcher"
+  start "A removal request arrives"
+  task "Resolve the typed id against the committed books"
+  exclusive "Which store owns the id?"
+    if "A committed transaction" then
+      task "Show the row and require the typed affirmative"
+      service "Snapshot the entry's full content from the live books"
+      service "Journal the removal with the pre-image snapshot and re-propagate the balances"
+      send "Removal receipt — with the transfer warning when the category was a transfer"
+      end "Transaction removed — the journal proves the removal"
+    if "A planned entry" then
+      task "Show the planned entry and require the typed affirmative"
+      task "Strike the planned entry from its register"
+      send "Striking receipt"
+      end "Planned entry struck — nothing journaled"
+    if "A group id" then
+      task "Dissolve only the grouping, member rows untouched"
+      send "Dissolve receipt"
+      end "Group dissolved — member rows keep existing"
+    if "A rule-instance id" then
+      send "Suppression request with the occurrence's id"
+      end "Occurrence handed to the rule's engine"
+    else "Unknown id" then
+      task "Report that the id matches nothing"
+      end "Nothing removed"
+
+process "recurrence engine"
+  start "A suppression request arrives for a projected occurrence"
+  task "Match the occurrence to its rule and check the rule's exceptions"
+  exclusive "Already suppressed?"
+    if "Yes" then
+      user "Report that nothing more will change"
+      end "Nothing more changes"
+    else "No" then
+      task "Require the typed affirmative and add the occurrence date to the rule's exceptions"
+      send "Suppression receipt"
+      end "Occurrence suppressed — the rule keeps running for the other periods"
+
+process "journaled ledger engine"
+  start "A removal carrying the victim's pre-image arrives"
+  task "Read the live entry for the target id and refuse when it is not there"
+  task "Append the content-hashed removal record and fold it onto the books"
+  exclusive "Does the stored pre-image match the live entry at replay?"
+    if "No" then
+      task "Refuse loudly — the books will not open until the journal is repaired"
+      end "The removal is refused — the journal waits for repair"
+    else "Yes" then
+      task "Splice the entry out and re-propagate the running balances into every later row"
+      send "Removal applied — receipt back to the dispatcher"
+      end "The removal is durable, replayable and balance-correct"
+
+message flows
+  from "household bookkeeper"."Removal request with the row's id" to "interactive deletion dispatcher"."A removal request arrives" label "Removal Request"
+  from "interactive deletion dispatcher"."Removal receipt — with the transfer warning when the category was a transfer" to "household bookkeeper"."Check the ledger listing when the removed row was a transfer" label "Removal Result"
+  from "household bookkeeper"."Striking request with the plan's id" to "interactive deletion dispatcher"."A removal request arrives" label "Striking Request"
+  from "interactive deletion dispatcher"."Striking receipt" to "household bookkeeper"."Striking receipt — the plan leaves the register, no history written" label "Striking Result"
+  from "household bookkeeper"."Dissolve request with the group's id" to "interactive deletion dispatcher"."A removal request arrives" label "Dissolve Request"
+  from "interactive deletion dispatcher"."Dissolve receipt" to "household bookkeeper"."Dissolve receipt — the bundle is gone, the member rows keep existing" label "Dissolve Result"
+  from "interactive deletion dispatcher"."Suppression request with the occurrence's id" to "recurrence engine"."A suppression request arrives for a projected occurrence" label "Suppression Request"
+  from "recurrence engine"."Occurrence suppressed — the rule keeps running for the other periods" to "household bookkeeper"."Suppression receipt — the occurrence leaves the forecast, the rule keeps running" label "Suppression Result"
+  from "interactive deletion dispatcher"."Journal the removal with the pre-image snapshot and re-propagate the balances" to "journaled ledger engine"."A removal carrying the victim's pre-image arrives" label "Delete Request"
+  from "journaled ledger engine"."Removal applied — receipt back to the dispatcher" to "interactive deletion dispatcher"."Journal the removal with the pre-image snapshot and re-propagate the balances" label "Delete Result"
+

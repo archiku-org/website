@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions id="definitions" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <bpmn:process id="process_household_bookkeeper">
+    <bpmn:userTask id="decide_to_confirm_the_landed_entry" name="Decide to confirm the landed entry" />
+    <bpmn:startEvent id="a_planned_payment_has_landed_at_the_bank" name="A planned payment has landed at the bank" />
+    <bpmn:exclusiveGateway id="is_the_confirmation_an_id_a_bare_confirm_or_a_group" name="Is the confirmation an id, a bare confirm or a group?" />
+    <bpmn:userTask id="read_the_open_backlog_table_and_pick_an_entry" name="Read the open backlog table and pick an entry" />
+    <bpmn:exclusiveGateway id="is_the_plan_dated_after_today_or_missing_its_amount" name="Is the plan dated after today or missing its amount?" />
+    <bpmn:serviceTask id="book_the_planned_values_as_a_confirming_payment" name="Book the planned values as a confirming payment" />
+    <bpmn:task id="strike_the_plan_from_the_expected_register" name="Strike the plan from the expected register" />
+    <bpmn:endEvent id="plan_untouched" name="Plan untouched" />
+    <bpmn:task id="refuse_with_a_note_that_nothing_was_confirmed" name="Refuse with a note that nothing was confirmed" />
+    <bpmn:task id="confirm_the_new_balance_on_the_receipt" name="Confirm the new balance on the receipt" />
+    <bpmn:endEvent id="plan_confirmed_as_booked_money" name="Plan confirmed as booked money" />
+    <bpmn:serviceTask id="book_the_rule_s_own_values_with_no_questions" name="Book the rule's own values with no questions" />
+    <bpmn:exclusiveGateway id="is_the_instance_dated_in_the_future" name="Is the instance dated in the future?" />
+    <bpmn:exclusiveGateway id="is_the_confirmed_date_still_ahead_of_today" name="Is the confirmed date still ahead of today?" />
+    <bpmn:userTask id="adjust_the_pre_filled_date_and_amount_for_the_early_landed_instance" name="Adjust the pre-filled date and amount for the early-landed instance" />
+    <bpmn:serviceTask id="book_the_adjusted_values_and_record_an_exception_if_the_values_drifted" name="Book the adjusted values and record an exception if the values drifted" />
+    <bpmn:endEvent id="instance_untouched" name="Instance untouched" />
+    <bpmn:task id="refuse_a_real_payment_never_lies_in_the_future" name="Refuse — a real payment never lies in the future" />
+    <bpmn:endEvent id="instance_confirmed_as_booked_money" name="Instance confirmed as booked money" />
+    <bpmn:endEvent id="instance_committed_with_the_rule_s_values" name="Instance committed with the rule's values" />
+    <bpmn:task id="re_point_each_confirmed_member_to_its_booking_in_the_group" name="Re-point each confirmed member to its booking in the group" />
+    <bpmn:parallelGateway id="node22" />
+    <bpmn:parallelGateway id="node23" />
+    <bpmn:serviceTask id="book_each_landed_member_plan_with_its_own_confirming_payment" name="Book each landed member plan with its own confirming payment" />
+    <bpmn:serviceTask id="book_each_landed_rule_instance_member_from_its_rule" name="Book each landed rule-instance member from its rule" />
+    <bpmn:task id="report_the_skipped_members" name="Report the skipped members" />
+    <bpmn:endEvent id="group_confirmed_as_far_as_it_landed" name="Group confirmed as far as it landed" />
+    <bpmn:sequenceFlow id="flow_1" sourceRef="a_planned_payment_has_landed_at_the_bank" targetRef="decide_to_confirm_the_landed_entry" />
+    <bpmn:sequenceFlow id="flow_2" sourceRef="decide_to_confirm_the_landed_entry" targetRef="is_the_confirmation_an_id_a_bare_confirm_or_a_group" />
+    <bpmn:sequenceFlow id="flow_3" sourceRef="book_the_planned_values_as_a_confirming_payment" targetRef="is_the_plan_dated_after_today_or_missing_its_amount" />
+    <bpmn:sequenceFlow id="flow_4" sourceRef="refuse_with_a_note_that_nothing_was_confirmed" targetRef="plan_untouched" />
+    <bpmn:sequenceFlow id="flow_5" name="Yes" sourceRef="is_the_plan_dated_after_today_or_missing_its_amount" targetRef="refuse_with_a_note_that_nothing_was_confirmed" />
+    <bpmn:sequenceFlow id="flow_6" name="No then book and strike the plan" sourceRef="is_the_plan_dated_after_today_or_missing_its_amount" targetRef="strike_the_plan_from_the_expected_register" />
+    <bpmn:sequenceFlow id="flow_7" sourceRef="is_the_plan_dated_after_today_or_missing_its_amount" targetRef="strike_the_plan_from_the_expected_register" />
+    <bpmn:sequenceFlow id="flow_8" sourceRef="strike_the_plan_from_the_expected_register" targetRef="confirm_the_new_balance_on_the_receipt" />
+    <bpmn:sequenceFlow id="flow_9" sourceRef="confirm_the_new_balance_on_the_receipt" targetRef="plan_confirmed_as_booked_money" />
+    <bpmn:sequenceFlow id="flow_10" name="An id of a landed plan" sourceRef="is_the_confirmation_an_id_a_bare_confirm_or_a_group" targetRef="book_the_planned_values_as_a_confirming_payment" />
+    <bpmn:sequenceFlow id="flow_11" sourceRef="adjust_the_pre_filled_date_and_amount_for_the_early_landed_instance" targetRef="is_the_confirmed_date_still_ahead_of_today" />
+    <bpmn:sequenceFlow id="flow_12" sourceRef="refuse_a_real_payment_never_lies_in_the_future" targetRef="instance_untouched" />
+    <bpmn:sequenceFlow id="flow_13" name="Yes" sourceRef="is_the_confirmed_date_still_ahead_of_today" targetRef="refuse_a_real_payment_never_lies_in_the_future" />
+    <bpmn:sequenceFlow id="flow_14" name="No then commit" sourceRef="is_the_confirmed_date_still_ahead_of_today" targetRef="book_the_adjusted_values_and_record_an_exception_if_the_values_drifted" />
+    <bpmn:sequenceFlow id="flow_15" sourceRef="is_the_confirmed_date_still_ahead_of_today" targetRef="book_the_adjusted_values_and_record_an_exception_if_the_values_drifted" />
+    <bpmn:sequenceFlow id="flow_16" sourceRef="book_the_adjusted_values_and_record_an_exception_if_the_values_drifted" targetRef="instance_confirmed_as_booked_money" />
+    <bpmn:sequenceFlow id="flow_17" name="Yes" sourceRef="is_the_instance_dated_in_the_future" targetRef="adjust_the_pre_filled_date_and_amount_for_the_early_landed_instance" />
+    <bpmn:sequenceFlow id="flow_18" name="No land today then commit as-is" sourceRef="is_the_instance_dated_in_the_future" targetRef="book_the_rule_s_own_values_with_no_questions" />
+    <bpmn:sequenceFlow id="flow_19" sourceRef="is_the_instance_dated_in_the_future" targetRef="book_the_rule_s_own_values_with_no_questions" />
+    <bpmn:sequenceFlow id="flow_20" sourceRef="book_the_rule_s_own_values_with_no_questions" targetRef="instance_committed_with_the_rule_s_values" />
+    <bpmn:sequenceFlow id="flow_21" name="An id of a due rule instance" sourceRef="is_the_confirmation_an_id_a_bare_confirm_or_a_group" targetRef="is_the_instance_dated_in_the_future" />
+    <bpmn:sequenceFlow id="flow_24" sourceRef="book_each_landed_member_plan_with_its_own_confirming_payment" targetRef="node23" />
+    <bpmn:sequenceFlow id="flow_25" sourceRef="node22" targetRef="book_each_landed_member_plan_with_its_own_confirming_payment" />
+    <bpmn:sequenceFlow id="flow_26" sourceRef="book_each_landed_rule_instance_member_from_its_rule" targetRef="node23" />
+    <bpmn:sequenceFlow id="flow_27" sourceRef="node22" targetRef="book_each_landed_rule_instance_member_from_its_rule" />
+    <bpmn:sequenceFlow id="flow_28" sourceRef="node23" targetRef="re_point_each_confirmed_member_to_its_booking_in_the_group" />
+    <bpmn:sequenceFlow id="flow_29" sourceRef="re_point_each_confirmed_member_to_its_booking_in_the_group" targetRef="report_the_skipped_members" />
+    <bpmn:sequenceFlow id="flow_30" sourceRef="report_the_skipped_members" targetRef="group_confirmed_as_far_as_it_landed" />
+    <bpmn:sequenceFlow id="flow_31" name="A group id" sourceRef="is_the_confirmation_an_id_a_bare_confirm_or_a_group" targetRef="node22" />
+    <bpmn:sequenceFlow id="flow_32" name="Bare confirm with no id" sourceRef="is_the_confirmation_an_id_a_bare_confirm_or_a_group" targetRef="read_the_open_backlog_table_and_pick_an_entry" />
+    <bpmn:sequenceFlow id="flow_33" sourceRef="is_the_confirmation_an_id_a_bare_confirm_or_a_group" targetRef="read_the_open_backlog_table_and_pick_an_entry" />
+    <bpmn:sequenceFlow id="flow_34" sourceRef="read_the_open_backlog_table_and_pick_an_entry" targetRef="decide_to_confirm_the_landed_entry" />
+  </bpmn:process>
+  <bpmn:collaboration id="collaboration">
+    <bpmn:participant id="participant_household_bookkeeper" name="Household bookkeeper" processRef="process_household_bookkeeper" />
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="diagram">
+    <bpmndi:BPMNPlane id="plane" bpmnElement="collaboration">
+      <bpmndi:BPMNShape id="shape_participant_household_bookkeeper" bpmnElement="participant_household_bookkeeper" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1950" height="560" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_decide_to_confirm_the_landed_entry" bpmnElement="decide_to_confirm_the_landed_entry">
+        <dc:Bounds x="380" y="390" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_a_planned_payment_has_landed_at_the_bank" bpmnElement="a_planned_payment_has_landed_at_the_bank">
+        <dc:Bounds x="252" y="412" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_is_the_confirmation_an_id_a_bare_confirm_or_a_group" bpmnElement="is_the_confirmation_an_id_a_bare_confirm_or_a_group" isMarkerVisible="true">
+        <dc:Bounds x="565" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_read_the_open_backlog_table_and_pick_an_entry" bpmnElement="read_the_open_backlog_table_and_pick_an_entry">
+        <dc:Bounds x="700" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_is_the_plan_dated_after_today_or_missing_its_amount" bpmnElement="is_the_plan_dated_after_today_or_missing_its_amount" isMarkerVisible="true">
+        <dc:Bounds x="885" y="545" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_book_the_planned_values_as_a_confirming_payment" bpmnElement="book_the_planned_values_as_a_confirming_payment">
+        <dc:Bounds x="700" y="530" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_strike_the_plan_from_the_expected_register" bpmnElement="strike_the_plan_from_the_expected_register">
+        <dc:Bounds x="1020" y="530" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_plan_untouched" bpmnElement="plan_untouched">
+        <dc:Bounds x="1692" y="552" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_refuse_with_a_note_that_nothing_was_confirmed" bpmnElement="refuse_with_a_note_that_nothing_was_confirmed">
+        <dc:Bounds x="1180" y="530" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_confirm_the_new_balance_on_the_receipt" bpmnElement="confirm_the_new_balance_on_the_receipt">
+        <dc:Bounds x="1340" y="530" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_plan_confirmed_as_booked_money" bpmnElement="plan_confirmed_as_booked_money">
+        <dc:Bounds x="1532" y="552" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_book_the_rule_s_own_values_with_no_questions" bpmnElement="book_the_rule_s_own_values_with_no_questions">
+        <dc:Bounds x="1020" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_is_the_instance_dated_in_the_future" bpmnElement="is_the_instance_dated_in_the_future" isMarkerVisible="true">
+        <dc:Bounds x="725" y="125" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_is_the_confirmed_date_still_ahead_of_today" bpmnElement="is_the_confirmed_date_still_ahead_of_today" isMarkerVisible="true">
+        <dc:Bounds x="1205" y="125" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_adjust_the_pre_filled_date_and_amount_for_the_early_landed_instance" bpmnElement="adjust_the_pre_filled_date_and_amount_for_the_early_landed_instance">
+        <dc:Bounds x="860" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_book_the_adjusted_values_and_record_an_exception_if_the_values_drifted" bpmnElement="book_the_adjusted_values_and_record_an_exception_if_the_values_drifted">
+        <dc:Bounds x="1340" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_instance_untouched" bpmnElement="instance_untouched">
+        <dc:Bounds x="2012" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_refuse_a_real_payment_never_lies_in_the_future" bpmnElement="refuse_a_real_payment_never_lies_in_the_future">
+        <dc:Bounds x="1500" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_instance_confirmed_as_booked_money" bpmnElement="instance_confirmed_as_booked_money">
+        <dc:Bounds x="1692" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_instance_committed_with_the_rule_s_values" bpmnElement="instance_committed_with_the_rule_s_values">
+        <dc:Bounds x="1852" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_re_point_each_confirmed_member_to_its_booking_in_the_group" bpmnElement="re_point_each_confirmed_member_to_its_booking_in_the_group">
+        <dc:Bounds x="1180" y="390" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_node22" bpmnElement="node22">
+        <dc:Bounds x="725" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_node23" bpmnElement="node23">
+        <dc:Bounds x="1045" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_book_each_landed_member_plan_with_its_own_confirming_payment" bpmnElement="book_each_landed_member_plan_with_its_own_confirming_payment">
+        <dc:Bounds x="860" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_book_each_landed_rule_instance_member_from_its_rule" bpmnElement="book_each_landed_rule_instance_member_from_its_rule">
+        <dc:Bounds x="860" y="390" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_report_the_skipped_members" bpmnElement="report_the_skipped_members">
+        <dc:Bounds x="1340" y="390" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_group_confirmed_as_far_as_it_landed" bpmnElement="group_confirmed_as_far_as_it_landed">
+        <dc:Bounds x="1532" y="412" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow_1" bpmnElement="flow_1">
+        <di:waypoint x="288" y="430" />
+        <di:waypoint x="380" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_2" bpmnElement="flow_2">
+        <di:waypoint x="480" y="430" />
+        <di:waypoint x="565" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_3" bpmnElement="flow_3">
+        <di:waypoint x="800" y="570" />
+        <di:waypoint x="885" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_4" bpmnElement="flow_4">
+        <di:waypoint x="1230" y="610" />
+        <di:waypoint x="1230" y="630" />
+        <di:waypoint x="1710" y="630" />
+        <di:waypoint x="1710" y="588" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_5" bpmnElement="flow_5">
+        <di:waypoint x="910" y="595" />
+        <di:waypoint x="910" y="630" />
+        <di:waypoint x="1230" y="630" />
+        <di:waypoint x="1230" y="610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_6" bpmnElement="flow_6">
+        <di:waypoint x="935" y="570" />
+        <di:waypoint x="1020" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_7" bpmnElement="flow_7">
+        <di:waypoint x="935" y="570" />
+        <di:waypoint x="1020" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_8" bpmnElement="flow_8">
+        <di:waypoint x="1070" y="530" />
+        <di:waypoint x="1070" y="500" />
+        <di:waypoint x="1390" y="500" />
+        <di:waypoint x="1390" y="530" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_9" bpmnElement="flow_9">
+        <di:waypoint x="1440" y="570" />
+        <di:waypoint x="1532" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_10" bpmnElement="flow_10">
+        <di:waypoint x="590" y="455" />
+        <di:waypoint x="590" y="570" />
+        <di:waypoint x="700" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_11" bpmnElement="flow_11">
+        <di:waypoint x="910" y="190" />
+        <di:waypoint x="910" y="220" />
+        <di:waypoint x="1230" y="220" />
+        <di:waypoint x="1230" y="175" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_12" bpmnElement="flow_12">
+        <di:waypoint x="1550" y="190" />
+        <di:waypoint x="1550" y="220" />
+        <di:waypoint x="2030" y="220" />
+        <di:waypoint x="2030" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_13" bpmnElement="flow_13">
+        <di:waypoint x="1230" y="175" />
+        <di:waypoint x="1230" y="220" />
+        <di:waypoint x="1550" y="220" />
+        <di:waypoint x="1550" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_14" bpmnElement="flow_14">
+        <di:waypoint x="1255" y="150" />
+        <di:waypoint x="1340" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_15" bpmnElement="flow_15">
+        <di:waypoint x="1255" y="150" />
+        <di:waypoint x="1340" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_16" bpmnElement="flow_16">
+        <di:waypoint x="1390" y="190" />
+        <di:waypoint x="1390" y="280" />
+        <di:waypoint x="1710" y="280" />
+        <di:waypoint x="1710" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_17" bpmnElement="flow_17">
+        <di:waypoint x="775" y="150" />
+        <di:waypoint x="860" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_18" bpmnElement="flow_18">
+        <di:waypoint x="750" y="125" />
+        <di:waypoint x="750" y="90" />
+        <di:waypoint x="1070" y="90" />
+        <di:waypoint x="1070" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_19" bpmnElement="flow_19">
+        <di:waypoint x="775" y="150" />
+        <di:waypoint x="1020" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_20" bpmnElement="flow_20">
+        <di:waypoint x="1070" y="190" />
+        <di:waypoint x="1070" y="340" />
+        <di:waypoint x="1870" y="340" />
+        <di:waypoint x="1870" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_21" bpmnElement="flow_21">
+        <di:waypoint x="590" y="405" />
+        <di:waypoint x="590" y="150" />
+        <di:waypoint x="725" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_24" bpmnElement="flow_24">
+        <di:waypoint x="960" y="290" />
+        <di:waypoint x="1070" y="290" />
+        <di:waypoint x="1070" y="405" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_25" bpmnElement="flow_25">
+        <di:waypoint x="750" y="405" />
+        <di:waypoint x="750" y="290" />
+        <di:waypoint x="860" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_26" bpmnElement="flow_26">
+        <di:waypoint x="960" y="430" />
+        <di:waypoint x="1045" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_27" bpmnElement="flow_27">
+        <di:waypoint x="775" y="430" />
+        <di:waypoint x="860" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_28" bpmnElement="flow_28">
+        <di:waypoint x="1095" y="430" />
+        <di:waypoint x="1180" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_29" bpmnElement="flow_29">
+        <di:waypoint x="1280" y="430" />
+        <di:waypoint x="1340" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_30" bpmnElement="flow_30">
+        <di:waypoint x="1440" y="430" />
+        <di:waypoint x="1532" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_31" bpmnElement="flow_31">
+        <di:waypoint x="615" y="430" />
+        <di:waypoint x="725" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_32" bpmnElement="flow_32">
+        <di:waypoint x="590" y="405" />
+        <di:waypoint x="590" y="290" />
+        <di:waypoint x="700" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_33" bpmnElement="flow_33">
+        <di:waypoint x="590" y="405" />
+        <di:waypoint x="590" y="290" />
+        <di:waypoint x="700" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_34" bpmnElement="flow_34">
+        <di:waypoint x="800" y="290" />
+        <di:waypoint x="590" y="290" />
+        <di:waypoint x="590" y="430" />
+        <di:waypoint x="380" y="430" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
+

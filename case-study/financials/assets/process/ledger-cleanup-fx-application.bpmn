@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions id="definitions" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <bpmn:process id="process_household_bookkeeper">
+    <bpmn:userTask id="hand_one_change_set_file_or_the_whole_pending_set_to_the_tool" name="Hand one change-set file or the whole pending set to the tool" />
+    <bpmn:startEvent id="reviewed_cleanup_change_sets_are_ready_to_apply" name="Reviewed cleanup change-sets are ready to apply" />
+    <bpmn:receiveTask id="read_the_application_outcome" name="Read the application outcome" />
+    <bpmn:exclusiveGateway id="every_change_set_applied_cleanly" name="Every change-set applied cleanly?" />
+    <bpmn:endEvent id="books_cleaned_up" name="Books cleaned up" />
+    <bpmn:userTask id="repair_the_refused_fixes_in_the_change_set" name="Repair the refused fixes in the change-set" />
+    <bpmn:sequenceFlow id="flow_1" sourceRef="reviewed_cleanup_change_sets_are_ready_to_apply" targetRef="hand_one_change_set_file_or_the_whole_pending_set_to_the_tool" />
+    <bpmn:sequenceFlow id="flow_2" sourceRef="hand_one_change_set_file_or_the_whole_pending_set_to_the_tool" targetRef="read_the_application_outcome" />
+    <bpmn:sequenceFlow id="flow_3" sourceRef="read_the_application_outcome" targetRef="every_change_set_applied_cleanly" />
+    <bpmn:sequenceFlow id="flow_4" sourceRef="repair_the_refused_fixes_in_the_change_set" targetRef="hand_one_change_set_file_or_the_whole_pending_set_to_the_tool" />
+    <bpmn:sequenceFlow id="flow_5" name="No - a fix was refused" sourceRef="every_change_set_applied_cleanly" targetRef="repair_the_refused_fixes_in_the_change_set" />
+    <bpmn:sequenceFlow id="flow_6" name="Yes" sourceRef="every_change_set_applied_cleanly" targetRef="books_cleaned_up" />
+    <bpmn:sequenceFlow id="flow_7" sourceRef="every_change_set_applied_cleanly" targetRef="books_cleaned_up" />
+  </bpmn:process>
+  <bpmn:process id="process_cleanup_fix_engine">
+    <bpmn:serviceTask id="load_the_reviewed_fixes_from_the_change_set" name="Load the reviewed fixes from the change-set" />
+    <bpmn:startEvent id="apply_request_arrives" name="Apply request arrives" />
+    <bpmn:task id="resolve_one_fix_against_the_ledger_and_check_its_guards" name="Resolve one fix against the ledger and check its guards" />
+    <bpmn:exclusiveGateway id="fix_is_clear" name="Fix is clear?" />
+    <bpmn:exclusiveGateway id="more_fixes_in_the_change_set" name="More fixes in the change-set?" />
+    <bpmn:endEvent id="run_aborted_at_the_refused_fix" name="Run aborted at the refused fix" />
+    <bpmn:serviceTask id="land_the_correction_as_one_recorded_ledger_change" name="Land the correction as one recorded ledger change" />
+    <bpmn:exclusiveGateway id="pending_sweep_mode" name="Pending sweep mode?" />
+    <bpmn:endEvent id="change_set_fully_handled" name="Change-set fully handled" />
+    <bpmn:serviceTask id="mark_the_applied_change_set_with_the_applied_marker" name="Mark the applied change-set with the applied marker" />
+    <bpmn:sequenceFlow id="flow_8" sourceRef="apply_request_arrives" targetRef="load_the_reviewed_fixes_from_the_change_set" />
+    <bpmn:sequenceFlow id="flow_9" sourceRef="load_the_reviewed_fixes_from_the_change_set" targetRef="resolve_one_fix_against_the_ledger_and_check_its_guards" />
+    <bpmn:sequenceFlow id="flow_10" sourceRef="resolve_one_fix_against_the_ledger_and_check_its_guards" targetRef="fix_is_clear" />
+    <bpmn:sequenceFlow id="flow_11" name="No" sourceRef="fix_is_clear" targetRef="run_aborted_at_the_refused_fix" />
+    <bpmn:sequenceFlow id="flow_12" sourceRef="land_the_correction_as_one_recorded_ledger_change" targetRef="more_fixes_in_the_change_set" />
+    <bpmn:sequenceFlow id="flow_13" name="Yes" sourceRef="fix_is_clear" targetRef="land_the_correction_as_one_recorded_ledger_change" />
+    <bpmn:sequenceFlow id="flow_14" sourceRef="fix_is_clear" targetRef="more_fixes_in_the_change_set" />
+    <bpmn:sequenceFlow id="flow_15" name="Yes" sourceRef="more_fixes_in_the_change_set" targetRef="resolve_one_fix_against_the_ledger_and_check_its_guards" />
+    <bpmn:sequenceFlow id="flow_16" name="No" sourceRef="more_fixes_in_the_change_set" targetRef="pending_sweep_mode" />
+    <bpmn:sequenceFlow id="flow_17" sourceRef="more_fixes_in_the_change_set" targetRef="pending_sweep_mode" />
+    <bpmn:sequenceFlow id="flow_18" sourceRef="mark_the_applied_change_set_with_the_applied_marker" targetRef="change_set_fully_handled" />
+    <bpmn:sequenceFlow id="flow_19" name="Yes" sourceRef="pending_sweep_mode" targetRef="mark_the_applied_change_set_with_the_applied_marker" />
+    <bpmn:sequenceFlow id="flow_20" name="No" sourceRef="pending_sweep_mode" targetRef="change_set_fully_handled" />
+    <bpmn:sequenceFlow id="flow_21" sourceRef="pending_sweep_mode" targetRef="change_set_fully_handled" />
+  </bpmn:process>
+  <bpmn:process id="process_journaled_ledger_engine">
+    <bpmn:serviceTask id="mint_the_record_s_content_identity_and_append_it_to_the_change_journal" name="Mint the record's content identity and append it to the change journal" />
+    <bpmn:startEvent id="one_fix_s_recorded_change_is_ready" name="One fix's recorded change is ready" />
+    <bpmn:serviceTask id="rebook_the_ledger_and_persist_the_converged_snapshot" name="Rebook the ledger and persist the converged snapshot" />
+    <bpmn:endEvent id="the_change_is_recorded" name="The change is recorded" />
+    <bpmn:sequenceFlow id="flow_22" sourceRef="one_fix_s_recorded_change_is_ready" targetRef="mint_the_record_s_content_identity_and_append_it_to_the_change_journal" />
+    <bpmn:sequenceFlow id="flow_23" sourceRef="mint_the_record_s_content_identity_and_append_it_to_the_change_journal" targetRef="rebook_the_ledger_and_persist_the_converged_snapshot" />
+    <bpmn:sequenceFlow id="flow_24" sourceRef="rebook_the_ledger_and_persist_the_converged_snapshot" targetRef="the_change_is_recorded" />
+  </bpmn:process>
+  <bpmn:collaboration id="collaboration">
+    <bpmn:participant id="participant_household_bookkeeper" name="household bookkeeper" processRef="process_household_bookkeeper" />
+    <bpmn:participant id="participant_cleanup_fix_engine" name="cleanup fix engine" processRef="process_cleanup_fix_engine" />
+    <bpmn:participant id="participant_journaled_ledger_engine" name="journaled ledger engine" processRef="process_journaled_ledger_engine" />
+    <bpmn:messageFlow id="messageflow_25" name="Apply request" sourceRef="hand_one_change_set_file_or_the_whole_pending_set_to_the_tool" targetRef="apply_request_arrives" />
+    <bpmn:messageFlow id="messageflow_26" name="Refusal" sourceRef="run_aborted_at_the_refused_fix" targetRef="read_the_application_outcome" />
+    <bpmn:messageFlow id="messageflow_27" name="Application result" sourceRef="change_set_fully_handled" targetRef="read_the_application_outcome" />
+    <bpmn:messageFlow id="messageflow_28" name="Recorded change" sourceRef="land_the_correction_as_one_recorded_ledger_change" targetRef="one_fix_s_recorded_change_is_ready" />
+    <bpmn:messageFlow id="messageflow_29" name="Recorded" sourceRef="the_change_is_recorded" targetRef="resolve_one_fix_against_the_ledger_and_check_its_guards" />
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="diagram">
+    <bpmndi:BPMNPlane id="plane" bpmnElement="collaboration">
+      <bpmndi:BPMNShape id="shape_participant_household_bookkeeper" bpmnElement="participant_household_bookkeeper" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1470" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_participant_cleanup_fix_engine" bpmnElement="participant_cleanup_fix_engine" isHorizontal="true">
+        <dc:Bounds x="160" y="390" width="1470" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_participant_journaled_ledger_engine" bpmnElement="participant_journaled_ledger_engine" isHorizontal="true">
+        <dc:Bounds x="160" y="700" width="1470" height="140" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_hand_one_change_set_file_or_the_whole_pending_set_to_the_tool" bpmnElement="hand_one_change_set_file_or_the_whole_pending_set_to_the_tool">
+        <dc:Bounds x="380" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_reviewed_cleanup_change_sets_are_ready_to_apply" bpmnElement="reviewed_cleanup_change_sets_are_ready_to_apply">
+        <dc:Bounds x="252" y="272" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_read_the_application_outcome" bpmnElement="read_the_application_outcome">
+        <dc:Bounds x="540" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_every_change_set_applied_cleanly" bpmnElement="every_change_set_applied_cleanly" isMarkerVisible="true">
+        <dc:Bounds x="725" y="265" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_books_cleaned_up" bpmnElement="books_cleaned_up">
+        <dc:Bounds x="892" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_repair_the_refused_fixes_in_the_change_set" bpmnElement="repair_the_refused_fixes_in_the_change_set">
+        <dc:Bounds x="860" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_load_the_reviewed_fixes_from_the_change_set" bpmnElement="load_the_reviewed_fixes_from_the_change_set">
+        <dc:Bounds x="380" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_apply_request_arrives" bpmnElement="apply_request_arrives">
+        <dc:Bounds x="252" y="582" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_resolve_one_fix_against_the_ledger_and_check_its_guards" bpmnElement="resolve_one_fix_against_the_ledger_and_check_its_guards">
+        <dc:Bounds x="540" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_fix_is_clear" bpmnElement="fix_is_clear" isMarkerVisible="true">
+        <dc:Bounds x="725" y="575" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_more_fixes_in_the_change_set" bpmnElement="more_fixes_in_the_change_set" isMarkerVisible="true">
+        <dc:Bounds x="1045" y="575" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_run_aborted_at_the_refused_fix" bpmnElement="run_aborted_at_the_refused_fix">
+        <dc:Bounds x="892" y="442" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_land_the_correction_as_one_recorded_ledger_change" bpmnElement="land_the_correction_as_one_recorded_ledger_change">
+        <dc:Bounds x="860" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_pending_sweep_mode" bpmnElement="pending_sweep_mode" isMarkerVisible="true">
+        <dc:Bounds x="1205" y="575" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_change_set_fully_handled" bpmnElement="change_set_fully_handled">
+        <dc:Bounds x="1532" y="582" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_mark_the_applied_change_set_with_the_applied_marker" bpmnElement="mark_the_applied_change_set_with_the_applied_marker">
+        <dc:Bounds x="1340" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_mint_the_record_s_content_identity_and_append_it_to_the_change_journal" bpmnElement="mint_the_record_s_content_identity_and_append_it_to_the_change_journal">
+        <dc:Bounds x="380" y="730" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_one_fix_s_recorded_change_is_ready" bpmnElement="one_fix_s_recorded_change_is_ready">
+        <dc:Bounds x="252" y="752" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_rebook_the_ledger_and_persist_the_converged_snapshot" bpmnElement="rebook_the_ledger_and_persist_the_converged_snapshot">
+        <dc:Bounds x="540" y="730" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_the_change_is_recorded" bpmnElement="the_change_is_recorded">
+        <dc:Bounds x="732" y="752" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow_1" bpmnElement="flow_1">
+        <di:waypoint x="288" y="290" />
+        <di:waypoint x="380" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_2" bpmnElement="flow_2">
+        <di:waypoint x="480" y="290" />
+        <di:waypoint x="540" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_3" bpmnElement="flow_3">
+        <di:waypoint x="640" y="290" />
+        <di:waypoint x="725" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_4" bpmnElement="flow_4">
+        <di:waypoint x="910" y="330" />
+        <di:waypoint x="910" y="350" />
+        <di:waypoint x="430" y="350" />
+        <di:waypoint x="430" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_5" bpmnElement="flow_5">
+        <di:waypoint x="775" y="290" />
+        <di:waypoint x="860" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_6" bpmnElement="flow_6">
+        <di:waypoint x="750" y="265" />
+        <di:waypoint x="750" y="150" />
+        <di:waypoint x="892" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_7" bpmnElement="flow_7">
+        <di:waypoint x="750" y="265" />
+        <di:waypoint x="750" y="150" />
+        <di:waypoint x="892" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_8" bpmnElement="flow_8">
+        <di:waypoint x="288" y="600" />
+        <di:waypoint x="380" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_9" bpmnElement="flow_9">
+        <di:waypoint x="480" y="600" />
+        <di:waypoint x="540" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_10" bpmnElement="flow_10">
+        <di:waypoint x="640" y="600" />
+        <di:waypoint x="725" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_11" bpmnElement="flow_11">
+        <di:waypoint x="750" y="575" />
+        <di:waypoint x="750" y="460" />
+        <di:waypoint x="892" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_12" bpmnElement="flow_12">
+        <di:waypoint x="960" y="600" />
+        <di:waypoint x="1045" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_13" bpmnElement="flow_13">
+        <di:waypoint x="775" y="600" />
+        <di:waypoint x="860" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_14" bpmnElement="flow_14">
+        <di:waypoint x="750" y="625" />
+        <di:waypoint x="750" y="655" />
+        <di:waypoint x="1070" y="655" />
+        <di:waypoint x="1070" y="625" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_15" bpmnElement="flow_15">
+        <di:waypoint x="1070" y="625" />
+        <di:waypoint x="1070" y="660" />
+        <di:waypoint x="590" y="660" />
+        <di:waypoint x="590" y="640" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_16" bpmnElement="flow_16">
+        <di:waypoint x="1095" y="600" />
+        <di:waypoint x="1205" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_17" bpmnElement="flow_17">
+        <di:waypoint x="1095" y="600" />
+        <di:waypoint x="1205" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_18" bpmnElement="flow_18">
+        <di:waypoint x="1440" y="600" />
+        <di:waypoint x="1532" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_19" bpmnElement="flow_19">
+        <di:waypoint x="1255" y="600" />
+        <di:waypoint x="1340" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_20" bpmnElement="flow_20">
+        <di:waypoint x="1230" y="625" />
+        <di:waypoint x="1230" y="655" />
+        <di:waypoint x="1550" y="655" />
+        <di:waypoint x="1550" y="618" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_21" bpmnElement="flow_21">
+        <di:waypoint x="1230" y="625" />
+        <di:waypoint x="1230" y="660" />
+        <di:waypoint x="1550" y="660" />
+        <di:waypoint x="1550" y="618" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_22" bpmnElement="flow_22">
+        <di:waypoint x="288" y="770" />
+        <di:waypoint x="380" y="770" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_23" bpmnElement="flow_23">
+        <di:waypoint x="480" y="770" />
+        <di:waypoint x="540" y="770" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_24" bpmnElement="flow_24">
+        <di:waypoint x="640" y="770" />
+        <di:waypoint x="732" y="770" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_25" bpmnElement="messageflow_25">
+        <di:waypoint x="430" y="330" />
+        <di:waypoint x="430" y="375" />
+        <di:waypoint x="270" y="375" />
+        <di:waypoint x="270" y="582" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_26" bpmnElement="messageflow_26">
+        <di:waypoint x="910" y="442" />
+        <di:waypoint x="910" y="375" />
+        <di:waypoint x="590" y="375" />
+        <di:waypoint x="590" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_27" bpmnElement="messageflow_27">
+        <di:waypoint x="1550" y="582" />
+        <di:waypoint x="1550" y="375" />
+        <di:waypoint x="590" y="375" />
+        <di:waypoint x="590" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_28" bpmnElement="messageflow_28">
+        <di:waypoint x="910" y="640" />
+        <di:waypoint x="910" y="685" />
+        <di:waypoint x="270" y="685" />
+        <di:waypoint x="270" y="752" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_29" bpmnElement="messageflow_29">
+        <di:waypoint x="750" y="752" />
+        <di:waypoint x="750" y="685" />
+        <di:waypoint x="590" y="685" />
+        <di:waypoint x="590" y="640" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
+

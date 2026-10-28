@@ -1,0 +1,13 @@
+@startuml
+' State diagram of vault project 'financials' — PlantUML source.
+' Entity: entity/expected-entry — Expected entry (Transaction, model.py store shape)
+' States: 2 · Transitions: 1 (of 1)
+
+' States (declared first — nothing referenced before declared)
+state "parked plan" as s0
+state "settled actual entry" as s1
+
+' Transitions (from --> to : event [condition])
+s0 --> s1 : the planned day arrives\nand the movement actually\nhappens [the recording on\nthe actual side names the\nplan's id as retired —\nthe confirm path converts\nthe plan into a journaled\nactual entry linked to\nit]
+
+@enduml

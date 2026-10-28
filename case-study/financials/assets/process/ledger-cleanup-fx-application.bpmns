@@ -1,0 +1,42 @@
+process "household bookkeeper"
+  start "Reviewed cleanup change-sets are ready to apply"
+  user "Hand one change-set file or the whole pending set to the tool"
+  receive "Read the application outcome"
+  exclusive "Every change-set applied cleanly?"
+    if "No - a fix was refused" then
+      user "Repair the refused fixes in the change-set"
+      goto "Hand one change-set file or the whole pending set to the tool"
+    else "Yes"
+  end "Books cleaned up"
+
+process "cleanup fix engine"
+  start "Apply request arrives"
+  service "Load the reviewed fixes from the change-set"
+  task "Resolve one fix against the ledger and check its guards"
+  exclusive "Fix is clear?"
+    if "No" then
+      end "Run aborted at the refused fix"
+    else "Yes"
+      service "Land the correction as one recorded ledger change"
+  exclusive "More fixes in the change-set?"
+    if "Yes" then goto "Resolve one fix against the ledger and check its guards"
+    else "No"
+  exclusive "Pending sweep mode?"
+    if "Yes" then
+      service "Mark the applied change-set with the applied marker"
+    else "No"
+  end "Change-set fully handled"
+
+process "journaled ledger engine"
+  start "One fix's recorded change is ready"
+  service "Mint the record's content identity and append it to the change journal"
+  service "Rebook the ledger and persist the converged snapshot"
+  end "The change is recorded"
+
+message flows
+  from "household bookkeeper"."Hand one change-set file or the whole pending set to the tool" to "cleanup fix engine"."Apply request arrives" label "Apply request"
+  from "cleanup fix engine"."Run aborted at the refused fix" to "household bookkeeper"."Read the application outcome" label "Refusal"
+  from "cleanup fix engine"."Change-set fully handled" to "household bookkeeper"."Read the application outcome" label "Application result"
+  from "cleanup fix engine"."Land the correction as one recorded ledger change" to "journaled ledger engine"."One fix's recorded change is ready" label "Recorded change"
+  from "journaled ledger engine"."The change is recorded" to "cleanup fix engine"."Resolve one fix against the ledger and check its guards" label "Recorded"
+
