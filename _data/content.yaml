@@ -1,7 +1,7 @@
 meta:
   title: Archiku | Agent-Augmented Software Archaeology
   description: |
-    Gain independent, line-level architectural insight into your codebase. Archiku combines multi-agent workflows with expert analysis to map your system in days.
+    Gain independent, line-level architectural insight into your codebase. Archiku combines multi-agent workflows with expert analysis: a validated baseline analysis in days, measured at twelve analyst-days of work on our public case study.
 
 footer:
   copyright: |
@@ -33,16 +33,35 @@ sections:
           ...drifts a little further from the plan with every release. Can you track that drift and use that knowledge to steer, without introducing a parallel review team that inherently lags behind?
     closing:
       - |
-        Different systems, context and goals, yet always the same bottom-line question.
-        Every one of them was active code once, before the changes nobody recorded
-        turned it into a black box.
-      - When you know what your software really does, you can decide, budget,
-        verify and comply. When you do not, every choice is a bet.
+        Unrecorded knowledge turns active code into a black box. Know your software, and you can budget, verify and comply. Guess and every choice is a bet.
     pitch: |
-      Archiku delivers independent insight into what your software really is.
-      A team of agents digs through your codebase and produces a validated baseline analysis in days. Every finding is traceable to the exact line of code,
-      independently reviewed by multiple agents, reinforcing your experts again as the
-      final authority.
+      Archiku delivers rapid, independent insight into your codebase. Our agents deliver a validated baseline analysis in days, not weeks. With every finding traced to a line of code and independently reviewed, your experts remain the ultimate authority.
+
+  # ------------------------------------------------ triage
+  - id: triage
+    type: tracks
+    intro: |
+      Uncover the Archiku site at your own pace. Choose your own focus...
+    items:
+      - title: What is Archiku?
+        text: |
+            Ready to explore our offering? Want to understand how we can help? Learn how we work? Meet the team?
+        image: assets/img/metamodel.png
+        link: /next.html#deliverables
+        link_label: Keep reading...
+      - title: Get the context
+        text: |
+            Learn by example? Read the <i>Financials</i> case study and understand our offering following a real story and a real analysis.
+        image: assets/img/track-case-study.png
+        link: /case-study/
+        link_label: Start with the case study
+      - title: Skip the intro
+        text: |
+            Already familiar with software archaeology? Know what you should expect from a functional analysis?<br>
+            Read the reports, browse the fact sheets.
+        image: assets/img/track-analysis.png
+        link: /case-study/financials/
+        link_label: See an actual analysis
 
   # ------------------------------------------------ deliverables
   - id: deliverables
@@ -85,22 +104,29 @@ sections:
         badge: Coming Soon
         badge_style: warning
         text: |
-          A comprehensive, highly structured knowledge base of your entire codebase. Instead of heavy, static PDF reports, you receive an interactive asset designed to integrate directly into your engineering workflows.
+          Today, a validated baseline analysis materializes as a static,
+          wiki-like site: every fact in place, fully interlinked, yours to
+          keep. Soon, the same fact base becomes a living repository: an
+          interactive asset that integrates directly into your engineering
+          workflows.
       - title: Interactive Querying
         icon: bi-compass
         badge: Coming Soon
         badge_style: warning
         text: |
-          Reporting and charts tell you a lot about your codebase, until you have a single specific question. On top of the living repository, we will soon offer the opportunity to literally have a chat about the analysis reality that hides in your codebase.
+          Reporting and charts tell you a lot about your codebase, until you
+          have a single specific question. Soon, the observatory opens: chat
+          about your analysis, ask what you want and receive answers with
+          the same traceability as every fact behind them.
       - title: Continuous Monitoring
         icon: bi-eye
         badge: Coming Soon
         badge_style: warning
         text: |
-          Future-proof your active codebases. Transition your one-time validated
-          analysis into a living, automated and interactive dashboard. Our upcoming
-          monitoring module is designed to track repository drift against your
-          validated functional baseline.
+          Future-proof your active codebases. Your one-time validated analysis
+          becomes the baseline: the platform runs a check at regular intervals,
+          tracking repository drift against your validated functional baseline
+          and reporting it in language a board can act on.
 
   # ------------------------------------------------ use cases
   - id: usecases
@@ -162,57 +188,90 @@ sections:
   # ------------------------------------------------ benefits
   - id: benefits
     nav_label: Benefits
-    type: values
+    type: tabs
     title: What's in it for you
     subtitle: |
-      Archiku provides insight, supporting your decisions.
-    items:
-      - title: Independent insight
-        icon: bi-fingerprint
-        text: |
-          Archiku has no stake in your build decisions. We do not write your
-          software, we do not sell its implementation, we answer to nobody but
-          the facts in your code. Whether the question is an inherited system,
-          a vendor's delivery or your own team's work, the insight is
-          independent and yours alone.
-      - title: Timely
-        icon: bi-stopwatch
-        text: |
-          The Phase 0 intake covers up to 10K SLOC and is analyzed within 48
-          business hours of successful onboarding. A fully validated baseline
-          analysis is delivered in days, at a fixed fee and a fixed scope agreed up
-          front. No open-ended engagements.
-      - title: Cost-effective
-        icon: bi-cash-coin
-        text: |
-          A fixed fee instead of months of billable archaeology by a team. The
-          Phase 0 intake costs €1,500 and is fully credited toward the full
-          analysis when we proceed. If it shows no value, you pay nothing.
-      - title: Privacy-first
-        icon: bi-shield-lock
-        text: |
-          Your code is analyzed on hardware we control, in an isolated per-client
-          environment. Your code is never sent to public AI services and no model is
-          ever trained on it. Ever.
-      - title: Full traceability
-        icon: bi-crosshair
-        text: |
-          Every finding cites the exact file and line it came from. Nothing is
-          claimed that cannot be pointed at.
-      - title: Full auditability
-        icon: bi-patch-check
-        text: |
-          The analysis passes a multi-pass agentic review pipeline before human validation, with our baseline verification metrics open to your inspection.
-      - title: 25 years of experience
-        icon: bi-award
-        text: |
-          Agents are fast, but the method is the product: a quarter century
-          of software and functional analysis, from analysis craft to BPMN and
-          UML modelling, drives what Archiku looks for and how findings are judged.
+      Archiku provides insight, supporting your decisions at multiple levels.
+    groups:
+      - tab: Speed & Value
+        id: speed
+        items:
+        - title: Days, not months
+          icon: bi-rocket-takeoff
+          text: |
+            Reading code is the bottleneck: a seasoned analyst reads about 200
+            lines per hour. Our Financials case study, sized to the Phase 0
+            scope, measures the full human analysis at twelve working days.
+            Archiku delivered the same analysis in two days, at the cost of
+            two analyst-days.
+        - title: Timely
+          icon: bi-stopwatch
+          text: |
+            The Phase 0 intake covers up to 10K SLOC and is analyzed within 48
+            business hours of successful onboarding, at a fixed fee and a fixed
+            scope agreed up front. No open-ended engagements.
+        - title: Cost-effective
+          icon: bi-cash-coin
+          text: |
+            A fixed fee instead of months of billable archaeology by a team.
+            Measured on our case study scope: what costs a human analyst
+            twelve working days, costs two here. The Phase 0 intake is €1,500
+            and is fully credited toward the full analysis when we proceed.
+            If it shows no value, you pay nothing.
+      - tab: Trust & Security
+        id: trust
+        items:
+        - title: Independent insight
+          icon: bi-fingerprint
+          text: |
+            Archiku has no stake in your build decisions. We do not write your
+            software, we do not sell its implementation, we answer to nobody but
+            the facts in your code. Whether the question is an inherited system,
+            a vendor's delivery or your own team's work, the insight is
+            independent and yours alone.
+        - title: Privacy-first
+          icon: bi-shield-lock
+          text: |
+            Your code is analyzed on hardware we control, in an isolated per-client
+            environment. Your code is never sent to public AI services and no model is
+            ever trained on it. Ever.
+        - title: Full traceability
+          icon: bi-crosshair
+          text: |
+            Every finding cites the exact file and line it came from. Nothing is
+            claimed that cannot be pointed at.
+        - title: Full auditability
+          icon: bi-patch-check
+          text: |
+            The analysis passes a multi-pass agentic review pipeline before human validation, with our baseline verification metrics open to your inspection.
+
+      - tab: Expertise & Method
+        id: expertise
+        items:
+        - title: A jumpstart, not a handover
+          icon: bi-people
+          text: |
+            The analysis is always owned by humans. Archiku takes the slow
+            part, reading the code, so your experts start from a readable,
+            line-cited report that reads in about an hour. Judgement begins
+            from structured facts, not from days of raw code.
+        - title: Beyond the happy path
+          icon: bi-binoculars
+          text: |
+            Over 35 fact types capture the codebase from every angle:
+            processes, concepts and rules, but also issues, hotspots, quirks
+            and conventions. People describe the happy path well. The real
+            costs lurk in the small details, and that is where the analysis
+            looks first.
+        - title: 25 years of experience
+          icon: bi-award
+          text: |
+            Agents are fast, but the method is the product: a quarter century
+            of software and functional analysis, from analysis craft to BPMN and
+            UML modelling, drives what Archiku looks for and how findings are judged.
 
   # ------------------------------------------------ method
   - id: method
-    nav_label: Method
     type: values
     title: The Archiku Analysis Method
     subtitle: |
@@ -255,7 +314,6 @@ sections:
 
   # ------------------------------------------------ process
   - id: process
-    nav_label: Process
     type: steps
     title: How we work
     items:
@@ -297,7 +355,6 @@ sections:
 
   # ------------------------------------------------ about
   - id: about
-    nav_label: About
     type: split
     title: The human in the loop
     image: /assets/img/avatar.png
@@ -306,79 +363,17 @@ sections:
       - |
         We call our method <strong>software archaeology</strong>: digging through the complex layers of a system until the original business intent surfaces again. While our agentic workflows read code at massive speeds, experienced humans decide what it means. Archiku pairs this automated power with a seasoned analyst who structurally validates every finding and personally presents the insights live to your team.
       - |
-        Christophe Van Ginneken has analyzed, modeled and architected
+        <b>Christophe Van Ginneken</b> has analyzed, modeled and architected
         business-critical software for over 25 years, as analyst, analyst coach
         and architect, for financial services, logistics and transport, public
         sector, technology and manufacturing. Connect with him on
         <a href="https://www.linkedin.com/in/christophevg/">LinkedIn</a>.
       - |
-        His research on Agentic Workflows is published as a series of articles
-        on <a href="https://christophe.vg/about/Hello-Agents">his personal
+        His research on <b>Agentic Workflows</b> is published as a series of informal articles on <a href="https://christophe.vg/about/Hello-Agents">his personal
         website</a> and documents the principles behind the Archiku approach.
-
-  # ------------------------------------------------ team
-  - id: team
-    nav_label: Team
-    type: profiles
-    title: Meet the team
-    subtitle: |
-      While the industry points AI at generating more code output, Archiku points it
-      the other way. Our agents excel at unstructured research, tracing behavior
-      back to the source to uncover truth. Archiku is an integrated team of four
-      specialized agents and a unified knowledge engine working alongside a human
-      analyst: Carter fully analyzes the code, Harper interacts with your team, our
-      upcoming Argus module is designed to watch for drift and Oracle will explain
-      findings directly from the Vault.
-    items:
-      - title: Carter
-        icon: bi-map
-        bio1: |
-          Carter is a true excavator. He digs through your code and any existing
-          documentation, layer by layer, oldest evidence first, until the original
-          intent surfaces again.
-        bio2: |
-          Hand Carter a system, a delivery or an entire estate and the result is
-          the same: a map of what it really does, traceable to the exact line of
-          code. Methodical, thorough and never in a hurry to judge.
-      - title: Harper
-        icon: bi-mic
-        bio1: |
-          Harper loves to listen to people. Code does not remember everything,
-          people do. Harper connects down with your people, in their language, and
-          gathers the testimony the code cannot give: decisions taken, reasons
-          forgotten, knowledge that only lives in heads.
-        bio2: |
-          What Harper hears is checked against what Carter finds and the gaps in
-          the analysis close. The listener of the team.
-      - title: Argus
-        icon: bi-eye
-        bio1: |
-          Argus is our watchman. A hundred eyes, never all closed at once. He
-          watches the codebase as it lives: every push, every change, every drift
-          away from the baseline.
-        bio2: |
-          What Argus sees is reported in language a board can act on. And it is
-          Argus who keeps the knowledge up to date, so the issues it surfaces reach you
-          before they become surprises.
-      - title: Oracle
-        icon: bi-compass
-        bio1: |
-          Oracle is your trustworthy counsel. An analysis you cannot question is
-          just a document. Oracle answers in the language of the asker: technical for
-          developers, business language for the board, regulatory language for
-          compliance.
-        bio2: |
-          Every answer carries the same traceability as the analysis it comes
-          from. Consult the Oracle whenever reading code is not the job at hand.
-    vault:
-      title: The Vault
-      icon: bi-safe
-      text: |
-        The Vault holds the universal truth of your software. Every fact it
-        holds conforms to the Archiku Analysis Metamodel: structured,
-        citation-anchored and versioned. Delivered today as a comprehensive
-        baseline knowledge engine, it forms the exact foundation for our
-        automated tracking dashboard launching soon.
+      - |
+        Archiku is foremost Christophe, your human in the loop. Inside the loop <b>Carter, Harper, Argus and Oracle</b> join him to deliver your next analysis. <br>
+        <b><a href="/team/">Meet the team!</a></b>
 
   # ------------------------------------------------ pricing
   - id: pricing
@@ -426,109 +421,6 @@ sections:
     button:
       label: Browse the Financials Case Study Analysis
       url: "/case-study/financials"
-
-  # ------------------------------------------------ faq
-  - id: faq
-    nav_label: FAQ
-    type: faq
-    title: Questions you may have
-    subtitle: |
-      The questions you ask before trusting an outside party with your software, answered up front.
-    items:
-      - q: Are you a competitor to our consultancy or EA tooling provider?
-        a: |
-          No. Archiku provides the information layer, not the services or the
-          tools built on top of it. Consultancies and EA providers can build on
-          our insights and add their own personal layers on top. We want to help
-          everybody in the software market, at any level, without interfering
-          with any other level.
-      - q: Is my code used to train AI models?
-        a: |
-          No. Your code is analyzed on our own hardware in an isolated environment for
-          each client. Large models are hosted only with providers that uphold our
-          standards, and don't log any content. Nothing is sent to public AI services
-          and no model is trained on your code. Ever.
-      - q: Do you replace my team?
-        a: |
-          No. We give your team the starting point it deserves. Every finding is
-          delivered for your experts to validate, extend and own. Archiku's
-          mandate ends where your team's authority begins, and that is written
-          into the engagement.
-      - q: Do you replace my software delivery vendor?
-        a: |
-          No. We do not build software and we do not sell implementation, so we
-          have no stake in their work. That is the point: an independent analysis
-          of what was actually delivered. If your vendor is doing well, the
-          analysis shows it, and you finally have the evidence. If it is not, you
-          see that early, in traceable findings, and our upcoming Argus module is
-          designed to monitor those changes, ongoing, on your behalf later this year.
-      - q: What if the analysis is wrong?
-        a: |
-          This can happen. To deliver your analysis in a timely fashion, we rely on
-          multi-pass agentic workflows combined with rigorous structural expert
-          validation to catch and eliminate typical mistakes.
-          Even then, our agents can miss a subtlety.<br>
-          Every finding cites its exact place in the code, so you can verify any
-          claim in seconds. Before delivery, the analysis passes independent
-          review by multiple agents in multiple passes. Your experts remain the final
-          authority, by design.
-      - q: Which languages and technologies do you support?
-        a: |
-          The standard pipeline covers mainstream backend languages such as Java,
-          C#, Python and PHP. Other stacks are possible after a short
-          exploration. The Phase 0 intake is where we confirm fit before any
-          commitment.
-      - q: How is this different from AI coding assistants like Copilot or Cursor?
-        a: |
-          Those tools help developers write code. Archiku produces independent
-          insight about code: what a system does, how it has drifted and whether
-          delivered work conforms. Different question, different product, and no
-          human analyst validation in those tools.
-      - q: How is this different from a consultancy audit?
-        a: |
-          A classic audit bills a team by the day and hands you a report. Archiku
-          delivers a validated baseline analysis in days at a fixed fee,
-          traceable to the exact line of code and independently reviewed. And it
-          does not have to end at that initial delivery: When Argus arrives, it can monitor the evolution of your codebases, paired with the Vault, it even offers an interactive platform for your analysts to interact and work together with the Archiku team of agents.
-      - q: What does it cost?
-        a: |
-          - **Phase 0 Intake:** €1,500 flat fee for a core module or micro-service (up to 10K SLOC). 100% risk-free: if the live presentation shows no value, you pay €0.
-          - **Core Systems & Platforms:** Fixed tiers at €4,900 (up to 50K SLOC) and €9,900 (up to 150K SLOC). Larger multi-repo estates receive custom pricing.
-          - **The Credit:** When you proceed to a full system tier, your €1,500 intake fee is 100% credited back and deducted straight from your invoice.
-          - **Supporting Services** like Vault, Argus and Oracle are customized to meet your requirements and are accessible through a monthly subscription fee.
-      - q: What happens to my code after the engagement?
-        a: |
-          It stays yours and it stays yours alone. It lives in the isolated
-          environment only for the duration of the analysis. When the engagement
-          ends, the working copies are purged. The deliverable, the knowledge, is
-          yours to keep.
-      - q: Who owns the deliverable?
-        a: |
-          You do. The validated baseline analysis is yours: your experts validate
-          it, extend it and own it. It is built to outlive the engagement.
-      - q: How do the agents get access to our code?
-        a: |
-          On our hardware, in an isolated per-client environment, under NDA, with
-          the access you choose to grant: a copy of one module for Phase 0, or a
-          read-only view of your repository for ongoing monitoring. You define exactly
-          what is accessed and nothing leaves that perimeter.
-      - q: Is Archiku fully automated?
-        a: |
-          No, and deliberately so. Archiku leverages a specialized, multi-pass automated pipeline to handle the complex tasks of extracting, mapping, and cross-referencing your codebase. However, a veteran master analyst personally validates findings structurally before they reach your desk.
-      - q: What is the Archiku Analysis Metamodel?
-        a: |
-          It is the declarative model that defines what a finding may be: the fact
-          types, relations and taxonomies the platform understands. The Vault loads it
-          and enforces it, so every finding is structured, citation-anchored and
-          versioned by construction. It is how Archiku guarantees that the analysis is
-          grounded, not generated.
-      - q: Can Archiku support our internal analysis methodology?
-        a: |
-          Yes. That is our enterprise offering. The Archiku Metamodel is configuration,
-          not code, so we can tailor it to your own analysis artefacts: your fact
-          types, relations and taxonomies. Custom agents are then matched to
-          those artefacts, producing and consuming exactly the facts your
-          methodology needs, on the same grounded, traceable platform.
 
   # ------------------------------------------------ contact
   - id: contact

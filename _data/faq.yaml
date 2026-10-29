@@ -1,0 +1,112 @@
+meta:
+  title: Archiku | FAQ
+  description: |
+    The questions you ask before trusting an outside party with your software, answered up front.
+
+sections:
+  - id: top
+    type: intro
+    kicker: Answers, up front.
+    title: Questions you may have
+    intro:
+      - |
+        The questions you ask before trusting an outside party with your software, answered before you have to ask them.
+
+  # ------------------------------------------------ faq
+  - id: faq
+    type: faq
+    items:
+      - q: Are you a competitor to our consultancy or EA tooling provider?
+        a: |
+          No. Archiku provides the information layer, not the services or the
+          tools built on top of it. Consultancies and EA providers can build on
+          our insights and add their own personal layers on top. We want to help
+          everybody in the software market, at any level, without interfering
+          with any other level.
+      - q: Is my code used to train AI models?
+        a: |
+          No. Your code is analyzed on our own hardware in an isolated environment for
+          each client. Large models are hosted only with providers that uphold our
+          standards, and don't log any content. Nothing is sent to public AI services
+          and no model is trained on your code. Ever.
+      - q: Do you replace my team?
+        a: |
+          No. We give your team the starting point it deserves. Every finding is
+          delivered for your experts to validate, extend and own. Archiku's
+          mandate ends where your team's authority begins, and that is written
+          into the engagement.
+      - q: Do you replace my software delivery vendor?
+        a: |
+          No. We do not build software and we do not sell implementation, so we
+          have no stake in their work. That is the point: an independent analysis
+          of what was actually delivered. If your vendor is doing well, the
+          analysis shows it, and you finally have the evidence. If it is not, you
+          see that early, in traceable findings, and our upcoming Argus module is
+          designed to monitor those changes, ongoing, on your behalf later this year.
+      - q: What if the analysis is wrong?
+        a: |
+          This can happen. To deliver your analysis in a timely fashion, we rely on
+          multi-pass agentic workflows combined with rigorous structural expert
+          validation to catch and eliminate typical mistakes.
+          Even then, our agents can miss a subtlety.<br>
+          Every finding cites its exact place in the code, so you can verify any
+          claim in seconds. Before delivery, the analysis passes independent
+          review by multiple agents in multiple passes. Your experts remain the final
+          authority, by design.
+      - q: Which languages and technologies do you support?
+        a: |
+          The standard pipeline covers mainstream backend languages such as Java,
+          C#, Python and PHP. Other stacks are possible after a short
+          exploration. The Phase 0 intake is where we confirm fit before any
+          commitment.
+      - q: How is this different from AI coding assistants like Copilot or Cursor?
+        a: |
+          Those tools help developers write code. Archiku produces independent
+          insight about code: what a system does, how it has drifted and whether
+          delivered work conforms. Different question, different product, and no
+          human analyst validation in those tools.
+      - q: How is this different from a consultancy audit?
+        a: |
+          A classic audit bills a team by the day and hands you a report. Archiku
+          delivers a validated baseline analysis in days at a fixed fee,
+          traceable to the exact line of code and independently reviewed. And it
+          does not have to end at that initial delivery: When Argus arrives, it can monitor the evolution of your codebases, paired with the Vault, it even offers an interactive platform for your analysts to interact and work together with the Archiku team of agents.
+      - q: What does it cost?
+        a: |
+          - **Phase 0 Intake:** €1,500 flat fee for a core module or micro-service (up to 10K SLOC). 100% risk-free: if the live presentation shows no value, you pay €0.
+          - **Core Systems & Platforms:** Fixed tiers at €4,900 (up to 50K SLOC) and €9,900 (up to 150K SLOC). Larger multi-repo estates receive custom pricing.
+          - **The Credit:** When you proceed to a full system tier, your €1,500 intake fee is 100% credited back and deducted straight from your invoice.
+          - **Supporting Services** like Vault, Argus and Oracle are customized to meet your requirements and are accessible through a monthly subscription fee.
+      - q: What happens to my code after the engagement?
+        a: |
+          It stays yours and it stays yours alone. It lives in the isolated
+          environment only for the duration of the analysis. When the engagement
+          ends, the working copies are purged. The deliverable, the knowledge, is
+          yours to keep.
+      - q: Who owns the deliverable?
+        a: |
+          You do. The validated baseline analysis is yours: your experts validate
+          it, extend it and own it. It is built to outlive the engagement.
+      - q: How do the agents get access to our code?
+        a: |
+          On our hardware, in an isolated per-client environment, under NDA, with
+          the access you choose to grant: a copy of one module for Phase 0, or a
+          read-only view of your repository for ongoing monitoring. You define exactly
+          what is accessed and nothing leaves that perimeter.
+      - q: Is Archiku fully automated?
+        a: |
+          No, and deliberately so. Archiku leverages a specialized, multi-pass automated pipeline to handle the complex tasks of extracting, mapping, and cross-referencing your codebase. However, a veteran master analyst personally validates findings structurally before they reach your desk.
+      - q: What is the Archiku Analysis Metamodel?
+        a: |
+          It is the declarative model that defines what a finding may be: the fact
+          types, relations and taxonomies the platform understands. The Vault loads it
+          and enforces it, so every finding is structured, citation-anchored and
+          versioned by construction. It is how Archiku guarantees that the analysis is
+          grounded, not generated.
+      - q: Can Archiku support our internal analysis methodology?
+        a: |
+          Yes. That is our enterprise offering. The Archiku Metamodel is configuration,
+          not code, so we can tailor it to your own analysis artefacts: your fact
+          types, relations and taxonomies. Custom agents are then matched to
+          those artefacts, producing and consuming exactly the facts your
+          methodology needs, on the same grounded, traceable platform.

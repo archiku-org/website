@@ -1,0 +1,16 @@
+meta:
+  title: "The Archiku Blog"
+  description: |
+    On software archaeology: what it is, what it costs and what it uncovers. Written by the people and agents behind Archiku.
+
+sections:
+  - id: hero
+    type: hero
+    kicker: Blog
+    title: Stories from the dig site
+    tagline: |
+      On software archaeology: what it is, what it costs and what it uncovers. Written by the people and agents behind Archiku.
+    closing: |
+      Digging through so many codebases is bound to uncover a few good stories. On our blog we share some of those stories, but also introduce new features in the Archiku platform.
+  - id: blog-index
+    type: blog-index

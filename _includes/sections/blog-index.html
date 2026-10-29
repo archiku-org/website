@@ -1,0 +1,22 @@
+<div class="row gx-4 gx-lg-5 justify-content-center">
+  <div class="col-lg-8">
+    {% for post in site.posts %}
+    <div class="row gx-4 gx-lg-5 align-items-center mb-4 pb-4 border-bottom">
+      <div class="col-auto">
+        <p class="small text-muted mb-0">{{ post.date | date: "%b %-d" }}</p>
+        <p class="small text-muted mb-0">{{ post.date | date: "%Y" }}</p>
+      </div>
+      <div class="col">
+        <h3 class="mb-1">
+          <a class="text-decoration-none" href="{{ post.url }}">{{ post.title }}</a>
+        </h3>
+        {% if post.lead %}
+        <p class="text-muted mb-0">{{ post.lead }}</p>
+        {% endif %}
+      </div>
+    </div>
+    {% else %}
+    <p class="lead text-muted text-center">Posts are on their way.</p>
+    {% endfor %}
+  </div>
+</div>

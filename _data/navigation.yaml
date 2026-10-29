@@ -1,0 +1,10 @@
+- label: Team
+  link: /team/
+- label: FAQ
+  link: /faq/
+- label: Blog
+  link: /blog/
+  highlight: true
+- label: Case Study
+  link: /case-study/
+  highlight: true

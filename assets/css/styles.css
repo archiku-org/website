@@ -38,6 +38,33 @@
   z-index: 1;
 }
 
+/* ------------------------------------------------------------------ */
+/* Method section: the metamodel diagram as a translucent watermark    */
+/* (multiply blend: the PNG's white background vanishes against the    */
+/*  section's bg-light, only the graph shows through)                  */
+#case-study-deliverable {
+  position: relative;
+  overflow: hidden;
+}
+#case-study-deliverable::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../img/track-analysis.png") no-repeat center;
+  background-size: cover;
+  opacity: 0.1;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  /* dissolve the edges: fades out at the top and bottom of the section
+     so the image has no hard boundary there; sides stay fully visible */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+}
+#case-study-deliverable > .container {
+  position: relative;
+  z-index: 1;
+}
+
 html {
   height: 100%;
   scroll-padding-top: calc(4.5rem - 1px);
@@ -90,8 +117,12 @@ body {
   color: #f4623a !important;
 }
 
-footer a, .lead a, .text-muted a {
-  color: #f4623a !important;
+h3 a, h3 a:hover, footer a, .lead a, .text-muted a, p a, li a {
+  color: #f4623a;
+}
+
+a.btn-primary {
+  color: white;
 }
 
 hr.divider {
@@ -341,4 +372,29 @@ h2 {
 .benefit h3,
 .step h3 {
   font-size: clamp(1.1rem, 1rem + 0.6vw, 1.25rem);
+}
+
+
+/* Fixes distortion by forcing images to crop instead of stretching */
+.card-img-top {
+  width: 100%;
+  height: 160px;       /* Keeps card heights matching and aligned */
+  object-fit: cover;   /* Magic line: clips image cleanly to fit space */
+  object-position: center; /* Centers the crop area */
+}
+
+
+.nav-pills .nav-link {
+  color: #495057;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+.nav-pills .nav-link.active {
+  background-color: #f4623a; /* Swaps to your brand primary color */
+  border-color: #f4623a;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 10px
 }

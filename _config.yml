@@ -13,11 +13,8 @@ description: >-
 # Keep working files and docs out of the built site
 exclude:
   - README.md
-  - input.md
   - local
-  - personas-preview.html
   - TODO.md
-  - TODO.html
   - AGENTS.md
   - Gemfile
   - Gemfile.lock

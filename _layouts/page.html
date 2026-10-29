@@ -50,7 +50,11 @@
             <li class="nav-item"><a class="nav-link" href="{{ site.data.setup.root}}#{{ section.id }}">{{ section.nav_label }}</a></li>
             {% endif %}
             {% endfor %}
-            <li class="nav-item"><a class="nav-link text-primary fw-bold" href="/case-study/">Case study</a></li>
+            {% for nav in site.data.navigation %}
+            {% if nav.label %}
+            <li class="nav-item"><a class="nav-link{% if nav.highlight %} text-primary fw-bold{% endif %}" href="{{ nav.link }}">{{ nav.label }}</a></li>
+            {% endif %}
+            {% endfor %}
           </ul>
         </div>
         {% endif %}

@@ -119,7 +119,7 @@ sections:
           The comparison of the two analyses gave Peter the proof he
           needed. The app now lives on as supported, owned software and its
           knowledge is kept up to date with every change.
-  - id: what
+  - id: case-study-deliverable
     type: badge-cards
     kicker: The deliverable
     title: The analysis that became the spec
@@ -153,6 +153,25 @@ sections:
         fifteen chapters of traceable insight, from executive summary to
         quirks and sensitivities.<br>
         All fully excavated from the [actual GitHub codebase](https://github.com/christophevg/financials).
+  - id: value
+    type: paragraphs
+    title: Archiku's value in numbers
+    paragraphs:
+      - |
+        The example codebase in this case study was deliberately sized to our Phase 0 deliverable scope. We measured every aspect of it and consulted research on human reading and writing.
+      - |
+        From that research, we learned that reading a codebase is possible at a rate of about 200 lines per hour, while reading normal text can be done at 550 lines per hour. Writing a report on the other hand happens at about 10 words per minute.
+      - |
+        When we applied that to the size of this codebase, going through the entire codebase and writing a full functional analysis would take a seasoned analyst about twelve working days. Archiku delivers this in two days <i>and</i> at the cost of two analyst-days.
+      - |
+        <center>
+          <img src="/assets/img/value-timeline.png" class="img-fluid" alt="Timeline comparison. The human analyst needs about twelve working days before a decision can be made. Archiku delivers in two days.">
+        </center>
+      - |
+        And it is readable. The functional analysis report reads in about an hour. The full set of facts backing it up, fully semantically navigable, can be read in about two to three hours. Your experts get a jump start in hours, not after ten days of reading code.
+      - |
+        <small><i>Reading rates from Microsoft Research (Meyer et al., "<a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2019/04/devtime-preprint-TSE19.pdf">Today was a Good Day</a>", 5,971 developers), focus factors from RescueTime and the US Bureau of Labor Statistics. The full derivation: <em><a href="/blog/the-cost-of-software-archaeology">The cost of software archaeology</a></em>, on the <a href="/blog/">Archiku blog</a>.</i></small>
+
   - id: request
     type: cta
     title: Your codebase has a story like this

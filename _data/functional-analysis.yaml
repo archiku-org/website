@@ -22,8 +22,8 @@ sections:
     title: The information that matters
     subtitle: |
       A functional analysis is only as good as the facts it captures. These
-      are the pieces of information a reader needs, and that every Archiku
-      analysis provides.
+      are the pieces of information a reader needs and that every Archiku
+      analysis provides. The Archiku Analysis Metamodel has many structured fact types. Here are a few to illustrate what we uncover.
     items:
       - title: Executive summary and scope
         icon: bi-file-earmark-ruled
