@@ -20,3 +20,19 @@
   background-color: #ffffff;
   color: #1c1b1b;
 }
+/* Header search field on the white chrome — the theme's idle pill and
+   hover wash are HARDCODED hsla in the theme (no variable reaches
+   them), designed for a dark header: on white they read grey-idle,
+   invisible-on-hover (the 2026-10-30 owner artifact). Mirrors
+   Material's own [data-md-color-primary="white"] recipe
+   (palette/_primary.scss) — values for the white-header look. */
+@media screen and (min-width: 60em) {
+  .md-search__form { background-color: #f2f2f2; }
+  .md-search__form:hover { background-color: #e3e3e3; }
+}
+.md-search__input + .md-search__icon {
+  color: hsla(0, 0%, 0%, 0.87);  /* the white-default magnifier */
+}
+.md-search__input::placeholder {
+  color: hsla(0, 0%, 0%, 0.54);  /* the white-default placeholder */
+}
