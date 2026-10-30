@@ -7,8 +7,8 @@ author: Christophe VG
 permalink: /blog/what-is-software-archaeology
 ---
 
-These days, every organization runs on software. Unfortunately often, nobody 
-fully understands it anymore.
+These days, every organization runs on software. Unfortunately, nobody 
+fully understands all of it anymore.
 Its makers have moved on, its documentation describes a system that no
 longer exists and every meeting about it ends in war stories. Not legacy
 as in old. Legacy as in: nobody can say what it actually does.
@@ -40,7 +40,7 @@ First version, then the first compromise, then the migrations, the
 framework upgrade nobody asked for, the hotfix at 3am, three generations of
 coding conventions. Each of these is a stratum and each has something to
 tell about intent. The first version tells you what the system was born
-to do. The migrations tell you what reality demanded. The hot fixes tell
+to do. The migrations tell you what reality demanded. The hotfixes tell
 you exactly where it hurt.
 
 Like a true archaeologist, a reader of code should start from the bottom up. By
@@ -72,7 +72,7 @@ These principles have guided me throughout my entire career, frequently surfacin
 during manual analysis projects. The fifth rule always felt like low-hanging fruit that 
 was just out of reach, tantalizingly close, yet difficult to attain. My journey into 
 agentic workflows revealed the true power of agents. By making exhaustive data capture 
-feasible, they allow to look everywhere at once. This comprehensive view brought a 
+feasible, they make it possible to look everywhere at once. This comprehensive view brought a 
 long-known truth into focus: so much valuable insight hides beyond the happy path and 
 that is where the true worth of a good analysis lies.
 

@@ -29,7 +29,7 @@ I know this story in detail because it is mine: I built the app the way
 John did and I have never once looked at its code.  It is really, honestly
 a black box to its own creator, which is exactly what makes it the perfect
 case study. The setting is common ground these days, it's a situation many
-IT leader recognize, minus the usual excuses: a codebase of real value,
+IT leaders recognize, minus the usual excuses: a codebase of real value,
 with real users and no understanding of what is actually inside it.
 
 ## The question at the top

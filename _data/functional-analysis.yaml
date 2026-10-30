@@ -63,7 +63,7 @@ sections:
         icon: bi-x-circle
         text: |
           What the system deliberately does not do. As revealing as the
-          features themselves, and tthe fastest way to prevent teams from
+          features themselves, and the fastest way to prevent teams from
           hunting for non-existent behavior.
       - title: Quirks and sensitivities
         icon: bi-exclamation-diamond
@@ -96,8 +96,8 @@ sections:
         text: |
           Your experts validate, extend and own the analysis. Archiku's
           mandate ends where your team's authority begins. The analysis
-          gives your team its starting point, it does not take the
-          responsibility away.
+          gives your team a starting point. It does not take responsibility
+          away.
       - title: Not a static, dead document
         icon: bi-x-circle
         text: |
