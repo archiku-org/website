@@ -63,12 +63,13 @@ hides.
 
 ## The full circle
 
-The agency rebuilt the app from the analysis. When it was done, a second
-Archiku run compared the new code against the old and the comparison gave
-Peter the evidence he needed: the functional essence of the original,
-delivered by the rebuild, verified against an independent baseline. The
-analysis had become the specification for the delivery and its acceptance
-test in one and the app now lives on as supported, owned software.
+In the story that frames the case study, the agency rebuilds the app from
+the analysis and a second Archiku run compares the new code against the
+old. That comparison gives Peter the evidence he needed: the functional
+essence of the original, delivered by the rebuild, verified against an
+independent baseline. The analysis becomes the specification for the
+delivery and its acceptance test in one, and the app lives on as
+supported, owned software.
 
 ## See for yourself
 

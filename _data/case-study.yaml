@@ -11,7 +11,7 @@ sections:
     tagline: |
       One night of Claude Code. Five departments of value. One question no documentation could answer.
     closing: |
-      The Financials App case study introduces you to an actual Archiku functional analysis and illustrates the Archiku way of working. It is based on an actual codebase, actually vibe coded, yet conceptually simple enough to fit the frame of the case study.
+      The Financials App case study introduces you to an actual Archiku functional analysis and illustrates the Archiku way of working. It is based on an actual codebase, actually vibe coded, yet conceptually simple enough to fit the frame of the case study. The people and the plot around it, from John to the development agency, are a story. The analysis itself is real.
   - id: story
     type: story
     intro:
@@ -20,7 +20,7 @@ sections:
      - |
       For that purpose, I've actually implemented it in more of a vibe-coded way and actually haven't looked at the code myself at any point in time. This codebase is really a blackbox to me and its development has been performed purely from the outside, one high level prompt at a time.
      - |
-      Follow its story below, as I project it on a typical flow of events, with of course Archiku as the superhero, saving the day.
+      Follow its story below, as I project it on a typical flow of events, with of course Archiku as the superhero, saving the day. The story's people, decisions and outcomes, including the rebuild, are illustrative. The analysis, the run that produced it and the published reports are real.
     beats:
       - title: One night, real value
         image: /assets/img/case-study/step1.png
@@ -109,16 +109,17 @@ sections:
       - title: Rebuilt, verified, kept alive
         image: /assets/img/case-study/step9.png
         text: |
-          The development agency rebuilt the app from the analysis. Thanks to
-          not only business rules, but also conventions and quirks, they were
-          able to implement the actual intent John had indirectly implemented.
+          The story's ending has the development agency rebuild the app
+          from the analysis. Thanks to not only business rules, but also
+          conventions and quirks, they implement the actual intent John
+          indirectly implemented.
           <br><br>
-          Later, the analysis served as the acceptance baseline of the new
-          delivery and a new Archiku run on the rebuilt app confirmed the
-          reimplementation covers the functional essence of the original.
-          The comparison of the two analyses gave Peter the proof he
-          needed. The app now lives on as supported, owned software and its
-          knowledge is kept up to date with every change.
+          In the story, the analysis then serves as the acceptance baseline
+          of the new delivery and a new Archiku run on the rebuilt app
+          confirms the reimplementation covers the functional essence of
+          the original. The comparison gives Peter the proof he needed. The
+          app lives on as supported, owned software and its knowledge is
+          kept up to date with every change.
   - id: case-study-deliverable
     type: badge-cards
     kicker: The deliverable
