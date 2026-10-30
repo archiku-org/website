@@ -77,6 +77,15 @@ sections:
           - **Core Systems & Platforms:** Fixed tiers at €4.900 (up to 50K SLOC) and €9.900 (up to 150K SLOC). Larger multi-repo estates receive custom pricing.
           - **The Credit:** When you proceed to a full system tier, your €1.500 intake fee is 100% credited back and deducted straight from your invoice.
           - **Supporting Services** like Vault, Argus and Oracle are customized to meet your requirements and are accessible through a monthly subscription fee.
+      - q: What does "no value shown" actually mean?
+        a: |
+          The Phase 0 intake ends with a live presentation of your module's
+          analysis, demonstrated down to line-cited findings. Value is judged
+          by you, on that presentation. If it holds no value for you, you say
+          so and the engagement ends there: nothing to pay, your code purged,
+          the analysis discarded. You only receive the deliverable, the static
+          analysis site you saw in the case study, when you proceed and pay
+          the fixed fee.
       - q: What happens to my code after the engagement?
         a: |
           It stays yours and it stays yours alone. It lives in the isolated
