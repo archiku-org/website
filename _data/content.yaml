@@ -350,13 +350,13 @@ sections:
         icon: bi-lightning-charge
         text: |
           Together we select a module for a risk-free initial analysis, analyzed
-          within 48 hours and presented to you by the analyst who stands behind it.
+          within 48 business hours and presented to you by the analyst who stands behind it.
       - title: Decide
         icon: bi-cash-coin
         text: |
           No value shown, you pay nothing. Value shown, a flat fee €1.500 for the
-          initial deliverable. Move forward with a full scope analysis? We credit
-          the €1.500.
+          initial deliverable. Move forward with a full scope analysis? The €1.500
+          is fully credited when you continue within 60 days.
       - title: Analyze
         icon: bi-diagram-3
         text: |
@@ -405,18 +405,23 @@ sections:
     type: pricing-table
     title: Transparent pricing
     subtitle: |
-      No open-ended consulting hours. We price by the size of the codebase,
-      with your initial Phase 0 intake fee 100% credited toward the full scope.
+      One module, one fixed price, one decision supported by facts. A Phase 0
+      intake tells you whether a rebuild can be safely planned, what a
+      replacement must preserve, what you are actually taking ownership of,
+      or whether the system is worth further investment. Up to 10K SLOC,
+      analyzed within 48 business hours of onboarding, €1.500, fully credited
+      when you continue to a full analysis within 60 days. If the live
+      presentation shows no value, you pay nothing.
     items:
       - tier: Phase 0 Intake
         price: "€1.500"
         scope: "Up to 10K SLOC"
         focus: "Single Module / Micro-service"
         features:
-          - "48-hour rapid turnaround"
+          - "Analyzed within 48 business hours"
           - "Live interactive presentation"
           - "100% risk-free: €0 if no value shown"
-          - "Fully credited toward full analysis"
+          - "€1.500 fully credited when you continue within 60 days"
       - tier: Core System
         price: "€4.900"
         scope: "Up to 50K SLOC"
@@ -452,8 +457,8 @@ sections:
     type: cta
     title: Let’s map your codebase
     text: |
-      Click the link below to drop us a line. To help us prepare your 48-hour
-      Phase 0 intake, let us know your **primary tech stack** and the
+      Click the link below to drop us a line. To help us prepare your
+      48-business-hour Phase 0 intake, let us know your **primary tech stack** and the
       **general scale (SLOC)** of the module you want analyzed.
       We'll get back to you to schedule your analysis and live preview presentation.
     label: contact @ archiku . com

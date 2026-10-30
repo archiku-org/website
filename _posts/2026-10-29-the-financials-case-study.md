@@ -81,6 +81,5 @@ to the [actual codebase on GitHub](https://github.com/christophevg/financials).
 Reading it takes an hour, which is rather the point of the exercise.
 
 Your version of this story probably has different characters and the same
-question. It starts the same way too: a [48-hour
-intake](/next.html#pricing) on one module, at a fixed fee, with the
-analysis on your desk two days later.
+question. It starts the same way too: a [48-business-hour
+intake](/#pricing) on one module, at a fixed fee, risk-free.
