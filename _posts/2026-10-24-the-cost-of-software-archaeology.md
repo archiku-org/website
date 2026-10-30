@@ -87,9 +87,9 @@ findings across multiple passes before anything was allowed near a human.
 What looks like a six-fold gain hides a second gain: our multi-pass review
 pipeline has a visible cost in the logs, yet one that doesn't reach the surface.
 On this run it amounted to about a month and a half of human-equivalent checking
-work inside the delivery window. This multi-agent approach is what makes the quality
-of the analysis at least on par with the human effort, yet at a fraction of the
-time and cost.
+work inside the delivery window. This multi-pass review stands behind every
+finding: that checking effort is visible in the logs, yet comes at a
+fraction of the time and cost of the human effort.
 
 ## The part that stays human
 

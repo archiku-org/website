@@ -314,7 +314,7 @@ sections:
         icon: bi-check2-square
         text: |
           The Vault enforces the metamodel on every write. A fact that does not
-          conform does not enter. Structure is not promised, it is guaranteed.
+          conform does not enter. Structure is not promised, it is enforced.
       - title: Versioned and append-only
         icon: bi-clock-history
         text: |

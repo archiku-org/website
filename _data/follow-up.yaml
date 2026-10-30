@@ -38,17 +38,17 @@ sections:
         the system has become.
       text: |
         Archiku establishes a baseline of what the system is today and
-        watches every push against it, so functional drift is captured the
-        moment it happens. Progress, quality and conformance, reported to you, not
-        just to the team.
+        will watch every push against it, so functional drift is caught
+        when it happens. Progress, quality and conformance, reported to
+        you, not just to the team.
     - title: The regulator who asks what your systems do
       pretext: |
         Under DORA, financial entities must assess their legacy ICT
-        systems every year. Under NIS2, management is personally liable
+        systems every year. Under NIS2, management is held accountable
         for security and can only evidence what is documented.
       text: |
         Archiku delivers the documented, traceable baseline these
-        obligations ask for, and keeps it current, so next year's
+        obligations ask for, and will keep it current, so next year's
         assessment starts from knowledge, not from panic.
 - id: case-study
   type: cta
