@@ -164,9 +164,9 @@ sections:
       - |
         When we applied that to the size of this codebase, going through the entire codebase and writing a full functional analysis would take a seasoned analyst about twelve working days. Archiku delivers this in two days <i>and</i> at the cost of two analyst-days.
       - |
-        <center>
+        <div class="text-center">
           <img src="/assets/img/value-timeline.png" class="img-fluid" alt="Timeline comparison. The human analyst needs about twelve working days before a decision can be made. Archiku delivers in two days.">
-        </center>
+        </div>
       - |
         And it is readable. The functional analysis report reads in about an hour. The full set of facts backing it up, fully semantically navigable, can be read in about two to three hours. Your experts get a jump start in hours, not after ten days of reading code.
       - |

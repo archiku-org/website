@@ -13,8 +13,12 @@ sections:
   - id: top
     type: hero
     logo_img: /assets/img/archiku-white-transp-bg.png
+    kicker: |
+      Agent-augmented functional analysis
+    title: |
+      Uncovering the essence. Keeping it alive.
     tagline: |
-      Agent-Augmented Software Archaeology<br />Uncovering the essence. Keeping it alive.
+      Know what your software actually does. Before you decide what to do with it.
     opener: Do you really know your software?
     opener_sub: |
       Not what it was designed to do. Not what the documentation says it does.
@@ -41,27 +45,29 @@ sections:
   - id: triage
     type: tracks
     intro: |
-      Uncover the Archiku site at your own pace. Choose your own focus...
+      Three ways in, no wrong door.
     items:
-      - title: What is Archiku?
+      - title: How it works
         text: |
-            Ready to explore our offering? Want to understand how we can help? Learn how we work? Meet the team?
+          From hidden codebase to validated baseline analysis. What our agents
+          dig up, and what your experts keep authority over.
         image: assets/img/metamodel.png
-        link: /next.html#deliverables
-        link_label: Keep reading...
-      - title: Get the context
+        link: "#deliverables"
+        link_label: From codebase to analysis
+      - title: Start with the story
         text: |
-            Learn by example? Read the <i>Financials</i> case study and understand our offering following a real story and a real analysis.
+          A real vibe-coded app, a real analysis, and the report behind every
+          claim on this site. Read the <i>Financials</i> case study.
         image: assets/img/track-case-study.png
         link: /case-study/
-        link_label: Start with the case study
-      - title: Skip the intro
+        link_label: Read the case study
+      - title: Go straight to the findings
         text: |
-            Already familiar with software archaeology? Know what you should expect from a functional analysis?<br>
-            Read the reports, browse the fact sheets.
+          Already know what a functional analysis should deliver? Open the
+          reports and fact sheets of the actual Financials analysis.
         image: assets/img/track-analysis.png
         link: /case-study/financials/
-        link_label: See an actual analysis
+        link_label: Open the actual analysis
 
   # ------------------------------------------------ deliverables
   - id: deliverables
@@ -185,6 +191,24 @@ sections:
           - The codebase your team ships every week
           - The regulator who asks what your systems do
 
+  # ------------------------------------------------ value proposition
+
+  - id: value
+    nav_label: Value
+    type: paragraphs
+    title: Archiku's value in numbers
+    paragraphs:
+      - |
+        Measured, not promised. In our public [case study](/case-study/) we show that an experienced analyst's take on a 13K SLOC codebase (11.185 code lines at ~200 lines per hour) amounts to an estimated 12.2 analyst-days of effort, ten of them just reading. Archiku delivered the functional analysis in 2 days.
+      - |
+        The jumpstart is the value we offer. Reading is only the slow part. Because your experts start from a readable, line-cited report that reads in about an hour, judgement begins in days, not after weeks of analyst excavation.
+      - |
+        The case study represents our "Phase 0" offering: up to 10K SLOC, 48 business hours, €1.500, risk-free. See the [pricing section](#pricing) for details.
+      - |
+        <div class="text-center">
+          <img src="/assets/img/value-timeline.png" class="img-fluid" alt="Timeline comparison. The human analyst needs about twelve working days before a decision can be made. Archiku delivers in two days.">
+        </div>
+
   # ------------------------------------------------ benefits
   - id: benefits
     nav_label: Benefits
@@ -215,7 +239,7 @@ sections:
           text: |
             A fixed fee instead of months of billable archaeology by a team.
             Measured on our case study scope: what costs a human analyst
-            twelve working days, costs two here. The Phase 0 intake is €1,500
+            twelve working days, costs two here. The Phase 0 intake is €1.500
             and is fully credited toward the full analysis when we proceed.
             If it shows no value, you pay nothing.
       - tab: Trust & Security
@@ -330,9 +354,9 @@ sections:
       - title: Decide
         icon: bi-cash-coin
         text: |
-          No value shown, you pay nothing. Value shown, a flat fee €1,500 for the
+          No value shown, you pay nothing. Value shown, a flat fee €1.500 for the
           initial deliverable. Move forward with a full scope analysis? We credit
-          the €1,500.
+          the €1.500.
       - title: Analyze
         icon: bi-diagram-3
         text: |
@@ -347,7 +371,7 @@ sections:
       title: Your risk-free decision
       text: |
         No value shown? You pay nothing and the code is purged. Value shown?
-        You pay a flat fee of €1,500 and own the initial deliverable, and the fee
+        You pay a flat fee of €1.500 and own the initial deliverable, and the fee
         is fully credited toward a full analysis when you continue within 60 days.
     button:
       label: Discover it in the Financials Case Study
@@ -385,7 +409,7 @@ sections:
       with your initial Phase 0 intake fee 100% credited toward the full scope.
     items:
       - tier: Phase 0 Intake
-        price: "€1,500"
+        price: "€1.500"
         scope: "Up to 10K SLOC"
         focus: "Single Module / Micro-service"
         features:
@@ -394,22 +418,22 @@ sections:
           - "100% risk-free: €0 if no value shown"
           - "Fully credited toward full analysis"
       - tier: Core System
-        price: "€4,900"
+        price: "€4.900"
         scope: "Up to 50K SLOC"
         focus: "Standalone Application"
         features:
           - "Full functional analysis"
           - "Delivered within 7-10 business days"
-          - "Includes €1,500 Phase 0 discount"
+          - "Includes €1.500 Phase 0 discount"
       - tier: Platform
-        price: "€9,900"
+        price: "€9.900"
         scope: "Up to 150K SLOC"
         focus: "Distributed System"
         features:
           - "End-to-end multi-service"
           - "Components & Subsystems"
           - "Delivered within 2-3 weeks"
-          - "Includes €1,500 Phase 0 discount"
+          - "Includes €1.500 Phase 0 discount"
       - tier: Enterprise Estate
         price: "Custom"
         scope: "150K+ SLOC"

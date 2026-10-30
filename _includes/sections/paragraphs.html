@@ -8,7 +8,7 @@
   <div class="col-lg-12">
     {% for paragraph in include.section.paragraphs %}
     <p class="lead">
-      {{ paragraph }}
+      {{ paragraph | markdownify | remove: "<p>" | remove: "</p>" }}
     </p>
     {% endfor %}
   </div>

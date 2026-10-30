@@ -60,7 +60,7 @@ functional analyst need to produce a full functional analysis document of
 | write the report | 6,376 words | 10 wpm | 15h 11m |
 | **total** | | | **97h 13m** |
 
-That is **12.2 man-days** of elapsed analyst time, of which about ten days
+That is **12.2 analyst-days** of elapsed analyst time, of which about ten days
 is one activity: reading the code.
 
 Tune the assumptions by 20% in any direction and the conclusion barely
@@ -120,9 +120,9 @@ case study](/case-study/) is the measurement behind it, including the
 [full analysis](/case-study/financials/reports/functional-analysis/) as it
 was delivered.
 
-<center>
+<div class="text-center">
   <img src="/assets/img/value-timeline.png" class="img-fluid" alt="Timeline comparison. The human analyst needs about twelve working days before a decision can be made. Archiku delivers in two days.">
-</center>
+</div>
 
 ---
 

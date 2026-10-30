@@ -73,9 +73,9 @@ sections:
           does not have to end at that initial delivery: When Argus arrives, it can monitor the evolution of your codebases, paired with the Vault, it even offers an interactive platform for your analysts to interact and work together with the Archiku team of agents.
       - q: What does it cost?
         a: |
-          - **Phase 0 Intake:** €1,500 flat fee for a core module or micro-service (up to 10K SLOC). 100% risk-free: if the live presentation shows no value, you pay €0.
-          - **Core Systems & Platforms:** Fixed tiers at €4,900 (up to 50K SLOC) and €9,900 (up to 150K SLOC). Larger multi-repo estates receive custom pricing.
-          - **The Credit:** When you proceed to a full system tier, your €1,500 intake fee is 100% credited back and deducted straight from your invoice.
+          - **Phase 0 Intake:** €1.500 flat fee for a core module or micro-service (up to 10K SLOC). 100% risk-free: if the live presentation shows no value, you pay €0.
+          - **Core Systems & Platforms:** Fixed tiers at €4.900 (up to 50K SLOC) and €9.900 (up to 150K SLOC). Larger multi-repo estates receive custom pricing.
+          - **The Credit:** When you proceed to a full system tier, your €1.500 intake fee is 100% credited back and deducted straight from your invoice.
           - **Supporting Services** like Vault, Argus and Oracle are customized to meet your requirements and are accessible through a monthly subscription fee.
       - q: What happens to my code after the engagement?
         a: |
