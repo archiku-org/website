@@ -73,6 +73,7 @@ sections:
           "Financials App"?
       - title: The disappointing ERP answer
         image: /assets/img/case-study/step5.png
+        alt: Peter checks the corporate ERP offering and finds nothing like John's app
         text: |
           Peter begins his quest at the finance department. Sadly he has to confirm
           it: their ERP solution doesn't offer the simple but powerful app John has
@@ -80,6 +81,7 @@ sections:
           one-night effort nobody in the company owns or understands.
       - title: The CTO's connection
         image: /assets/img/case-study/step6.png
+        alt: Marc the CTO points Peter to a professional development agency
         text: |
           At the end of the weekly meeting, Peter consults Marc, the CTO. He confirms
           that in house built software is a clear no go, but also provides Peter with
@@ -89,6 +91,7 @@ sections:
           by IT.
       - title: The developer needs specs
         image: /assets/img/case-study/step7.png
+        alt: The development agency asks Peter for specifications that do not exist
         text: |
           So Peter contacts the software development agency to rebuild the
           app professionally. They ask him for the functional requirements
@@ -98,16 +101,32 @@ sections:
           implemented.
       - title: Archiku to the rescue
         image: /assets/img/case-study/step8.png
+        alt: Archiku delivers a validated baseline analysis before the agency's first week is over
         text: |
           Archiku analyzed the codebase of the Financials App and delivered a
           validated baseline analysis in days: the actors, the
           processes, the core concepts, the business rules and the
           boundaries of the system, every finding traceable to the exact
           line of code. The independent map nobody inside the company
-          could have written, delivered before the development company
+          could have written, delivered before the development agency
           finished its first week.
-      - title: Rebuilt, verified, kept alive
+      - title: Going above and beyond
         image: /assets/img/case-study/step9.png
+        alt: The development agency reviews the Archiku analysis, finding after finding
+        text: |
+          When the development agency receives the analysis, its feedback is
+          clear: the provided analysis is superior to most of the material
+          they normally receive. It contains exactly the facts that make the
+          difference in a rebuild: issues, hotspots, quirks and conventions.
+          <br><br>
+          Most analyses focus on the happy path, on the intended
+          functionality. The real culprits in a rebuild hide in the
+          unexpected. The Archiku analysis focuses on these aspects for a
+          reason: 25 years of analysis experience, trained into our agents
+          and their agentic loops.
+      - title: Rebuilt, verified, kept alive
+        image: /assets/img/case-study/step10.png
+        alt: The agency rebuilds the app from the analysis and the result is verified
         text: |
           The story's ending has the development agency rebuild the app
           from the analysis. Thanks to not only business rules, but also
@@ -126,7 +145,7 @@ sections:
     title: The analysis that became the spec
     subtitle: |
       No functional requirements existed. The validated analysis became
-      them: every rule, process and concept the development company
+      them: every rule, process and concept the development agency
       needed, traceable to the code that proved it.
     items:
       - title: 15 chapters of insight
