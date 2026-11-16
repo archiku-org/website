@@ -1,0 +1,15 @@
+@startuml
+' State diagram of vault project 'financials' — PlantUML source.
+' Entity: entity/ledger-transaction-row — Ledger transaction row (journal.Transaction)
+' States: 3 · Transitions: 2 (of 2)
+
+' States (declared first — nothing referenced before declared)
+state "stated" as s0
+state "recorded" as s1
+state "shifted" as s2
+
+' Transitions (from --> to : event [condition])
+s0 --> s1 : the owner states a\nrealized movement and it\npasses admission [date\nnot in the future,\napproved category,\nnon-zero amount]
+s1 --> s2 : any later-dated entry is\nrecorded or an existing\nrow is edited or deleted\n[the row sits after the\nchange in date order, so\nits balances absorb the\ndifference]
+
+@enduml

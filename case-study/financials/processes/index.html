@@ -6,7 +6,7 @@
       
       
       
-        <link rel="prev" href="../non-goals/">
+        <link rel="prev" href="../objections/">
       
       
         <link rel="next" href="../projects/">
@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../assets/favicon-96x96.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -783,6 +783,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../objections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -860,6 +888,62 @@
     
   
     Quirks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resolutions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolutions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reviews
   
 
     
@@ -1145,6 +1229,63 @@
 <p><a href="../">Home</a> › Processes</p>
 <h1 id="processes">processes</h1>
 <p>One business process the analyzed codebase carries out, captured as a process-diagram document with its business trigger — tied to the business rules it realizes and the code that carries the evidence.</p>
+<p><em>The processes' story:</em></p>
+<p>Eight processes tell one story about this ledger: the owner states
+what happened or what is coming, and the books either change as
+agreed or stay untouched with the reason said plainly. Every
+process starts at the owner's noticing — money moved, money will
+move, a number repeats, a row is wrong — never with a decision the
+books take on their own.</p>
+<p>The main arc runs through three processes. <a href="record-a-money-movement-in-the-journaled-ledger/">Recording a
+movement</a>
+accepts whatever precision the moment gives — full detail, a Dutch
+quick-shorthand, or bare and prompted — and holds it behind one
+admission gate: a real calendar day, words for what happened, an
+approved category, a non-zero amount. A statement dated after
+today never lands as a fact; it becomes a promise in the expected
+register, weighing nothing against balances yet visible in every
+forecast view. <a href="register-a-future-payment-in-the-expected-register/">Registering a future
+payment</a>
+parks that promise deliberately, and <a href="confirm-a-landed-open-entry-into-the-books/">confirming a landed
+entry</a> closes
+the cycle when the day arrives — committing the item exactly as it
+was promised and refusing without exception to book money that has
+not actually moved.</p>
+<p>Two more processes keep mistakes from staining history.
+<a href="correct-a-posted-entry-through-the-journal/">Correcting a posted
+entry</a>
+re-presents each field with its current value and appends an
+update record rather than rewriting a row; a correction that would
+move an entry to tomorrow backs the row out and reserves it as a
+promise instead. <a href="retract-a-wrong-entry-from-the-books-with-confirmation/">Retracting a wrong
+entry</a>
+removes a row only after the owner's typed confirmation, writing
+one record that carries the entry's full prior state — so the
+books can be rebuilt and prove exactly what left. Both
+re-propagate the balance chain, so every later row reads as if the
+fix had always been true.</p>
+<p>Repetition has two entrances. <a href="author-a-standing-recurrence-rule-by-hand/">Authoring a
+rule</a> serves
+the obligation the owner already knows; <a href="adopt-detected-recurring-rules-from-ledger-history/">adopting detected
+rules</a>
+mines real payments for habits and hands back an inert review list
+that stores nothing on its own. Both entrances pass the same
+admission bars, and in both the owner's hands finish the rule — a
+completed statement, or a completed field-by-field walk. Once
+standing, every occurrence meets <a href="commit-a-recurring-rule-instance-into-the-ledger/">the commitment
+doors</a>
+with three outcomes: book it as the rule promised, reshape this
+month into a one-off promise, or suppress the date with a typed
+yes while the rule keeps running.</p>
+<p>The eight agree on more than they disagree. Quitting, failed
+answers and refused confirmations leave the books untouched; every
+accepted change goes through one journaled write; a promise
+crosses into the books only at a confirmation. The named
+exceptions are small: the reshaping door refuses a promise dated
+today while the booking door takes today or earlier as landed, and
+suppression silences only the forecast — the hidden occurrence
+still books by its own address.</p>
+<p><em><a href="../narratives/type/process/">Read the full story</a></em></p>
 <table>
 <thead>
 <tr>
@@ -1154,28 +1295,36 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><a href="entry-removal/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Entry removal</td>
+<td style="text-align: center;"><a href="adopt-detected-recurring-rules-from-ledger-history/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Recurrence detection and adoption</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="entry-revision/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Entry revision</td>
+<td style="text-align: center;"><a href="author-a-standing-recurrence-rule-by-hand/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Rule authoring</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="ledger-cleanup-fx-application/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Ledger cleanup-fx application</td>
+<td style="text-align: center;"><a href="commit-a-recurring-rule-instance-into-the-ledger/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Rule instance commitment</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="open-entry-confirmation/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Open-entry confirmation</td>
+<td style="text-align: center;"><a href="confirm-a-landed-open-entry-into-the-books/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Open entry confirmation</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="recurring-payment-provisioning/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Recurring payment provisioning</td>
+<td style="text-align: center;"><a href="correct-a-posted-entry-through-the-journal/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Entry correction</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="transaction-intake/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td style="text-align: center;"><a href="record-a-money-movement-in-the-journaled-ledger/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
 <td>Transaction intake</td>
+</tr>
+<tr>
+<td style="text-align: center;"><a href="register-a-future-payment-in-the-expected-register/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Expected entry intake</td>
+</tr>
+<tr>
+<td style="text-align: center;"><a href="retract-a-wrong-entry-from-the-books-with-confirmation/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Entry removal</td>
 </tr>
 </tbody>
 </table>
@@ -1236,7 +1385,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../assets/tablesort.min.js"></script>
       

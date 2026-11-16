@@ -1,0 +1,59 @@
+process "Owner"
+  start "A posted entry shows a mistake"
+  user "Pick the entry to correct"
+  send "Correction request"
+  receive "Correction outcome"
+  end "Books corrected"
+
+process "Entry editor"
+  start "Correction requested"
+  user "Review the entry field by field"
+  exclusive "Which register holds the entry?"
+    if "The books" then
+      exclusive "Restated day after today?"
+        if "Yes" then
+          send "Back the row out of the books"
+          send "Reserve the corrected row as a promise"
+          exclusive "Reservation refused?"
+            if "Yes" then
+              task "Leave the recovery to the owner"
+              end "Row left unreplaced"
+            else "No" then
+              task "Report the completed move"
+              goto "Write accepted"
+        else "No"
+      send "Land the corrective record"
+    if "The promises register" then
+      exclusive "Day already arrived?"
+        if "Yes" then
+          send "Confirm the restated promise into the books"
+          task "Retire the promise from the register"
+          goto "Write accepted"
+        else "No" then
+          task "Restate the promise where it stands"
+          goto "Write accepted"
+    if "A group or a standing rule" then
+      task "Open the group or occurrence editor"
+      end "Corrected elsewhere"
+    else "Unresolvable address" then
+      task "Refuse the unknown address"
+      end "Nothing changed"
+  receive "Write accepted"
+  user "Report the outcome"
+  end "Correction finished"
+
+process "Command mutations"
+  start "Write requested"
+  service "Append the corrective mutation"
+  service "Refold the balance chain"
+  end "Journal converged"
+
+message flows
+  from "Owner"."Correction request" to "Entry editor"."Correction requested" label "Edit request"
+  from "Entry editor"."Back the row out of the books" to "Command mutations"."Write requested" label "Row back-out"
+  from "Entry editor"."Reserve the corrected row as a promise" to "Command mutations"."Write requested" label "Promise reservation"
+  from "Entry editor"."Land the corrective record" to "Command mutations"."Write requested" label "Committed correction"
+  from "Entry editor"."Confirm the restated promise into the books" to "Command mutations"."Write requested" label "Landed promise commits"
+  from "Command mutations"."Journal converged" to "Entry editor"."Write accepted" label "Write result"
+  from "Entry editor"."Report the outcome" to "Owner"."Correction outcome" label "Correction result"
+

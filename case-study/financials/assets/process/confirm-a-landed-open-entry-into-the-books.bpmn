@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions id="definitions" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <bpmn:process id="process_owner">
+    <bpmn:userTask id="decide_to_bring_the_open_item_into_the_books" name="Decide to bring the open item into the books" />
+    <bpmn:startEvent id="landed_money_waits_to_be_accepted" name="Landed money waits to be accepted" />
+    <bpmn:sendTask id="name_the_open_item_to_confirm" name="Name the open item to confirm" />
+    <bpmn:receiveTask id="take_the_desk_s_answer" name="Take the desk's answer" />
+    <bpmn:endEvent id="the_landed_movement_is_settled_in_the_books" name="The landed movement is settled in the books" />
+    <bpmn:sequenceFlow id="flow_1" sourceRef="landed_money_waits_to_be_accepted" targetRef="decide_to_bring_the_open_item_into_the_books" />
+    <bpmn:sequenceFlow id="flow_2" sourceRef="decide_to_bring_the_open_item_into_the_books" targetRef="name_the_open_item_to_confirm" />
+    <bpmn:sequenceFlow id="flow_3" sourceRef="name_the_open_item_to_confirm" targetRef="take_the_desk_s_answer" />
+    <bpmn:sequenceFlow id="flow_4" sourceRef="take_the_desk_s_answer" targetRef="the_landed_movement_is_settled_in_the_books" />
+  </bpmn:process>
+  <bpmn:process id="process_open_entry_confirmation">
+    <bpmn:exclusiveGateway id="is_an_open_item_named" name="Is an open item named?" />
+    <bpmn:startEvent id="confirm_request_arrives" name="Confirm request arrives" />
+    <bpmn:serviceTask id="resolve_the_open_item_from_register_or_standing_rule" name="Resolve the open item from register or standing rule" />
+    <bpmn:userTask id="pick_an_open_item_or_cancel" name="Pick an open item or cancel" />
+    <bpmn:serviceTask id="compose_the_landed_open_list" name="Compose the landed open list" />
+    <bpmn:exclusiveGateway id="was_an_item_picked" name="Was an item picked?" />
+    <bpmn:endEvent id="nothing_confirmed" name="Nothing confirmed" />
+    <bpmn:exclusiveGateway id="does_the_item_still_lie_ahead_of_today" name="Does the item still lie ahead of today?" />
+    <bpmn:exclusiveGateway id="does_the_item_carry_its_amount" name="Does the item carry its amount?" />
+    <bpmn:endEvent id="the_open_item_stays_open" name="The open item stays open" />
+    <bpmn:sendTask id="refuse_to_confirm_money_that_has_not_moved" name="Refuse to confirm money that has not moved" />
+    <bpmn:exclusiveGateway id="is_the_open_item_a_group" name="Is the open item a group?" />
+    <bpmn:endEvent id="the_item_without_amount_stays_open" name="The item without amount stays open" />
+    <bpmn:sendTask id="refuse_to_confirm_a_movement_with_no_amount" name="Refuse to confirm a movement with no amount" />
+    <bpmn:serviceTask id="commit_the_item_as_an_actual_journal_posting" name="Commit the item as an actual journal posting" />
+    <bpmn:exclusiveGateway id="did_any_member_land" name="Did any member land?" />
+    <bpmn:serviceTask id="collect_the_group_s_landed_members_in_day_order" name="Collect the group's landed members in day order" />
+    <bpmn:serviceTask id="retire_the_member_s_open_item_and_re_point_its_address" name="Retire the member's open item and re-point its address" />
+    <bpmn:serviceTask id="commit_the_next_landed_member_as_an_actual_posting" name="Commit the next landed member as an actual posting" />
+    <bpmn:exclusiveGateway id="more_landed_members_pending" name="More landed members pending?" />
+    <bpmn:endEvent id="the_group_stands_as_it_was" name="The group stands as it was" />
+    <bpmn:serviceTask id="retire_the_open_item_behind_the_posting" name="Retire the open item behind the posting" />
+    <bpmn:exclusiveGateway id="did_the_posting_drift_from_its_standing_rule" name="Did the posting drift from its standing rule?" />
+    <bpmn:sendTask id="report_the_outcome_with_the_new_account_state" name="Report the outcome with the new account state" />
+    <bpmn:serviceTask id="record_the_occurrence_as_an_exception" name="Record the occurrence as an exception" />
+    <bpmn:endEvent id="open_item_committed" name="Open item committed" />
+    <bpmn:sequenceFlow id="flow_5" sourceRef="confirm_request_arrives" targetRef="is_an_open_item_named" />
+    <bpmn:sequenceFlow id="flow_6" sourceRef="compose_the_landed_open_list" targetRef="pick_an_open_item_or_cancel" />
+    <bpmn:sequenceFlow id="flow_7" sourceRef="pick_an_open_item_or_cancel" targetRef="was_an_item_picked" />
+    <bpmn:sequenceFlow id="flow_8" name="No" sourceRef="was_an_item_picked" targetRef="nothing_confirmed" />
+    <bpmn:sequenceFlow id="flow_9" name="Picked" sourceRef="was_an_item_picked" targetRef="resolve_the_open_item_from_register_or_standing_rule" />
+    <bpmn:sequenceFlow id="flow_10" sourceRef="was_an_item_picked" targetRef="resolve_the_open_item_from_register_or_standing_rule" />
+    <bpmn:sequenceFlow id="flow_11" name="No" sourceRef="is_an_open_item_named" targetRef="compose_the_landed_open_list" />
+    <bpmn:sequenceFlow id="flow_12" name="An item is named" sourceRef="is_an_open_item_named" targetRef="resolve_the_open_item_from_register_or_standing_rule" />
+    <bpmn:sequenceFlow id="flow_13" sourceRef="is_an_open_item_named" targetRef="resolve_the_open_item_from_register_or_standing_rule" />
+    <bpmn:sequenceFlow id="flow_14" sourceRef="resolve_the_open_item_from_register_or_standing_rule" targetRef="does_the_item_still_lie_ahead_of_today" />
+    <bpmn:sequenceFlow id="flow_15" sourceRef="refuse_to_confirm_money_that_has_not_moved" targetRef="the_open_item_stays_open" />
+    <bpmn:sequenceFlow id="flow_16" name="Yes" sourceRef="does_the_item_still_lie_ahead_of_today" targetRef="refuse_to_confirm_money_that_has_not_moved" />
+    <bpmn:sequenceFlow id="flow_17" name="Landed" sourceRef="does_the_item_still_lie_ahead_of_today" targetRef="does_the_item_carry_its_amount" />
+    <bpmn:sequenceFlow id="flow_18" sourceRef="does_the_item_still_lie_ahead_of_today" targetRef="does_the_item_carry_its_amount" />
+    <bpmn:sequenceFlow id="flow_19" sourceRef="refuse_to_confirm_a_movement_with_no_amount" targetRef="the_item_without_amount_stays_open" />
+    <bpmn:sequenceFlow id="flow_20" name="No" sourceRef="does_the_item_carry_its_amount" targetRef="refuse_to_confirm_a_movement_with_no_amount" />
+    <bpmn:sequenceFlow id="flow_21" name="Amount stated" sourceRef="does_the_item_carry_its_amount" targetRef="is_the_open_item_a_group" />
+    <bpmn:sequenceFlow id="flow_22" sourceRef="does_the_item_carry_its_amount" targetRef="is_the_open_item_a_group" />
+    <bpmn:sequenceFlow id="flow_23" sourceRef="collect_the_group_s_landed_members_in_day_order" targetRef="did_any_member_land" />
+    <bpmn:sequenceFlow id="flow_24" sourceRef="commit_the_next_landed_member_as_an_actual_posting" targetRef="retire_the_member_s_open_item_and_re_point_its_address" />
+    <bpmn:sequenceFlow id="flow_25" sourceRef="retire_the_member_s_open_item_and_re_point_its_address" targetRef="more_landed_members_pending" />
+    <bpmn:sequenceFlow id="flow_26" name="Yes" sourceRef="more_landed_members_pending" targetRef="commit_the_next_landed_member_as_an_actual_posting" />
+    <bpmn:sequenceFlow id="flow_27" sourceRef="more_landed_members_pending" targetRef="commit_the_item_as_an_actual_journal_posting" />
+    <bpmn:sequenceFlow id="flow_28" name="Yes" sourceRef="did_any_member_land" targetRef="commit_the_next_landed_member_as_an_actual_posting" />
+    <bpmn:sequenceFlow id="flow_29" name="No" sourceRef="did_any_member_land" targetRef="the_group_stands_as_it_was" />
+    <bpmn:sequenceFlow id="flow_30" sourceRef="did_any_member_land" targetRef="commit_the_item_as_an_actual_journal_posting" />
+    <bpmn:sequenceFlow id="flow_31" name="Yes" sourceRef="is_the_open_item_a_group" targetRef="collect_the_group_s_landed_members_in_day_order" />
+    <bpmn:sequenceFlow id="flow_32" name="A single item" sourceRef="is_the_open_item_a_group" targetRef="commit_the_item_as_an_actual_journal_posting" />
+    <bpmn:sequenceFlow id="flow_33" sourceRef="is_the_open_item_a_group" targetRef="commit_the_item_as_an_actual_journal_posting" />
+    <bpmn:sequenceFlow id="flow_34" sourceRef="commit_the_item_as_an_actual_journal_posting" targetRef="retire_the_open_item_behind_the_posting" />
+    <bpmn:sequenceFlow id="flow_35" sourceRef="retire_the_open_item_behind_the_posting" targetRef="did_the_posting_drift_from_its_standing_rule" />
+    <bpmn:sequenceFlow id="flow_36" sourceRef="record_the_occurrence_as_an_exception" targetRef="report_the_outcome_with_the_new_account_state" />
+    <bpmn:sequenceFlow id="flow_37" name="Yes" sourceRef="did_the_posting_drift_from_its_standing_rule" targetRef="record_the_occurrence_as_an_exception" />
+    <bpmn:sequenceFlow id="flow_38" name="On mark" sourceRef="did_the_posting_drift_from_its_standing_rule" targetRef="report_the_outcome_with_the_new_account_state" />
+    <bpmn:sequenceFlow id="flow_39" sourceRef="did_the_posting_drift_from_its_standing_rule" targetRef="report_the_outcome_with_the_new_account_state" />
+    <bpmn:sequenceFlow id="flow_40" sourceRef="report_the_outcome_with_the_new_account_state" targetRef="open_item_committed" />
+    <bpmn:sequenceFlow id="flow_41" name="No" sourceRef="more_landed_members_pending" targetRef="report_the_outcome_with_the_new_account_state" />
+  </bpmn:process>
+  <bpmn:collaboration id="collaboration">
+    <bpmn:participant id="participant_owner" name="Owner" processRef="process_owner" />
+    <bpmn:participant id="participant_open_entry_confirmation" name="Open-entry confirmation" processRef="process_open_entry_confirmation" />
+    <bpmn:messageFlow id="messageflow_42" name="Confirm request" sourceRef="name_the_open_item_to_confirm" targetRef="confirm_request_arrives" />
+    <bpmn:messageFlow id="messageflow_43" name="Future refusal" sourceRef="the_open_item_stays_open" targetRef="take_the_desk_s_answer" />
+    <bpmn:messageFlow id="messageflow_44" name="Amount refusal" sourceRef="the_item_without_amount_stays_open" targetRef="take_the_desk_s_answer" />
+    <bpmn:messageFlow id="messageflow_45" name="Cancelled" sourceRef="nothing_confirmed" targetRef="take_the_desk_s_answer" />
+    <bpmn:messageFlow id="messageflow_46" name="Nothing landed" sourceRef="the_group_stands_as_it_was" targetRef="take_the_desk_s_answer" />
+    <bpmn:messageFlow id="messageflow_47" name="Outcome" sourceRef="open_item_committed" targetRef="take_the_desk_s_answer" />
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="diagram">
+    <bpmndi:BPMNPlane id="plane" bpmnElement="collaboration">
+      <bpmndi:BPMNShape id="shape_participant_owner" bpmnElement="participant_owner" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="3230" height="140" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_participant_open_entry_confirmation" bpmnElement="participant_open_entry_confirmation" isHorizontal="true">
+        <dc:Bounds x="160" y="250" width="3230" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_decide_to_bring_the_open_item_into_the_books" bpmnElement="decide_to_bring_the_open_item_into_the_books">
+        <dc:Bounds x="380" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_landed_money_waits_to_be_accepted" bpmnElement="landed_money_waits_to_be_accepted">
+        <dc:Bounds x="252" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_name_the_open_item_to_confirm" bpmnElement="name_the_open_item_to_confirm">
+        <dc:Bounds x="540" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_take_the_desk_s_answer" bpmnElement="take_the_desk_s_answer">
+        <dc:Bounds x="700" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_the_landed_movement_is_settled_in_the_books" bpmnElement="the_landed_movement_is_settled_in_the_books">
+        <dc:Bounds x="892" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_is_an_open_item_named" bpmnElement="is_an_open_item_named" isMarkerVisible="true">
+        <dc:Bounds x="405" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_confirm_request_arrives" bpmnElement="confirm_request_arrives">
+        <dc:Bounds x="252" y="442" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_resolve_the_open_item_from_register_or_standing_rule" bpmnElement="resolve_the_open_item_from_register_or_standing_rule">
+        <dc:Bounds x="1020" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_pick_an_open_item_or_cancel" bpmnElement="pick_an_open_item_or_cancel">
+        <dc:Bounds x="700" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_compose_the_landed_open_list" bpmnElement="compose_the_landed_open_list">
+        <dc:Bounds x="540" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_was_an_item_picked" bpmnElement="was_an_item_picked" isMarkerVisible="true">
+        <dc:Bounds x="885" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_nothing_confirmed" bpmnElement="nothing_confirmed">
+        <dc:Bounds x="1052" y="302" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_does_the_item_still_lie_ahead_of_today" bpmnElement="does_the_item_still_lie_ahead_of_today" isMarkerVisible="true">
+        <dc:Bounds x="1205" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_does_the_item_carry_its_amount" bpmnElement="does_the_item_carry_its_amount" isMarkerVisible="true">
+        <dc:Bounds x="1365" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_the_open_item_stays_open" bpmnElement="the_open_item_stays_open">
+        <dc:Bounds x="1692" y="302" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_refuse_to_confirm_money_that_has_not_moved" bpmnElement="refuse_to_confirm_money_that_has_not_moved">
+        <dc:Bounds x="1340" y="280" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_is_the_open_item_a_group" bpmnElement="is_the_open_item_a_group" isMarkerVisible="true">
+        <dc:Bounds x="1525" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_the_item_without_amount_stays_open" bpmnElement="the_item_without_amount_stays_open">
+        <dc:Bounds x="1852" y="302" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_refuse_to_confirm_a_movement_with_no_amount" bpmnElement="refuse_to_confirm_a_movement_with_no_amount">
+        <dc:Bounds x="1500" y="280" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_commit_the_item_as_an_actual_journal_posting" bpmnElement="commit_the_item_as_an_actual_journal_posting">
+        <dc:Bounds x="2460" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_did_any_member_land" bpmnElement="did_any_member_land" isMarkerVisible="true">
+        <dc:Bounds x="1845" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_collect_the_group_s_landed_members_in_day_order" bpmnElement="collect_the_group_s_landed_members_in_day_order">
+        <dc:Bounds x="1660" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_retire_the_member_s_open_item_and_re_point_its_address" bpmnElement="retire_the_member_s_open_item_and_re_point_its_address">
+        <dc:Bounds x="2140" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_commit_the_next_landed_member_as_an_actual_posting" bpmnElement="commit_the_next_landed_member_as_an_actual_posting">
+        <dc:Bounds x="1980" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_more_landed_members_pending" bpmnElement="more_landed_members_pending" isMarkerVisible="true">
+        <dc:Bounds x="2325" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_the_group_stands_as_it_was" bpmnElement="the_group_stands_as_it_was">
+        <dc:Bounds x="2012" y="302" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_retire_the_open_item_behind_the_posting" bpmnElement="retire_the_open_item_behind_the_posting">
+        <dc:Bounds x="2620" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_did_the_posting_drift_from_its_standing_rule" bpmnElement="did_the_posting_drift_from_its_standing_rule" isMarkerVisible="true">
+        <dc:Bounds x="2805" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_report_the_outcome_with_the_new_account_state" bpmnElement="report_the_outcome_with_the_new_account_state">
+        <dc:Bounds x="3100" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_record_the_occurrence_as_an_exception" bpmnElement="record_the_occurrence_as_an_exception">
+        <dc:Bounds x="2940" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_open_item_committed" bpmnElement="open_item_committed">
+        <dc:Bounds x="3292" y="442" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow_1" bpmnElement="flow_1">
+        <di:waypoint x="288" y="150" />
+        <di:waypoint x="380" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_2" bpmnElement="flow_2">
+        <di:waypoint x="480" y="150" />
+        <di:waypoint x="540" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_3" bpmnElement="flow_3">
+        <di:waypoint x="640" y="150" />
+        <di:waypoint x="700" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_4" bpmnElement="flow_4">
+        <di:waypoint x="800" y="150" />
+        <di:waypoint x="892" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_5" bpmnElement="flow_5">
+        <di:waypoint x="288" y="460" />
+        <di:waypoint x="405" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_6" bpmnElement="flow_6">
+        <di:waypoint x="640" y="460" />
+        <di:waypoint x="700" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_7" bpmnElement="flow_7">
+        <di:waypoint x="800" y="460" />
+        <di:waypoint x="885" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_8" bpmnElement="flow_8">
+        <di:waypoint x="910" y="435" />
+        <di:waypoint x="910" y="320" />
+        <di:waypoint x="1052" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_9" bpmnElement="flow_9">
+        <di:waypoint x="935" y="460" />
+        <di:waypoint x="1020" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_10" bpmnElement="flow_10">
+        <di:waypoint x="935" y="460" />
+        <di:waypoint x="1020" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_11" bpmnElement="flow_11">
+        <di:waypoint x="455" y="460" />
+        <di:waypoint x="540" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_12" bpmnElement="flow_12">
+        <di:waypoint x="430" y="485" />
+        <di:waypoint x="430" y="520" />
+        <di:waypoint x="1070" y="520" />
+        <di:waypoint x="1070" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_13" bpmnElement="flow_13">
+        <di:waypoint x="430" y="435" />
+        <di:waypoint x="430" y="390" />
+        <di:waypoint x="1070" y="390" />
+        <di:waypoint x="1070" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_14" bpmnElement="flow_14">
+        <di:waypoint x="1120" y="460" />
+        <di:waypoint x="1205" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_15" bpmnElement="flow_15">
+        <di:waypoint x="1390" y="360" />
+        <di:waypoint x="1390" y="390" />
+        <di:waypoint x="1710" y="390" />
+        <di:waypoint x="1710" y="338" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_16" bpmnElement="flow_16">
+        <di:waypoint x="1230" y="435" />
+        <di:waypoint x="1230" y="320" />
+        <di:waypoint x="1340" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_17" bpmnElement="flow_17">
+        <di:waypoint x="1255" y="460" />
+        <di:waypoint x="1365" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_18" bpmnElement="flow_18">
+        <di:waypoint x="1255" y="460" />
+        <di:waypoint x="1365" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_19" bpmnElement="flow_19">
+        <di:waypoint x="1550" y="280" />
+        <di:waypoint x="1550" y="260" />
+        <di:waypoint x="1870" y="260" />
+        <di:waypoint x="1870" y="302" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_20" bpmnElement="flow_20">
+        <di:waypoint x="1390" y="435" />
+        <di:waypoint x="1390" y="320" />
+        <di:waypoint x="1500" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_21" bpmnElement="flow_21">
+        <di:waypoint x="1415" y="460" />
+        <di:waypoint x="1525" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_22" bpmnElement="flow_22">
+        <di:waypoint x="1415" y="460" />
+        <di:waypoint x="1525" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_23" bpmnElement="flow_23">
+        <di:waypoint x="1760" y="460" />
+        <di:waypoint x="1845" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_24" bpmnElement="flow_24">
+        <di:waypoint x="2080" y="460" />
+        <di:waypoint x="2140" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_25" bpmnElement="flow_25">
+        <di:waypoint x="2240" y="460" />
+        <di:waypoint x="2325" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_26" bpmnElement="flow_26">
+        <di:waypoint x="2350" y="485" />
+        <di:waypoint x="2350" y="520" />
+        <di:waypoint x="2030" y="520" />
+        <di:waypoint x="2030" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_27" bpmnElement="flow_27">
+        <di:waypoint x="2375" y="460" />
+        <di:waypoint x="2460" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_28" bpmnElement="flow_28">
+        <di:waypoint x="1895" y="460" />
+        <di:waypoint x="1980" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_29" bpmnElement="flow_29">
+        <di:waypoint x="1870" y="435" />
+        <di:waypoint x="1870" y="320" />
+        <di:waypoint x="2012" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_30" bpmnElement="flow_30">
+        <di:waypoint x="1870" y="435" />
+        <di:waypoint x="1870" y="390" />
+        <di:waypoint x="2510" y="390" />
+        <di:waypoint x="2510" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_31" bpmnElement="flow_31">
+        <di:waypoint x="1575" y="460" />
+        <di:waypoint x="1660" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_32" bpmnElement="flow_32">
+        <di:waypoint x="1575" y="460" />
+        <di:waypoint x="2460" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_33" bpmnElement="flow_33">
+        <di:waypoint x="1575" y="460" />
+        <di:waypoint x="2460" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_34" bpmnElement="flow_34">
+        <di:waypoint x="2560" y="460" />
+        <di:waypoint x="2620" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_35" bpmnElement="flow_35">
+        <di:waypoint x="2720" y="460" />
+        <di:waypoint x="2805" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_36" bpmnElement="flow_36">
+        <di:waypoint x="3040" y="460" />
+        <di:waypoint x="3100" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_37" bpmnElement="flow_37">
+        <di:waypoint x="2855" y="460" />
+        <di:waypoint x="2940" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_38" bpmnElement="flow_38">
+        <di:waypoint x="2830" y="485" />
+        <di:waypoint x="2830" y="520" />
+        <di:waypoint x="3150" y="520" />
+        <di:waypoint x="3150" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_39" bpmnElement="flow_39">
+        <di:waypoint x="2830" y="435" />
+        <di:waypoint x="2830" y="390" />
+        <di:waypoint x="3150" y="390" />
+        <di:waypoint x="3150" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_40" bpmnElement="flow_40">
+        <di:waypoint x="3200" y="460" />
+        <di:waypoint x="3292" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_41" bpmnElement="flow_41">
+        <di:waypoint x="2350" y="435" />
+        <di:waypoint x="2350" y="330" />
+        <di:waypoint x="3150" y="330" />
+        <di:waypoint x="3150" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_42" bpmnElement="messageflow_42">
+        <di:waypoint x="590" y="190" />
+        <di:waypoint x="590" y="235" />
+        <di:waypoint x="270" y="235" />
+        <di:waypoint x="270" y="442" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_43" bpmnElement="messageflow_43">
+        <di:waypoint x="1710" y="302" />
+        <di:waypoint x="1710" y="235" />
+        <di:waypoint x="750" y="235" />
+        <di:waypoint x="750" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_44" bpmnElement="messageflow_44">
+        <di:waypoint x="1870" y="302" />
+        <di:waypoint x="1870" y="235" />
+        <di:waypoint x="750" y="235" />
+        <di:waypoint x="750" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_45" bpmnElement="messageflow_45">
+        <di:waypoint x="1070" y="302" />
+        <di:waypoint x="1070" y="235" />
+        <di:waypoint x="750" y="235" />
+        <di:waypoint x="750" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_46" bpmnElement="messageflow_46">
+        <di:waypoint x="2030" y="302" />
+        <di:waypoint x="2030" y="235" />
+        <di:waypoint x="750" y="235" />
+        <di:waypoint x="750" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_47" bpmnElement="messageflow_47">
+        <di:waypoint x="3310" y="442" />
+        <di:waypoint x="3310" y="235" />
+        <di:waypoint x="750" y="235" />
+        <di:waypoint x="750" y="190" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
+

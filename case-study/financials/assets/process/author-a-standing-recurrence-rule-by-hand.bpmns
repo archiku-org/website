@@ -1,0 +1,34 @@
+process "Owner"
+  start "Notice a repeating obligation"
+  user "Form the rule as words and numbers"
+  send "Hand the rule to the planner"
+  receive "Hear the questions"
+  user "Answer the questions"
+  receive "Hear the verdict"
+  end "Rule settled"
+
+process "Recurrence planner"
+  start "Rule request arrives"
+  user "Ask for what is missing"
+  receive "Take the answers"
+  exclusive "Does the rhythm live on a weekday?"
+    if "Weekly or biweekly" then
+      script "Snap the start to that weekday"
+    else "Monthly or yearly"
+  rule "Gate the rule against the admission bars"
+  exclusive "Rule admissible?"
+    if "No" then
+      send "Refuse with the reason"
+      end "Request turned away"
+    else "Yes" then
+      service "Store the schedule"
+      send "Confirm with the next three dates"
+  end "Schedule standing"
+
+message flows
+  from "Owner"."Hand the rule to the planner" to "Recurrence planner"."Rule request arrives" label "Rule request"
+  from "Recurrence planner"."Ask for what is missing" to "Owner"."Hear the questions" label "Missing field questions"
+  from "Owner"."Answer the questions" to "Recurrence planner"."Take the answers" label "Answers"
+  from "Recurrence planner"."Refuse with the reason" to "Owner"."Hear the verdict" label "Refusal"
+  from "Recurrence planner"."Confirm with the next three dates" to "Owner"."Hear the verdict" label "Confirmation"
+

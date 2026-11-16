@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="../../assets/favicon-96x96.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -775,6 +775,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../objections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../processes/" class="md-nav__link">
         
   
@@ -839,6 +867,62 @@
     
   
     Quirks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resolutions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolutions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reviews
   
 
     
@@ -1188,17 +1272,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#entry-anchor" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Entry Anchor
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#classifiers" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1214,17 +1287,6 @@
     <span class="md-ellipsis">
       
         Enforces
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#referenced-by" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Referenced by
       
     </span>
   </a>
@@ -1251,7 +1313,7 @@
 
 
 <p><a href="../../">Home</a> › <a href="../../facts/">Facts</a> › <a href="../">Surface commands</a> › <code>financials-add</code></p>
-<h1 id="financials-add">financials add</h1>
+<h1 id="financials-add">financials add <span class="twemoji badge notreviewed" title="not reviewed yet"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M256 0a256 256 0 1 1 0 512 256 256 0 1 1 0-512m-24 120v136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24"></path></svg></span></h1>
 <h2 id="program">Program</h2>
 <p>financials</p>
 <h2 id="command-name">Command Name</h2>
@@ -1260,44 +1322,42 @@
 <p>financials add</p>
 <h2 id="summary">Summary</h2>
 <blockquote>
-<p>Records a spend or income — fully flagged, as a one-line quick-add shorthand, or fully interactive; a future-dated recording is parked as a plan instead of entering the actual books.</p>
+<p>States a realized money movement into the journaled books — fully flagged, as a quick shorthand, or bare and prompted, with a rehearsal flag.</p>
 </blockquote>
 <h2 id="description">Description</h2>
 <blockquote>
-<p>The intake surface of the product: the household bookkeeper's way to record a movement the moment it happens or is remembered. Three input paths share one validation (a non-empty description, an approved category, a non-zero amount, a date format that parses) and one dispatch: today-or-past dates enter the journaled actual ledger with running balances; a future date diverts the recording to the expected register as a plan. The confirmation echoes the saved entry and its resulting balances. On rejection — invalid detail, zero amount, aborted prompt — nothing is stored and the exit code says so. Ctrl-C is caught and reported as a clean cancellation with nothing saved.</p>
+<p>The owner's front door to the books. All four details may be spelled
+out, a Dutch shorthand may compress them into one quoted breath
+('gisteren -25 Kafe'), or nothing is given and the tool asks field
+by field, pre-filling what the shorthand offered. A future-dated
+statement is redirected to the expected register. Exit status 0
+when stored or rehearsed, 2 when refused or abandoned; Ctrl-C
+cancels with nothing stored.</p>
 </blockquote>
 <h2 id="positionals">Positionals</h2>
 <ul>
-<li>{'help': 'Optional quick-add line ("gisteren -25 Kafe") pre-seeding the interactive prompts; anything omitted is asked.', 'name': 'shorthand', 'required': False, 'type': 'string'}</li>
+<li>{'help': 'Quick-add: "[date] [amount] [Category:]description" (date: ISO /\nvandaag / gisteren / morgen / -3d).\n', 'name': 'shorthand', 'required': False, 'type': 'string'}</li>
 </ul>
 <h2 id="flags">Flags</h2>
 <ul>
-<li>{'default': None, 'help': 'ISO date (YYYY-MM-DD) of the movement.', 'name': '--date', 'type': 'string'}</li>
-<li>{'default': None, 'help': "The movement's description.", 'name': '--description', 'type': 'string'}</li>
-<li>{'default': None, 'help': 'Approved category label.', 'name': '--category', 'type': 'string'}</li>
-<li>{'default': None, 'help': 'Signed amount; positive = income, negative = expense.', 'name': '--amount', 'type': 'number'}</li>
-<li>{'default': None, 'help': 'New checking balance (defaults to the continued balance).', 'name': '--checking', 'type': 'number'}</li>
-<li>{'default': False, 'help': 'Show what would be added without saving.', 'name': '--dry-run', 'type': 'boolean'}</li>
+<li>{'default': None, 'help': 'ISO date (YYYY-MM-DD)\n', 'name': '--date', 'type': 'string'}</li>
+<li>{'default': None, 'name': '--description', 'type': 'string'}</li>
+<li>{'default': None, 'name': '--category', 'type': 'string'}</li>
+<li>{'default': None, 'help': 'Signed amount; positive = income, negative = expense.\n', 'name': '--amount', 'type': 'decimal'}</li>
+<li>{'default': None, 'help': 'New checking balance (defaults to the continued balance).\n', 'name': '--checking', 'type': 'decimal'}</li>
+<li>{'default': False, 'help': 'Show what would be added without saving.\n', 'name': '--dry-run', 'type': 'boolean'}</li>
 </ul>
-<h2 id="entry-anchor">Entry Anchor</h2>
-<p>src/financials/cli.py:275</p>
 <h2 id="classifiers">Classifiers</h2>
 <ul>
 <li>business-value</li>
-<li>security-relevant</li>
+<li>external-boundary</li>
 </ul>
 <h2 id="enforces">Enforces</h2>
 <ul>
-<li><a href="../../business-rules/future-dated-entries-park-in-the-expected-register/">future-dated-entries-park-in-the-expected-register</a></li>
-<li><a href="../../business-rules/new-entries-require-an-approved-category/">new-entries-require-an-approved-category</a></li>
-<li><a href="../../business-rules/a-zero-amount-never-saves/">a-zero-amount-never-saves</a></li>
-<li><a href="../../business-rules/abort-leaves-nothing-stored/">abort-leaves-nothing-stored</a></li>
-</ul>
-<h2 id="referenced-by">Referenced by</h2>
-<p><strong>Cites:</strong></p>
-<ul>
-<li><a href="../../issues/financials-add-help-offers-a-checking-balance-flag-the-intake-ignores/">financials-add-help-offers-a-checking-balance-flag-the-intake-ignores</a> — cites</li>
-<li><a href="../../issues/financials-add-help-undersells-the-shorthand-grammar/">financials-add-help-undersells-the-shorthand-grammar</a> — cites</li>
+<li><a href="../../business-rules/one-admission-gate-for-every-stated-movement/">one-admission-gate-for-every-stated-movement</a></li>
+<li><a href="../../business-rules/future-promises-never-enter-the-balance-chain/">future-promises-never-enter-the-balance-chain</a></li>
+<li><a href="../../business-rules/a-rehearsal-stores-nothing/">a-rehearsal-stores-nothing</a></li>
+<li><a href="../../business-rules/backing-out-leaves-the-books-untouched/">backing-out-leaves-the-books-untouched</a></li>
 </ul>
 
 
@@ -1356,7 +1416,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../assets/tablesort.min.js"></script>
       

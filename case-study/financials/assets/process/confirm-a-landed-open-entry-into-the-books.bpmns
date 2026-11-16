@@ -1,0 +1,59 @@
+process "Owner"
+  start "Landed money waits to be accepted"
+  user "Decide to bring the open item into the books"
+  send "Name the open item to confirm"
+  receive "Take the desk's answer"
+  end "The landed movement is settled in the books"
+
+process "Open-entry confirmation"
+  start "Confirm request arrives"
+  exclusive "Is an open item named?"
+    if "No" then
+      service "Compose the landed open list"
+      user "Pick an open item or cancel"
+      exclusive "Was an item picked?"
+        if "No" then
+          end "Nothing confirmed" message
+        else "Picked"
+    else "An item is named"
+  service "Resolve the open item from register or standing rule"
+  exclusive "Does the item still lie ahead of today?"
+    if "Yes" then
+      send "Refuse to confirm money that has not moved"
+      end "The open item stays open" message
+    else "Landed"
+  exclusive "Does the item carry its amount?"
+    if "No" then
+      send "Refuse to confirm a movement with no amount"
+      end "The item without amount stays open" message
+    else "Amount stated"
+  exclusive "Is the open item a group?"
+    if "Yes" then
+      service "Collect the group's landed members in day order"
+      exclusive "Did any member land?"
+        if "Yes" then
+          service "Commit the next landed member as an actual posting"
+          service "Retire the member's open item and re-point its address"
+          exclusive "More landed members pending?"
+            if "Yes" goto "Commit the next landed member as an actual posting"
+            else "No" goto "Report the outcome with the new account state"
+        else "No" then
+          end "The group stands as it was" message
+    else "A single item"
+  service "Commit the item as an actual journal posting"
+  service "Retire the open item behind the posting"
+  exclusive "Did the posting drift from its standing rule?"
+    if "Yes" then
+      service "Record the occurrence as an exception"
+    else "On mark"
+  send "Report the outcome with the new account state"
+  end "Open item committed" message
+
+message flows
+  from "Owner"."Name the open item to confirm" to "Open-entry confirmation"."Confirm request arrives" label "Confirm request"
+  from "Open-entry confirmation"."The open item stays open" to "Owner"."Take the desk's answer" label "Future refusal"
+  from "Open-entry confirmation"."The item without amount stays open" to "Owner"."Take the desk's answer" label "Amount refusal"
+  from "Open-entry confirmation"."Nothing confirmed" to "Owner"."Take the desk's answer" label "Cancelled"
+  from "Open-entry confirmation"."The group stands as it was" to "Owner"."Take the desk's answer" label "Nothing landed"
+  from "Open-entry confirmation"."Open item committed" to "Owner"."Take the desk's answer" label "Outcome"
+

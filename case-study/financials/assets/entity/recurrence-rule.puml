@@ -1,0 +1,16 @@
+@startuml
+' State diagram of vault project 'financials' — PlantUML source.
+' Entity: entity/recurrence-rule — Recurrence rule (Recurrence)
+' States: 3 · Transitions: 3 (of 3)
+
+' States (declared first — nothing referenced before declared)
+state "active" as s0
+state "paused" as s1
+state "removed" as s2
+
+' Transitions (from --> to : event [condition])
+s0 --> s1 : the owner pauses the\nschedule
+s1 --> s0 : the owner resumes the\nschedule
+s0 --> s2 : the owner removes the\nrule
+
+@enduml

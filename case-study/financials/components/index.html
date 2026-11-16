@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../assets/favicon-96x96.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -796,6 +796,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../objections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../processes/" class="md-nav__link">
         
   
@@ -860,6 +888,62 @@
     
   
     Quirks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resolutions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolutions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reviews
   
 
     
@@ -1145,6 +1229,44 @@
 <p><a href="../">Home</a> › Components</p>
 <h1 id="components">components</h1>
 <p>A structural unit of the analyzed system: one cohesive area of related functionality, named by its role, implemented within a bounded, nameable set of modules, and exposed to its consumers — other code or actors — through the interface it presents.</p>
+<p><em>The components' story:</em></p>
+<p>Eight components stand behind this product, and every one of them
+answers to one idea: the books are an append-only journal that
+folds into tamper-evident balances, and nothing enters a balance
+until the money has really moved. All eight carry the
+journaled-bookkeeping tag, so this is not a layered architecture
+story — it is one shared discipline seen from eight desks.</p>
+<p>The discipline has three fixed points. Command mutations is the
+single narrow write step — every accepted change becomes one
+stamped mutation riding the journal — and the ledger engine folds
+those mutations into dated transaction rows whose running balances
+chain from their date-predecessor, hash-guarded against silent
+tampering, reloadable from checkpoint plus tail. Around that core
+sit the desks where the owner works: entry intake and its Dutch
+shorthand parser at the front door, open-entry confirmation
+turning landed promises into facts, entry editor and entry
+retraction correcting or removing what is already there, the
+expected register holding future-dated promises outside the
+balance chain entirely, and the recurrence planner turning
+repeated payments into anticipations that a real booking replaces.</p>
+<p>The components cluster by what they protect. Four desks keep the
+owner from recording something the books cannot stand behind —
+intake checks and previews, confirmation refusing items ahead of
+today or missing amounts, the editor's field-by-field walk, and
+retraction demanding an explicit yes after printing the row in
+full. Two keep the books honest over time: the engine's chained
+balances and re-propagated corrections, and the register's
+rule that a promise never touches a balance until its day
+lands. The recurrence planner and the confirmation desk form the
+bridge between promises and facts — anticipations, confirmations
+and the same-day refusals that keep one truth per day.</p>
+<p>One inconsistency travels through the set rather than being
+solved anywhere: the promises register can drop a promise through
+a standalone remove door without printing the row or demanding a
+yes, while every other desk protects that same owner with
+confirmations. The retraction component carries it openly, not as
+a design it defends.</p>
+<p><em><a href="../narratives/type/component/">Read the full story</a></em></p>
 <table>
 <thead>
 <tr>
@@ -1154,36 +1276,36 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><a href="cleanup-fix-engine/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>cleanup fix engine</td>
+<td style="text-align: center;"><a href="command-mutations/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Command mutations</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="confirmation-dispatcher/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>confirmation dispatcher</td>
+<td style="text-align: center;"><a href="entry-editor/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Entry editor</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="expected-register-store/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>expected register store</td>
+<td style="text-align: center;"><a href="entry-intake/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Entry intake</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="interactive-deletion-dispatcher/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>interactive deletion dispatcher</td>
+<td style="text-align: center;"><a href="entry-retraction/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Entry retraction</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="interactive-entry-editor/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>interactive entry editor</td>
+<td style="text-align: center;"><a href="expected-register/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Expected register</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="journaled-ledger-engine/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>journaled ledger engine</td>
+<td style="text-align: center;"><a href="ledger-engine/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Ledger engine</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="recurrence-engine/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>recurrence engine</td>
+<td style="text-align: center;"><a href="open-entry-confirmation/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Open-entry confirmation</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="transaction-entry-interface/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>transaction entry interface</td>
+<td style="text-align: center;"><a href="recurrence-planner/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Recurrence planner</td>
 </tr>
 </tbody>
 </table>
@@ -1244,7 +1366,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../assets/tablesort.min.js"></script>
       

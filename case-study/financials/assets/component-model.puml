@@ -1,41 +1,42 @@
 @startuml
 ' Component model of vault project 'financials' — PlantUML source.
-' Components: 8 · Screens: 1 · Relations drawn: 16 of 16
+' Components: 8 · Screens: 1 · Relations drawn: 17 of 20
+' skipped (not drawn): component-relation/intake-and-editor-read-approved-categories-from-configuration (no from/to links — not drawable)
+' skipped (not drawn): component-relation/confirmation-desk-resolves-groups-for-the-open-backlog (no from/to links — not drawable)
+' skipped (not drawn): component-relation/editor-and-retraction-desk-read-posted-rows-from-the-journal (no from/to links — not drawable)
 
-package "Household transaction intake" {
-  [Transaction entry interface (entry.py)]
-  [Confirmation dispatcher (confirm.py)]
-  [Interactive entry editor]
-  [Recurrence engine (recurrences.py + recurrence_cli.py)]
-  [Interactive deletion dispatcher (delete.py)]
-  [Journaled ledger engine (journal.py + commands.py)]
-  [Expected register store (expected.py)]
-  [Cleanup fix engine (fixes.py)]
-  [Confirm picker] <<surface-screen>>
-}
-package "Household bookkeeping stores and corrections" {
-  ' no components
+package "Journaled bookkeeping" {
+  [Ledger engine]
+  [Command mutations]
+  [Entry intake]
+  [Expected register]
+  [Open-entry confirmation desk]
+  [Entry retraction]
+  [Recurrence planner]
+  [Entry editor]
+  [Open confirmation list screen] <<surface-screen>>
 }
 
 ' Actors served by the component/screen world
-:Household bookkeeper:
+:Owner:
 
 ' Component relations (from --> to : edge_type)
-[Transaction entry interface (entry.py)] --> [Expected register store (expected.py)] : writes-to
-[Transaction entry interface (entry.py)] --> [Journaled ledger engine (journal.py + commands.py)] : writes-to
-[Transaction entry interface (entry.py)] --> [Journaled ledger engine (journal.py + commands.py)] : reads-from
-[Confirmation dispatcher (confirm.py)] --> [Journaled ledger engine (journal.py + commands.py)] : writes-to
-[Interactive entry editor] --> [Journaled ledger engine (journal.py + commands.py)] : writes-to
-[Interactive entry editor] --> [Journaled ledger engine (journal.py + commands.py)] : reads-from
-[Interactive entry editor] --> [Expected register store (expected.py)] : writes-to
-[Interactive entry editor] --> [Expected register store (expected.py)] : reads-from
-[Interactive entry editor] --> [Recurrence engine (recurrences.py + recurrence_cli.py)] : reads-from
-[Confirmation dispatcher (confirm.py)] --> [Recurrence engine (recurrences.py + recurrence_cli.py)] : reads-from
-[Journaled ledger engine (journal.py + commands.py)] --> [Cleanup fix engine (fixes.py)] : reads-from
-[Journaled ledger engine (journal.py + commands.py)] --> [Expected register store (expected.py)] : reads-from
-[Cleanup fix engine (fixes.py)] --> [Journaled ledger engine (journal.py + commands.py)] : writes-to
-[Cleanup fix engine (fixes.py)] --> [Expected register store (expected.py)] : writes-to
-[Interactive deletion dispatcher (delete.py)] --> [Journaled ledger engine (journal.py + commands.py)] : writes-to
-[Confirm picker] --> :Household bookkeeper: : serves
+[Entry intake] --> [Command mutations] : writes-to
+[Command mutations] --> [Ledger engine] : writes-to
+[Entry intake] --> [Expected register] : writes-to
+[Open-entry confirmation desk] --> [Command mutations] : writes-to
+[Open-entry confirmation desk] --> [Expected register] : reads-from
+[Open-entry confirmation desk] --> [Expected register] : writes-to
+[Open-entry confirmation desk] --> [Recurrence planner] : reads-from
+[Entry editor] --> [Command mutations] : writes-to
+[Entry editor] --> [Ledger engine] : reads-from
+[Entry retraction] --> [Ledger engine] : reads-from
+[Entry editor] --> [Expected register] : reads-from
+[Entry editor] --> [Expected register] : writes-to
+[Entry editor] --> [Recurrence planner] : reads-from
+[Entry retraction] --> [Recurrence planner] : writes-to
+[Entry retraction] --> [Command mutations] : writes-to
+[Recurrence planner] --> [Expected register] : writes-to
+[Open confirmation list screen] --> :Owner: : serves
 
 @enduml

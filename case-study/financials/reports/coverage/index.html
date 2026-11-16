@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="../../assets/favicon-96x96.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -775,6 +775,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../objections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../processes/" class="md-nav__link">
         
   
@@ -839,6 +867,62 @@
     
   
     Quirks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resolutions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolutions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reviews
   
 
     
@@ -1111,10 +1195,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
-  <a href="#architect" class="md-nav__link">
+  <a href="#1-structural-coverage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        architect
+        1. Structural coverage
       
     </span>
   </a>
@@ -1122,10 +1206,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#narrator" class="md-nav__link">
+  <a href="#2-analysis-coverage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        narrator
+        2. Analysis coverage
       
     </span>
   </a>
@@ -1133,10 +1217,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#process-analyzer" class="md-nav__link">
+  <a href="#3-reviewed-coverage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        process-analyzer
+        3. Reviewed coverage
       
     </span>
   </a>
@@ -1144,76 +1228,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#process-detail-analyzer" class="md-nav__link">
+  <a href="#4-cleared-coverage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        process-detail-analyzer
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#process-detail-analyzer-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        process-detail-analyzer-2
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#process-detail-analyzer-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        process-detail-analyzer-3
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#process-detail-analyzer-4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        process-detail-analyzer-4
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#process-detail-analyzer-5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        process-detail-analyzer-5
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#process-detail-analyzer-6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        process-detail-analyzer-6
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#process-manager" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        process-manager
+        4. Cleared coverage
       
     </span>
   </a>
@@ -1239,503 +1257,177 @@
 
 
 
-<p><a href="../../">Home</a> › <a href="../">Reports</a> › Coverage Report</p>
+<p><a href="../../">Home</a> › <a href="../">Reports</a> › Coverage</p>
 <h1 id="coverage">Coverage</h1>
-<p>Context logs: <code>local/context</code> — 10 logs · 10 agents
-238 basset calls in total</p>
-<p>Window: 2026-10-28 11:55:36 → 2026-10-28 12:52:55</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The report follows the analysis workflow's multi-pass funnel onto the codebase: the deterministic structural transfer first, then the analysis facts anchored in code, the facts a successful review pass has covered, and finally the facts that stand validated — reviewed and free of open objections. Every grid below shades the SAME buckets dataset the webapp's coverage page renders; each cell carries its bucket details in a tooltip.</p>
+</div>
+<p>The buckets dataset partitions the codebase into 364 buckets over 12110 loc, 12110 of them carrying structural facts (100.0%).</p>
+<h2 id="1-structural-coverage">1. Structural coverage</h2>
+<p>913 structural facts · 364 buckets · run 1.</p>
+<p>our deterministic transfer of the codebase; each bucket shades by its structural-fact density.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/coverage-structural.svg" data-desc-position="bottom"><img alt="structural coverage grid" src="../../assets/coverage-structural.svg"></a></p>
 <table>
 <thead>
 <tr>
-<th>agent</th>
-<th style="text-align: right;">files read</th>
-<th style="text-align: right;">files scanned</th>
-<th style="text-align: right;">basset calls</th>
+<th>most covered buckets</th>
+<th style="text-align: right;">loc</th>
+<th style="text-align: right;">facts</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>architect</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2</td>
+<td>bucket 187 — src/financials/tui/add.py</td>
+<td style="text-align: right;">249</td>
+<td style="text-align: right;">15</td>
 </tr>
 <tr>
-<td>narrator</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr>
-<td>process-analyzer</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">29</td>
-</tr>
-<tr>
-<td>process-detail-analyzer</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">34</td>
-</tr>
-<tr>
-<td>process-detail-analyzer-2</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">31</td>
-</tr>
-<tr>
-<td>process-detail-analyzer-3</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">30</td>
-</tr>
-<tr>
-<td>process-detail-analyzer-4</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">38</td>
-</tr>
-<tr>
-<td>process-detail-analyzer-5</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">40</td>
-</tr>
-<tr>
-<td>process-detail-analyzer-6</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">34</td>
-</tr>
-<tr>
-<td>process-manager</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-</tr>
-</tbody>
-</table>
-<h2 id="architect">architect</h2>
-<p>0 read calls · 1 scan calls · 1 other basset calls</p>
-<table>
-<thead>
-<tr>
-<th>file</th>
-<th style="text-align: right;">calls</th>
-<th>tools</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>(scan) src/financials</td>
-<td style="text-align: right;">1</td>
-<td>ingest_dependencies ×1</td>
-</tr>
-</tbody>
-</table>
-<h2 id="narrator">narrator</h2>
-<p>0 read calls · 0 scan calls · 0 other basset calls</p>
-<p>No file access through basset.</p>
-<h2 id="process-analyzer">process-analyzer</h2>
-<p>24 read calls · 1 scan calls · 4 other basset calls</p>
-<table>
-<thead>
-<tr>
-<th>file</th>
-<th style="text-align: right;">calls</th>
-<th>tools</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>src/financials/commands.py</td>
-<td style="text-align: right;">4</td>
-<td>retrieve_content ×3, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/confirm.py</td>
-<td style="text-align: right;">4</td>
-<td>retrieve_content ×3, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/fixes.py</td>
-<td style="text-align: right;">3</td>
-<td>retrieve_content ×2, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/cli.py</td>
-<td style="text-align: right;">2</td>
-<td>ingest_outline ×1, retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/entry.py</td>
-<td style="text-align: right;">2</td>
-<td>ingest_outline ×1, retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/groups.py</td>
-<td style="text-align: right;">2</td>
-<td>retrieve_content ×2</td>
-</tr>
-<tr>
-<td>src/financials/recurrence_cli.py</td>
-<td style="text-align: right;">2</td>
-<td>retrieve_content ×2</td>
-</tr>
-<tr>
-<td>(scan) scripts</td>
-<td style="text-align: right;">1</td>
-<td>ingest_dependencies ×1</td>
-</tr>
-<tr>
-<td>README.md</td>
-<td style="text-align: right;">1</td>
-<td>retrieve_file ×1</td>
-</tr>
-<tr>
-<td>src/financials/delete.py</td>
-<td style="text-align: right;">1</td>
-<td>retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/edit.py</td>
-<td style="text-align: right;">1</td>
-<td>retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/expected.py</td>
-<td style="text-align: right;">1</td>
-<td>retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/journal.py</td>
-<td style="text-align: right;">1</td>
-<td>ingest_outline ×1</td>
-</tr>
-</tbody>
-</table>
-<h2 id="process-detail-analyzer">process-detail-analyzer</h2>
-<p>29 read calls · 2 scan calls · 3 other basset calls</p>
-<table>
-<thead>
-<tr>
-<th>file</th>
-<th style="text-align: right;">calls</th>
-<th>tools</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>tests/test_entry.py</td>
-<td style="text-align: right;">6</td>
-<td>retrieve_content ×5, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/commands.py</td>
-<td style="text-align: right;">5</td>
-<td>retrieve_content ×4, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/entry.py</td>
-<td style="text-align: right;">5</td>
-<td>retrieve_content ×4, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/model.py</td>
-<td style="text-align: right;">3</td>
-<td>retrieve_content ×2, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/shorthand.py</td>
-<td style="text-align: right;">3</td>
-<td>retrieve_content ×2, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>(scan) src/financials/entry.py</td>
-<td style="text-align: right;">2</td>
-<td>query_references ×1, scout_symbols ×1</td>
-</tr>
-<tr>
-<td>src/financials/cli.py</td>
-<td style="text-align: right;">2</td>
-<td>ingest_outline ×1, retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/expected.py</td>
-<td style="text-align: right;">2</td>
-<td>ingest_outline ×1, retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/journal.py</td>
-<td style="text-align: right;">2</td>
-<td>ingest_outline ×1, retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/ask.py</td>
-<td style="text-align: right;">1</td>
-<td>retrieve_content ×1</td>
-</tr>
-</tbody>
-</table>
-<h2 id="process-detail-analyzer-2">process-detail-analyzer-2</h2>
-<p>29 read calls · 0 scan calls · 2 other basset calls</p>
-<table>
-<thead>
-<tr>
-<th>file</th>
-<th style="text-align: right;">calls</th>
-<th>tools</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>src/financials/confirm.py</td>
-<td style="text-align: right;">7</td>
-<td>retrieve_content ×6, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/commands.py</td>
-<td style="text-align: right;">4</td>
-<td>retrieve_content ×3, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/recurrence_cli.py</td>
-<td style="text-align: right;">4</td>
-<td>retrieve_content ×4</td>
-</tr>
-<tr>
-<td>src/financials/recurrences.py</td>
-<td style="text-align: right;">4</td>
-<td>retrieve_content ×3, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/cli.py</td>
-<td style="text-align: right;">3</td>
-<td>retrieve_content ×2, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/groups.py</td>
-<td style="text-align: right;">3</td>
-<td>retrieve_content ×2, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/journal.py</td>
-<td style="text-align: right;">2</td>
-<td>ingest_outline ×1, retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/ledger_view.py</td>
-<td style="text-align: right;">1</td>
-<td>retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/model.py</td>
-<td style="text-align: right;">1</td>
-<td>ingest_outline ×1</td>
-</tr>
-</tbody>
-</table>
-<h2 id="process-detail-analyzer-3">process-detail-analyzer-3</h2>
-<p>29 read calls · 0 scan calls · 1 other basset calls</p>
-<table>
-<thead>
-<tr>
-<th>file</th>
-<th style="text-align: right;">calls</th>
-<th>tools</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>src/financials/edit.py</td>
-<td style="text-align: right;">11</td>
-<td>retrieve_content ×10, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/journal.py</td>
-<td style="text-align: right;">9</td>
-<td>retrieve_content ×8, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/commands.py</td>
-<td style="text-align: right;">5</td>
-<td>retrieve_content ×4, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/cli.py</td>
-<td style="text-align: right;">4</td>
-<td>ingest_outline ×3, retrieve_content ×1</td>
-</tr>
-</tbody>
-</table>
-<h2 id="process-detail-analyzer-4">process-detail-analyzer-4</h2>
-<p>32 read calls · 1 scan calls · 5 other basset calls</p>
-<table>
-<thead>
-<tr>
-<th>file</th>
-<th style="text-align: right;">calls</th>
-<th>tools</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>src/financials/journal.py</td>
-<td style="text-align: right;">10</td>
-<td>retrieve_content ×8, ingest_outline ×2</td>
-</tr>
-<tr>
-<td>src/financials/delete.py</td>
-<td style="text-align: right;">7</td>
-<td>retrieve_content ×6, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/cli.py</td>
-<td style="text-align: right;">5</td>
-<td>ingest_outline ×4, retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/commands.py</td>
-<td style="text-align: right;">3</td>
-<td>retrieve_content ×2, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/groups.py</td>
-<td style="text-align: right;">2</td>
-<td>retrieve_content ×2</td>
-</tr>
-<tr>
-<td>(scan) src/financials/delete.py</td>
-<td style="text-align: right;">1</td>
-<td>query_references ×1</td>
-</tr>
-<tr>
-<td>src/financials/expected.py</td>
-<td style="text-align: right;">1</td>
-<td>retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/ledger_view.py</td>
-<td style="text-align: right;">1</td>
-<td>retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/model.py</td>
-<td style="text-align: right;">1</td>
-<td>retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/recurrence_cli.py</td>
-<td style="text-align: right;">1</td>
-<td>retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/recurrences.py</td>
-<td style="text-align: right;">1</td>
-<td>ingest_outline ×1</td>
-</tr>
-</tbody>
-</table>
-<h2 id="process-detail-analyzer-5">process-detail-analyzer-5</h2>
-<p>33 read calls · 3 scan calls · 4 other basset calls</p>
-<table>
-<thead>
-<tr>
-<th>file</th>
-<th style="text-align: right;">calls</th>
-<th>tools</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>src/financials/recurrence_cli.py</td>
+<td>bucket 182 — src/financials/tui/<strong>init</strong>.py</td>
+<td style="text-align: right;">240</td>
 <td style="text-align: right;">14</td>
-<td>retrieve_content ×13, ingest_outline ×1</td>
 </tr>
 <tr>
-<td>src/financials/recurrences.py</td>
+<td>bucket 101 — src/financials/journal.py</td>
+<td style="text-align: right;">90</td>
 <td style="text-align: right;">12</td>
-<td>retrieve_content ×11, ingest_outline ×1</td>
 </tr>
 <tr>
-<td>src/financials/cli.py</td>
-<td style="text-align: right;">4</td>
-<td>ingest_outline ×2, retrieve_content ×2</td>
+<td>bucket 291 — tests/test_parsing.py</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">9</td>
 </tr>
 <tr>
-<td>(scan) src/financials/recurrence_cli.py</td>
-<td style="text-align: right;">2</td>
-<td>query_callers ×1, query_references ×1</td>
-</tr>
-<tr>
-<td>src/financials/ledger_view.py</td>
-<td style="text-align: right;">2</td>
-<td>retrieve_content ×2</td>
-</tr>
-<tr>
-<td>(scan) src/financials/cli.py</td>
-<td style="text-align: right;">1</td>
-<td>query_references ×1</td>
-</tr>
-<tr>
-<td>src/financials/commands.py</td>
-<td style="text-align: right;">1</td>
-<td>ingest_outline ×1</td>
+<td>bucket 180 — src/financials/tui/<strong>init</strong>.py</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">8</td>
 </tr>
 </tbody>
 </table>
-<h2 id="process-detail-analyzer-6">process-detail-analyzer-6</h2>
-<p>27 read calls · 0 scan calls · 7 other basset calls</p>
+<h2 id="2-analysis-coverage">2. Analysis coverage</h2>
+<p>150 analysis facts · 148 on the grid · run 1.</p>
+<p>148 of 150 analysis facts carry code anchors; 148 of them land on this dataset's buckets (121 by exact id, 27 at file level).</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/coverage-analysis.svg" data-desc-position="bottom"><img alt="analysis coverage grid" src="../../assets/coverage-analysis.svg"></a></p>
 <table>
 <thead>
 <tr>
-<th>file</th>
-<th style="text-align: right;">calls</th>
-<th>tools</th>
+<th>most covered buckets</th>
+<th style="text-align: right;">loc</th>
+<th style="text-align: right;">facts</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>src/financials/fixes.py</td>
+<td>bucket 71 — src/financials/entry.py</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr>
+<td>bucket 51 — src/financials/confirm.py</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr>
+<td>bucket 74 — src/financials/expected.py</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr>
+<td>bucket 149 — src/financials/recurrence_cli.py</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr>
+<td>bucket 62 — src/financials/edit.py</td>
+<td style="text-align: right;">21</td>
 <td style="text-align: right;">12</td>
-<td>retrieve_content ×11, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/journal.py</td>
-<td style="text-align: right;">8</td>
-<td>retrieve_content ×7, ingest_outline ×1</td>
-</tr>
-<tr>
-<td>src/financials/cli.py</td>
-<td style="text-align: right;">2</td>
-<td>ingest_outline ×1, retrieve_content ×1</td>
-</tr>
-<tr>
-<td>src/financials/commands.py</td>
-<td style="text-align: right;">2</td>
-<td>retrieve_content ×2</td>
-</tr>
-<tr>
-<td>README.md</td>
-<td style="text-align: right;">1</td>
-<td>retrieve_file ×1</td>
-</tr>
-<tr>
-<td>docs/journaled-ledger.md</td>
-<td style="text-align: right;">1</td>
-<td>retrieve_file ×1</td>
-</tr>
-<tr>
-<td>tests/test_fixes.py</td>
-<td style="text-align: right;">1</td>
-<td>ingest_outline ×1</td>
 </tr>
 </tbody>
 </table>
-<h2 id="process-manager">process-manager</h2>
-<p>0 read calls · 0 scan calls · 0 other basset calls</p>
-<p>No file access through basset.</p>
+<h2 id="3-reviewed-coverage">3. Reviewed coverage</h2>
+<p>123 reviewed facts · 123 on the grid · run 1.</p>
+<p>123 of 123 reviewed facts carry code anchors; 123 of them land on this dataset's buckets (102 by exact id, 21 at file level).</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/coverage-reviewed.svg" data-desc-position="bottom"><img alt="reviewed coverage grid" src="../../assets/coverage-reviewed.svg"></a></p>
+<table>
+<thead>
+<tr>
+<th>most covered buckets</th>
+<th style="text-align: right;">loc</th>
+<th style="text-align: right;">facts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bucket 51 — src/financials/confirm.py</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr>
+<td>bucket 149 — src/financials/recurrence_cli.py</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr>
+<td>bucket 74 — src/financials/expected.py</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr>
+<td>bucket 71 — src/financials/entry.py</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr>
+<td>bucket 62 — src/financials/edit.py</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">11</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-cleared-coverage">4. Cleared coverage</h2>
+<p>111 cleared facts · 111 on the grid · run 1.</p>
+<p>111 of 111 cleared facts carry code anchors; 111 of them land on this dataset's buckets (90 by exact id, 21 at file level). Cleared = reviewed (successful pass) and free of open objections.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/coverage-cleared.svg" data-desc-position="bottom"><img alt="cleared coverage grid" src="../../assets/coverage-cleared.svg"></a></p>
+<table>
+<thead>
+<tr>
+<th>most covered buckets</th>
+<th style="text-align: right;">loc</th>
+<th style="text-align: right;">facts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bucket 51 — src/financials/confirm.py</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr>
+<td>bucket 149 — src/financials/recurrence_cli.py</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr>
+<td>bucket 71 — src/financials/entry.py</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr>
+<td>bucket 74 — src/financials/expected.py</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr>
+<td>bucket 62 — src/financials/edit.py</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">11</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Wondering why the coverage graphs seem so empty towards the right? Your codebase consists typically of actual source code and also a test suite. Although your test suite also contains valuable information, it is most of the time not considered the main anchorage point for analysis facts.</p>
+</div>
 
 
 
@@ -1793,7 +1485,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../assets/tablesort.min.js"></script>
       

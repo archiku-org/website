@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../assets/favicon-96x96.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -796,6 +796,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../objections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../processes/" class="md-nav__link">
         
   
@@ -860,6 +888,62 @@
     
   
     Quirks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resolutions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolutions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reviews
   
 
     
@@ -1145,6 +1229,51 @@
 <p><a href="../">Home</a> › Concepts</p>
 <h1 id="concepts">concepts</h1>
 <p>A domain concept from the analyzed system's vocabulary, defined in plain prose and tied to the code where it is exercised.</p>
+<p><em>The concepts' story:</em></p>
+<p>Every concept in this family turns on one everyday question — has
+the money moved? The founding
+<a href="actual-versus-expected/">actual-versus-expected distinction</a>
+splits a movement in two: what has happened enters the journaled
+books, carrying and shifting real balances, guarded against
+tampering; what is promised for a future day stays in a separate
+register, weighs nothing against those balances and can still
+fail to happen.</p>
+<p><a href="future-day-admission/">Future-day admission</a> applies the
+cut to the calendar. A movement stated for today or the past is a
+fact, and only the fact side moves balances; stated for a future
+day it becomes a promise with a deliberately narrow door — nothing
+parks in the register until the statement is complete — while the
+actual ledger refuses a future date outright. The books forgive a
+promise of zero, but a fact of zero is a mistake by definition.</p>
+<p>Two mechanisms share one habit: the books compute what they predict
+rather than store it. <a href="the-confirmation-backlog/">The confirmation
+backlog</a> is the clearest case —
+the gap between the register and the ledger, named "geland maar
+niet bevestigd" (landed but not confirmed). It has no store: the
+open list is projected at view time, and an item leaves only when
+a booking supersedes, retires or excepts it. A projected occurrence
+of a standing rule works the same way, since
+<a href="the-derivation-of-a-projected-occurrence-s-address/">its address is derived</a>
+from the rule's values and the date — retrievable even after a
+delete, yet schedule-bound, so adjusting the rule makes addresses
+noted from an older forecast stop matching.</p>
+<p>The last two concepts tell how a schedule earns its place. Detection
+gathers a payment that repeats often enough into
+<a href="proposal/">a proposal</a>, but a proposal is information, not
+commitment: it lives only on screen, nothing remembers it was shown,
+and it may stay generous — a wide observed amount range, even an
+unknown category — because it holds no power over forecasts.
+<a href="rule-provenance-written-by-hand-or-adopted-from-history/">Adoption</a>
+is one of two doors into the rule store; the other receives
+obligations the owner knows before the books ever see them, like a
+new subscription or a rent change, written by hand. Both doors
+refuse an incomplete or impossible rule, and each carries its own
+trust story: a hand-written rule leans wholly on the owner's
+judgment, an adopted one on history's evidence.</p>
+<p>Across all six the boundary holds: a promise never looks like a
+fact, a projection never lands in the balance chain, and no guess
+becomes a rule on the books' word.</p>
+<p><em><a href="../narratives/type/concept/">Read the full story</a></em></p>
 <table>
 <thead>
 <tr>
@@ -1158,68 +1287,24 @@
 <td>Actual versus expected</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="applied-marker-the-file-name-suffix-that-retires-a-consumed-change-set/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Applied marker — the file-name suffix that retires a consumed change-set</td>
+<td style="text-align: center;"><a href="future-day-admission/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Future-day admission</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="approved-categories/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Approved categories</td>
+<td style="text-align: center;"><a href="proposal/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Proposal</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="category-led-description/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Category-led description</td>
+<td style="text-align: center;"><a href="rule-provenance-written-by-hand-or-adopted-from-history/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>Rule provenance — written by hand or adopted from history</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="change-set-the-reviewed-fix-file/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Change-set — the reviewed fix file</td>
+<td style="text-align: center;"><a href="the-confirmation-backlog/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>The confirmation backlog</td>
 </tr>
 <tr>
-<td style="text-align: center;"><a href="confirmation-backlog/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Confirmation backlog</td>
-</tr>
-<tr>
-<td style="text-align: center;"><a href="content-hash-identity/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Content-hash identity</td>
-</tr>
-<tr>
-<td style="text-align: center;"><a href="from-guard-the-old-value-a-fix-declares-and-the-ledger-must-confirm/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>From-guard — the old value a fix declares and the ledger must confirm</td>
-</tr>
-<tr>
-<td style="text-align: center;"><a href="full-replacement-update/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Full replacement update</td>
-</tr>
-<tr>
-<td style="text-align: center;"><a href="open-backlog-open-section/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Open backlog (OPEN section)</td>
-</tr>
-<tr>
-<td style="text-align: center;"><a href="pre-image-the-victim-s-content-at-removal-time/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Pre-image (the victim's content at removal time)</td>
-</tr>
-<tr>
-<td style="text-align: center;"><a href="recurrence-proposal-detector-review-row/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Recurrence proposal (detector review row)</td>
-</tr>
-<tr>
-<td style="text-align: center;"><a href="rule-instance-a-projected-occurrence-of-a-recurring-rule/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Rule instance (a projected occurrence of a recurring rule)</td>
-</tr>
-<tr>
-<td style="text-align: center;"><a href="running-balances/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Running balances</td>
-</tr>
-<tr>
-<td style="text-align: center;"><a href="un-group-dissolving-a-grouping-not-its-members/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Un-group (dissolving a grouping, not its members)</td>
-</tr>
-<tr>
-<td style="text-align: center;"><a href="varying-amount-detection-tier-b/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Varying-amount detection (tier B)</td>
-</tr>
-<tr>
-<td style="text-align: center;"><a href="weekday-anchor-weekly-and-biweekly-phase/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
-<td>Weekday anchor (weekly and biweekly phase)</td>
+<td style="text-align: center;"><a href="the-derivation-of-a-projected-occurrence-s-address/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"></path></svg></span></a></td>
+<td>The derivation of a projected occurrence's address</td>
 </tr>
 </tbody>
 </table>
@@ -1280,7 +1365,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../assets/tablesort.min.js"></script>
       

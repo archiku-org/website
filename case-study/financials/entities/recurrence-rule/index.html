@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="../../assets/favicon-96x96.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -775,6 +775,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../objections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../processes/" class="md-nav__link">
         
   
@@ -839,6 +867,62 @@
     
   
     Quirks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resolutions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolutions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reviews
   
 
     
@@ -1166,6 +1250,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#state-transitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Transitions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#file-path" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1221,10 +1316,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#entity-of" class="md-nav__link">
+  <a href="#classifiers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Entity of
+        classifiers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        transitions
       
     </span>
   </a>
@@ -1269,16 +1375,55 @@
 <p>Recurrence rule (Recurrence)</p>
 <h2 id="summary">Summary</h2>
 <blockquote>
-<p>One standing recurring payment rule — the pattern from which planned instances are projected and to which confirmations report back.</p>
+<p>The standing schedule the owner keeps for a repeating payment — what repeats, for how much, how often, and any dates it skips.</p>
 </blockquote>
 <h2 id="description">Description</h2>
 <blockquote>
-<p>A recurring bill or income held as a rule rather than as stored rows. From the rule's pattern the views project a planned instance for each due date; confirmation books the rule's own values for the instance and, when the committing booking no longer matches the rule's period, records that specific occurrence as an exception so it stops appearing as due. The rule therefore both supplies the confirmation's values and receives its aftermath. Rules can be paused by deactivation; inactive rules project nothing and their instances can no longer be confirmed.</p>
+<p>A recurrence rule is the owner's formal answer to a payment that keeps coming back: the same description and category every time, the amount to anticipate, and the rhythm — weekly to yearly. The rule also carries its own boundaries. A start date keeps instances from appearing too early, an optional end date retires the schedule, a pause flag silences it without erasing it, and a list of exempted dates spares single occurrences the owner already settled another way.</p>
+<p>Rules come into existence two ways: the owner writes one directly through the add flow, or a detection proposal is adopted and each value is confirmed in the owner-checked form. Either way the rule exists only after the owner's approval. Removal takes the rule out of the store entirely; pausing keeps it but stops new anticipations. A booked occurrence keeps its identity through its rule and date, so a later correction or suppression finds exactly that one instance.</p>
 </blockquote>
 <h2 id="state-management">State Management</h2>
 <blockquote>
-<p>The rule file is the only place recurrence state lives; instances are never stored — they are recomputed by expansion from description/category/amount/frequency/day/month and the start/end bounds. Two bits of mutable state ride inside the rule: the active flag (an inactive rule stops projecting and can no longer be confirmed) and the exceptions list (ISO occurrence dates exempt from expansion — grown by a drifted confirmation commit, which is how a confirmed-but-changed instance is retired from the projection). Confirmation never edits the pattern fields; it only writes exceptions.</p>
+<p>The rule's state rides four stored parts: the schedule fields (amount, frequency, day, month), the window fields (start and end dates), the pause flag (active true or false, toggled by the pause and resume actions), and the exceptions list — dates the owner exempted from anticipation, appended by the suppress action. Removal is not a flag: the rule leaves the store outright. The store keeps every rule as one entry in the rules file, rewritten wholesale on each save.</p>
 </blockquote>
+<h2 id="state-transitions">State Transitions</h2>
+<pre class="mermaid"><code>stateDiagram-v2
+    state "active" as s0
+    state "paused" as s1
+    state "removed" as s2
+    s0 --&gt; s1 : the owner pauses the schedule
+    s1 --&gt; s0 : the owner resumes the schedule
+    s0 --&gt; s2 : the owner removes the rule</code></pre>
+<table>
+<thead>
+<tr>
+<th>From</th>
+<th>To</th>
+<th>Event</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>active</td>
+<td>paused</td>
+<td>the owner pauses the schedule</td>
+<td>—</td>
+</tr>
+<tr>
+<td>paused</td>
+<td>active</td>
+<td>the owner resumes the schedule</td>
+<td>—</td>
+</tr>
+<tr>
+<td>active</td>
+<td>removed</td>
+<td>the owner removes the rule</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
 <h2 id="file-path">File Path</h2>
 <p><code>src/financials/recurrences.py</code></p>
 <h2 id="line-number">Line Number</h2>
@@ -1328,22 +1473,22 @@
 <tr>
 <td>start</td>
 <td>str</td>
-<td></td>
+<td>—</td>
 </tr>
 <tr>
 <td>end</td>
 <td>str</td>
-<td></td>
+<td>—</td>
 </tr>
 <tr>
 <td>active</td>
 <td>bool</td>
-<td>true</td>
+<td>—</td>
 </tr>
 <tr>
 <td>note</td>
 <td>str</td>
-<td></td>
+<td>—</td>
 </tr>
 <tr>
 <td>exceptions</td>
@@ -1353,33 +1498,55 @@
 </tbody>
 </table>
 <h2 id="example">Example</h2>
-<div class="highlight"><pre><span></span><code><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Huur</span>
-<span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Woning</span>
-<span class="nt">amount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-850.0</span>
+<div class="highlight"><pre><span></span><code><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">huur</span>
+<span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">huis</span>
+<span class="nt">amount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">950.0</span>
 <span class="nt">frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">monthly</span>
 <span class="nt">day</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 <span class="nt">month</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="s">"2024-01-01"</span>
+<span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="s">"2026-01-01"</span>
 <span class="nt">end</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="nt">exceptions</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"2026-10-01"</span>
+<span class="nt">exceptions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
 </code></pre></div>
-<h2 id="entity-of">Entity of</h2>
-<ul>
-<li><a href="../../files/src/financials/recurrence_cli.py/"><code>src/financials/recurrence_cli.py</code></a></li>
-<li><a href="../../files/src/financials/recurrences.py/"><code>src/financials/recurrences.py</code></a></li>
-</ul>
+<h2 id="classifiers">classifiers</h2>
+<div class="highlight"><pre><span></span><code>[
+  "business-value",
+  "stable"
+]
+</code></pre></div>
+<h2 id="transitions">transitions</h2>
+<div class="highlight"><pre><span></span><code>[
+  {
+    "event": "the owner pauses the schedule",
+    "from": "active",
+    "to": "paused"
+  },
+  {
+    "event": "the owner resumes the schedule",
+    "from": "paused",
+    "to": "active"
+  },
+  {
+    "event": "the owner removes the rule",
+    "from": "active",
+    "to": "removed"
+  }
+]
+</code></pre></div>
 <h2 id="referenced-by">Referenced by</h2>
 <p><strong>Cares about:</strong></p>
 <ul>
-<li><a href="../../actors/household-bookkeeper/">household-bookkeeper</a> — cares-about</li>
-<li><a href="../../actors/recurrence-engine/">recurrence-engine</a> — cares-about</li>
+<li><a href="../../actors/owner/">owner</a> — cares-about</li>
 </ul>
-<p><strong>Cites:</strong></p>
+<p><strong>Objects to:</strong></p>
 <ul>
-<li><a href="../../issues/group-confirm-covered-skip-note-claims-a-booked-row-settled-the-member-even-when-the-member-is-a-plan/">group-confirm-covered-skip-note-claims-a-booked-row-settled-the-member-even-when-the-member-is-a-plan</a> — cites</li>
+<li><a href="../../objections/removal-from-a-paused-schedule-is-missing-from-the-rule-s-transitions/">removal-from-a-paused-schedule-is-missing-from-the-rule-s-transitions</a> — objects-to</li>
+</ul>
+<p><strong>Reviews:</strong></p>
+<ul>
+<li><a href="../../reviews/review-pass-over-the-recurrence-rule-entity-and-the-detection-adoption-rules/">review-pass-over-the-recurrence-rule-entity-and-the-detection-adoption-rules</a> — reviews</li>
 </ul>
 
 
@@ -1438,7 +1605,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../assets/tablesort.min.js"></script>
       

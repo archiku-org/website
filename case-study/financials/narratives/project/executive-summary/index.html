@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon-96x96.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -775,6 +775,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../objections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../processes/" class="md-nav__link">
         
   
@@ -839,6 +867,62 @@
     
   
     Quirks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resolutions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolutions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reviews
   
 
     
@@ -1111,17 +1195,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
-  <a href="#describes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Describes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#summarizes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1154,27 +1227,40 @@
 <p><a href="../../../">Home</a> › <a href="../../../facts/">Facts</a> › <a href="../../">Narratives</a> › <a href="../">project</a> › <code>project/executive-summary</code></p>
 <h1 id="executive-summary">Executive summary</h1>
 <p><em>executive-summary · for client</em></p>
-<p>It is a household ledger — the archetype story calls it a double-entry-adjacent personal ledger with a forecast layer — and its whole design protects one thing: books that can prove their own history.</p>
-<ol>
-<li>The books replay their own history: every change joins <a href="../../../business-rules/every-mutation-is-content-hash-identified-and-journal-verified/">an append-only, content-hashed journal</a> — timestamped so even identical same-day recordings stay distinct — and every row re-verifies on read; a correction is a new recorded event, never a quiet edit.</li>
-<li>Planned money cannot corrupt recorded money: recurring rules and their forecast are <a href="../../../non-goals/recurring-rules-are-never-materialized-into-the-transaction-store/">an overlay never materialized into the books</a>, and the only bridge from plan to reality is the deliberately zero-prompt confirm of a landed entry.</li>
-<li>A caution for bulk-cleanup reviews: an amount correction on a transfer row <a href="../../../quirks/an-amount-correction-on-a-transfer-row-silently-overwrites-any-custom-savings-side/">silently overwrites any custom savings side</a> — a reviewer fixing one field should expect both sides to rewrite.</li>
-<li>Destructive actions demand a typed affirmative and <a href="../../../non-goals/no-undo-for-a-committed-removal/">offer no undo</a>; the journal — not a restore command — is the recovery story.</li>
-</ol>
-<p>Verification status: no objection facts and no verification-phase records exist in the fact base at narration time, so these findings rest on the analyst passes' own confidence.</p>
-<p>Next step: read the companion product summary and archetype mapping for the capability walk and concept map, then the per-surface detail sections.</p>
-<h2 id="describes">Describes</h2>
-<ul>
-<li><a href="../../../projects/financials/">financials</a></li>
-</ul>
+<p>One household's cashflow books, built so every recorded fact can be
+proven rather than trusted — an evidence-first journal where changes
+are appended and balances are recomputation, never edited states.</p>
+<p>The books prove themselves: every correction and removal is its own
+appended record carrying what changed, each row carries a hashed
+self-check, and re-landing the same movement stores it once
+(<a href="../../../business-rules/a-correction-is-recorded-not-typed/">A correction is recorded, not typed</a>) — judge any
+change near the journal against this property first.</p>
+<p>Rule-occurrence confirmation can double-book: a group confirm skips
+an occurrence a real booking already covers, while the same
+occurrence confirmed by its own address commits again
+(<a href="../../../sensitivities/a-covered-rule-occurrence-double-books-when-confirmed-directly-by-its-own-address/">A covered rule occurrence double-books when confirmed directly by its own address</a>)
+— aligning that check across both confirm doors is the
+highest-value fix.</p>
+<p>The removal ritual is not uniform: the expect remove door takes an
+id and deletes without showing the row or asking for a yes
+(<a href="../../../quirks/the-expect-remove-door-drops-promises-without-printing-or-confirming/">The expect remove door drops promises without printing or confirming</a>),
+one door away from the identical guarded operation.</p>
+<p>Which side wins when a retraction record no longer matches the live
+books is decided nowhere
+(<a href="../../../hotspots/refused-retraction-on-journal-versus-books-mismatch-which-side-should-win/">Refused retraction on journal-versus-books mismatch — which side should win?</a>)
+— an owner ruling is pending, and until then the keeper facing the
+refusal has no recovery door.</p>
+<p>Next: read <a href="../swot/">the SWOT analysis</a> for the
+evidence behind each point and <a href="../product-summary/">the product
+summary</a> for the capability map.
+Verification: six objections were raised during the analysis and all
+six carry resolved markers at their target versions — no fact stands
+contested; the vault holds no separate coverage or run record.</p>
 <h2 id="summarizes">Summarizes</h2>
 <ul>
 <li><a href="../product-summary/">project/product-summary</a></li>
 <li><a href="../archetype-mapping/">project/archetype-mapping</a></li>
-<li><a href="../../../business-rules/every-mutation-is-content-hash-identified-and-journal-verified/">every-mutation-is-content-hash-identified-and-journal-verified</a></li>
-<li><a href="../../../non-goals/recurring-rules-are-never-materialized-into-the-transaction-store/">recurring-rules-are-never-materialized-into-the-transaction-store</a></li>
-<li><a href="../../../quirks/an-amount-correction-on-a-transfer-row-silently-overwrites-any-custom-savings-side/">an-amount-correction-on-a-transfer-row-silently-overwrites-any-custom-savings-side</a></li>
-<li><a href="../../../non-goals/no-undo-for-a-committed-removal/">no-undo-for-a-committed-removal</a></li>
+<li><a href="../swot/">project/swot</a></li>
 </ul>
 
 
@@ -1233,7 +1319,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../../assets/tablesort.min.js"></script>
       

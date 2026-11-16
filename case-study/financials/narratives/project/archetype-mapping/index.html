@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon-96x96.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -775,6 +775,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../objections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../processes/" class="md-nav__link">
         
   
@@ -839,6 +867,62 @@
     
   
     Quirks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resolutions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolutions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reviews
   
 
     
@@ -1165,46 +1249,72 @@
 <p><a href="../../../">Home</a> › <a href="../../../facts/">Facts</a> › <a href="../../">Narratives</a> › <a href="../">project</a> › <code>project/archetype-mapping</code></p>
 <h1 id="archetype-mapping">Archetype mapping</h1>
 <p><em>archetype-mapping · for client</em></p>
-<p>The archetype is a <strong>double-entry-adjacent personal ledger with a forecast layer</strong>: a single-household bookkeeping suite that keeps an auditable account of committed money, a parking place for planned money, and a rules engine that turns history into forecast — nothing cloud-served, no multi-user world, just one household's two accounts kept provably true. Four core concepts carry the whole shape.</p>
-<p><a href="../../../concepts/actual-versus-expected/">Actual versus expected</a> is the load-bearing distinction: a movement either happened (dated today or earlier) and lives in the journaled books, or it is planned (dated ahead) and parks in a register that carries no balances. Nearly every rule and boundary in the project reads as a consequence of that one line.</p>
-<p><a href="../../../concepts/content-hash-identity/">Content-hash identity</a> is the integrity archetype: a recording's identity is a hash of its own content plus creation time, appended to a journal that can never be edited — so the books replay their own history rather than remember it.</p>
-<p><a href="../../../concepts/running-balances/">Running balances</a> is the everyday payoff: every ledger row carries the balance it produced, so the household position at any date is a read, not a recalculation, and a backdated entry threads itself into the chain and pushes every later balance truthful again.</p>
-<p><a href="../../../concepts/approved-categories/">The approved category list</a> is budgeting policy made executable — the household's own configured vocabulary is checked fresh at every recording on both the actual and the expected side.</p>
-<p>Two further concepts organize the planner: <a href="../../../concepts/rule-instance-a-projected-occurrence-of-a-recurring-rule/">a rule instance is a projected, virtual occurrence</a> — real in the forecast, never in the books — and the <a href="../../../concepts/confirmation-backlog/">confirmation backlog</a> names what has landed but not yet been confirmed, one queue with one drain path.</p>
-<p>How the concepts live in the components, in the component census's own order:</p>
-<ul>
-<li>The <strong>transaction entry interface</strong> is where actual-versus-expected is policed at the front door — it validates, routes by date, and closes the loop with the projected-balance confirmation.</li>
-<li>The <strong>confirmation dispatcher</strong> is the only bridge between the two worlds: it commits known values as recorded money without a conversation.</li>
-<li>The <strong>interactive entry editor</strong> moves entries across that boundary by their corrected date — future edits turn recorded rows into plans, past-dated plans book into the ledger.</li>
-<li>The <strong>recurrence engine</strong> is the forecast layer proper: rule store, projection of virtual instances, and the detection that proposes rules — never writing money itself.</li>
-<li>The <strong>interactive deletion dispatcher</strong> is the four-way resolver: each store owns its own removal path, and destructive steps demand a typed affirmative.</li>
-<li>The <strong>journaled ledger engine</strong> realizes content-hash identity and running balances — append, replay, verify, carry balances forward.</li>
-<li>The <strong>expected register store</strong> is the planned-money world: strictly future-dated, balance-free, struck the moment a plan settles.</li>
-<li>The <strong>cleanup fix engine</strong> treats corrections as reviewed, offline-authored change-set files (<a href="../../../concepts/change-set-the-reviewed-fix-file/">the change-set concept</a>), each fix guarded — a fix may state the old value the ledger must confirm, the <a href="../../../concepts/from-guard-the-old-value-a-fix-declares-and-the-ledger-must-confirm/">from-guard</a>.</li>
-</ul>
-<p>Basis note: this story rests on a deterministic sample of 12 of 17 concept facts, with all 17 censused; the 8 components were read in full.</p>
+<p>The product is a personal bookkeeping journal — one keeper's
+recurring answers to "did the money move, and what is left?" —
+built so every recorded answer can be proven rather than trusted.
+The founding distinction is actual versus expected
+(<a href="../../../concepts/actual-versus-expected/">Actual versus expected</a>): a movement that happened enters
+the journaled books, carries and shifts real balances, and is
+guarded against tampering; a movement promised for a future day
+weighs nothing, lives in its own register, and can still fail to
+happen. Nearly every rule in the territory follows from asking
+that one question.</p>
+<p>The distinction organizes the component map. The journal engine
+(<a href="../../../components/ledger-engine/">Ledger engine</a>) folds each accepted change into dated
+transaction rows whose running balances chain from the row
+before, so the books are always a recomputation of recorded
+changes, never a state edited in place; the command pipeline
+(<a href="../../../components/command-mutations/">Command mutations</a>) is the narrow write step every
+change passes. Intake (<a href="../../../components/entry-intake/">Entry intake</a>) gates statements
+before anything lands, and the future-day cut
+(<a href="../../../concepts/future-day-admission/">Future-day admission</a>) sends tomorrow's money to the
+promise register (<a href="../../../components/expected-register/">Expected register</a>) instead of the
+books. The confirmation desk
+(<a href="../../../components/open-entry-confirmation/">Open-entry confirmation desk</a>) is where a promise becomes a
+fact — the confirmation backlog
+(<a href="../../../concepts/the-confirmation-backlog/">The confirmation backlog</a>) is the gap between the two
+calendars, computed fresh at every view and never stored.</p>
+<p>The repair side honours the same proven-over-trusted stance: the
+retraction desk (<a href="../../../components/entry-retraction/">Entry retraction</a>) takes a wrong entry
+out as its own written record that carries what was removed, and
+the editor (<a href="../../../components/entry-editor/">Entry editor</a>) resolves one address across
+all four stores — books, promises, groups, rule occurrences —
+walking the keeper field by field before deciding where the
+corrected content belongs.</p>
+<p>Anticipation is a second promise machinery. The recurrence
+planner (<a href="../../../components/recurrence-planner/">Recurrence planner</a>) turns repeating history
+into standing schedules, but every detection result stays a
+proposal — information on screen, never commitment
+(<a href="../../../concepts/proposal/">Proposal</a>) — and an occurrence carries no stored address
+at all: the same rule on the same date always derives the same
+address (<a href="../../../concepts/the-derivation-of-a-projected-occurrence-s-address/">The derivation of a projected occurrence's address</a>),
+which is why a suppressed occurrence can still answer when named.
+A rule enters the books two ways — written by hand the moment the
+keeper recognizes an obligation, or adopted from history the
+books themselves reveal
+(<a href="../../../concepts/rule-provenance-written-by-hand-or-adopted-from-history/">Rule provenance — written by hand or adopted from history</a>) —
+and both doors end at the same owner-checked form, so no way in
+skips the keeper's hands.</p>
 <h2 id="describes">Describes</h2>
 <ul>
 <li><a href="../../../projects/financials/">financials</a></li>
-<li><a href="../../../components/transaction-entry-interface/">transaction-entry-interface</a></li>
-<li><a href="../../../components/confirmation-dispatcher/">confirmation-dispatcher</a></li>
-<li><a href="../../../components/interactive-entry-editor/">interactive-entry-editor</a></li>
-<li><a href="../../../components/recurrence-engine/">recurrence-engine</a></li>
-<li><a href="../../../components/interactive-deletion-dispatcher/">interactive-deletion-dispatcher</a></li>
-<li><a href="../../../components/journaled-ledger-engine/">journaled-ledger-engine</a></li>
-<li><a href="../../../components/expected-register-store/">expected-register-store</a></li>
-<li><a href="../../../components/cleanup-fix-engine/">cleanup-fix-engine</a></li>
+<li><a href="../../../components/ledger-engine/">ledger-engine</a></li>
+<li><a href="../../../components/command-mutations/">command-mutations</a></li>
+<li><a href="../../../components/entry-intake/">entry-intake</a></li>
+<li><a href="../../../components/expected-register/">expected-register</a></li>
+<li><a href="../../../components/open-entry-confirmation/">open-entry-confirmation</a></li>
+<li><a href="../../../components/entry-retraction/">entry-retraction</a></li>
+<li><a href="../../../components/entry-editor/">entry-editor</a></li>
+<li><a href="../../../components/recurrence-planner/">recurrence-planner</a></li>
 </ul>
 <h2 id="summarizes">Summarizes</h2>
 <ul>
 <li><a href="../../../concepts/actual-versus-expected/">actual-versus-expected</a></li>
-<li><a href="../../../concepts/content-hash-identity/">content-hash-identity</a></li>
-<li><a href="../../../concepts/running-balances/">running-balances</a></li>
-<li><a href="../../../concepts/approved-categories/">approved-categories</a></li>
-<li><a href="../../../concepts/rule-instance-a-projected-occurrence-of-a-recurring-rule/">rule-instance-a-projected-occurrence-of-a-recurring-rule</a></li>
-<li><a href="../../../concepts/confirmation-backlog/">confirmation-backlog</a></li>
-<li><a href="../../../concepts/change-set-the-reviewed-fix-file/">change-set-the-reviewed-fix-file</a></li>
-<li><a href="../../../concepts/from-guard-the-old-value-a-fix-declares-and-the-ledger-must-confirm/">from-guard-the-old-value-a-fix-declares-and-the-ledger-must-confirm</a></li>
+<li><a href="../../../concepts/future-day-admission/">future-day-admission</a></li>
+<li><a href="../../../concepts/the-confirmation-backlog/">the-confirmation-backlog</a></li>
+<li><a href="../../../concepts/proposal/">proposal</a></li>
+<li><a href="../../../concepts/the-derivation-of-a-projected-occurrence-s-address/">the-derivation-of-a-projected-occurrence-s-address</a></li>
+<li><a href="../../../concepts/rule-provenance-written-by-hand-or-adopted-from-history/">rule-provenance-written-by-hand-or-adopted-from-history</a></li>
 </ul>
 <h2 id="referenced-by">Referenced by</h2>
 <p><strong>Summarizes:</strong></p>
@@ -1268,7 +1378,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../../assets/tablesort.min.js"></script>
       

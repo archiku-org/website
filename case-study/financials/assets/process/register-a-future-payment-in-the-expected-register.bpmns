@@ -1,0 +1,43 @@
+process "Owner"
+  start "An upcoming movement becomes known"
+  exclusive "How is it stated?"
+    if "Piecewise or quick-shorthand" then
+      user "State the movement ahead of today"
+    else "The expect door, stated in full" user "Register the expectation directly"
+  receive "Read the outcome"
+  end "Expectation held visibly in the forecast"
+
+process "Entry intake"
+  start "Statement arrives"
+  exclusive "Stated for a day ahead?"
+    if "Yes" then
+      send "Hand the promise to the register"
+      end "Statement handed onward"
+    else "Already today or past" then
+      end "Left to the actual ledger"
+
+process "Expected register"
+  start "Promise arrives"
+  rule "Check the promise statement"
+  exclusive "Does the statement hold?"
+    if "No" then
+      send "Refuse with the reason"
+      end "Promise refused"
+    else "Yes"
+  service "Assign the register id"
+  exclusive "Was this a rehearsal?"
+    if "Rehearsal, store nothing" then
+      send "Preview what would be stored"
+      end "Nothing stored"
+    else "Real registration"
+  service "Park the promise in the register"
+  end "Promise parked" message
+
+message flows
+  from "Owner"."State the movement ahead of today" to "Entry intake"."Statement arrives" label "Movement statement"
+  from "Owner"."Register the expectation directly" to "Expected register"."Promise arrives" label "Expectation statement"
+  from "Entry intake"."Hand the promise to the register" to "Expected register"."Promise arrives" label "Promise request"
+  from "Expected register"."Refuse with the reason" to "Owner"."Read the outcome" label "Refusal with reason"
+  from "Expected register"."Preview what would be stored" to "Owner"."Read the outcome" label "Rehearsal preview"
+  from "Expected register"."Promise parked" to "Owner"."Read the outcome" label "Parked with its id"
+

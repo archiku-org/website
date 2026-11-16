@@ -36,3 +36,63 @@
 .md-search__input::placeholder {
   color: hsla(0, 0%, 0%, 0.54);  /* the white-default placeholder */
 }
+/* Home stat cards (owner 2026-11-12 round 4): the funnel cards wear
+   .stat (+ a threshold level .bad/.okay/.good graded in the emitter —
+   <50% red, <75% orange, >=75% green); the big number rides .value. */
+.stat {
+  padding: .625em 2em;
+  text-align: center;
+  border-radius: .2rem;
+  background-color: #00b8d41a;
+  border: 1px solid #00b8d4;
+}
+.stat .value {
+  font-size: 1.5625em;
+}
+
+.stat.bad {
+  background-color: #f500571a;
+  border-color: #f50057;
+}
+
+.stat.okay {
+  background-color: #ff91001a;
+  border-color: #ff9100;
+}
+
+.stat.good {
+  background-color: #00c8531a;
+  border-color: #00c853;
+}
+
+/* fact-page review badges (owner design 2026-11-16, hand mockup):
+   inline H1 attr_list span — 13px per owner; per-status colors ride
+   the ramp (notreviewed=ORANGE per owner ruling — red stays the
+   actionable open-objections state). */
+.badge {
+  font-size: 13px;
+}
+.badge.notreviewed {
+  color: #ff9100;
+}
+.badge.notreviewed svg {
+  fill: #ff9100;
+}
+.badge.openobjections {
+  color: #f50057;
+}
+.badge.openobjections svg {
+  fill: #f50057;
+}
+.badge.cleared {
+  color: #00c853;
+}
+.badge.cleared svg {
+  fill: #00c853;
+}
+.badge.outofscope {
+  color: #9e9e9e;
+}
+.badge.outofscope svg {
+  fill: #9e9e9e;
+}

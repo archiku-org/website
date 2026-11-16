@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions id="definitions" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <bpmn:process id="process_owner">
+    <bpmn:userTask id="name_or_pick_the_entry" name="Name or pick the entry" />
+    <bpmn:startEvent id="entry_judged_wrong" name="Entry judged wrong" />
+    <bpmn:sendTask id="retract_request" name="Retract request" />
+    <bpmn:receiveTask id="entry_retracted" name="Entry retracted" />
+    <bpmn:exclusiveGateway id="satisfied_with_the_result" name="Satisfied with the result" />
+    <bpmn:endEvent id="books_as_intended" name="Books as intended" />
+    <bpmn:sequenceFlow id="flow_1" sourceRef="entry_judged_wrong" targetRef="name_or_pick_the_entry" />
+    <bpmn:sequenceFlow id="flow_2" sourceRef="name_or_pick_the_entry" targetRef="retract_request" />
+    <bpmn:sequenceFlow id="flow_3" sourceRef="retract_request" targetRef="entry_retracted" />
+    <bpmn:sequenceFlow id="flow_4" sourceRef="entry_retracted" targetRef="satisfied_with_the_result" />
+    <bpmn:sequenceFlow id="flow_5" name="No — try again" sourceRef="satisfied_with_the_result" targetRef="name_or_pick_the_entry" />
+    <bpmn:sequenceFlow id="flow_6" name="Yes" sourceRef="satisfied_with_the_result" targetRef="books_as_intended" />
+    <bpmn:sequenceFlow id="flow_7" sourceRef="satisfied_with_the_result" targetRef="books_as_intended" />
+  </bpmn:process>
+  <bpmn:process id="process_entry_retraction">
+    <bpmn:receiveTask id="take_the_entry_address" name="Take the entry address" />
+    <bpmn:startEvent id="a_retraction_lands" name="A retraction lands" />
+    <bpmn:exclusiveGateway id="which_store_resolves_the_id" name="Which store resolves the id" />
+    <bpmn:endEvent id="entry_retracted_2" name="Entry retracted" />
+    <bpmn:serviceTask id="delete_the_entry_from_the_books" name="Delete the entry from the books" />
+    <bpmn:userTask id="confirm_removing_the_committed_entry" name="Confirm removing the committed entry" />
+    <bpmn:serviceTask id="retract_it_as_the_store_demands" name="Retract it as the store demands" />
+    <bpmn:userTask id="confirm_on_the_printed_row" name="Confirm on the printed row" />
+    <bpmn:sequenceFlow id="flow_8" sourceRef="a_retraction_lands" targetRef="take_the_entry_address" />
+    <bpmn:sequenceFlow id="flow_9" sourceRef="take_the_entry_address" targetRef="which_store_resolves_the_id" />
+    <bpmn:sequenceFlow id="flow_10" sourceRef="confirm_removing_the_committed_entry" targetRef="delete_the_entry_from_the_books" />
+    <bpmn:sequenceFlow id="flow_11" sourceRef="delete_the_entry_from_the_books" targetRef="entry_retracted_2" />
+    <bpmn:sequenceFlow id="flow_12" name="a committed entry (t-number or prefix)" sourceRef="which_store_resolves_the_id" targetRef="confirm_removing_the_committed_entry" />
+    <bpmn:sequenceFlow id="flow_13" sourceRef="confirm_on_the_printed_row" targetRef="retract_it_as_the_store_demands" />
+    <bpmn:sequenceFlow id="flow_14" sourceRef="retract_it_as_the_store_demands" targetRef="entry_retracted_2" />
+    <bpmn:sequenceFlow id="flow_15" name="an expected entry, group or rule occurrence" sourceRef="which_store_resolves_the_id" targetRef="confirm_on_the_printed_row" />
+    <bpmn:sequenceFlow id="flow_16" sourceRef="which_store_resolves_the_id" targetRef="entry_retracted_2" />
+  </bpmn:process>
+  <bpmn:collaboration id="collaboration">
+    <bpmn:participant id="participant_owner" name="Owner" processRef="process_owner" />
+    <bpmn:participant id="participant_entry_retraction" name="Entry retraction" processRef="process_entry_retraction" />
+    <bpmn:messageFlow id="messageflow_17" name="Removal request" sourceRef="retract_request" targetRef="a_retraction_lands" />
+    <bpmn:messageFlow id="messageflow_18" name="Result" sourceRef="entry_retracted_2" targetRef="entry_retracted" />
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="diagram">
+    <bpmndi:BPMNPlane id="plane" bpmnElement="collaboration">
+      <bpmndi:BPMNShape id="shape_participant_owner" bpmnElement="participant_owner" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="990" height="140" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_participant_entry_retraction" bpmnElement="participant_entry_retraction" isHorizontal="true">
+        <dc:Bounds x="160" y="250" width="990" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_name_or_pick_the_entry" bpmnElement="name_or_pick_the_entry">
+        <dc:Bounds x="380" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_entry_judged_wrong" bpmnElement="entry_judged_wrong">
+        <dc:Bounds x="252" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_retract_request" bpmnElement="retract_request">
+        <dc:Bounds x="540" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_entry_retracted" bpmnElement="entry_retracted">
+        <dc:Bounds x="700" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_satisfied_with_the_result" bpmnElement="satisfied_with_the_result" isMarkerVisible="true">
+        <dc:Bounds x="885" y="125" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_books_as_intended" bpmnElement="books_as_intended">
+        <dc:Bounds x="1052" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_take_the_entry_address" bpmnElement="take_the_entry_address">
+        <dc:Bounds x="380" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_a_retraction_lands" bpmnElement="a_retraction_lands">
+        <dc:Bounds x="252" y="442" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_which_store_resolves_the_id" bpmnElement="which_store_resolves_the_id" isMarkerVisible="true">
+        <dc:Bounds x="565" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_entry_retracted_2" bpmnElement="entry_retracted_2">
+        <dc:Bounds x="1052" y="442" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_delete_the_entry_from_the_books" bpmnElement="delete_the_entry_from_the_books">
+        <dc:Bounds x="860" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_confirm_removing_the_committed_entry" bpmnElement="confirm_removing_the_committed_entry">
+        <dc:Bounds x="700" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_retract_it_as_the_store_demands" bpmnElement="retract_it_as_the_store_demands">
+        <dc:Bounds x="860" y="280" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_confirm_on_the_printed_row" bpmnElement="confirm_on_the_printed_row">
+        <dc:Bounds x="700" y="280" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow_1" bpmnElement="flow_1">
+        <di:waypoint x="288" y="150" />
+        <di:waypoint x="380" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_2" bpmnElement="flow_2">
+        <di:waypoint x="480" y="150" />
+        <di:waypoint x="540" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_3" bpmnElement="flow_3">
+        <di:waypoint x="640" y="150" />
+        <di:waypoint x="700" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_4" bpmnElement="flow_4">
+        <di:waypoint x="800" y="150" />
+        <di:waypoint x="885" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_5" bpmnElement="flow_5">
+        <di:waypoint x="910" y="175" />
+        <di:waypoint x="910" y="210" />
+        <di:waypoint x="430" y="210" />
+        <di:waypoint x="430" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_6" bpmnElement="flow_6">
+        <di:waypoint x="935" y="150" />
+        <di:waypoint x="1052" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_7" bpmnElement="flow_7">
+        <di:waypoint x="935" y="150" />
+        <di:waypoint x="1052" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_8" bpmnElement="flow_8">
+        <di:waypoint x="288" y="460" />
+        <di:waypoint x="380" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_9" bpmnElement="flow_9">
+        <di:waypoint x="480" y="460" />
+        <di:waypoint x="565" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_10" bpmnElement="flow_10">
+        <di:waypoint x="800" y="460" />
+        <di:waypoint x="860" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_11" bpmnElement="flow_11">
+        <di:waypoint x="960" y="460" />
+        <di:waypoint x="1052" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_12" bpmnElement="flow_12">
+        <di:waypoint x="615" y="460" />
+        <di:waypoint x="700" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_13" bpmnElement="flow_13">
+        <di:waypoint x="800" y="320" />
+        <di:waypoint x="860" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_14" bpmnElement="flow_14">
+        <di:waypoint x="960" y="320" />
+        <di:waypoint x="1006" y="320" />
+        <di:waypoint x="1006" y="460" />
+        <di:waypoint x="1052" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_15" bpmnElement="flow_15">
+        <di:waypoint x="590" y="435" />
+        <di:waypoint x="590" y="320" />
+        <di:waypoint x="700" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_16" bpmnElement="flow_16">
+        <di:waypoint x="590" y="485" />
+        <di:waypoint x="590" y="515" />
+        <di:waypoint x="1070" y="515" />
+        <di:waypoint x="1070" y="478" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_17" bpmnElement="messageflow_17">
+        <di:waypoint x="590" y="190" />
+        <di:waypoint x="590" y="235" />
+        <di:waypoint x="270" y="235" />
+        <di:waypoint x="270" y="442" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_18" bpmnElement="messageflow_18">
+        <di:waypoint x="1070" y="442" />
+        <di:waypoint x="1070" y="235" />
+        <di:waypoint x="750" y="235" />
+        <di:waypoint x="750" y="190" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
+

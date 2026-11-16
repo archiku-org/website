@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="../../assets/favicon-96x96.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -77,7 +77,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#expected-entry-transaction-modelpy-store-shape" class="md-skip">
+        <a href="#expected-entry-modeltransaction-in-the-expected-store" class="md-skip">
           Skip to content
         </a>
       
@@ -775,6 +775,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../objections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../processes/" class="md-nav__link">
         
   
@@ -839,6 +867,62 @@
     
   
     Quirks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resolutions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolutions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reviews
   
 
     
@@ -1221,6 +1305,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        classifiers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#transitions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1232,10 +1338,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#entity-of" class="md-nav__link">
+  <a href="#anchored-in" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Entity of
+        Anchored in
       
     </span>
   </a>
@@ -1273,28 +1379,39 @@
 
 
 <p><a href="../../">Home</a> › <a href="../../facts/">Facts</a> › <a href="../">Entities</a> › <code>expected-entry</code></p>
-<h1 id="expected-entry-transaction-modelpy-store-shape">Expected entry (Transaction, model.py store shape)</h1>
+<h1 id="expected-entry-modeltransaction-in-the-expected-store">Expected entry (model.Transaction in the expected store)</h1>
 <h2 id="name">Name</h2>
-<p>expected entry</p>
+<p>Expected entry</p>
 <h2 id="title">Title</h2>
-<p>Expected entry (Transaction, model.py store shape)</p>
+<p>Expected entry (model.Transaction in the expected store)</p>
 <h2 id="summary">Summary</h2>
 <blockquote>
-<p>A parked future plan — a dated, categorised, pre-recorded movement that stays fixed and unapplied until it is confirmed against the actual books.</p>
+<p>A future-dated promised movement held in its own store with status pending, carrying no balances until it lands as an actual transaction.</p>
 </blockquote>
 <h2 id="description">Description</h2>
 <blockquote>
-<p>One movement parked in the expected register: the same cashflow shape as an actual row, stored with the status that marks it as a plan. It is written once at intake and never modified — only re-read or removed. No balance is projected for it: nothing has happened yet, so it carries no running-balance position until the day it is confirmed against the journaled ledger. Its id is assigned sequentially within the register store, not by content hash — identity rests on the register's fixed rows, not their content.</p>
+<p>The promise side of the books: a rent due Friday, a salary expected
+next week. It shares the cashflow row's shape — date, description,
+category, amount — but its status marks it as expected, its
+balances are empty by design, and it keeps both the raw and the
+canonical form of its category. Each promised movement gets an
+identifier from its register order. When the day arrives and the
+movement really happens, confirming retires this entry and the
+realized movement enters the journaled books.</p>
 </blockquote>
 <h2 id="state-management">State Management</h2>
 <blockquote>
-<p>Two statuses with a hard wall between them: "expected" — created once by the register's add path, stored in the register's own file, read and removed — and "actual", which an expected entry never takes in place; the register holds plans, and the actual books materialise them only via a confirm recording that retires the plan's id. Balance fields stay empty for the whole parked life. The add surface routes future-dated input here, and the intake-time validation guarantees nothing dated today or earlier can be parked.</p>
+<p>Status marks the lifecycle: expected while the promise is open,
+actual once confirmed — the confirmed form becoming a journaled
+ledger row rather than a changed field on this record. The store is
+a plain list saved whole; no chain, no hashes: a promise has no
+balances to protect.</p>
 </blockquote>
 <h2 id="state-transitions">State Transitions</h2>
 <pre class="mermaid"><code>stateDiagram-v2
-    state "parked plan" as s0
-    state "settled actual entry" as s1
-    s0 --&gt; s1 : the planned day arrives and the movement actually happens [the recording on the actual side names the plan's id as retired — the confirm path converts the plan into a journaled actual entry linked to it]</code></pre>
+    state "promised" as s0
+    state "landed" as s1
+    s0 --&gt; s1 : the owner confirms the entry as really paid or received [the entry's date has arrived and confirmation uses its stated fields as-is]</code></pre>
 <table>
 <thead>
 <tr>
@@ -1306,19 +1423,19 @@
 </thead>
 <tbody>
 <tr>
-<td>parked plan</td>
-<td>settled actual entry</td>
-<td>the planned day arrives and the movement actually happens</td>
-<td>the recording on the actual side names the plan's id as retired — the confirm path converts the plan into a journaled actual entry linked to it</td>
+<td>promised</td>
+<td>landed</td>
+<td>the owner confirms the entry as really paid or received</td>
+<td>the entry's date has arrived and confirmation uses its stated fields as-is</td>
 </tr>
 </tbody>
 </table>
 <h2 id="file-path">File Path</h2>
-<p><code>src/financials/expected.py</code></p>
+<p><code>src/financials/model.py</code></p>
 <h2 id="line-number">Line Number</h2>
-<p>87</p>
+<p>52</p>
 <h2 id="entity-kind">Entity Kind</h2>
-<p>other</p>
+<p>dataclass</p>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -1345,17 +1462,27 @@
 <td>—</td>
 </tr>
 <tr>
+<td>category_raw</td>
+<td>str</td>
+<td>—</td>
+</tr>
+<tr>
 <td>category</td>
 <td>str</td>
 <td>—</td>
 </tr>
 <tr>
 <td>amount_eur</td>
-<td>float</td>
+<td>float | None</td>
 <td>—</td>
 </tr>
 <tr>
 <td>status</td>
+<td>str</td>
+<td>—</td>
+</tr>
+<tr>
+<td>linked_id</td>
 <td>str</td>
 <td>—</td>
 </tr>
@@ -1365,31 +1492,53 @@
 <td>—</td>
 </tr>
 <tr>
-<td>balance_savings</td>
-<td>float | None</td>
+<td>flags</td>
+<td>list[str]</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
+<h2 id="example">Example</h2>
+<div class="highlight"><pre><span></span><code><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">e0001</span>
+<span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="s">'2026-11-25'</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Huur</span>
+<span class="nt">category_raw</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Woning</span>
+<span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Woning</span>
+<span class="nt">amount_eur</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">650.0</span>
+<span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">expected</span>
+<span class="nt">linked_id</span><span class="p">:</span><span class="w"> </span><span class="s">''</span>
+<span class="nt">balance_checking</span><span class="p">:</span>
+<span class="nt">flags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</code></pre></div>
+<h2 id="classifiers">classifiers</h2>
+<div class="highlight"><pre><span></span><code>[
+  "business-value",
+  "stable"
+]
+</code></pre></div>
 <h2 id="transitions">transitions</h2>
 <div class="highlight"><pre><span></span><code>[
   {
-    "condition": "the recording on the actual side names the plan's id as retired \u2014 the confirm path converts the plan into a journaled actual entry linked to it",
-    "event": "the planned day arrives and the movement actually happens",
-    "from": "parked plan",
-    "to": "settled actual entry"
+    "condition": "the entry's date has arrived and confirmation uses its stated fields as-is",
+    "event": "the owner confirms the entry as really paid or received",
+    "from": "promised",
+    "to": "landed"
   }
 ]
 </code></pre></div>
-<h2 id="entity-of">Entity of</h2>
+<h2 id="anchored-in">Anchored in</h2>
 <ul>
-<li><a href="../../files/src/financials/expected.py/"><code>src/financials/expected.py</code></a></li>
-<li><a href="../../files/src/financials/model.py/"><code>src/financials/model.py</code></a></li>
+<li><a href="../../symbols/file/src/financials/model.py/Transaction/"><code>file/src/financials/model.py/Transaction</code></a></li>
 </ul>
 <h2 id="referenced-by">Referenced by</h2>
 <p><strong>Cares about:</strong></p>
 <ul>
-<li><a href="../../actors/household-bookkeeper/">household-bookkeeper</a> — cares-about</li>
+<li><a href="../../actors/anticipated-payer/">anticipated-payer</a> — cares-about</li>
+<li><a href="../../actors/owner/">owner</a> — cares-about</li>
+</ul>
+<p><strong>Reviews:</strong></p>
+<ul>
+<li><a href="../../reviews/bucket-27-review-expected-register-doors/">bucket-27-review-expected-register-doors</a> — reviews</li>
 </ul>
 
 
@@ -1448,7 +1597,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../assets/tablesort.min.js"></script>
       

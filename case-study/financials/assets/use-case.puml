@@ -1,33 +1,36 @@
 @startuml
 left to right direction
 ' Use-case map of vault project 'financials' — PlantUML source.
-' Actors: 4 · Processes: 6 · Associations: 9
+' Actors: 2 · Processes: 8 · Associations: 12
 
 ' Actors
-:Category alias:
-:Recurrence engine:
-:Cleanup fix reviewer:
-:Household bookkeeper:
+:Anticipated payer:
+:Owner:
 
 ' Processes
 rectangle "financials" {
-  (Transaction intake)
-  (Open-entry confirmation)
-  (Entry revision)
-  (Entry removal)
-  (Recurring payment provisioning)
-  (Ledger cleanup-fx application)
+  (Record a money movement in the journaled ledger)
+  (Register a future payment in the expected register)
+  (Confirm a landed open entry into the books)
+  (Correct a posted entry through the journal)
+  (Commit a recurring rule instance into the ledger)
+  (Author a standing recurrence rule by hand)
+  (Adopt detected recurring rules from ledger history)
+  (Retract a wrong entry from the books with confirmation)
 }
 
 ' Actor associations (actor --> process it acts-in)
-:Recurrence engine: --> (Entry removal)
-:Recurrence engine: --> (Recurring payment provisioning)
-:Cleanup fix reviewer: --> (Ledger cleanup-fx application)
-:Household bookkeeper: --> (Transaction intake)
-:Household bookkeeper: --> (Open-entry confirmation)
-:Household bookkeeper: --> (Entry revision)
-:Household bookkeeper: --> (Entry removal)
-:Household bookkeeper: --> (Recurring payment provisioning)
-:Household bookkeeper: --> (Ledger cleanup-fx application)
+:Anticipated payer: --> (Record a money movement in the journaled ledger)
+:Anticipated payer: --> (Confirm a landed open entry into the books)
+:Anticipated payer: --> (Correct a posted entry through the journal)
+:Anticipated payer: --> (Commit a recurring rule instance into the ledger)
+:Owner: --> (Record a money movement in the journaled ledger)
+:Owner: --> (Register a future payment in the expected register)
+:Owner: --> (Confirm a landed open entry into the books)
+:Owner: --> (Correct a posted entry through the journal)
+:Owner: --> (Retract a wrong entry from the books with confirmation)
+:Owner: --> (Adopt detected recurring rules from ledger history)
+:Owner: --> (Commit a recurring rule instance into the ledger)
+:Owner: --> (Author a standing recurrence rule by hand)
 
 @enduml

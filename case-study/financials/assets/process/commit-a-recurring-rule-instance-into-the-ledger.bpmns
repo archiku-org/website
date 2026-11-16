@@ -1,0 +1,61 @@
+process "Owner"
+  start "The forecast shows the occurrence or its day arrives"
+  user "Bring the occurrence's address to a booking door"
+  exclusive "What does the owner want with this occurrence?"
+    if "Book the money" then
+      exclusive "Has the occurrence's day arrived?"
+        if "Arrived" send "Hand the instance to the confirmation desk"
+        if "Still ahead" then
+          user "Walk the prefilled questions, the day asked first"
+          exclusive "Does the typed day stay on or before today?"
+            if "Ahead of today" goto "The occurrence is settled"
+            if "Today or earlier" send "Hand the walked instance to the desk"
+    if "Reshape this month into a promise" then
+      user "Reshape the occurrence's fields, the day asked first"
+      send "Hand the reshaped occurrence to the editor"
+    if "Suppress this month" then
+      user "Type the yes that approves the suppression"
+      exclusive "Was the yes stated?"
+        if "Yes" send "Hand the suppressed occurrence to the editor"
+        if "No" goto "The occurrence is settled"
+  user "See the posted result"
+  end "The occurrence is settled"
+
+process "Open-entry confirmation"
+  start "The desk opens the instance"
+  service "Post the movement and retire the promise"
+  exclusive "Does the posting match the rule's mark?"
+    if "On the mark" goto "The desk closes the occurrence"
+    if "Drifted" service "Record this occurrence as the rule's exception"
+  end "The desk closes the occurrence"
+
+process "Recurrence planner"
+  start "The editor opens the occurrence"
+  exclusive "What was asked of the editor?"
+    if "Suppress this occurrence" then
+      service "Add the occurrence's date to the rule's exceptions"
+    if "Reshape into a promise" then
+      send "Offer the reshaped promise to the register"
+      receive "Take the stored promise back"
+      service "Except the occurrence replaced by the promise"
+  end "The editor closes the occurrence"
+
+process "Expected register"
+  start "The register receives a reshaped promise"
+  exclusive "Is the promise's day still strictly ahead of today?"
+    if "Today or past" then
+      end "The register rejects the promise"
+    if "Still ahead" service "Store the promise under its own id"
+  end "The register hands the promise to the books"
+
+message flows
+  from "Owner"."Hand the instance to the confirmation desk" to "Open-entry confirmation"."The desk opens the instance" label "Landed instance request"
+  from "Owner"."Hand the walked instance to the desk" to "Open-entry confirmation"."The desk opens the instance" label "Walked instance request"
+  from "Owner"."Hand the reshaped occurrence to the editor" to "Recurrence planner"."The editor opens the occurrence" label "Exception request"
+  from "Owner"."Hand the suppressed occurrence to the editor" to "Recurrence planner"."The editor opens the occurrence" label "Suppression request"
+  from "Recurrence planner"."Offer the reshaped promise to the register" to "Expected register"."The register receives a reshaped promise" label "Promise admission"
+  from "Expected register"."Store the promise under its own id" to "Recurrence planner"."Take the stored promise back" label "Promise stored"
+  from "Expected register"."The register rejects the promise" to "Owner"."See the posted result" label "Promise refusal"
+  from "Open-entry confirmation"."The desk closes the occurrence" to "Owner"."See the posted result" label "Balance result"
+  from "Recurrence planner"."The editor closes the occurrence" to "Owner"."See the posted result" label "Editor result"
+

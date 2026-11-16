@@ -1,0 +1,49 @@
+process "Owner"
+  start "Spots a repeating payment"
+  user "Ask which payments repeat"
+  receive "Read the proposal list"
+  user "Name a proposal to adopt"
+  exclusive "Adoption completed or abandoned?"
+    if "Nothing was saved" then
+      receive "Read that nothing was stored"
+    else "The rule was saved"
+      receive "Read the rule's next dates"
+  end "Repeating payment decided"
+
+process "Recurrence planner"
+  start "History question arrives"
+  rule "Re-derive proposal candidates from the ledger history"
+  exclusive "Review list or numbered adoption?"
+    if "Owner wants the review list" then
+      send "Present the review-only proposal list"
+    else "Owner adopts a numbered proposal"
+      exclusive "Proposal number still on the list?"
+        if "Gone" then
+          send "Report that the proposal is no longer there"
+          end "Adoption never opened"
+        else "On the list"
+    user "Seed every field with the detected value"
+    exclusive "Quit key pressed at a field?"
+      if "Quit" then
+        send "Report that nothing was stored"
+        end "Adoption abandoned"
+      else "Every field completed"
+    rule "Check the completed rule against the admission bars"
+    exclusive "Rule admissible?"
+      if "Refused" then
+        send "Report the refusal with its reason"
+        end "Adoption refused"
+      else "Admissible"
+    task "Save the rule into the standing schedules"
+    send "Show the rule's next three anticipated dates"
+  end "Run done"
+
+message flows
+  from "Owner"."Ask which payments repeat" to "Recurrence planner"."History question arrives" label "Review request"
+  from "Owner"."Name a proposal to adopt" to "Recurrence planner"."History question arrives" label "Adoption request"
+  from "Recurrence planner"."Present the review-only proposal list" to "Owner"."Read the proposal list" label "Proposal list"
+  from "Recurrence planner"."Report that the proposal is no longer there" to "Owner"."Read that nothing was stored" label "Gone notice"
+  from "Recurrence planner"."Report that nothing was stored" to "Owner"."Read that nothing was stored" label "Abort notice"
+  from "Recurrence planner"."Report the refusal with its reason" to "Owner"."Read that nothing was stored" label "Refusal notice"
+  from "Recurrence planner"."Show the rule's next three anticipated dates" to "Owner"."Read the rule's next dates" label "Upcoming schedule"
+

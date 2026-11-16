@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions id="definitions" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <bpmn:process id="process_owner">
+    <bpmn:userTask id="ask_which_payments_repeat" name="Ask which payments repeat" />
+    <bpmn:startEvent id="spots_a_repeating_payment" name="Spots a repeating payment" />
+    <bpmn:receiveTask id="read_the_proposal_list" name="Read the proposal list" />
+    <bpmn:userTask id="name_a_proposal_to_adopt" name="Name a proposal to adopt" />
+    <bpmn:exclusiveGateway id="adoption_completed_or_abandoned" name="Adoption completed or abandoned?" />
+    <bpmn:endEvent id="repeating_payment_decided" name="Repeating payment decided" />
+    <bpmn:receiveTask id="read_that_nothing_was_stored" name="Read that nothing was stored" />
+    <bpmn:receiveTask id="read_the_rule_s_next_dates" name="Read the rule's next dates" />
+    <bpmn:sequenceFlow id="flow_1" sourceRef="spots_a_repeating_payment" targetRef="ask_which_payments_repeat" />
+    <bpmn:sequenceFlow id="flow_2" sourceRef="ask_which_payments_repeat" targetRef="read_the_proposal_list" />
+    <bpmn:sequenceFlow id="flow_3" sourceRef="read_the_proposal_list" targetRef="name_a_proposal_to_adopt" />
+    <bpmn:sequenceFlow id="flow_4" sourceRef="name_a_proposal_to_adopt" targetRef="adoption_completed_or_abandoned" />
+    <bpmn:sequenceFlow id="flow_5" sourceRef="read_that_nothing_was_stored" targetRef="repeating_payment_decided" />
+    <bpmn:sequenceFlow id="flow_6" name="Nothing was saved" sourceRef="adoption_completed_or_abandoned" targetRef="read_that_nothing_was_stored" />
+    <bpmn:sequenceFlow id="flow_7" sourceRef="read_the_rule_s_next_dates" targetRef="repeating_payment_decided" />
+    <bpmn:sequenceFlow id="flow_8" name="The rule was saved" sourceRef="adoption_completed_or_abandoned" targetRef="read_the_rule_s_next_dates" />
+    <bpmn:sequenceFlow id="flow_9" sourceRef="adoption_completed_or_abandoned" targetRef="repeating_payment_decided" />
+  </bpmn:process>
+  <bpmn:process id="process_recurrence_planner">
+    <bpmn:businessRuleTask id="re_derive_proposal_candidates_from_the_ledger_history" name="Re-derive proposal candidates from the ledger history" />
+    <bpmn:startEvent id="history_question_arrives" name="History question arrives" />
+    <bpmn:exclusiveGateway id="review_list_or_numbered_adoption" name="Review list or numbered adoption?" />
+    <bpmn:endEvent id="run_done" name="Run done" />
+    <bpmn:exclusiveGateway id="quit_key_pressed_at_a_field" name="Quit key pressed at a field?" />
+    <bpmn:userTask id="seed_every_field_with_the_detected_value" name="Seed every field with the detected value" />
+    <bpmn:businessRuleTask id="check_the_completed_rule_against_the_admission_bars" name="Check the completed rule against the admission bars" />
+    <bpmn:endEvent id="adoption_abandoned" name="Adoption abandoned" />
+    <bpmn:sendTask id="report_that_nothing_was_stored" name="Report that nothing was stored" />
+    <bpmn:exclusiveGateway id="rule_admissible" name="Rule admissible?" />
+    <bpmn:task id="save_the_rule_into_the_standing_schedules" name="Save the rule into the standing schedules" />
+    <bpmn:endEvent id="adoption_refused" name="Adoption refused" />
+    <bpmn:sendTask id="report_the_refusal_with_its_reason" name="Report the refusal with its reason" />
+    <bpmn:sendTask id="show_the_rule_s_next_three_anticipated_dates" name="Show the rule's next three anticipated dates" />
+    <bpmn:sendTask id="present_the_review_only_proposal_list" name="Present the review-only proposal list" />
+    <bpmn:exclusiveGateway id="proposal_number_still_on_the_list" name="Proposal number still on the list?" />
+    <bpmn:endEvent id="adoption_never_opened" name="Adoption never opened" />
+    <bpmn:sendTask id="report_that_the_proposal_is_no_longer_there" name="Report that the proposal is no longer there" />
+    <bpmn:sequenceFlow id="flow_10" sourceRef="history_question_arrives" targetRef="re_derive_proposal_candidates_from_the_ledger_history" />
+    <bpmn:sequenceFlow id="flow_11" sourceRef="re_derive_proposal_candidates_from_the_ledger_history" targetRef="review_list_or_numbered_adoption" />
+    <bpmn:sequenceFlow id="flow_12" sourceRef="seed_every_field_with_the_detected_value" targetRef="quit_key_pressed_at_a_field" />
+    <bpmn:sequenceFlow id="flow_13" sourceRef="report_that_nothing_was_stored" targetRef="adoption_abandoned" />
+    <bpmn:sequenceFlow id="flow_14" name="Quit" sourceRef="quit_key_pressed_at_a_field" targetRef="report_that_nothing_was_stored" />
+    <bpmn:sequenceFlow id="flow_15" name="Every field completed" sourceRef="quit_key_pressed_at_a_field" targetRef="check_the_completed_rule_against_the_admission_bars" />
+    <bpmn:sequenceFlow id="flow_16" sourceRef="quit_key_pressed_at_a_field" targetRef="check_the_completed_rule_against_the_admission_bars" />
+    <bpmn:sequenceFlow id="flow_17" sourceRef="check_the_completed_rule_against_the_admission_bars" targetRef="rule_admissible" />
+    <bpmn:sequenceFlow id="flow_18" sourceRef="report_the_refusal_with_its_reason" targetRef="adoption_refused" />
+    <bpmn:sequenceFlow id="flow_19" name="Refused" sourceRef="rule_admissible" targetRef="report_the_refusal_with_its_reason" />
+    <bpmn:sequenceFlow id="flow_20" name="Admissible" sourceRef="rule_admissible" targetRef="save_the_rule_into_the_standing_schedules" />
+    <bpmn:sequenceFlow id="flow_21" sourceRef="rule_admissible" targetRef="save_the_rule_into_the_standing_schedules" />
+    <bpmn:sequenceFlow id="flow_22" sourceRef="save_the_rule_into_the_standing_schedules" targetRef="show_the_rule_s_next_three_anticipated_dates" />
+    <bpmn:sequenceFlow id="flow_23" sourceRef="show_the_rule_s_next_three_anticipated_dates" targetRef="run_done" />
+    <bpmn:sequenceFlow id="flow_24" sourceRef="review_list_or_numbered_adoption" targetRef="seed_every_field_with_the_detected_value" />
+    <bpmn:sequenceFlow id="flow_25" sourceRef="present_the_review_only_proposal_list" targetRef="run_done" />
+    <bpmn:sequenceFlow id="flow_26" name="Owner wants the review list" sourceRef="review_list_or_numbered_adoption" targetRef="present_the_review_only_proposal_list" />
+    <bpmn:sequenceFlow id="flow_27" sourceRef="report_that_the_proposal_is_no_longer_there" targetRef="adoption_never_opened" />
+    <bpmn:sequenceFlow id="flow_28" name="Gone" sourceRef="proposal_number_still_on_the_list" targetRef="report_that_the_proposal_is_no_longer_there" />
+    <bpmn:sequenceFlow id="flow_29" name="On the list" sourceRef="proposal_number_still_on_the_list" targetRef="run_done" />
+    <bpmn:sequenceFlow id="flow_30" sourceRef="proposal_number_still_on_the_list" targetRef="run_done" />
+    <bpmn:sequenceFlow id="flow_31" name="Owner adopts a numbered proposal" sourceRef="review_list_or_numbered_adoption" targetRef="proposal_number_still_on_the_list" />
+  </bpmn:process>
+  <bpmn:collaboration id="collaboration">
+    <bpmn:participant id="participant_owner" name="Owner" processRef="process_owner" />
+    <bpmn:participant id="participant_recurrence_planner" name="Recurrence planner" processRef="process_recurrence_planner" />
+    <bpmn:messageFlow id="messageflow_32" name="Review request" sourceRef="ask_which_payments_repeat" targetRef="history_question_arrives" />
+    <bpmn:messageFlow id="messageflow_33" name="Adoption request" sourceRef="name_a_proposal_to_adopt" targetRef="history_question_arrives" />
+    <bpmn:messageFlow id="messageflow_34" name="Proposal list" sourceRef="present_the_review_only_proposal_list" targetRef="read_the_proposal_list" />
+    <bpmn:messageFlow id="messageflow_35" name="Gone notice" sourceRef="report_that_the_proposal_is_no_longer_there" targetRef="read_that_nothing_was_stored" />
+    <bpmn:messageFlow id="messageflow_36" name="Abort notice" sourceRef="report_that_nothing_was_stored" targetRef="read_that_nothing_was_stored" />
+    <bpmn:messageFlow id="messageflow_37" name="Refusal notice" sourceRef="report_the_refusal_with_its_reason" targetRef="read_that_nothing_was_stored" />
+    <bpmn:messageFlow id="messageflow_38" name="Upcoming schedule" sourceRef="show_the_rule_s_next_three_anticipated_dates" targetRef="read_the_rule_s_next_dates" />
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="diagram">
+    <bpmndi:BPMNPlane id="plane" bpmnElement="collaboration">
+      <bpmndi:BPMNShape id="shape_participant_owner" bpmnElement="participant_owner" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1630" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_participant_recurrence_planner" bpmnElement="participant_recurrence_planner" isHorizontal="true">
+        <dc:Bounds x="160" y="390" width="1630" height="420" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_ask_which_payments_repeat" bpmnElement="ask_which_payments_repeat">
+        <dc:Bounds x="380" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_spots_a_repeating_payment" bpmnElement="spots_a_repeating_payment">
+        <dc:Bounds x="252" y="272" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_read_the_proposal_list" bpmnElement="read_the_proposal_list">
+        <dc:Bounds x="540" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_name_a_proposal_to_adopt" bpmnElement="name_a_proposal_to_adopt">
+        <dc:Bounds x="700" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_adoption_completed_or_abandoned" bpmnElement="adoption_completed_or_abandoned" isMarkerVisible="true">
+        <dc:Bounds x="885" y="265" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_repeating_payment_decided" bpmnElement="repeating_payment_decided">
+        <dc:Bounds x="1212" y="272" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_read_that_nothing_was_stored" bpmnElement="read_that_nothing_was_stored">
+        <dc:Bounds x="1020" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_read_the_rule_s_next_dates" bpmnElement="read_the_rule_s_next_dates">
+        <dc:Bounds x="1020" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_re_derive_proposal_candidates_from_the_ledger_history" bpmnElement="re_derive_proposal_candidates_from_the_ledger_history">
+        <dc:Bounds x="380" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_history_question_arrives" bpmnElement="history_question_arrives">
+        <dc:Bounds x="252" y="582" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_review_list_or_numbered_adoption" bpmnElement="review_list_or_numbered_adoption" isMarkerVisible="true">
+        <dc:Bounds x="565" y="575" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_run_done" bpmnElement="run_done">
+        <dc:Bounds x="1692" y="582" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_quit_key_pressed_at_a_field" bpmnElement="quit_key_pressed_at_a_field" isMarkerVisible="true">
+        <dc:Bounds x="885" y="575" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_seed_every_field_with_the_detected_value" bpmnElement="seed_every_field_with_the_detected_value">
+        <dc:Bounds x="700" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_check_the_completed_rule_against_the_admission_bars" bpmnElement="check_the_completed_rule_against_the_admission_bars">
+        <dc:Bounds x="1020" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_adoption_abandoned" bpmnElement="adoption_abandoned">
+        <dc:Bounds x="1212" y="442" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_report_that_nothing_was_stored" bpmnElement="report_that_nothing_was_stored">
+        <dc:Bounds x="1020" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_rule_admissible" bpmnElement="rule_admissible" isMarkerVisible="true">
+        <dc:Bounds x="1205" y="575" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_save_the_rule_into_the_standing_schedules" bpmnElement="save_the_rule_into_the_standing_schedules">
+        <dc:Bounds x="1340" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_adoption_refused" bpmnElement="adoption_refused">
+        <dc:Bounds x="1532" y="442" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_report_the_refusal_with_its_reason" bpmnElement="report_the_refusal_with_its_reason">
+        <dc:Bounds x="1340" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_show_the_rule_s_next_three_anticipated_dates" bpmnElement="show_the_rule_s_next_three_anticipated_dates">
+        <dc:Bounds x="1500" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_present_the_review_only_proposal_list" bpmnElement="present_the_review_only_proposal_list">
+        <dc:Bounds x="700" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_proposal_number_still_on_the_list" bpmnElement="proposal_number_still_on_the_list" isMarkerVisible="true">
+        <dc:Bounds x="725" y="715" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_adoption_never_opened" bpmnElement="adoption_never_opened">
+        <dc:Bounds x="1052" y="722" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_report_that_the_proposal_is_no_longer_there" bpmnElement="report_that_the_proposal_is_no_longer_there">
+        <dc:Bounds x="860" y="700" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow_1" bpmnElement="flow_1">
+        <di:waypoint x="288" y="290" />
+        <di:waypoint x="380" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_2" bpmnElement="flow_2">
+        <di:waypoint x="480" y="290" />
+        <di:waypoint x="540" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_3" bpmnElement="flow_3">
+        <di:waypoint x="640" y="290" />
+        <di:waypoint x="700" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_4" bpmnElement="flow_4">
+        <di:waypoint x="800" y="290" />
+        <di:waypoint x="885" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_5" bpmnElement="flow_5">
+        <di:waypoint x="1120" y="150" />
+        <di:waypoint x="1166" y="150" />
+        <di:waypoint x="1166" y="290" />
+        <di:waypoint x="1212" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_6" bpmnElement="flow_6">
+        <di:waypoint x="910" y="265" />
+        <di:waypoint x="910" y="150" />
+        <di:waypoint x="1020" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_7" bpmnElement="flow_7">
+        <di:waypoint x="1120" y="290" />
+        <di:waypoint x="1212" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_8" bpmnElement="flow_8">
+        <di:waypoint x="935" y="290" />
+        <di:waypoint x="1020" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_9" bpmnElement="flow_9">
+        <di:waypoint x="910" y="315" />
+        <di:waypoint x="910" y="345" />
+        <di:waypoint x="1230" y="345" />
+        <di:waypoint x="1230" y="308" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_10" bpmnElement="flow_10">
+        <di:waypoint x="288" y="600" />
+        <di:waypoint x="380" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_11" bpmnElement="flow_11">
+        <di:waypoint x="480" y="600" />
+        <di:waypoint x="565" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_12" bpmnElement="flow_12">
+        <di:waypoint x="800" y="600" />
+        <di:waypoint x="885" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_13" bpmnElement="flow_13">
+        <di:waypoint x="1120" y="460" />
+        <di:waypoint x="1212" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_14" bpmnElement="flow_14">
+        <di:waypoint x="910" y="575" />
+        <di:waypoint x="910" y="460" />
+        <di:waypoint x="1020" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_15" bpmnElement="flow_15">
+        <di:waypoint x="935" y="600" />
+        <di:waypoint x="1020" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_16" bpmnElement="flow_16">
+        <di:waypoint x="935" y="600" />
+        <di:waypoint x="1020" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_17" bpmnElement="flow_17">
+        <di:waypoint x="1120" y="600" />
+        <di:waypoint x="1205" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_18" bpmnElement="flow_18">
+        <di:waypoint x="1440" y="460" />
+        <di:waypoint x="1532" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_19" bpmnElement="flow_19">
+        <di:waypoint x="1230" y="575" />
+        <di:waypoint x="1230" y="460" />
+        <di:waypoint x="1340" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_20" bpmnElement="flow_20">
+        <di:waypoint x="1255" y="600" />
+        <di:waypoint x="1340" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_21" bpmnElement="flow_21">
+        <di:waypoint x="1255" y="600" />
+        <di:waypoint x="1340" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_22" bpmnElement="flow_22">
+        <di:waypoint x="1440" y="600" />
+        <di:waypoint x="1500" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_23" bpmnElement="flow_23">
+        <di:waypoint x="1600" y="600" />
+        <di:waypoint x="1692" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_24" bpmnElement="flow_24">
+        <di:waypoint x="615" y="600" />
+        <di:waypoint x="700" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_25" bpmnElement="flow_25">
+        <di:waypoint x="800" y="460" />
+        <di:waypoint x="1246" y="460" />
+        <di:waypoint x="1246" y="600" />
+        <di:waypoint x="1692" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_26" bpmnElement="flow_26">
+        <di:waypoint x="590" y="575" />
+        <di:waypoint x="590" y="460" />
+        <di:waypoint x="700" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_27" bpmnElement="flow_27">
+        <di:waypoint x="960" y="740" />
+        <di:waypoint x="1052" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_28" bpmnElement="flow_28">
+        <di:waypoint x="775" y="740" />
+        <di:waypoint x="860" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_29" bpmnElement="flow_29">
+        <di:waypoint x="750" y="715" />
+        <di:waypoint x="750" y="600" />
+        <di:waypoint x="1692" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_30" bpmnElement="flow_30">
+        <di:waypoint x="750" y="715" />
+        <di:waypoint x="750" y="600" />
+        <di:waypoint x="1692" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_31" bpmnElement="flow_31">
+        <di:waypoint x="590" y="625" />
+        <di:waypoint x="590" y="740" />
+        <di:waypoint x="725" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_32" bpmnElement="messageflow_32">
+        <di:waypoint x="430" y="330" />
+        <di:waypoint x="430" y="375" />
+        <di:waypoint x="270" y="375" />
+        <di:waypoint x="270" y="582" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_33" bpmnElement="messageflow_33">
+        <di:waypoint x="750" y="330" />
+        <di:waypoint x="750" y="375" />
+        <di:waypoint x="270" y="375" />
+        <di:waypoint x="270" y="582" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_34" bpmnElement="messageflow_34">
+        <di:waypoint x="750" y="420" />
+        <di:waypoint x="750" y="375" />
+        <di:waypoint x="590" y="375" />
+        <di:waypoint x="590" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_35" bpmnElement="messageflow_35">
+        <di:waypoint x="910" y="700" />
+        <di:waypoint x="910" y="375" />
+        <di:waypoint x="1070" y="375" />
+        <di:waypoint x="1070" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_36" bpmnElement="messageflow_36">
+        <di:waypoint x="1070" y="420" />
+        <di:waypoint x="1070" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_37" bpmnElement="messageflow_37">
+        <di:waypoint x="1390" y="420" />
+        <di:waypoint x="1390" y="375" />
+        <di:waypoint x="1070" y="375" />
+        <di:waypoint x="1070" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_38" bpmnElement="messageflow_38">
+        <di:waypoint x="1550" y="560" />
+        <di:waypoint x="1550" y="375" />
+        <di:waypoint x="1070" y="375" />
+        <di:waypoint x="1070" y="330" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
+

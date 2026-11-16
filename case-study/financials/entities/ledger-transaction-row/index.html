@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="../../assets/favicon-96x96.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -77,7 +77,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ledger-transaction-row-transaction-journalpy" class="md-skip">
+        <a href="#ledger-transaction-row-journaltransaction" class="md-skip">
           Skip to content
         </a>
       
@@ -775,6 +775,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../objections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../processes/" class="md-nav__link">
         
   
@@ -839,6 +867,62 @@
     
   
     Quirks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resolutions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolutions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reviews
   
 
     
@@ -1166,6 +1250,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#state-transitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Transitions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#file-path" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1221,10 +1316,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#entity-of" class="md-nav__link">
+  <a href="#classifiers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Entity of
+        classifiers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        transitions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anchored-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anchored in
       
     </span>
   </a>
@@ -1262,27 +1379,72 @@
 
 
 <p><a href="../../">Home</a> › <a href="../../facts/">Facts</a> › <a href="../">Entities</a> › <code>ledger-transaction-row</code></p>
-<h1 id="ledger-transaction-row-transaction-journalpy">Ledger transaction row (Transaction, journal.py)</h1>
+<h1 id="ledger-transaction-row-journaltransaction">Ledger transaction row (journal.Transaction)</h1>
 <h2 id="name">Name</h2>
-<p>ledger transaction row</p>
+<p>Ledger transaction row</p>
 <h2 id="title">Title</h2>
-<p>Ledger transaction row (Transaction, journal.py)</p>
+<p>Ledger transaction row (journal.Transaction)</p>
 <h2 id="summary">Summary</h2>
 <blockquote>
-<p>The applied running-balance row in the actual books — one dated movement with its postings, resulting balances and integrity hash.</p>
+<p>One stored money movement with date, description, category, signed account postings and the resulting running balances, hash-guarded on disk.</p>
 </blockquote>
 <h2 id="description">Description</h2>
 <blockquote>
-<p>The stored unit of the actual books. Each row is the applied form of one journal mutation: a dated, described movement in an approved category, the postings it makes against accounts, the running balances it results in, and a row hash guarding its content. Rows also carry the raw-parsed legacy fields from the retired importer (kept so the store shape stays flexible) and a status distinguishing actual rows from rows still parked as expected. A row's identity is assigned once by its creating mutation and never recomputed — updates and balance propagation keep it, so links between rows stay stable.</p>
+<p>What the books are made of: one row per recorded movement. The row
+knows what moved (signed postings per account), for what purpose,
+on what day — and what the checking and savings balances were after
+it. Because balances live on the row, any point in time is readable
+without re-walking history. When the movement came from a promise,
+the row remembers which expected entries it retired. The row
+inherits its identity, creation timestamp and hash-scheme from the
+mutation that created it; its own hash covers the whole content and
+is recomputed whenever balances shift.</p>
 </blockquote>
 <h2 id="state-management">State Management</h2>
 <blockquote>
-<p>State lives entirely in fields: the balances dict carries the running balance position each row results in, computed by the engine at apply-time (insert positions the row by date, then propagates balances forward through every later row); the hash field is recomputed by every writer (insert, update, propagate) and verified when the ledger is read back; status is fixed by the path of record (actual for journaled rows, expected for parked plans); linked_id connects a settled plan to the row that settled it. The row's id is assigned once by its creating mutation — identity never derived from content.</p>
+<p>The chain is the state. A row's checking and savings balances are
+derived, not stored freehand: insertion computes them from the
+date-predecessor row's balances plus the row's own postings, and
+every later row is shifted by the same postings (propagate), with a
+re-hash after each shift. A change to any row therefore rewrites
+the balance chain behind it — which is why edits and deletes go
+through mutation replay rather than touching rows in place.</p>
 </blockquote>
+<h2 id="state-transitions">State Transitions</h2>
+<pre class="mermaid"><code>stateDiagram-v2
+    state "stated" as s0
+    state "recorded" as s1
+    state "shifted" as s2
+    s0 --&gt; s1 : the owner states a realized movement and it passes admission [date not in the future, approved category, non-zero amount]
+    s1 --&gt; s2 : any later-dated entry is recorded or an existing row is edited or deleted [the row sits after the change in date order, so its balances absorb the difference]</code></pre>
+<table>
+<thead>
+<tr>
+<th>From</th>
+<th>To</th>
+<th>Event</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stated</td>
+<td>recorded</td>
+<td>the owner states a realized movement and it passes admission</td>
+<td>date not in the future, approved category, non-zero amount</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td>shifted</td>
+<td>any later-dated entry is recorded or an existing row is edited or deleted</td>
+<td>the row sits after the change in date order, so its balances absorb the difference</td>
+</tr>
+</tbody>
+</table>
 <h2 id="file-path">File Path</h2>
 <p><code>src/financials/journal.py</code></p>
 <h2 id="line-number">Line Number</h2>
-<p>110</p>
+<p>109</p>
 <h2 id="entity-kind">Entity Kind</h2>
 <p>dataclass</p>
 <h2 id="fields">Fields</h2>
@@ -1296,13 +1458,8 @@
 </thead>
 <tbody>
 <tr>
-<td>id</td>
-<td>str</td>
-<td>—</td>
-</tr>
-<tr>
 <td>date</td>
-<td>str</td>
+<td>datetime.date</td>
 <td>—</td>
 </tr>
 <tr>
@@ -1316,7 +1473,7 @@
 <td>—</td>
 </tr>
 <tr>
-<td>subcategory</td>
+<td>ts</td>
 <td>str</td>
 <td>—</td>
 </tr>
@@ -1331,70 +1488,67 @@
 <td>—</td>
 </tr>
 <tr>
-<td>hash</td>
-<td>str</td>
+<td>id</td>
+<td>str | None</td>
 <td>—</td>
 </tr>
 <tr>
-<td>ts</td>
-<td>str</td>
-<td>—</td>
-</tr>
-<tr>
-<td>status</td>
-<td>str</td>
-<td>—</td>
-</tr>
-<tr>
-<td>linked_id</td>
-<td>str</td>
-<td>—</td>
-</tr>
-<tr>
-<td>flags</td>
+<td>retires</td>
 <td>list[str]</td>
 <td>—</td>
 </tr>
 <tr>
-<td>source_line</td>
-<td>int</td>
-<td>—</td>
-</tr>
-<tr>
-<td>note</td>
+<td>hash</td>
 <td>str</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
 <h2 id="example">Example</h2>
-<div class="highlight"><pre><span></span><code><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cb2214d53b6f871a</span>
-<span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="s">'2024-11-24'</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Huur</span>
-<span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Inkomsten</span>
-<span class="nt">subcategory</span><span class="p">:</span><span class="w"> </span><span class="s">''</span>
-<span class="nt">postings</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">checking</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">350.0</span>
-<span class="nt">balances</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">checking</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3126.47</span>
-<span class="w">  </span><span class="nt">savings</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20000.0</span>
-<span class="nt">hash</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7f3a...</span>
-<span class="nt">ts</span><span class="p">:</span><span class="w"> </span><span class="s">'2024-11-24T10:00:00'</span>
-<span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actual</span>
-<span class="nt">linked_id</span><span class="p">:</span><span class="w"> </span><span class="s">''</span>
-<span class="nt">flags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
-<span class="nt">source_line</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">''</span>
+<div class="highlight"><pre><span></span><code><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="s">'2026-11-10'</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Kafe</span>
+<span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Kafe</span>
+<span class="nt">ts</span><span class="p">:</span><span class="w"> </span><span class="s">'2026-11-11T09:00:00+00:00'</span>
+<span class="nt">postings</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">checking</span><span class="p">:</span><span class="w"> </span><span class="nv">-25.0</span><span class="p p-Indicator">}</span>
+<span class="nt">balances</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">checking</span><span class="p">:</span><span class="w"> </span><span class="nv">1234.5</span><span class="p p-Indicator">,</span><span class="nt"> savings</span><span class="p">:</span><span class="w"> </span><span class="nv">5000.0</span><span class="p p-Indicator">}</span>
+<span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3f9a2c1d4e5b6071</span>
+<span class="nt">retires</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="nt">hash</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9b1deb4d3b7d4bec</span>
 </code></pre></div>
-<h2 id="entity-of">Entity of</h2>
+<h2 id="classifiers">classifiers</h2>
+<div class="highlight"><pre><span></span><code>[
+  "business-value",
+  "stable"
+]
+</code></pre></div>
+<h2 id="transitions">transitions</h2>
+<div class="highlight"><pre><span></span><code>[
+  {
+    "condition": "date not in the future, approved category, non-zero amount",
+    "event": "the owner states a realized movement and it passes admission",
+    "from": "stated",
+    "to": "recorded"
+  },
+  {
+    "condition": "the row sits after the change in date order, so its balances absorb the difference",
+    "event": "any later-dated entry is recorded or an existing row is edited or deleted",
+    "from": "recorded",
+    "to": "shifted"
+  }
+]
+</code></pre></div>
+<h2 id="anchored-in">Anchored in</h2>
 <ul>
-<li><a href="../../files/src/financials/journal.py/"><code>src/financials/journal.py</code></a></li>
-<li><a href="../../files/src/financials/model.py/"><code>src/financials/model.py</code></a></li>
+<li><a href="../../symbols/file/src/financials/journal.py/Transaction/"><code>file/src/financials/journal.py/Transaction</code></a></li>
 </ul>
 <h2 id="referenced-by">Referenced by</h2>
 <p><strong>Cares about:</strong></p>
 <ul>
-<li><a href="../../actors/household-bookkeeper/">household-bookkeeper</a> — cares-about</li>
+<li><a href="../../actors/owner/">owner</a> — cares-about</li>
+</ul>
+<p><strong>Reviews:</strong></p>
+<ul>
+<li><a href="../../reviews/bucket-33-review-of-the-ledger-transaction-row-and-the-hash-guard-mechanism/">bucket-33-review-of-the-ledger-transaction-row-and-the-hash-guard-mechanism</a> — reviews</li>
 </ul>
 
 
@@ -1453,7 +1607,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../assets/tablesort.min.js"></script>
       

@@ -1,0 +1,26 @@
+process "Owner"
+  start "Entry judged wrong"
+  user "Name or pick the entry"
+  send "Retract request"
+  receive "Entry retracted"
+  exclusive "Satisfied with the result"
+    if "No — try again" goto "Name or pick the entry"
+    else "Yes"
+  end "Books as intended"
+
+process "Entry retraction"
+  start "A retraction lands"
+  receive "Take the entry address"
+  exclusive "Which store resolves the id"
+    if "a committed entry (t-number or prefix)" then
+      user "Confirm removing the committed entry"
+      service "Delete the entry from the books"
+    else "an expected entry, group or rule occurrence" then
+      user "Confirm on the printed row"
+      service "Retract it as the store demands"
+  end "Entry retracted"
+
+message flows
+  from "Owner"."Retract request" to "Entry retraction"."A retraction lands" label "Removal request"
+  from "Entry retraction"."Entry retracted" to "Owner"."Entry retracted" label "Result"
+

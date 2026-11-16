@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions id="definitions" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <bpmn:process id="process_owner">
+    <bpmn:userTask id="form_the_rule_as_words_and_numbers" name="Form the rule as words and numbers" />
+    <bpmn:startEvent id="notice_a_repeating_obligation" name="Notice a repeating obligation" />
+    <bpmn:sendTask id="hand_the_rule_to_the_planner" name="Hand the rule to the planner" />
+    <bpmn:receiveTask id="hear_the_questions" name="Hear the questions" />
+    <bpmn:userTask id="answer_the_questions" name="Answer the questions" />
+    <bpmn:receiveTask id="hear_the_verdict" name="Hear the verdict" />
+    <bpmn:endEvent id="rule_settled" name="Rule settled" />
+    <bpmn:sequenceFlow id="flow_1" sourceRef="notice_a_repeating_obligation" targetRef="form_the_rule_as_words_and_numbers" />
+    <bpmn:sequenceFlow id="flow_2" sourceRef="form_the_rule_as_words_and_numbers" targetRef="hand_the_rule_to_the_planner" />
+    <bpmn:sequenceFlow id="flow_3" sourceRef="hand_the_rule_to_the_planner" targetRef="hear_the_questions" />
+    <bpmn:sequenceFlow id="flow_4" sourceRef="hear_the_questions" targetRef="answer_the_questions" />
+    <bpmn:sequenceFlow id="flow_5" sourceRef="answer_the_questions" targetRef="hear_the_verdict" />
+    <bpmn:sequenceFlow id="flow_6" sourceRef="hear_the_verdict" targetRef="rule_settled" />
+  </bpmn:process>
+  <bpmn:process id="process_recurrence_planner">
+    <bpmn:userTask id="ask_for_what_is_missing" name="Ask for what is missing" />
+    <bpmn:startEvent id="rule_request_arrives" name="Rule request arrives" />
+    <bpmn:receiveTask id="take_the_answers" name="Take the answers" />
+    <bpmn:exclusiveGateway id="does_the_rhythm_live_on_a_weekday" name="Does the rhythm live on a weekday?" />
+    <bpmn:businessRuleTask id="gate_the_rule_against_the_admission_bars" name="Gate the rule against the admission bars" />
+    <bpmn:scriptTask id="snap_the_start_to_that_weekday" name="Snap the start to that weekday" />
+    <bpmn:exclusiveGateway id="rule_admissible" name="Rule admissible?" />
+    <bpmn:endEvent id="schedule_standing" name="Schedule standing" />
+    <bpmn:endEvent id="request_turned_away" name="Request turned away" />
+    <bpmn:sendTask id="refuse_with_the_reason" name="Refuse with the reason" />
+    <bpmn:sendTask id="confirm_with_the_next_three_dates" name="Confirm with the next three dates" />
+    <bpmn:serviceTask id="store_the_schedule" name="Store the schedule" />
+    <bpmn:sequenceFlow id="flow_7" sourceRef="rule_request_arrives" targetRef="ask_for_what_is_missing" />
+    <bpmn:sequenceFlow id="flow_8" sourceRef="ask_for_what_is_missing" targetRef="take_the_answers" />
+    <bpmn:sequenceFlow id="flow_9" sourceRef="take_the_answers" targetRef="does_the_rhythm_live_on_a_weekday" />
+    <bpmn:sequenceFlow id="flow_10" sourceRef="snap_the_start_to_that_weekday" targetRef="gate_the_rule_against_the_admission_bars" />
+    <bpmn:sequenceFlow id="flow_11" name="Weekly or biweekly" sourceRef="does_the_rhythm_live_on_a_weekday" targetRef="snap_the_start_to_that_weekday" />
+    <bpmn:sequenceFlow id="flow_12" name="Monthly or yearly" sourceRef="does_the_rhythm_live_on_a_weekday" targetRef="gate_the_rule_against_the_admission_bars" />
+    <bpmn:sequenceFlow id="flow_13" sourceRef="does_the_rhythm_live_on_a_weekday" targetRef="gate_the_rule_against_the_admission_bars" />
+    <bpmn:sequenceFlow id="flow_14" sourceRef="gate_the_rule_against_the_admission_bars" targetRef="rule_admissible" />
+    <bpmn:sequenceFlow id="flow_15" sourceRef="refuse_with_the_reason" targetRef="request_turned_away" />
+    <bpmn:sequenceFlow id="flow_16" name="No" sourceRef="rule_admissible" targetRef="refuse_with_the_reason" />
+    <bpmn:sequenceFlow id="flow_17" sourceRef="store_the_schedule" targetRef="confirm_with_the_next_three_dates" />
+    <bpmn:sequenceFlow id="flow_18" sourceRef="confirm_with_the_next_three_dates" targetRef="schedule_standing" />
+    <bpmn:sequenceFlow id="flow_19" name="Yes" sourceRef="rule_admissible" targetRef="store_the_schedule" />
+    <bpmn:sequenceFlow id="flow_20" sourceRef="rule_admissible" targetRef="schedule_standing" />
+  </bpmn:process>
+  <bpmn:collaboration id="collaboration">
+    <bpmn:participant id="participant_owner" name="Owner" processRef="process_owner" />
+    <bpmn:participant id="participant_recurrence_planner" name="Recurrence planner" processRef="process_recurrence_planner" />
+    <bpmn:messageFlow id="messageflow_21" name="Rule request" sourceRef="hand_the_rule_to_the_planner" targetRef="rule_request_arrives" />
+    <bpmn:messageFlow id="messageflow_22" name="Missing field questions" sourceRef="ask_for_what_is_missing" targetRef="hear_the_questions" />
+    <bpmn:messageFlow id="messageflow_23" name="Answers" sourceRef="answer_the_questions" targetRef="take_the_answers" />
+    <bpmn:messageFlow id="messageflow_24" name="Refusal" sourceRef="refuse_with_the_reason" targetRef="hear_the_verdict" />
+    <bpmn:messageFlow id="messageflow_25" name="Confirmation" sourceRef="confirm_with_the_next_three_dates" targetRef="hear_the_verdict" />
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="diagram">
+    <bpmndi:BPMNPlane id="plane" bpmnElement="collaboration">
+      <bpmndi:BPMNShape id="shape_participant_owner" bpmnElement="participant_owner" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1888" height="140" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_participant_recurrence_planner" bpmnElement="participant_recurrence_planner" isHorizontal="true">
+        <dc:Bounds x="160" y="250" width="1888" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_form_the_rule_as_words_and_numbers" bpmnElement="form_the_rule_as_words_and_numbers">
+        <dc:Bounds x="380" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_notice_a_repeating_obligation" bpmnElement="notice_a_repeating_obligation">
+        <dc:Bounds x="252" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_hand_the_rule_to_the_planner" bpmnElement="hand_the_rule_to_the_planner">
+        <dc:Bounds x="540" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_hear_the_questions" bpmnElement="hear_the_questions">
+        <dc:Bounds x="700" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_answer_the_questions" bpmnElement="answer_the_questions">
+        <dc:Bounds x="860" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_hear_the_verdict" bpmnElement="hear_the_verdict">
+        <dc:Bounds x="1020" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_rule_settled" bpmnElement="rule_settled">
+        <dc:Bounds x="1212" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_ask_for_what_is_missing" bpmnElement="ask_for_what_is_missing">
+        <dc:Bounds x="700" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_rule_request_arrives" bpmnElement="rule_request_arrives">
+        <dc:Bounds x="572" y="442" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_take_the_answers" bpmnElement="take_the_answers">
+        <dc:Bounds x="860" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_does_the_rhythm_live_on_a_weekday" bpmnElement="does_the_rhythm_live_on_a_weekday" isMarkerVisible="true">
+        <dc:Bounds x="1045" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_gate_the_rule_against_the_admission_bars" bpmnElement="gate_the_rule_against_the_admission_bars">
+        <dc:Bounds x="1340" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_snap_the_start_to_that_weekday" bpmnElement="snap_the_start_to_that_weekday">
+        <dc:Bounds x="1180" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_rule_admissible" bpmnElement="rule_admissible" isMarkerVisible="true">
+        <dc:Bounds x="1525" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_schedule_standing" bpmnElement="schedule_standing">
+        <dc:Bounds x="2012" y="442" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_request_turned_away" bpmnElement="request_turned_away">
+        <dc:Bounds x="1852" y="302" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_refuse_with_the_reason" bpmnElement="refuse_with_the_reason">
+        <dc:Bounds x="1660" y="280" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_confirm_with_the_next_three_dates" bpmnElement="confirm_with_the_next_three_dates">
+        <dc:Bounds x="1820" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_store_the_schedule" bpmnElement="store_the_schedule">
+        <dc:Bounds x="1660" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow_1" bpmnElement="flow_1">
+        <di:waypoint x="288" y="150" />
+        <di:waypoint x="380" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_2" bpmnElement="flow_2">
+        <di:waypoint x="480" y="150" />
+        <di:waypoint x="540" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_3" bpmnElement="flow_3">
+        <di:waypoint x="640" y="150" />
+        <di:waypoint x="700" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_4" bpmnElement="flow_4">
+        <di:waypoint x="800" y="150" />
+        <di:waypoint x="860" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_5" bpmnElement="flow_5">
+        <di:waypoint x="960" y="150" />
+        <di:waypoint x="1020" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_6" bpmnElement="flow_6">
+        <di:waypoint x="1120" y="150" />
+        <di:waypoint x="1212" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_7" bpmnElement="flow_7">
+        <di:waypoint x="608" y="460" />
+        <di:waypoint x="700" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_8" bpmnElement="flow_8">
+        <di:waypoint x="800" y="460" />
+        <di:waypoint x="860" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_9" bpmnElement="flow_9">
+        <di:waypoint x="960" y="460" />
+        <di:waypoint x="1045" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_10" bpmnElement="flow_10">
+        <di:waypoint x="1280" y="460" />
+        <di:waypoint x="1340" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_11" bpmnElement="flow_11">
+        <di:waypoint x="1095" y="460" />
+        <di:waypoint x="1180" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_12" bpmnElement="flow_12">
+        <di:waypoint x="1070" y="485" />
+        <di:waypoint x="1070" y="520" />
+        <di:waypoint x="1390" y="520" />
+        <di:waypoint x="1390" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_13" bpmnElement="flow_13">
+        <di:waypoint x="1070" y="435" />
+        <di:waypoint x="1070" y="390" />
+        <di:waypoint x="1390" y="390" />
+        <di:waypoint x="1390" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_14" bpmnElement="flow_14">
+        <di:waypoint x="1440" y="460" />
+        <di:waypoint x="1525" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_15" bpmnElement="flow_15">
+        <di:waypoint x="1760" y="320" />
+        <di:waypoint x="1852" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_16" bpmnElement="flow_16">
+        <di:waypoint x="1550" y="435" />
+        <di:waypoint x="1550" y="320" />
+        <di:waypoint x="1660" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_17" bpmnElement="flow_17">
+        <di:waypoint x="1760" y="460" />
+        <di:waypoint x="1820" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_18" bpmnElement="flow_18">
+        <di:waypoint x="1920" y="460" />
+        <di:waypoint x="2012" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_19" bpmnElement="flow_19">
+        <di:waypoint x="1575" y="460" />
+        <di:waypoint x="1660" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_20" bpmnElement="flow_20">
+        <di:waypoint x="1550" y="485" />
+        <di:waypoint x="1550" y="515" />
+        <di:waypoint x="2030" y="515" />
+        <di:waypoint x="2030" y="478" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_21" bpmnElement="messageflow_21">
+        <di:waypoint x="590" y="190" />
+        <di:waypoint x="590" y="235" />
+        <di:waypoint x="590" y="442" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_22" bpmnElement="messageflow_22">
+        <di:waypoint x="750" y="420" />
+        <di:waypoint x="750" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_23" bpmnElement="messageflow_23">
+        <di:waypoint x="910" y="190" />
+        <di:waypoint x="910" y="235" />
+        <di:waypoint x="910" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_24" bpmnElement="messageflow_24">
+        <di:waypoint x="1710" y="280" />
+        <di:waypoint x="1710" y="235" />
+        <di:waypoint x="1070" y="235" />
+        <di:waypoint x="1070" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_messageflow_25" bpmnElement="messageflow_25">
+        <di:waypoint x="1870" y="420" />
+        <di:waypoint x="1870" y="235" />
+        <di:waypoint x="1070" y="235" />
+        <di:waypoint x="1070" y="190" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
+
