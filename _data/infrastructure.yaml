@@ -1,0 +1,215 @@
+sections:
+
+  # ------------------------------------------------ intro / security philosophy
+  - id: intro
+    type: intro
+    kicker: Infrastructure & Security
+    title: How your code stays yours
+    headline: Is your system ready for your security review?
+    intro:
+      - |
+        Enterprise codebases contain proprietary business logic, core trade
+        secrets and sensitive architectural patterns. Traditional public AI
+        interfaces and multi-tenant SaaS platforms introduce real data exposure
+        risks through unmonitored logging, long-term prompt retention and
+        automated model retraining cycles. Archiku's infrastructure eliminates
+        these risk vectors through three enforced design principles.
+      - |
+        This page is written for the questions your CISO, DPO and procurement
+        teams ask: what runs where, who can look at it, what is retained and
+        what compliance documentation stands behind it.
+
+  # ------------------------------------------------ three principles
+  - id: principles
+    type: values
+    title: Three enforced design principles
+    items:
+      - title: Hardware isolation under direct control
+        icon: bi-shield-lock
+        text: |
+          Initial code intake, metamodel parsing and primary analysis execute
+          on dedicated hardware bound strictly to single-client execution
+          instances. Client code is never transmitted to public LLM endpoints
+          or shared multi-tenant SaaS queues.
+      - title: Strict zero-training protocol
+        icon: bi-slash-circle
+        text: |
+          Contractual agreements and technical controls enforce an absolute
+          prohibition against using client code, intermediate representations
+          or generated findings to train, fine-tune or align foundational or
+          specialized artificial intelligence models.
+      - title: Data transience and automatic purging
+        icon: bi-eraser
+        text: |
+          Analysis environments operate on a temporary lifespan. Under the
+          Phase 0 intake agreement, if a client determines no value was
+          demonstrated during the live presentation, all ingested code,
+          intermediate facts and environment states are permanently purged.
+
+  # ------------------------------------------------ compute architecture
+  - id: compute
+    type: paragraphs
+    title: Isolated compute architecture
+    paragraphs:
+      - |
+        To process codebases from 10K SLOC microservices up to 150K+ SLOC
+        distributed enterprise systems, Archiku pairs local processing with
+        scale-out containerized GPU compute. Every component in the execution
+        pipeline is selected based on explicit data protection controls and
+        verified subprocessor commitments.
+      - |
+        <div class="row g-4 mt-1">
+          <div class="col-lg-6">
+            <h3 class="h5"><i class="bi-cpu text-primary me-2"></i>Ollama, the inference engine</h3>
+            <p class="text-muted mb-2">Archiku uses Ollama as its primary model execution engine for localized inference, structural code parsing and metamodel extraction.</p>
+            <ul class="small text-muted mb-0">
+              <li><strong>Local execution boundary.</strong> On Archiku-managed hardware, Ollama operates entirely offline within a localhost-bound environment. Prompts, source code tokens and structural outputs remain strictly on the host device without external network transmission.</li>
+              <li><strong>Zero prompt and response retention.</strong> When scaled across managed or cloud-hosted instances, Ollama processes inputs transiently. Prompts and generated responses are held in volatile memory solely for the duration required to fulfil the API request and are never written to persistent disk logs.</li>
+              <li><strong>Metadata minimization.</strong> Diagnostic telemetry is restricted to operational metrics such as application version and request counters. Source code snippets, prompt contents and analysis findings are explicitly excluded from diagnostic logging.</li>
+              <li><strong>Fully managed inference.</strong> With Ollama's managed cloud inference, workloads run in dedicated, isolated containers, so the same zero-retention boundary holds in the cloud.</li>
+              <li><strong>Verified subprocessor.</strong> Ollama is treated as a subprocessor under our compliance framework, with standing Data Processing Agreements under GDPR.</li>
+            </ul>
+            <p class="small text-muted mt-2 mb-0">More on Ollama: <a href="https://ollama.com">ollama.com</a></p>
+          </div>
+          <div class="col-lg-6">
+            <h3 class="h5"><i class="bi-gpu-card text-primary me-2"></i>RunPod, the GPU infrastructure</h3>
+            <p class="text-muted mb-2">For compute-heavy analysis passes requiring dedicated GPU acceleration, Archiku leverages RunPod as an Infrastructure-as-a-Service provider across its globally distributed footprint.</p>
+            <ul class="small text-muted mb-0">
+              <li><strong>Containerized VPC isolation.</strong> Analysis workloads run within isolated Virtual Private Cloud (VPC) containers. Each worker pod operates in complete multi-tenant isolation, preventing cross-pod memory access or network interception.</li>
+              <li><strong>Contractual host access prohibition.</strong> RunPod's Terms of Service legally prohibit host node operators and infrastructure managers from inspecting worker pod memory, persistent volume contents or workload usage patterns. Any unauthorized host inspection results in immediate removal from the platform.</li>
+              <li><strong>Enterprise Secure Cloud tier.</strong> High-sensitivity enterprise analyses use RunPod's Secure Cloud tier, hosted in Tier 3 and Tier 4 data centres that adhere to rigorous physical security, redundant power and strict access logging.</li>
+            </ul>
+            <p class="small text-muted mt-2 mb-0">More on RunPod: <a href="https://www.runpod.io">runpod.io</a></p>
+          </div>
+        </div>
+
+  # ------------------------------------------------ compliance matrix
+  - id: compliance
+    type: table
+    title: Independently audited infrastructure
+    subtitle: |
+      The platform underneath the analysis is audited against the frameworks
+      your procurement and security teams ask about. Standing documentation is
+      available for vendor review through our compute partners' Trust Portal.
+    headers: [Standard, Subprocessor, Scope and verification, What it means for you]
+    rows:
+      - ["ISO/IEC 27001:2022", "RunPod", "Certified with zero audit findings and zero remediations. Validates the Information Security Management System (ISMS).", "Satisfies international procurement security requirements with standing documentation via Trust Portal."]
+      - ["SOC 2 Type II & SOC 3", "RunPod", "Independent SOC 2 Type II audit report and standing SOC 3 summary available.", "Evaluates operational control effectiveness over security, availability and confidentiality."]
+      - ["GDPR compliance", "Ollama & RunPod", "Full compliance for European data centre regions with standing Data Processing Agreements (DPA).", "Lawful cross-border data transfer, processing transparency and data subject rights."]
+      - ["HIPAA compliance", "RunPod", "Independently audited for Protected Health Information (PHI) handling, BAA execution supported.", "Secures healthtech and medical enterprise codebases during technical due diligence and auditing."]
+      - ["Data encryption", "Ollama & RunPod", "AES-256 volume encryption at rest. TLS encryption in transit across all network endpoints.", "Prevents unauthorized data recovery from physical storage media or network interception."]
+
+  # ------------------------------------------------ cryptography & residency
+  - id: cryptography
+    type: values
+    title: Encryption at every state of the analysis lifecycle
+    subtitle: |
+      Data protection is enforced across every state of the analysis
+      lifecycle, from intake to purge.
+    items:
+      - title: Protected in transit
+        icon: bi-shuffle
+        text: |
+          All API communications between Archiku orchestrators and compute
+          nodes use mandatory TLS encryption.
+      - title: Protected at rest
+        icon: bi-lock
+        text: |
+          Persistent storage volumes deployed on cloud infrastructure carry
+          volume-level AES-256 encryption. Encryption keys can be managed
+          automatically via platform security managers or supplied directly
+          via secure API endpoints during pod deployment.
+      - title: European data residency
+        icon: bi-globe-europe-africa
+        text: |
+          For clients operating under European Union jurisdiction, compute
+          workloads are pinned strictly to EU data centre regions across 31
+          global regions, maintaining full alignment with European data
+          sovereignty obligations.
+
+  # ------------------------------------------------ vault governance
+  - id: vault
+    type: values
+    title: Security extends into the Vault
+    subtitle: |
+      The same controls hold inside Archiku's knowledge storage architecture.
+      <a href="/functional-analysis/">Read how the method works</a>, or see it
+      applied in the <a href="/case-study/">Financials case study</a>.
+    items:
+      - title: Declarative metamodel enforcement
+        icon: bi-bricks
+        text: |
+          Every finding extracted during analysis is captured as a structured
+          fact within the Archiku Analysis Metamodel. The Vault enforces
+          schema validity on write: unstructured or non-conforming data
+          cannot enter the repository.
+      - title: Write-once, append-only storage
+        icon: bi-clock-history
+        text: |
+          Facts are versioned and immutable. Re-evaluations and expert
+          enrichments create new linked facts, preserving a complete,
+          auditable lineage of how knowledge evolved across analysis passes.
+      - title: Multi-pass agentic review
+        icon: bi-patch-check
+        text: |
+          Automated agentic extraction passes are hardened in multi-pass
+          agentic review before client delivery, combining computational
+          speed with 25 years of functional analysis experience. Your experts
+          remain the human in the loop and the final authority over the
+          delivered analysis.
+
+  # ------------------------------------------------ CISO FAQ
+  - id: ciso-faq
+    type: faq
+    title: For your vendor risk assessment
+    subtitle: |
+      Standard questions raised during enterprise vendor risk assessments and
+      technical security evaluations, answered up front. More general answers
+      live in the <a href="/faq/">FAQ</a>.
+    items:
+      - q: How is client source code handled during an analysis engagement?
+        a: |
+          Source code is ingested into an isolated, single-tenant workspace.
+          The Archiku Vault parses the codebase into structured facts defined
+          by the Archiku Analysis Metamodel. The raw code is accessed solely
+          by automated analysis agents. Once the engagement concludes, or if a
+          Phase 0 intake shows no value, the codebase and workspace are
+          completely purged.
+      - q: Are our prompts or code used to train AI models?
+        a: |
+          No. Archiku, Ollama and RunPod enforce a strict, contractually
+          binding zero-training policy. Neither source code, parsed Abstract
+          Syntax Trees, structural facts nor analyst review notes are ever
+          retained or used for model training or fine-tuning.
+      - q: Can third-party host operators or cloud administrators view our code?
+        a: |
+          No. Workloads run within containerized multi-tenant isolated
+          environments. Infrastructure terms strictly forbid host
+          administrators from inspecting container data or memory. Enterprise
+          workloads can further be restricted to the audited Secure Cloud
+          Tier 3/4 data centres.
+      - q: What standing compliance documentation can be provided for vendor review?
+        a: |
+          Archiku provides standing third-party compliance documentation
+          through its compute partners' Trust Portal, including ISO/IEC 27001
+          certificates, SOC 2 Type II audit reports, SOC 3 summaries, HIPAA
+          compliance attestations and standard Data Processing Agreements
+          under GDPR.
+      - q: Can Archiku deploy into our own infrastructure?
+        a: |
+          For Enterprise Estate engagements (150K+ SLOC or complex
+          multi-repository estates), deployment into client-managed VPCs or
+          air-gapped internal infrastructure is available on request, together
+          with custom metamodel tailoring. Get in touch to discuss the
+          configuration that fits your environment.
+
+  # ------------------------------------------------ closing CTA
+  - id: contact
+    type: cta
+    title: Questions left for your security review?
+    text: |
+      If your security, procurement or data protection team needs more than
+      this page covers, drop us a line. We answer what we can and provide the
+      standing compliance documentation for your vendor file.
+    label: contact @ archiku . com
+    link: "mailto:contact@archiku.com"

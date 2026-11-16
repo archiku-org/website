@@ -192,7 +192,8 @@ sections:
           text: |
             Your code is analyzed on hardware we control, in an isolated per-client
             environment. Your code is never sent to public AI services and no model is
-            ever trained on it. Ever.
+            ever trained on it. Ever. <a href="/infrastructure/">How your code is
+            protected →</a>
         - title: Full traceability
           icon: bi-crosshair
           text: |

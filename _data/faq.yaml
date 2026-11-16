@@ -29,6 +29,7 @@ sections:
           each client. Large models are hosted only with providers that uphold our
           standards, and don't log any content. Nothing is sent to public AI services
           and no model is trained on your code. Ever.
+          <a href="/infrastructure/">Full detail on our infrastructure and security →</a>
       - q: Do you replace my team?
         a: |
           No. We give your team the starting point it deserves. Every finding is
@@ -94,7 +95,7 @@ sections:
           It stays yours and it stays yours alone. It lives in the isolated
           environment only for the duration of the analysis. When the engagement
           ends, the working copies are purged. The deliverable, the knowledge, is
-          yours to keep.
+          yours to keep. <a href="/infrastructure/">How your code is protected →</a>
       - q: Who owns the deliverable?
         a: |
           You do. The validated baseline analysis is yours: your experts validate

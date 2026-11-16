@@ -1,0 +1,48 @@
+{% if include.section.title or include.section.subtitle %}
+<div class="row gx-4 gx-lg-5 justify-content-center">
+  <div class="col-lg-8 text-center">
+    {% if include.section.kicker %}
+    <p class="text-primary fw-bold small text-uppercase mb-2">{{ include.section.kicker }}</p>
+    {% endif %}
+
+    <h2 class="mt-0">{{ include.section.title }}</h2>
+    <hr class="divider" />
+    <p class="lead text-muted mb-5">
+      {{ include.section.subtitle }}
+    </p>
+  </div>
+</div>
+{% endif %}
+
+<div class="row gx-4 gx-lg-5 justify-content-center">
+  <div class="col-lg-10 table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          {% for header in include.section.headers %}
+          <th>{{ header }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in include.section.rows %}
+        <tr>
+          {% for cell in row %}
+          <td>{{ cell | markdownify | remove: '<p>' | remove: '</p>' }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% if include.section.note %}
+<div class="row gx-4 gx-lg-5 justify-content-center mt-4">
+  <div class="col-lg-8">
+    <p class="small text-muted mb-0">
+      {{ include.section.note | markdownify | remove: '<p>' | remove: '</p>' }}
+    </p>
+  </div>
+</div>
+{% endif %}
