@@ -89,8 +89,9 @@ sections:
         text: |
           Nothing in it is "AI-written documentation" harvested from the
           code. Every finding is first a well structured fact, anchored in the
-          Archiku Analysis Metamodel, engineered through a multi-pass agentic
-          review and structurally validated by a seasoned analyst.
+          Archiku Analysis Metamodel: mapped onto the structural facts of the
+          codebase, engineered through a multi-pass agentic review with
+          objections resolved, and composed into the narratives you read.
       - title: Not a replacement for your team
         icon: bi-x-circle
         text: |

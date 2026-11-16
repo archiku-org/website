@@ -1,7 +1,7 @@
 meta:
   title: Archiku | Team
   description: |
-    Meet the agents: four specialized agents and a unified knowledge engine, working alongside a human analyst.
+    Meet the agents: four specialized agents and a unified knowledge engine, trained and steered by a master analyst.
 
 sections:
   - id: hero
@@ -10,7 +10,7 @@ sections:
     title: Meet our agents!
     intro:
       - |
-        Four specialized agents and a unified knowledge engine, working alongside a human analyst.
+        Four specialized agents and a unified knowledge engine, trained and steered by a master analyst.
 
   # ------------------------------------------------ team
   - id: team
@@ -22,7 +22,9 @@ sections:
       specialized agents and a unified knowledge engine working alongside a human
       analyst: Carter fully analyzes the code, Harper interacts with your team,
       Argus opens the resulting knowledge as an interactive observatory and Oracle
-      explains findings directly from the Vault.
+      explains findings directly from the Vault. Behind them stands the
+      master analyst who designs the method and trains the agents, on 25
+      years of analysis experience and the Archiku Analysis Metamodel.
     items:
       - title: Carter
         icon: bi-map

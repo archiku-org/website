@@ -59,6 +59,24 @@ custom domain.
   site ladder is a proposal (HQ open item Q4), offer-based Enterprise
   tier has no published price.
 
+## Human-in-the-loop framing (owner-decided 2026-11-16)
+
+Archiku does NOT hand-check every fact with humans — never imply it. The
+value proposition: Archiku takes on the cumbersome work of sifting through
+the codebase and delivers ready-to-use, human-level facts, giving the
+client's analysts and business people a jumpstart. **They are the human in
+the loop.** The pipeline is phased: 1) the codebase is mapped into
+structural facts, 2) every analysis fact is anchored onto those structural
+facts, 3) review passes resolve objections, 4) narratives are derived on
+top of the facts. Where Christophe appears, the message is that he
+**trains the agents and the agentic loops** on his 25 years of experience
+and the Archiku Analysis Metamodel; that training is the added value on
+this front. Reviewing is agentic: phrase it as "hardened in multi-pass
+agentic review" or "reviewed by multiple agents in multiple passes" —
+never "structurally validated by a seasoned analyst" or "before human
+validation". Enterprise tier feature wording: "Dedicated priority agent
+training and custom reporting".
+
 ## Phase 0 offer (canonical wording, owner-decided 2026-10)
 
 Up to 10K SLOC, analyzed within 48 business hours of onboarding,

@@ -46,8 +46,9 @@ sections:
       - q: What if the analysis is wrong?
         a: |
           This can happen. To deliver your analysis in a timely fashion, we rely on
-          multi-pass agentic workflows combined with rigorous structural expert
-          validation to catch and eliminate typical mistakes.
+          multi-pass agentic workflows combined with rigorous structural validation,
+          with every analysis fact anchored onto the structural facts of your
+          codebase, to catch and eliminate typical mistakes.
           Even then, our agents can miss a subtlety.<br>
           Every finding cites its exact place in the code, so you can verify any
           claim in seconds. Before delivery, the analysis passes independent
@@ -63,13 +64,15 @@ sections:
         a: |
           Those tools help developers write code. Archiku produces independent
           insight about code: what a system does, how it has drifted and whether
-          delivered work conforms. Different question, different product, and no
-          human analyst validation in those tools.
+          delivered work conforms. Different question, different product, and
+          neither delivers a structured, citation-anchored fact base your
+          experts can build on.
       - q: How is this different from a consultancy audit?
         a: |
           A classic audit bills a team by the day and hands you a report. Archiku
           delivers a validated baseline analysis in days at a fixed fee,
-          traceable to the exact line of code and independently reviewed. And it
+          traceable to the exact line of code and hardened by multi-pass agentic
+          review. And it
           does not have to end at that initial delivery: When Argus arrives, it can monitor the evolution of your codebases, paired with the Vault, it even offers an interactive platform for your analysts to interact and work together with the Archiku team of agents.
       - q: What does it cost?
         a: |
@@ -104,13 +107,13 @@ sections:
           what is accessed and nothing leaves that perimeter.
       - q: Is Archiku fully automated?
         a: |
-          No, and deliberately so. Archiku leverages a specialized, multi-pass automated pipeline to handle the complex tasks of extracting, mapping, and cross-referencing your codebase. However, a veteran master analyst personally validates findings structurally before they reach your desk.
+          No, and deliberately so. Archiku runs a specialized, multi-pass pipeline: your codebase is first mapped into structural facts, every analysis fact is anchored onto them, objections raised in review are resolved and narratives are derived on top of the facts. A veteran master analyst trains the agents and their agentic loops, on 25 years of analysis experience and the Archiku Analysis Metamodel. That training and pipeline monitoring is our added value, putting your experts in de driver's seat as the truly augmented humans in the loop.
       - q: What is the Archiku Analysis Metamodel?
         a: |
           It is the declarative model that defines what a finding may be: the fact
           types, relations and taxonomies the platform understands. The Vault loads it
           and enforces it, so every finding is structured, citation-anchored and
-          versioned by construction. It is how Archiku guarantees that the analysis is
+          versioned by construction. It is how Archiku keeps the analysis
           grounded, not generated.
       - q: Can Archiku support our internal analysis methodology?
         a: |

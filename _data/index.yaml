@@ -1,8 +1,7 @@
 meta:
   title: Archiku | Agent-Augmented Software Archaeology
   description: |
-    Gain independent, line-level architectural insight into your codebase. Archiku combines multi-agent workflows with expert analysis: a validated baseline analysis in days, measured at twelve analyst-days of work on our public case study.
-
+    Gain independent, line-level insight into your codebase. Archiku combines agentic workflows with a method trained on 25 years of analysis experience: a validated baseline analysis in days, putting your experts in de driver's seat as the truly augmented humans in the loop.
 footer:
   copyright: |
     Copyright © 2026, Archiku, Agent-Augmented Software Archaeology,
@@ -39,7 +38,7 @@ sections:
       - |
         Unrecorded knowledge turns active code into a black box. Know your software, and you can budget, verify and comply. Guess and every choice is a bet.
     pitch: |
-      Archiku delivers rapid, independent insight into your codebase. Our agents deliver a validated baseline analysis in days, not weeks. With every finding traced to a line of code and independently reviewed, your experts remain the ultimate authority.
+      Archiku delivers rapid, independent insight into your codebase. Our agents take on the tedious work: they dig through the codebase and deliver a validated baseline analysis in days, not weeks. Every finding is traced to a line of code and hardened in multi-pass agentic review, so your experts start immediately at a much higher level of confidence and remain the ultimate authority.
 
   # ------------------------------------------------ triage
   - id: triage
@@ -202,7 +201,7 @@ sections:
         - title: Full auditability
           icon: bi-patch-check
           text: |
-            The analysis passes a multi-pass agentic review pipeline before human validation, with our baseline verification metrics open to your inspection.
+            The analysis is built in phases: the codebase is first mapped into structural facts, every analysis fact is anchored onto them and multi-pass agentic review hardens the result. Our baseline verification metrics are open to your inspection.
 
       - tab: Expertise & Method
         id: expertise
@@ -227,7 +226,8 @@ sections:
           text: |
             Agents are fast, but the method is the product: a quarter century
             of software and functional analysis, from analysis craft to BPMN and
-            UML modelling, drives what Archiku looks for and how findings are judged.
+            UML modelling, trained into our agents and their agentic loops. That
+            training determines what Archiku looks for and how findings are judged.
 
   # ------------------------------------------------ deliverables
   - id: deliverables
@@ -299,9 +299,12 @@ sections:
     type: values
     title: The Archiku Analysis Method
     subtitle: |
-      Archiku applies a grounded method to every functional analysis. One
-      declarative metamodel defines what a finding may be, the platform enforces it
-      and every finding stays structured, versioned and traceable.
+      Archiku applies a grounded method to every functional analysis: the
+      codebase is first mapped into structural facts, analysis facts are
+      anchored onto them, review passes resolve every objection and narratives
+      are derived on top. One declarative metamodel defines what a finding may
+      be, the platform enforces it and every finding stays structured, versioned
+      and traceable.
     items:
       - title: Structured, not scraped
         icon: bi-bricks
@@ -350,7 +353,7 @@ sections:
         icon: bi-lightning-charge
         text: |
           Together we select a module for a risk-free initial analysis, analyzed
-          within 48 business hours and presented to you by the analyst who stands behind it.
+          within 48 business hours and presented to you live by the analyst who trained the agents behind it.
       - title: Decide
         icon: bi-cash-coin
         text: |
@@ -360,8 +363,7 @@ sections:
       - title: Analyze
         icon: bi-diagram-3
         text: |
-          Full validated baseline analysis, fixed fee, in days. Multi-pass agentic
-          review before anything reaches you.
+          Full validated baseline analysis, fixed fee, in days: the codebase is mapped into structural facts, analysis facts are anchored onto them and multi-pass agentic review runs before anything reaches you.
       - title: Own
         icon: bi-people
         text: |
@@ -385,7 +387,7 @@ sections:
     image_alt: Christophe Van Ginneken
     paragraphs:
       - |
-        We call our method <strong>software archaeology</strong>: digging through the complex layers of a system until the original business intent surfaces again. While our agentic workflows read code at massive speeds, experienced humans decide what it means. Archiku pairs this automated power with a seasoned analyst who structurally validates every finding and personally presents the insights live to your team.
+        We call our method <strong>software archaeology</strong>: digging through the complex layers of a system until the original business intent surfaces again. Our agentic workflows take on the tedious work, reading code at massive speeds and mapping the codebase into structural facts, while experienced humans decide what it means. Christophe trains those agents and their review loops on a quarter century of analysis experience and the Archiku Analysis Metamodel. He personally presents the insights live to your team.
       - |
         <b>Christophe Van Ginneken</b> has analyzed, modeled and architected
         business-critical software for over 25 years, as analyst, analyst coach
@@ -396,7 +398,7 @@ sections:
         His research on <b>Agentic Workflows</b> is published as a series of informal articles on <a href="https://christophe.vg/about/Hello-Agents">his personal
         website</a> and documents the principles behind the Archiku approach.
       - |
-        Archiku is foremost Christophe, your human in the loop. Inside the loop <b>Carter, Harper, Argus and Oracle</b> join him to deliver your next analysis. <br>
+        Archiku is foremost Christophe, your human in the loop: the analyst who trains the agents and the agentic loops behind your analysis. Inside the loop <b>Carter, Harper, Argus and Oracle</b> join him to deliver your next analysis. <br>
         <b><a href="/team/">Meet the team!</a></b>
 
   # ------------------------------------------------ pricing
@@ -446,7 +448,7 @@ sections:
         features:
           - "Custom metamodel and custom agents matched to your methodology"
           - "Compliance mapping"
-          - "Dedicated priority analyst validation"
+          - "Dedicated priority agent training and custom reporting"
     button:
       label: Browse the Financials Case Study Analysis
       url: "/case-study/financials"

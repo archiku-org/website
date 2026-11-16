@@ -11,7 +11,7 @@ sections:
     tagline: |
       One night of Claude Code. Five departments of value. One question no documentation could answer.
     closing: |
-      The Financials App case study introduces you to an actual Archiku functional analysis and illustrates the Archiku way of working. It is based on an actual codebase, actually vibe coded, yet conceptually simple enough to fit the frame of the case study. The people and the plot around it, from John to the development agency, are a story. The analysis itself is real.
+      The Financials App case study introduces you to an actual Archiku functional analysis and illustrates the Archiku way of working. It is based on an actual codebase, actually vibe coded, yet conceptually simple enough to fit the frame of the case study. The people and the plot around it, from John to the development agency, are a story. The analysis, the run that produced it and the reports behind every claim on this site, are all real.
   - id: story
     type: story
     intro:
@@ -100,7 +100,7 @@ sections:
         image: /assets/img/case-study/step8.png
         text: |
           Archiku analyzed the codebase of the Financials App and delivered a
-          structurally validated functional analysis in days: the actors, the
+          validated baseline analysis in days: the actors, the
           processes, the core concepts, the business rules and the
           boundaries of the system, every finding traceable to the exact
           line of code. The independent map nobody inside the company
