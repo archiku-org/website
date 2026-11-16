@@ -130,17 +130,15 @@ sections:
   - id: value
     nav_label: Value
     type: paragraphs
-    title: Archiku's value in numbers
+    title: Analytical readiness in days, not months
     paragraphs:
       - |
-        Measured, not promised. In our public [case study](/case-study/) we show that an experienced analyst's take on a 13K SLOC codebase (11.185 code lines at ~200 lines per hour) amounts to an estimated 12.2 analyst-days of effort, ten of them just reading. Archiku delivered the functional analysis in 2 days.
+        Traditional codebase audits force senior analysts to spend weeks line-reading source code and manually mapping dependencies just to understand what an application actually does today. This long, manual ramp-up delays critical decisions in M&A due diligence, vendor code handovers and legacy modernization.
       - |
-        The jumpstart is the value we offer. Reading is only the slow part. Because your experts start from a readable, line-cited report that reads in about an hour, judgement begins in days, not after weeks of analyst excavation.
-      - |
-        The case study represents our "Phase 0" offering: up to 10K SLOC, 48 business hours, €1.500, risk-free. See the [pricing section](#pricing) for details.
+        Archiku changes this trajectory. By combining automated functional analysis with your experts' judgement, we bypass the slow discovery curve and jumpstart your team directly to an actionable, line-cited functional baseline.
       - |
         <div class="text-center">
-          <img src="/assets/img/value-timeline.png" class="img-fluid" alt="Timeline comparison. The human analyst needs about twelve working days before a decision can be made. Archiku delivers in two days.">
+          <img src="/assets/img/value-timeline.png" class="img-fluid" alt="Chart: analytical readiness over time. An expert augmented by Archiku crosses the readiness threshold far earlier than an expert working alone.">
         </div>
 
   # ------------------------------------------------ benefits
