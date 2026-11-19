@@ -68,6 +68,19 @@ sections:
           delivered work conforms. Different question, different product, and
           neither delivers a structured, citation-anchored fact base your
           experts can build on.
+      - q: Why not just ask ChatGPT or Gemini to analyze our codebase?
+        a: |
+          You can, and the result will look convincing. The difference is not a
+          smarter model, it is what happens around the model. A chat session
+          answers the questions you thought to ask, one prompt at a time.
+          Archiku runs a systematic investigation: the Archiku Analysis
+          Metamodel defines what kinds of findings to look for, so coverage
+          does not depend on your prompting skills. Every finding arrives as a
+          structured fact, anchored to the exact file and line it came from,
+          interlinked with the rest of the analysis and hardened in multi-pass
+          agentic review. The result is a validated baseline analysis your
+          experts can navigate, verify and build on, not a plausible document
+          that is already outdated when the next question arrives.
       - q: How is this different from a consultancy audit?
         a: |
           A classic audit bills a team by the day and hands you a report. Archiku

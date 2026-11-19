@@ -56,6 +56,8 @@ sections:
   text: |
     This is where Archiku is heading: continuous monitoring of your
     active codebases, keeping the validated baseline alive automatically.
+    When code changes, it will show which conclusions need
+    reconsideration.
     The baseline analysis you own today is the foundation it needs.
     Hit the button below and explore a complete case study, based on an actual piece of software, in a realistic context. Simple enough for everyone to understand every detail of it, complete enough to show you what Archiku can deliver.
   label: Read The Financials App Case Study

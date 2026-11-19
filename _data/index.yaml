@@ -130,7 +130,7 @@ sections:
   - id: value
     nav_label: Value
     type: paragraphs
-    title: Analytical readiness in days, not months
+    title: Understand your system well enough to decide. In days, not months.
     paragraphs:
       - |
         Traditional codebase audits force senior analysts to spend weeks line-reading source code and manually mapping dependencies just to understand what an application actually does today. This long, manual ramp-up delays critical decisions in M&A due diligence, vendor code handovers and legacy modernization.
@@ -215,7 +215,7 @@ sections:
         - title: Beyond the happy path
           icon: bi-binoculars
           text: |
-            Over 35 fact types capture the codebase from every angle:
+            30+ fact types capture the codebase from every angle:
             processes, concepts and rules, but also issues, hotspots, quirks
             and conventions. People describe the happy path well. The real
             costs lurk in the small details, and that is where the analysis
@@ -227,6 +227,17 @@ sections:
             of software and functional analysis, from analysis craft to BPMN and
             UML modelling, trained into our agents and their agentic loops. That
             training determines what Archiku looks for and how findings are judged.
+        - title: The difference is around the model
+          icon: bi-cpu
+          text: |
+            A general-purpose AI answers the questions you thought to ask.
+            Archiku investigates systematically: the Metamodel defines in
+            advance what the analysis looks for, so coverage is auditable
+            rather than ad hoc. Every finding arrives as a structured fact,
+            anchored on the exact line that proves it and interlinked with
+            the whole analysis, hardened in multi-pass agentic review. The
+            result is a validated baseline you can build on, not a plausible
+            document that ages badly.
 
   # ------------------------------------------------ deliverables
   - id: deliverables
@@ -271,7 +282,8 @@ sections:
         text: |
           Today, a validated baseline analysis materializes as a static,
           wiki-like site: every fact in place, fully interlinked, yours to
-          keep. Soon, the same fact base becomes a living repository: an
+          keep. Soon, the same fact base becomes a living repository:
+          your knowledge asset continuing in active mode, an
           interactive asset that integrates directly into your engineering
           workflows.
       - title: Interactive Querying
@@ -289,9 +301,11 @@ sections:
         badge_style: warning
         text: |
           Future-proof your active codebases. Your one-time validated analysis
-          becomes the baseline: the platform runs a check at regular intervals,
-          tracking repository drift against your validated functional baseline
-          and reporting it in language a board can act on.
+          becomes the baseline: the platform will run a check at regular
+          intervals, tracking repository drift against your validated
+          functional baseline. And when code changes, it will show which
+          conclusions need reconsideration, reported in language a board
+          can act on.
 
   # ------------------------------------------------ method
   - id: method
@@ -303,7 +317,9 @@ sections:
       anchored onto them, review passes resolve every objection and narratives
       are derived on top. One declarative metamodel defines what a finding may
       be, the platform enforces it and every finding stays structured, versioned
-      and traceable.
+      and traceable. With 30+ fact types, the Metamodel encodes a quarter
+      century of analysis experience: it already knows the kinds of things
+      worth discovering.
     items:
       - title: Structured, not scraped
         icon: bi-bricks
