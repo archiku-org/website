@@ -1,10 +1,10 @@
 meta:
-  title: Archiku | Agent-Augmented Software Archaeology
+  title: Archiku | AI-Augmented Functional Analysis
   description: |
-    Gain independent, line-level insight into your codebase. Archiku combines agentic workflows with a method trained on 25 years of analysis experience: a validated baseline analysis in days, putting your experts in de driver's seat as the truly augmented humans in the loop.
+    Gain independent, line-level insight into your codebase. Archiku combines agentic workflows with a method trained on 25 years of analysis experience: a validated baseline analysis in days, putting your experts in the driver's seat as the truly augmented humans in the loop.
 footer:
   copyright: |
-    Copyright © 2026, Archiku, Agent-Augmented Software Archaeology,
+    Copyright © 2026, Archiku, AI-Augmented Functional Analysis,
     is a product of <a href="https://2know.be">2Know BV</a>
 
 sections:
@@ -13,7 +13,7 @@ sections:
     type: hero
     logo_img: /assets/img/archiku-white-transp-bg.png
     kicker: |
-      Agent-augmented functional analysis
+      AI-augmented functional analysis
     title: |
       Uncovering the essence. Keeping it alive.
     tagline: |
